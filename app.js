@@ -457,20 +457,25 @@ function initScrollReveal() {
 
 // ── Active Nav Tracking ──
 function initNavTracking() {
-  const sections = document.querySelectorAll('.section[id]');
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.classList.remove('active'));
-        const target = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-        if (target) target.classList.add('active');
+  function updateActiveNav() {
+    const scrollY = window.scrollY + 100; // offset for sticky nav
+    let current = '';
+
+    document.querySelectorAll('.section[id]').forEach(section => {
+      if (section.offsetTop <= scrollY) {
+        current = section.id;
       }
     });
-  }, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
 
-  sections.forEach(section => observer.observe(section));
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 }
 
 // ── Mobile Nav Toggle ──
