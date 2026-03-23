@@ -19,6 +19,26 @@ function getPosClass(p) {
 function getPickClass(n) { return n === 1 ? 'pick1' : n === 2 ? 'pick2' : n === 3 ? 'pick3' : ''; }
 function teamName(id) { return TEAMS.find(t => t.id === id)?.name || id; }
 
+// ── Team Roster (within grade card) ──
+function renderTeamRoster(teamId) {
+  if (typeof DRAFT_PICKS === 'undefined') return '';
+  const picks = DRAFT_PICKS.filter(p => p.teamId === teamId).sort((a, b) => a.round - b.round);
+  if (!picks.length) return '';
+  const rows = picks.map(p => `
+    <li>
+      <span class="pick-round">R${p.round}</span>
+      <span class="pick-pos ${getPosClass(p.pos)}">${p.pos || '\u2014'}</span>
+      <span class="pick-name">${p.player}</span>
+      <span class="pick-cat">${p.cats || ''}</span>
+    </li>`).join('');
+  return `
+    <div class="team-roster-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      <span>Full Roster (${picks.length} picks)</span>
+      <span class="roster-chevron">\u25BC</span>
+    </div>
+    <ul class="team-picks-list">${rows}</ul>`;
+}
+
 // ── Team Grades ──
 function renderTeams() {
   const grid = document.getElementById('teamsGrid');
@@ -54,6 +74,7 @@ function renderTeams() {
             ${strengthTags ? `<div class="team-strengths" style="margin-top:.5rem">${strengthTags}</div>` : ''}
             ${weakTags ? `<div class="team-weaknesses" style="margin-top:.4rem">${weakTags}</div>` : ''}
           </div>
+          ${renderTeamRoster(team.id)}
         </div>
       </div>`;
   });

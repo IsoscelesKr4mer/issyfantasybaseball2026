@@ -502,8 +502,31 @@ nav a.active::after { transform: scaleX(1); }
 .tag-blue { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(79, 142, 247, .15); }
 .tag-yellow { background: var(--accent2-dim); color: var(--accent2); border: 1px solid rgba(247, 201, 72, .15); }
 
+/* ── ROSTER TOGGLE ── */
+.team-roster-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .6rem 0 .4rem;
+  margin-top: .6rem;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition-fast);
+}
+.team-roster-toggle:hover { color: var(--accent2); }
+.roster-chevron {
+  font-size: .6rem;
+  transition: transform .25s ease;
+}
+.team-roster-toggle.open .roster-chevron { transform: rotate(180deg); }
+
 /* ── PICKS LIST ── */
-.team-picks-list { list-style: none; }
+.team-picks-list { list-style: none; max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.team-picks-list.open { max-height: 1600px; }
 .team-picks-list li {
   display: flex;
   align-items: center;
