@@ -4,744 +4,242 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Issaquah Swingers — 2026 Draft War Room</title>
-  <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #232736;
-      --border: #2e3347;
-      --accent: #4f8ef7;
-      --accent2: #f7c948;
-      --green: #3ecf8e;
-      --red: #f44;
-      --text: #e8eaf0;
-      --muted: #8891aa;
-      --font: 'Segoe UI', system-ui, sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
-
-    /* NAV */
-    nav {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex; align-items: center; gap: 2rem;
-      height: 56px;
-      position: sticky; top: 0; z-index: 100;
-    }
-    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .5px; }
-    .nav-logo span { color: var(--text); }
-    nav a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-    nav a:hover, nav a.active { color: var(--text); }
-    .nav-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #1a1d27 0%, #0f1117 60%);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
-    }
-    .hero-tag { display: inline-block; background: rgba(79,142,247,.15); color: var(--accent); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(79,142,247,.3); margin-bottom: 1rem; }
-    .hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -1px; line-height: 1.1; }
-    .hero h1 span { color: var(--accent2); }
-    .hero p { color: var(--muted); margin-top: .75rem; font-size: 1rem; }
-
-    /* LAYOUT */
-    .container { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: .6rem; letter-spacing: -.3px; }
-    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: .5rem; }
-
-    /* GRID */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-
-    /* CARDS */
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; }
-    .card-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: .75rem; }
-
-    /* STRIP */
-    .strip {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1px; background: var(--border); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden; margin-bottom: 2rem;
-    }
-    .strip-cell { background: var(--surface); padding: 1rem; text-align: center; }
-    .strip-val { font-size: 1.6rem; font-weight: 900; color: var(--text); }
-    .strip-val.green { color: var(--green); }
-    .strip-val.blue { color: var(--accent); }
-    .strip-val.yellow { color: var(--accent2); }
-    .strip-val.red { color: var(--red); }
-    .strip-lbl { font-size: .72rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .8px; }
-
-    /* TEAM GRADES */
-    .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color .2s, transform .2s; }
-    .team-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .team-card.featured { border-color: var(--accent2); }
-    .team-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border); }
-    .team-pick { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; color: var(--muted); flex-shrink: 0; }
-    .team-pick.pick1 { background: rgba(255,215,0,.15); color: #ffd700; border-color: #ffd700; }
-    .team-pick.pick2 { background: rgba(192,192,192,.15); color: #c0c0c0; border-color: #c0c0c0; }
-    .team-pick.pick3 { background: rgba(205,127,50,.15); color: #cd7f32; border-color: #cd7f32; }
-    .team-info { flex: 1; min-width: 0; }
-    .team-name { font-weight: 800; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .team-name.featured-name { color: var(--accent2); }
-    .team-manager { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .grade-badge { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; flex-shrink: 0; }
-    .grade-A-plus { background: rgba(62,207,142,.2); color: #3ecf8e; border: 2px solid #3ecf8e; }
-    .grade-A { background: rgba(62,207,142,.15); color: #3ecf8e; border: 2px solid rgba(62,207,142,.5); }
-    .grade-A-minus { background: rgba(62,207,142,.1); color: #5dd5a0; border: 2px solid rgba(62,207,142,.3); }
-    .grade-B-plus { background: rgba(79,142,247,.15); color: var(--accent); border: 2px solid rgba(79,142,247,.5); }
-    .grade-B { background: rgba(79,142,247,.1); color: var(--accent); border: 2px solid rgba(79,142,247,.3); }
-    .grade-B-minus { background: rgba(79,142,247,.08); color: #7aaaf8; border: 2px solid rgba(79,142,247,.2); }
-    .grade-C-plus { background: rgba(247,201,72,.1); color: var(--accent2); border: 2px solid rgba(247,201,72,.3); }
-    .grade-C { background: rgba(247,201,72,.08); color: var(--accent2); border: 2px solid rgba(247,201,72,.2); }
-    .grade-D { background: rgba(244,68,68,.1); color: var(--red); border: 2px solid rgba(244,68,68,.2); }
-    .team-body { padding: 1rem 1.25rem; }
-    .team-picks-list { list-style: none; }
-    .team-picks-list li { display: flex; align-items: center; gap: .6rem; padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .875rem; }
-    .team-picks-list li:last-child { border-bottom: none; }
-    .pick-round { font-size: .7rem; font-weight: 700; color: var(--muted); width: 28px; text-align: right; flex-shrink: 0; }
-    .pick-pos { background: var(--surface2); border-radius: 4px; padding: 1px 6px; font-size: .68rem; font-weight: 700; color: var(--muted); width: 32px; text-align: center; flex-shrink: 0; }
-    .pick-pos.pos-sp { color: #f7a948; }
-    .pick-pos.pos-rp { color: #e07bf0; }
-    .pick-pos.pos-c { color: #3ecf8e; }
-    .pick-pos.pos-ss { color: var(--accent); }
-    .pick-pos.pos-of { color: #ff8f50; }
-    .pick-name { flex: 1; color: var(--text); }
-    .pick-cat { font-size: .7rem; color: var(--muted); margin-left: auto; }
-    .team-analysis { background: var(--surface2); border-radius: 8px; padding: .75rem 1rem; margin-top: .75rem; font-size: .85rem; line-height: 1.6; color: var(--muted); }
-    .team-analysis strong { color: var(--text); }
-    .team-strengths, .team-weaknesses { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .6rem; }
-    .tag { font-size: .72rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
-    .tag-green { background: rgba(62,207,142,.15); color: #3ecf8e; }
-    .tag-red { background: rgba(244,68,68,.12); color: #f77; }
-    .tag-blue { background: rgba(79,142,247,.15); color: var(--accent); }
-    .tag-yellow { background: rgba(247,201,72,.15); color: var(--accent2); }
-
-    /* INSIGHT CARDS */
-    .insight-row { display: flex; align-items: center; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border); font-size: .88rem; }
-    .insight-row:last-child { border-bottom: none; }
-    .insight-icon { font-size: 1.2rem; flex-shrink: 0; }
-    .insight-label { color: var(--muted); font-size: .78rem; }
-    .insight-val { font-weight: 700; }
-    .arrow-up { color: var(--green); }
-    .arrow-down { color: var(--red); }
-    .arrow-same { color: var(--accent2); }
-
-    /* STANDINGS TABLE */
-    .standings-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-    .standings-table th { padding: .5rem .75rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); border-bottom: 1px solid var(--border); }
-    .standings-table td { padding: .55rem .75rem; border-bottom: 1px solid rgba(46,51,71,.5); }
-    .standings-table tr:last-child td { border-bottom: none; }
-    .standings-table tr.highlight td { background: rgba(247,201,72,.05); }
-    .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-weight: 800; font-size: .78rem; }
-    .rank-1 { background: rgba(255,215,0,.15); color: #ffd700; }
-    .rank-2 { background: rgba(192,192,192,.15); color: #c0c0c0; }
-    .rank-3 { background: rgba(205,127,50,.15); color: #cd7f32; }
-
-    /* BUCKNER ROSTER */
-    .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .75rem; }
-    .roster-slot { background: var(--surface2); border-radius: 8px; padding: .6rem .8rem; border-left: 3px solid var(--border); }
-    .roster-slot.slot-bat { border-left-color: var(--accent2); }
-    .roster-slot.slot-pitch { border-left-color: var(--accent); }
-    .roster-slot.slot-rp { border-left-color: #e07bf0; }
-    .slot-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
-    .slot-player { font-weight: 700; font-size: .88rem; margin-top: 2px; }
-    .slot-round { font-size: .72rem; color: var(--muted); }
-    .slot-note { font-size: .72rem; color: var(--accent2); font-style: italic; margin-top: 2px; }
-
-    /* COMPARISON BAR */
-    .compare-bar { display: flex; align-items: center; gap: .5rem; margin: .5rem 0; }
-    .compare-label { width: 60px; font-size: .75rem; color: var(--muted); text-align: right; }
-    .compare-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; position: relative; }
-    .compare-fill { height: 6px; border-radius: 3px; transition: width .8s ease; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); text-align: center; padding: 1.5rem; color: var(--muted); font-size: .8rem; margin-top: 4rem; }
-
-    /* TABS */
-    .tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .tab { padding: .45rem 1.1rem; border-radius: 8px; font-size: .85rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all .2s; }
-    .tab.active, .tab:hover { background: var(--surface2); color: var(--text); border-color: var(--accent); }
-
-    @media (max-width: 640px) {
-      .hero h1 { font-size: 1.8rem; }
-      .container { padding: 1rem; }
-      .hero { padding: 2rem 1rem 1.5rem; }
-    }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+<!-- NAVIGATION -->
 <nav>
   <div class="nav-logo">&#9918; Issaquah <span>Swingers</span></div>
-  <a href="#grades" class="active">Grades</a>
-  <a href="#predictions">Predictions</a>
-  <a href="#insights">Insights</a>
-  <a href="#standings">2025 Recap</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+  <div class="nav-links">
+    <a href="#grades" class="active">Grades</a>
+    <a href="#predictions">Predictions</a>
+    <a href="#insights">Insights</a>
+    <a href="#narratives">Narratives</a>
+    <a href="#standings">2025 Recap</a>
+    <a href="#settings">Settings</a>
+  </div>
   <div class="nav-badge">2026 Draft</div>
 </nav>
 
-<div class="hero">
-  <div class="hero-tag">Post-Draft Analysis</div>
-  <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
-  <p>Head-to-Head Categories &middot; 10 Teams &middot; 23 Rounds &middot; Sun Mar 22, 2026</p>
-</div>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Post-Draft Analysis</div>
+    <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
+    <p class="hero-sub">
+      Head-to-Head Categories
+      <span class="sep"></span>
+      10 Teams
+      <span class="sep"></span>
+      23 Rounds
+      <span class="sep"></span>
+      Sun Mar 22, 2026
+    </p>
+  </div>
+</header>
 
 <div class="container">
 
   <!-- SUMMARY STRIP -->
-  <div class="strip" style="margin-top:2rem;">
-    <div class="strip-cell"><div class="strip-val green" id="topGrade">A</div><div class="strip-lbl">Best Grade</div></div>
-    <div class="strip-cell"><div class="strip-val blue">10</div><div class="strip-lbl">Teams</div></div>
-    <div class="strip-cell"><div class="strip-val yellow">15</div><div class="strip-lbl">Loyalty Picks</div></div>
-    <div class="strip-cell"><div class="strip-val">230</div><div class="strip-lbl">Total Picks</div></div>
-    <div class="strip-cell"><div class="strip-val">22</div><div class="strip-lbl">Reg. Season Wks</div></div>
+  <div class="strip reveal">
+    <div class="strip-cell">
+      <div class="strip-val green" id="topGrade">A</div>
+      <div class="strip-lbl">Best Grade</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val blue">10</div>
+      <div class="strip-lbl">Teams</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val yellow">15</div>
+      <div class="strip-lbl">Loyalty Picks</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val">230</div>
+      <div class="strip-lbl">Total Picks</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val">22</div>
+      <div class="strip-lbl">Reg. Season Wks</div>
+    </div>
   </div>
 
   <!-- TEAM GRADES -->
-  <div id="grades" style="margin-top:3rem;">
-    <div class="section-title">&#127942; Team Grades</div>
-    <div class="teams-grid" id="teamsGrid"></div>
-  </div>
+  <section id="grades" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#127942;</span> Team Grades
+    </h2>
+    <div class="teams-grid stagger-children" id="teamsGrid"></div>
+  </section>
 
   <!-- SEASON PREDICTIONS -->
-  <div id="predictions" style="margin-top:3rem;">
-    <div class="section-title">&#128302; 2026 Season Predictions</div>
-    <div class="card" style="margin-bottom:1.5rem;">
-      <div class="card-title">Methodology</div>
-      <div style="font-size:.85rem;color:var(--muted);line-height:1.6;">
-        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS), with weekly variance to account for injuries, slumps, and waiver moves. Actual schedules used for all 22 regular season weeks + 3 playoff weeks.
+  <section id="predictions" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128302;</span> 2026 Season Predictions
+    </h2>
+
+    <!-- Methodology -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#128200;</span> Methodology
       </div>
+      <p class="methodology-text">
+        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS), with weekly variance to account for injuries, slumps, and waiver moves. Actual schedules used for all 22 regular season weeks + 3 playoff weeks.
+      </p>
     </div>
 
     <!-- Projected Standings -->
-    <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card reveal" style="margin-bottom:1.5rem;">
       <div class="card-title">Projected Regular Season Standings</div>
-      <table class="standings-table" id="projectedStandings">
-        <thead>
-          <tr>
-            <th>Seed</th>
-            <th>Team</th>
-            <th>Proj. Record</th>
-            <th>Pct</th>
-            <th>Playoff%</th>
-            <th>Champ%</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="standings-table" id="projectedStandings">
+          <thead>
+            <tr>
+              <th>Seed</th>
+              <th>Team</th>
+              <th>Proj. Record</th>
+              <th>Pct</th>
+              <th>Playoff%</th>
+              <th>Champ%</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Playoff Bracket -->
-    <div class="card" style="margin-bottom:1.5rem;">
-      <div class="card-title">&#127942; Predicted Playoff Bracket (Weeks 23-25)</div>
-      <div style="font-size:.88rem;line-height:1.8;color:var(--muted);">
-        <div style="margin-bottom:1rem;">
-          <strong style="color:var(--text);">Week 23 — Quarterfinals</strong> (Seeds 1-2 bye)<br/>
-          #3 The Buckner Boots vs #6 Keanu Reeves &rarr; <span style="font-weight:700;">Buckner wins 6-4</span> (OBP advantage overwhelms volatile roster)<br/>
-          #4 877-Glas-Now vs #5 Decoy &rarr; <span style="font-weight:700;">Decoy wins 6-4</span> (Mason Miller + healthy aces swing SV/K)
-        </div>
-        <div style="margin-bottom:1rem;">
-          <strong style="color:var(--text);">Week 24 — Semifinals</strong><br/>
-          #1 One Ball Two Strikes vs #5 Decoy &rarr; <span style="font-weight:700;">One Ball wins 7-3</span> (deeper roster, better ratios)<br/>
-          #2 Good Vibes Only vs #3 The Buckner Boots &rarr; <span style="font-weight:700;">Buckner wins 6-4</span> (OBP edge + dual closers steal SV)
-        </div>
-        <div style="padding:1rem;background:var(--surface2);border-radius:10px;border:2px solid var(--green);">
-          <strong style="color:var(--text);font-size:1rem;">Week 25 — Championship</strong><br/>
-          #1 One Ball Two Strikes vs #3 The Buckner Boots<br/>
-          <div style="margin-top:.5rem;font-size:1.05rem;">
-            <span style="color:var(--green);font-weight:900;">&#127942; One Ball Two Strikes wins 6-4 &#127942;</span>
-          </div>
-          <div style="margin-top:.4rem;font-size:.82rem;color:var(--muted);">
-            One Ball's Skubal/Yamamoto duo dominates K and QS. Ramírez outproduces across the board. Buckner's OBP advantage keeps it close, but One Ball's deeper pitching rotation and Bednar/Jansen closer combo seals it. The best draft on paper converts to a title.
-          </div>
-        </div>
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#127942;</span> Predicted Playoff Bracket (Weeks 23-25)
       </div>
+      <div id="playoffBracket"></div>
     </div>
 
-    <!-- Season Narratives -->
-    <div class="card">
+    <!-- Season Storylines -->
+    <div class="card reveal">
       <div class="card-title">Season Storylines to Watch</div>
-      <div style="font-size:.88rem;line-height:1.7;color:var(--muted);">
-        <strong style="color:var(--text);">The 5-6 seed race will be chaos.</strong> Decoy (81%), Keanu (61%), and LetsPlay (51%) are all clustered between 98-103 projected wins. One hot streak or cold stretch decides who makes the playoffs and who watches from home. Decoy's health risk (Acuña, Glasnow, Cole) makes them the wildcard.<br/><br/>
-        <strong style="color:var(--text);">Busch Latte's schedule is brutal.</strong> They face the top 3 teams (One Ball, Vibes, Buckner) a combined 7 times in the first 10 weeks. With the weakest SP depth in the league, an 0-5 start in the pitching categories is very possible.<br/><br/>
-        <strong style="color:var(--text);">LetsPlay's title defense faces a real test.</strong> Last year's champs went from pick 7 to pick 4 but their SP depth downgraded significantly. They're banking on SB + SV dominance to compensate, but in H2H that only locks 2 of 10 categories.<br/><br/>
-        <strong style="color:var(--text);">Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand — the teams that work the wire hardest will rise.
+      <div class="storyline">
+        <p><strong>The 5-6 seed race will be chaos.</strong> Decoy (81%), Keanu (61%), and LetsPlay (51%) are all clustered between 98-103 projected wins. One hot streak or cold stretch decides who makes the playoffs and who watches from home. Decoy's health risk (Acu&ntilde;a, Glasnow, Cole) makes them the wildcard.</p>
+        <p><strong>Busch Latte's schedule is brutal.</strong> They face the top 3 teams (One Ball, Vibes, Buckner) a combined 7 times in the first 10 weeks. With the weakest SP depth in the league, an 0-5 start in the pitching categories is very possible.</p>
+        <p><strong>LetsPlay's title defense faces a real test.</strong> Last year's champs went from pick 7 to pick 4 but their SP depth downgraded significantly. They're banking on SB + SV dominance to compensate, but in H2H that only locks 2 of 10 categories.</p>
+        <p><strong>Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand &mdash; the teams that work the wire hardest will rise.</p>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- YEAR-OVER-YEAR INSIGHTS -->
-  <div id="insights" style="margin-top:3rem;">
-    <div class="section-title">&#128269; Year-Over-Year Insights</div>
+  <section id="insights" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128269;</span> Year-Over-Year Insights
+    </h2>
 
     <div class="grid-2">
-      <!-- Loyalty Picks -->
-      <div class="card">
-        <div class="card-title">&#128257; Loyalty Picks — Same Player, Same Team</div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128257;</span> Loyalty Picks &mdash; Same Player, Same Team
+        </div>
         <div id="loyaltyPicks"></div>
       </div>
-
-      <!-- Biggest ADP Movers -->
-      <div class="card">
-        <div class="card-title">&#128200; Biggest Round Movers (Repeat Drafters)</div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128200;</span> Biggest Round Movers (Repeat Drafters)
+        </div>
         <div id="adpMovers"></div>
       </div>
     </div>
 
     <div class="grid-2" style="margin-top:1.5rem;">
-      <!-- Complete Overhaul -->
-      <div class="card">
-        <div class="card-title">&#128260; Roster Turnover</div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128260;</span> Roster Turnover
+        </div>
         <div id="turnoverInsights"></div>
       </div>
-
-      <!-- Ohtani Tracker -->
-      <div class="card">
-        <div class="card-title">&#127775; Notable Player Movement</div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#127775;</span> Notable Player Movement
+        </div>
         <div id="notableMovement"></div>
       </div>
     </div>
+  </section>
 
-    <!-- Narrative Section -->
-    <div class="card" style="margin-top:1.5rem;">
-      <div class="card-title">&#128218; League Narratives</div>
-      <div id="narratives" style="font-size:.88rem;line-height:1.7;color:var(--muted);">
-        <strong style="color:var(--text);">The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. LetsPlay won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.<br/><br/>
-        <strong style="color:var(--text);">The Champion's Blueprint.</strong> LetsPlay won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Estévez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.<br/><br/>
-        <strong style="color:var(--text);">One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.
+  <!-- LEAGUE NARRATIVES -->
+  <section id="narratives" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128218;</span> League Narratives
+    </h2>
+    <div class="card reveal">
+      <div class="narrative-text" id="narratives-text">
+        <p><strong>The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. LetsPlay won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.</p>
+        <p><strong>The Champion's Blueprint.</strong> LetsPlay won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Est&eacute;vez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.</p>
+        <p><strong>One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- 2025 STANDINGS -->
-  <div id="standings" style="margin-top:3rem;">
-    <div class="section-title">&#128202; 2025 Final Standings</div>
-    <div class="card">
-      <table class="standings-table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Team</th>
-            <th>Record</th>
-            <th>Pct</th>
-            <th>Moves</th>
-            <th>2026 Grade</th>
-          </tr>
-        </thead>
-        <tbody id="standingsBody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- LEAGUE SETTINGS -->
-  <div style="margin-top:3rem;">
-    <div class="section-title">&#9881;&#65039; League Settings</div>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Format</div>
+  <!-- 2025 FINAL STANDINGS -->
+  <section id="standings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128202;</span> 2025 Final Standings
+    </h2>
+    <div class="card reveal">
+      <div class="table-wrapper">
         <table class="standings-table">
-          <tr><td style="color:var(--muted)">Scoring</td><td>Head-to-Head Categories</td></tr>
-          <tr><td style="color:var(--muted)">Teams</td><td>10</td></tr>
-          <tr><td style="color:var(--muted)">Draft Type</td><td>Live Snake Draft</td></tr>
-          <tr><td style="color:var(--muted)">Rounds</td><td>23</td></tr>
-          <tr><td style="color:var(--muted)">Playoffs</td><td>6 Teams, Wks 23-25</td></tr>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Record</th>
+              <th>Pct</th>
+              <th>Moves</th>
+              <th>2026 Grade</th>
+            </tr>
+          </thead>
+          <tbody id="standingsBody"></tbody>
         </table>
       </div>
-      <div class="card">
+    </div>
+  </section>
+
+  <!-- LEAGUE SETTINGS -->
+  <section id="settings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#9881;&#65039;</span> League Settings
+    </h2>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-title">Format</div>
+        <table class="settings-table">
+          <tr><td>Scoring</td><td>Head-to-Head Categories</td></tr>
+          <tr><td>Teams</td><td>10</td></tr>
+          <tr><td>Draft Type</td><td>Live Snake Draft</td></tr>
+          <tr><td>Rounds</td><td>23</td></tr>
+          <tr><td>Playoffs</td><td>6 Teams, Wks 23-25</td></tr>
+        </table>
+      </div>
+      <div class="card reveal">
         <div class="card-title">Scoring Categories</div>
-        <table class="standings-table">
+        <table class="settings-table">
           <tr><td style="color:var(--accent2);font-weight:700">Batting</td><td>R, HR, RBI, SB, OBP</td></tr>
           <tr><td style="color:var(--accent);font-weight:700">Pitching</td><td>SV, K, ERA, WHIP, QS</td></tr>
         </table>
       </div>
     </div>
-  </div>
+  </section>
 
 </div>
 
+<!-- FOOTER -->
 <footer>
   <p>Issaquah Swingers Fantasy Baseball &middot; League ID 61583 &middot; 2026 Season</p>
-  <p style="margin-top:.4rem">Generated by Claude &middot; Post-Draft Analysis</p>
+  <p>Generated by Claude &middot; Post-Draft Analysis</p>
 </footer>
 
-<script>
-// ═══════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════
-const TEAMS = [
-  { id: 'senga',   name: 'Busch Latte',                 pick: 1, manager: '' },
-  { id: 'skenes',  name: "Skenes'n on deez Hoerners",  pick: 2, manager: '' },
-  { id: 'glas',    name: '877-Glas-Now',                pick: 3, manager: '' },
-  { id: 'lets',    name: 'LetsPlayMajorLeagueBaseball', pick: 4, manager: '' },
-  { id: 'keanu',   name: 'Keanu Reeves',                pick: 5, manager: '' },
-  { id: 'vibes',   name: 'Good Vibes Only',             pick: 6, manager: '' },
-  { id: 'rain',    name: 'Rain City Bombers',           pick: 7, manager: '' },
-  { id: 'buckner', name: 'The Buckner Boots',           pick: 8, manager: 'Michael' },
-  { id: 'decoy',   name: 'Decoy',                       pick: 9, manager: '' },
-  { id: 'oneball', name: 'One Ball Two Strikes',        pick: 10, manager: '' },
-];
-
-const STANDINGS_2025 = [
-  { teamId: 'lets',    rank: 1, record: '123-71-16', pct: '.624', moves: 81 },
-  { teamId: 'oneball', rank: 2, record: '117-76-17', pct: '.598', moves: 63 },
-  { teamId: 'glas',    rank: 3, record: '105-92-13', pct: '.531', moves: 94 },
-  { teamId: 'vibes',   rank: 4, record: '99-98-13',  pct: '.502', moves: 101 },
-  { teamId: 'decoy',   rank: 5, record: '107-89-14', pct: '.543', moves: 92 },
-  { teamId: 'keanu',   rank: 6, record: '109-92-9',  pct: '.540', moves: 36 },
-  { teamId: 'senga',   rank: 7, record: '85-115-10', pct: '.429', moves: 60 }, // fka Senga man watchu smokin?
-  { teamId: 'buckner', rank: 8, record: '70-119-21', pct: '.383', moves: 50 },
-  { teamId: 'rain',    rank: 9, record: '80-118-12', pct: '.410', moves: 17 },
-  { teamId: 'skenes',  rank: 10, record: '87-112-11', pct: '.440', moves: 82 },
-];
-
-const REPEAT_PICKS = [
-  { player: 'Adley Rutschman',    teamId: 'buckner', r25: 7,  r26: 12, diff: 5 },
-  { player: 'Cristopher Sánchez', teamId: 'keanu',   r25: 14, r26: 3,  diff: -11 },
-  { player: 'Jesús Luzardo',      teamId: 'lets',    r25: 19, r26: 7,  diff: -12 },
-  { player: 'Joe Ryan',           teamId: 'lets',    r25: 8,  r26: 6,  diff: -2 },
-  { player: 'Ozzie Albies',       teamId: 'lets',    r25: 5,  r26: 12, diff: 7 },
-  { player: 'Brent Rooker',       teamId: 'vibes',   r25: 7,  r26: 4,  diff: -3 },
-  { player: 'Eugenio Suárez',     teamId: 'vibes',   r25: 16, r26: 11, diff: -5 },
-  { player: 'Corbin Burnes',      teamId: 'vibes',   r25: 4,  r26: 23, diff: 19 },
-  { player: 'Michael King',       teamId: 'glas',    r25: 6,  r26: 15, diff: 9 },
-  { player: 'Robert Suarez',      teamId: 'glas',    r25: 15, r26: 18, diff: 3 },
-  { player: 'Carlos Rodón',       teamId: 'oneball', r25: 14, r26: 19, diff: 5 },
-  { player: 'Will Smith',         teamId: 'rain',    r25: 13, r26: 13, diff: 0 },
-  { player: 'Roki Sasaki',        teamId: 'rain',    r25: 10, r26: 22, diff: 12 },
-  { player: 'Kyle Manzardo',      teamId: 'senga',   r25: 21, r26: 22, diff: 1 },
-  { player: 'Zach Eflin',         teamId: 'decoy',   r25: 15, r26: 20, diff: 5 },
-];
-
-const BUCKNER_2026 = [
-  { round: 1, pick: 8, player: 'Kyle Tucker', pos: 'OF', note: '' },
-  { round: 2, pick: 13, player: 'Gunnar Henderson', pos: 'SS', note: '' },
-  { round: 3, pick: 28, player: 'Ketel Marte', pos: '2B', note: '' },
-  { round: 4, pick: 33, player: 'Logan Webb', pos: 'SP', note: '' },
-  { round: 5, pick: 48, player: 'Framber Valdez', pos: 'SP', note: 'QS machine' },
-  { round: 6, pick: 53, player: 'Chris Sale', pos: 'SP', note: 'K upside' },
-  { round: 7, pick: 68, player: 'CJ Abrams', pos: 'SS', note: '' },
-  { round: 8, pick: 73, player: 'Corey Seager', pos: 'SS', note: 'Steal of draft' },
-  { round: 9, pick: 88, player: 'Devin Williams', pos: 'RP', note: 'Closer 1' },
-  { round: 10, pick: 93, player: 'Alex Bregman', pos: '3B', note: 'OBP anchor' },
-  { round: 11, pick: 108, player: 'Steven Kwan', pos: 'OF', note: 'OBP/SB' },
-  { round: 12, pick: 113, player: 'Adley Rutschman', pos: 'C', note: '2025 keeper' },
-  { round: 13, pick: 128, player: 'Daniel Palencia', pos: 'RP', note: 'Closer 2' },
-  { round: 14, pick: 133, player: 'Yandy Díaz', pos: '1B', note: 'OBP elite' },
-  { round: 15, pick: 148, player: 'Trevor Rogers', pos: 'SP', note: '' },
-  { round: 16, pick: 153, player: 'Brandon Nimmo', pos: 'OF', note: 'OBP depth' },
-  { round: 17, pick: 168, player: 'Cade Horton', pos: 'SP', note: '' },
-  { round: 18, pick: 173, player: 'Munetaka Murakami', pos: '1B', note: 'Power upside' },
-  { round: 19, pick: 188, player: 'Colton Cowser', pos: 'OF', note: '' },
-  { round: 20, pick: 193, player: 'Robby Snelling', pos: 'SP', note: '' },
-  { round: 21, pick: 208, player: 'Joey Cantillo', pos: 'SP', note: '' },
-  { round: 22, pick: 213, player: 'Parker Messick', pos: 'SP', note: 'Opening Day rotation' },
-  { round: 23, pick: 228, player: 'Jack Leiter', pos: 'SP', note: '' },
-];
-
-const TEAM_GRADES = [
-  { teamId: 'oneball', grade: 'A',
-    analysis: '<strong>Best all-around draft.</strong> Skubal + Yamamoto elite SP duo. Ramírez anchors everywhere including SB/OBP. Olson/Duran/Greene power depth. Bednar + Jansen lock down SV. Late adds (Burns, Eovaldi) fill rotation with high-floor arms.',
-    strengths: ['HR','RBI','K','QS','SV','OBP'], weaknesses: ['C depth'] },
-  { teamId: 'vibes', grade: 'A-',
-    analysis: '<strong>OBP monster with elite SP depth.</strong> Harper/Betts/Altuve best OBP trio in the league. Crochet anchors 10+ deep SP corps (Bradish, Cease, Gore, Pepiot, Bieber, Schwellenbach, Burnes). Drafted Corbin Burnes again in R23 — 19 rounds later than 2025\'s R4 pick.',
-    strengths: ['OBP','ERA','WHIP','QS','K','SP depth'], weaknesses: ['SB','OF depth'] },
-  { teamId: 'buckner', grade: 'A-',
-    analysis: '<strong>Best OBP-format exploitation.</strong> Tucker/Henderson 1-2 punch is elite. Marte/Bregman/Kwan/Rutschman/Nimmo/Cowser project for league\'s highest OBP. Webb + Valdez + Sale = QS factory. Williams + Palencia lock SV. 6 late SP lottery tickets for upside. Only Rutschman returns from 2025.',
-    strengths: ['OBP','QS','SV','R','depth'], weaknesses: ['1B power','SB depth'] },
-  { teamId: 'decoy', grade: 'B+',
-    analysis: '<strong>Mason Miller is the league\'s best closer.</strong> Acuña bounce-back potential makes this boom-or-bust. Cole/Glasnow/Snell elite SP trio when healthy. Risk is health — Acuña, Glasnow, Cole all fragile. If healthy, this is an A team.',
-    strengths: ['SV','K','SP upside','HR'], weaknesses: ['health risk','OBP','C'] },
-  { teamId: 'glas', grade: 'B+',
-    analysis: '<strong>Judge + Ohtani (Pitcher) most unique two-way stack.</strong> Ragans/Castillo/Ohtani(P) elite K upside. SP depth runs through Woodruff, McClanahan, Sheehan, King, Gallen, Keller. Re-drafted Michael King (R6→R15) and Robert Suarez (R15→R18). Pitching volume is absurd.',
-    strengths: ['K','QS','ERA','WHIP','HR'], weaknesses: ['SB','MI health','OF depth'] },
-  { teamId: 'lets', grade: 'B',
-    analysis: '<strong>The defending champs ran it back.</strong> Drafted Elly again (now R1 vs R7 in 2025). Kept Joe Ryan (R8→R6), Luzardo (R19→R7), and Albies (R5→R12). 3 closers (Iglesias, Estévez, Hader) lock SV. SP depth is the worry — no true ace after Ryan/Luzardo.',
-    strengths: ['SB','SV','HR','RBI'], weaknesses: ['K','QS','SP depth','ERA risk'] },
-  { teamId: 'keanu', grade: 'B',
-    analysis: '<strong>Soto + Schwarber best OBP duo outside Buckner.</strong> Promoted Cristopher Sánchez 11 rounds (R14→R3) — biggest single-player bet in the draft. Fried/Peralta give K upside. Chapman + Fairbanks provide saves. Middle is volatile (Buxton, Luis Robert, Merrill).',
-    strengths: ['OBP','HR','SV','QS'], weaknesses: ['consistency','SB','C'] },
-  { teamId: 'skenes', grade: 'B',
-    analysis: '<strong>Witt/Yordan/Devers/Freeman most loaded power core.</strong> Complete roster overhaul — zero repeat picks from 2025 (only team to do this). Muñoz saves, Gilbert/Gausman/Pivetta/Bibee SP depth. Back half is dart throws (Edwards, Rafaela, Barger, García).',
-    strengths: ['HR','R','RBI','SV'], weaknesses: ['C depth','SP ace','ERA risk','OBP'] },
-  { teamId: 'rain', grade: 'B-',
-    analysis: '<strong>Skenes elite SP1 but health risk everywhere.</strong> deGrom/Wheeler/Imanaga good but injury-prone. Tatis/Lindor star power in lineup but Machado/Yelich declining. Only 17 waiver moves in 2025 — fewest in the league. Kept Will Smith in the exact same round (R13→R13) and Sasaki (R10→R22).',
-    strengths: ['K','QS','HR','R'], weaknesses: ['SV','health risk','waiver activity'] },
-  { teamId: 'senga', grade: 'C+',
-    analysis: '<strong>Ohtani (Batter) carries everything.</strong> Rebranded from "Senga man watchu smokin?" to Busch Latte. Carroll/Chisholm/Springer give speed, Díaz locks saves. But SP depth is genuinely concerning — Hunter Brown and Kirby are fine, after that it\'s Strider (health), Imai, Bryce Miller, Bubic, Bello.',
-    strengths: ['SB','SV','OBP'], weaknesses: ['SP depth','K','QS','2nd star'] },
-];
-
-// ═══════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════
-function getGradeClass(g) {
-  const m = { 'A+':'grade-A-plus','A':'grade-A','A-':'grade-A-minus','B+':'grade-B-plus','B':'grade-B','B-':'grade-B-minus','C+':'grade-C-plus','C':'grade-C','D':'grade-D' };
-  return m[g] || 'grade-B';
-}
-function getPosClass(p) {
-  if (!p) return '';
-  const u = p.toUpperCase();
-  if (u === 'SP') return 'pos-sp';
-  if (u === 'RP' || u === 'CL') return 'pos-rp';
-  if (u === 'C') return 'pos-c';
-  if (u === 'SS') return 'pos-ss';
-  if (['OF','LF','CF','RF'].includes(u)) return 'pos-of';
-  return '';
-}
-function getPickClass(n) { return n === 1 ? 'pick1' : n === 2 ? 'pick2' : n === 3 ? 'pick3' : ''; }
-function teamName(id) { return TEAMS.find(t => t.id === id)?.name || id; }
-
-// Buckner Roster
-function renderBucknerRoster() {
-  const el = document.getElementById('bucknerRoster');
-  el.innerHTML = BUCKNER_2026.map(p => {
-    const isBat = ['OF','SS','2B','3B','1B','C'].includes(p.pos);
-    const isRP = p.pos === 'RP';
-    const slotClass = isRP ? 'slot-rp' : isBat ? 'slot-bat' : 'slot-pitch';
-    return `<div class="roster-slot ${slotClass}">
-      <div class="slot-label">${p.pos} &mdash; R${p.round} (#${p.pick})</div>
-      <div class="slot-player">${p.player}</div>
-      ${p.note ? `<div class="slot-note">${p.note}</div>` : ''}
-    </div>`;
-  }).join('');
-}
-
-// Team Grades
-function renderTeams() {
-  const grid = document.getElementById('teamsGrid');
-  grid.innerHTML = '';
-  TEAM_GRADES.forEach(g => {
-    const team = TEAMS.find(t => t.id === g.teamId);
-    if (!team) return;
-    const isFeatured = false;
-    const standing = STANDINGS_2025.find(s => s.teamId === team.id);
-    const repeats = REPEAT_PICKS.filter(r => r.teamId === team.id);
-
-    const repeatHtml = repeats.length > 0 ?
-      `<div style="margin-top:.5rem;font-size:.78rem;color:var(--muted)"><strong style="color:var(--text)">Returning:</strong> ${repeats.map(r => `${r.player} (R${r.r25}→R${r.r26})`).join(', ')}</div>` :
-      (g.teamId === 'skenes' ? '<div style="margin-top:.5rem;font-size:.78rem;color:var(--accent2)">Complete roster overhaul — zero returning players</div>' : '');
-
-    const strengthTags = (g.strengths || []).map(s => `<span class="tag tag-green">${s}</span>`).join('');
-    const weakTags = (g.weaknesses || []).map(s => `<span class="tag tag-red">${s}</span>`).join('');
-
-    grid.innerHTML += `
-      <div class="team-card ${isFeatured ? 'featured' : ''}">
-        <div class="team-header">
-          <div class="team-pick ${getPickClass(team.pick)}">${team.pick}</div>
-          <div class="team-info">
-            <div class="team-name ${isFeatured ? 'featured-name' : ''}">${team.name}${isFeatured ? ' &#11088;' : ''}</div>
-            <div class="team-manager">${standing ? `2025: #${standing.rank} (${standing.record})` : `Pick #${team.pick}`}</div>
-          </div>
-          <div class="grade-badge ${getGradeClass(g.grade)}">${g.grade}</div>
-        </div>
-        <div class="team-body">
-          <div class="team-analysis">
-            ${g.analysis || ''}
-            ${repeatHtml}
-            ${strengthTags ? `<div class="team-strengths" style="margin-top:.5rem">${strengthTags}</div>` : ''}
-            ${weakTags ? `<div class="team-weaknesses" style="margin-top:.4rem">${weakTags}</div>` : ''}
-          </div>
-        </div>
-      </div>`;
-  });
-}
-
-// Loyalty Picks
-function renderLoyaltyPicks() {
-  const el = document.getElementById('loyaltyPicks');
-  const sorted = [...REPEAT_PICKS].sort((a,b) => Math.abs(a.diff) - Math.abs(b.diff));
-  el.innerHTML = sorted.map(r => {
-    const arrow = r.diff < 0 ? '&#9650;' : r.diff > 0 ? '&#9660;' : '&#9644;';
-    const cls = r.diff < 0 ? 'arrow-up' : r.diff > 0 ? 'arrow-down' : 'arrow-same';
-    const diffText = r.diff === 0 ? 'Same round' : r.diff < 0 ? `${Math.abs(r.diff)} rounds earlier` : `${r.diff} rounds later`;
-    return `<div class="insight-row">
-      <span class="insight-icon ${cls}">${arrow}</span>
-      <div style="flex:1">
-        <div class="insight-val">${r.player}</div>
-        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26} (${diffText})</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ADP Movers
-function renderADPMovers() {
-  const el = document.getElementById('adpMovers');
-  const promos = [...REPEAT_PICKS].filter(r => r.diff < 0).sort((a,b) => a.diff - b.diff);
-  const demos = [...REPEAT_PICKS].filter(r => r.diff > 0).sort((a,b) => b.diff - a.diff);
-
-  let html = '<div style="margin-bottom:.5rem;font-size:.78rem;font-weight:700;color:var(--green)">BIGGEST PROMOTIONS</div>';
-  promos.forEach(r => {
-    html += `<div class="insight-row">
-      <span class="insight-icon arrow-up">&#9650;</span>
-      <div style="flex:1">
-        <div class="insight-val">${r.player} <span style="color:var(--green);font-size:.8rem;">+${Math.abs(r.diff)} rounds</span></div>
-        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26}</div>
-      </div>
-    </div>`;
-  });
-
-  html += '<div style="margin:.75rem 0 .5rem;font-size:.78rem;font-weight:700;color:var(--red)">BIGGEST DEMOTIONS</div>';
-  demos.slice(0, 4).forEach(r => {
-    html += `<div class="insight-row">
-      <span class="insight-icon arrow-down">&#9660;</span>
-      <div style="flex:1">
-        <div class="insight-val">${r.player} <span style="color:var(--red);font-size:.8rem;">-${r.diff} rounds</span></div>
-        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26}</div>
-      </div>
-    </div>`;
-  });
-  el.innerHTML = html;
-}
-
-// Turnover & Notable Movement
-function renderTurnover() {
-  const el = document.getElementById('turnoverInsights');
-  const counts = {};
-  TEAMS.forEach(t => { counts[t.id] = REPEAT_PICKS.filter(r => r.teamId === t.id).length; });
-  const sorted = Object.entries(counts).sort((a,b) => a[1] - b[1]);
-
-  el.innerHTML = sorted.map(([id, count]) => {
-    const pct = Math.round(((23 - count) / 23) * 100);
-    const color = count === 0 ? 'var(--accent2)' : count <= 1 ? 'var(--red)' : count >= 3 ? 'var(--green)' : 'var(--accent)';
-    return `<div class="insight-row">
-      <div style="flex:1">
-        <div class="insight-val">${teamName(id)}</div>
-        <div class="insight-label">${count} returning player${count !== 1 ? 's' : ''} &mdash; ${pct}% new roster</div>
-      </div>
-      <div style="font-weight:900;font-size:1.1rem;color:${color}">${count}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderNotableMovement() {
-  const el = document.getElementById('notableMovement');
-  const notables = [
-    { player: 'Shohei Ohtani (Batter)', from: 'Decoy (R1)', to: 'Senga (R1)', note: 'Still goes #1 overall, new owner' },
-    { player: 'Elly De La Cruz', from: 'One Ball (R1)', to: 'LetsPlay (R1)', note: 'Champion stole the runner-up\'s R1 pick' },
-    { player: 'Bobby Witt Jr.', from: '877-Glas-Now (R1)', to: "Skenes'n (R1)", note: 'New home, same round' },
-    { player: 'Kyle Tucker', from: "Skenes'n (R2)", to: 'Buckner Boots (R1)', note: 'Our new cornerstone' },
-    { player: 'Corbin Burnes', from: 'Vibes (R4)', to: 'Vibes (R23)', note: 'Same team, 19 rounds later!' },
-    { player: 'Will Smith', from: 'Rain City (R13)', to: 'Rain City (R13)', note: 'Exact same round, same team' },
-    { player: 'Cristopher Sánchez', from: 'Keanu (R14)', to: 'Keanu (R3)', note: 'Biggest promotion: +11 rounds' },
-  ];
-  el.innerHTML = notables.map(n => `<div class="insight-row">
-    <div style="flex:1">
-      <div class="insight-val">${n.player}</div>
-      <div class="insight-label">${n.from} &#8594; ${n.to}</div>
-    </div>
-    <div style="font-size:.75rem;color:var(--accent2);max-width:140px;text-align:right">${n.note}</div>
-  </div>`).join('');
-}
-
-// Standings
-function renderStandings() {
-  const tbody = document.getElementById('standingsBody');
-  tbody.innerHTML = STANDINGS_2025.map(s => {
-    const team = TEAMS.find(t => t.id === s.teamId);
-    const grade = TEAM_GRADES.find(g => g.teamId === s.teamId);
-    const rankClass = s.rank <= 3 ? `rank-${s.rank}` : '';
-    return `<tr>
-      <td><span class="rank-badge ${rankClass}">${s.rank}</span></td>
-      <td>${team?.name || s.teamId}</td>
-      <td>${s.record}</td>
-      <td>${s.pct}</td>
-      <td style="font-weight:700;${s.moves >= 80 ? 'color:var(--green)' : s.moves <= 36 ? 'color:var(--red)' : ''}">${s.moves}</td>
-      <td><span class="grade-badge ${getGradeClass(grade?.grade || 'B')}" style="width:36px;height:36px;font-size:1rem;">${grade?.grade || '—'}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-// PROJECTED STANDINGS DATA (500 sim avg)
-const PROJECTED = [
-  { teamId: 'oneball', w: 127, l: 77, t: 16, pct: '.598', playoff: '100%', champ: '34.8%' },
-  { teamId: 'vibes',   w: 127, l: 79, t: 14, pct: '.609', playoff: '100%', champ: '26.4%' },
-  { teamId: 'buckner', w: 120, l: 85, t: 15, pct: '.580', playoff: '100%', champ: '19.0%' },
-  { teamId: 'glas',    w: 109, l: 97, t: 14, pct: '.527', playoff: '95%',  champ: '10.8%' },
-  { teamId: 'decoy',   w: 103, l: 102, t: 15, pct: '.502', playoff: '81%', champ: '4.4%' },
-  { teamId: 'keanu',   w: 99,  l: 106, t: 15, pct: '.484', playoff: '61%', champ: '2.6%' },
-  { teamId: 'lets',    w: 98,  l: 109, t: 13, pct: '.475', playoff: '51%', champ: '1.6%' },
-  { teamId: 'skenes',  w: 90,  l: 115, t: 15, pct: '.443', playoff: '12%', champ: '0.2%' },
-  { teamId: 'rain',    w: 80,  l: 126, t: 14, pct: '.395', playoff: '1%',  champ: '0.2%' },
-  { teamId: 'senga',   w: 74,  l: 133, t: 13, pct: '.365', playoff: '0%',  champ: '0%' },
-];
-
-const BUCKNER_SCHEDULE = [
-  { week: 1, opp: 'oneball', diff: 'tough' },
-  { week: 2, opp: 'lets', diff: 'even' },
-  { week: 3, opp: 'senga', diff: 'easy' },
-  { week: 4, opp: 'skenes', diff: 'easy' },
-  { week: 5, opp: 'vibes', diff: 'tough' },
-  { week: 6, opp: 'decoy', diff: 'even' },
-  { week: 7, opp: 'keanu', diff: 'even' },
-  { week: 8, opp: 'glas', diff: 'even' },
-  { week: 9, opp: 'rain', diff: 'easy' },
-  { week: 10, opp: 'oneball', diff: 'tough' },
-  { week: 11, opp: 'lets', diff: 'even' },
-  { week: 12, opp: 'senga', diff: 'easy' },
-  { week: 13, opp: 'skenes', diff: 'easy' },
-  { week: 14, opp: 'vibes', diff: 'tough' },
-  { week: 15, opp: 'decoy', diff: 'even' },
-  { week: 16, opp: 'keanu', diff: 'even' },
-  { week: 17, opp: 'glas', diff: 'even' },
-  { week: 18, opp: 'rain', diff: 'easy' },
-  { week: 19, opp: 'oneball', diff: 'tough' },
-  { week: 20, opp: 'lets', diff: 'even' },
-  { week: 21, opp: 'senga', diff: 'easy' },
-  { week: 22, opp: 'skenes', diff: 'easy' },
-];
-
-function renderProjectedStandings() {
-  const tbody = document.querySelector('#projectedStandings tbody');
-  tbody.innerHTML = PROJECTED.map((p, i) => {
-    const team = TEAMS.find(t => t.id === p.teamId);
-    const isPlayoff = i < 6;
-    const champPct = parseFloat(p.champ);
-    const champColor = champPct >= 15 ? 'var(--green)' : champPct >= 5 ? 'var(--accent)' : champPct >= 1 ? 'var(--muted)' : 'var(--border)';
-    return `<tr style="${!isPlayoff ? 'opacity:.6' : ''}">
-      <td><span class="rank-badge ${i < 3 ? 'rank-' + (i+1) : ''}">${i+1}</span></td>
-      <td>${team?.name || p.teamId}</td>
-      <td>${p.w}-${p.l}-${p.t}</td>
-      <td>${p.pct}</td>
-      <td style="font-weight:700;${parseFloat(p.playoff) >= 80 ? 'color:var(--green)' : parseFloat(p.playoff) >= 40 ? 'color:var(--accent)' : 'color:var(--muted)'}">${p.playoff}</td>
-      <td style="font-weight:900;color:${champColor}">${p.champ}</td>
-    </tr>`;
-  }).join('');
-}
-
-function renderBucknerSchedule() {
-  const el = document.getElementById('bucknerSchedule');
-  const diffColors = { tough: 'var(--red)', even: 'var(--accent)', easy: 'var(--green)' };
-  const diffLabels = { tough: 'TOUGH', even: 'EVEN', easy: 'EASY' };
-
-  el.innerHTML = BUCKNER_SCHEDULE.map(s => {
-    const team = TEAMS.find(t => t.id === s.opp);
-    const grade = TEAM_GRADES.find(g => g.teamId === s.opp);
-    return `<div style="display:flex;align-items:center;gap:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.82rem;">
-      <span style="color:var(--muted);width:32px;text-align:right;font-weight:700;flex-shrink:0">Wk${s.week}</span>
-      <span style="flex:1;${s.opp === 'oneball' || s.opp === 'vibes' ? 'font-weight:700' : ''}">${team?.name || s.opp}</span>
-      <span style="font-size:.68rem;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(${s.diff === 'tough' ? '244,68,68' : s.diff === 'easy' ? '62,207,142' : '79,142,247'},.15);color:${diffColors[s.diff]}">${diffLabels[s.diff]}</span>
-    </div>`;
-  }).join('');
-}
-
-// Init
-renderTeams();
-renderProjectedStandings();
-renderLoyaltyPicks();
-renderADPMovers();
-renderTurnover();
-renderNotableMovement();
-renderStandings();
-</script>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
