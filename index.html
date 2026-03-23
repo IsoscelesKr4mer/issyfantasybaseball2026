@@ -21,14 +21,12 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
+      display: flex; align-items: center; gap: 2rem;
       height: 56px;
       position: sticky; top: 0; z-index: 100;
     }
@@ -36,116 +34,55 @@
     .nav-logo span { color: var(--text); }
     nav a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
     nav a:hover, nav a.active { color: var(--text); }
-    .nav-badge {
-      margin-left: auto;
-      background: var(--accent);
-      color: #fff;
-      font-size: .75rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
+    .nav-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       background: linear-gradient(135deg, #1a1d27 0%, #0f1117 60%);
       border-bottom: 1px solid var(--border);
       padding: 3rem 2rem 2.5rem;
       text-align: center;
     }
-    .hero-tag {
-      display: inline-block;
-      background: rgba(79,142,247,.15);
-      color: var(--accent);
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(79,142,247,.3);
-      margin-bottom: 1rem;
-    }
+    .hero-tag { display: inline-block; background: rgba(79,142,247,.15); color: var(--accent); font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(79,142,247,.3); margin-bottom: 1rem; }
     .hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -1px; line-height: 1.1; }
     .hero h1 span { color: var(--accent2); }
     .hero p { color: var(--muted); margin-top: .75rem; font-size: 1rem; }
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    .hero-stat { text-align: center; }
-    .hero-stat .val { font-size: 1.8rem; font-weight: 800; color: var(--accent2); }
-    .hero-stat .lbl { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-top: 2px; }
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .container { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      letter-spacing: -.3px;
-    }
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: .5rem;
-    }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; align-items: center; gap: .6rem; letter-spacing: -.3px; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: .5rem; }
 
-    /* ── GRID ── */
+    /* GRID */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
-    /* ── CARDS ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-    }
+    /* CARDS */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; }
     .card-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: .75rem; }
 
-    /* ── TEAM GRADES ── */
-    .teams-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+    /* STRIP */
+    .strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px; background: var(--border); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 2rem;
     }
-    .team-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: border-color .2s, transform .2s;
-    }
+    .strip-cell { background: var(--surface); padding: 1rem; text-align: center; }
+    .strip-val { font-size: 1.6rem; font-weight: 900; color: var(--text); }
+    .strip-val.green { color: var(--green); }
+    .strip-val.blue { color: var(--accent); }
+    .strip-val.yellow { color: var(--accent2); }
+    .strip-val.red { color: var(--red); }
+    .strip-lbl { font-size: .72rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .8px; }
+
+    /* TEAM GRADES */
+    .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color .2s, transform .2s; }
     .team-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .team-card.featured { border-color: var(--accent2); }
-    .team-header {
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .team-pick {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 38px; height: 38px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 1rem;
-      color: var(--muted);
-      flex-shrink: 0;
-    }
+    .team-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border); }
+    .team-pick { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; color: var(--muted); flex-shrink: 0; }
     .team-pick.pick1 { background: rgba(255,215,0,.15); color: #ffd700; border-color: #ffd700; }
     .team-pick.pick2 { background: rgba(192,192,192,.15); color: #c0c0c0; border-color: #c0c0c0; }
     .team-pick.pick3 { background: rgba(205,127,50,.15); color: #cd7f32; border-color: #cd7f32; }
@@ -153,13 +90,7 @@
     .team-name { font-weight: 800; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .team-name.featured-name { color: var(--accent2); }
     .team-manager { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .grade-badge {
-      width: 50px; height: 50px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 1.4rem;
-      flex-shrink: 0;
-    }
+    .grade-badge { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; flex-shrink: 0; }
     .grade-A-plus { background: rgba(62,207,142,.2); color: #3ecf8e; border: 2px solid #3ecf8e; }
     .grade-A { background: rgba(62,207,142,.15); color: #3ecf8e; border: 2px solid rgba(62,207,142,.5); }
     .grade-A-minus { background: rgba(62,207,142,.1); color: #5dd5a0; border: 2px solid rgba(62,207,142,.3); }
@@ -171,29 +102,10 @@
     .grade-D { background: rgba(244,68,68,.1); color: var(--red); border: 2px solid rgba(244,68,68,.2); }
     .team-body { padding: 1rem 1.25rem; }
     .team-picks-list { list-style: none; }
-    .team-picks-list li {
-      display: flex; align-items: center; gap: .6rem;
-      padding: .35rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: .875rem;
-    }
+    .team-picks-list li { display: flex; align-items: center; gap: .6rem; padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .875rem; }
     .team-picks-list li:last-child { border-bottom: none; }
-    .pick-round {
-      font-size: .7rem; font-weight: 700;
-      color: var(--muted); width: 28px;
-      text-align: right; flex-shrink: 0;
-    }
-    .pick-pos {
-      background: var(--surface2);
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: .68rem;
-      font-weight: 700;
-      color: var(--muted);
-      width: 32px;
-      text-align: center;
-      flex-shrink: 0;
-    }
+    .pick-round { font-size: .7rem; font-weight: 700; color: var(--muted); width: 28px; text-align: right; flex-shrink: 0; }
+    .pick-pos { background: var(--surface2); border-radius: 4px; padding: 1px 6px; font-size: .68rem; font-weight: 700; color: var(--muted); width: 32px; text-align: center; flex-shrink: 0; }
     .pick-pos.pos-sp { color: #f7a948; }
     .pick-pos.pos-rp { color: #e07bf0; }
     .pick-pos.pos-c { color: #3ecf8e; }
@@ -201,169 +113,66 @@
     .pick-pos.pos-of { color: #ff8f50; }
     .pick-name { flex: 1; color: var(--text); }
     .pick-cat { font-size: .7rem; color: var(--muted); margin-left: auto; }
-    .team-analysis {
-      background: var(--surface2);
-      border-radius: 8px;
-      padding: .75rem 1rem;
-      margin-top: .75rem;
-      font-size: .85rem;
-      line-height: 1.6;
-      color: var(--muted);
-    }
+    .team-analysis { background: var(--surface2); border-radius: 8px; padding: .75rem 1rem; margin-top: .75rem; font-size: .85rem; line-height: 1.6; color: var(--muted); }
     .team-analysis strong { color: var(--text); }
-    .team-strengths, .team-weaknesses {
-      display: flex; gap: .4rem; flex-wrap: wrap;
-      margin-top: .6rem;
-    }
-    .tag {
-      font-size: .72rem; font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 20px;
-    }
+    .team-strengths, .team-weaknesses { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .6rem; }
+    .tag { font-size: .72rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
     .tag-green { background: rgba(62,207,142,.15); color: #3ecf8e; }
     .tag-red { background: rgba(244,68,68,.12); color: #f77; }
     .tag-blue { background: rgba(79,142,247,.15); color: var(--accent); }
     .tag-yellow { background: rgba(247,201,72,.15); color: var(--accent2); }
 
-    /* ── DRAFT BOARD ── */
-    .draft-board {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: auto;
-    }
-    .draft-board table { width: 100%; border-collapse: collapse; font-size: .83rem; }
-    .draft-board th {
-      background: var(--surface2);
-      padding: .6rem 1rem;
-      text-align: left;
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .draft-board td {
-      padding: .55rem 1rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-      white-space: nowrap;
-    }
-    .draft-board tr:last-child td { border-bottom: none; }
-    .draft-board tr:hover td { background: var(--surface2); }
-    .draft-board tr.my-pick td { background: rgba(247,201,72,.05); }
-    .draft-board tr.my-pick td:first-child { border-left: 3px solid var(--accent2); }
+    /* INSIGHT CARDS */
+    .insight-row { display: flex; align-items: center; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .insight-row:last-child { border-bottom: none; }
+    .insight-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .insight-label { color: var(--muted); font-size: .78rem; }
+    .insight-val { font-weight: 700; }
+    .arrow-up { color: var(--green); }
+    .arrow-down { color: var(--red); }
+    .arrow-same { color: var(--accent2); }
 
-    /* ── STATS TABLE ── */
-    .stats-table {
-      width: 100%; border-collapse: collapse;
-      font-size: .85rem;
-    }
-    .stats-table th {
-      padding: .5rem .75rem;
-      text-align: left;
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-    }
-    .stats-table td {
-      padding: .5rem .75rem;
-      border-bottom: 1px solid rgba(46,51,71,.5);
-      color: var(--text);
-    }
-    .stats-table tr:last-child td { border-bottom: none; }
-    .rank-num { color: var(--muted); font-size: .8rem; }
+    /* STANDINGS TABLE */
+    .standings-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .standings-table th { padding: .5rem .75rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .standings-table td { padding: .55rem .75rem; border-bottom: 1px solid rgba(46,51,71,.5); }
+    .standings-table tr:last-child td { border-bottom: none; }
+    .standings-table tr.highlight td { background: rgba(247,201,72,.05); }
+    .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-weight: 800; font-size: .78rem; }
+    .rank-1 { background: rgba(255,215,0,.15); color: #ffd700; }
+    .rank-2 { background: rgba(192,192,192,.15); color: #c0c0c0; }
+    .rank-3 { background: rgba(205,127,50,.15); color: #cd7f32; }
 
-    /* ── CATEGORY BARS ── */
-    .cat-section { margin-top: 1.5rem; }
-    .cat-row {
-      display: flex; align-items: center; gap: 1rem;
-      margin-bottom: .8rem;
-    }
-    .cat-label { width: 60px; font-size: .78rem; font-weight: 600; color: var(--muted); }
-    .cat-bar-wrap { flex: 1; background: var(--surface2); border-radius: 4px; height: 8px; }
-    .cat-bar { height: 8px; border-radius: 4px; transition: width 1s ease; }
-    .cat-bar.bar-hr { background: var(--accent); }
-    .cat-bar.bar-sb { background: var(--green); }
-    .cat-bar.bar-obp { background: var(--accent2); }
-    .cat-bar.bar-sv { background: #e07bf0; }
-    .cat-bar.bar-k { background: #ff8f50; }
-    .cat-val { width: 50px; font-size: .8rem; font-weight: 700; text-align: right; }
+    /* BUCKNER ROSTER */
+    .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .75rem; }
+    .roster-slot { background: var(--surface2); border-radius: 8px; padding: .6rem .8rem; border-left: 3px solid var(--border); }
+    .roster-slot.slot-bat { border-left-color: var(--accent2); }
+    .roster-slot.slot-pitch { border-left-color: var(--accent); }
+    .roster-slot.slot-rp { border-left-color: #e07bf0; }
+    .slot-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
+    .slot-player { font-weight: 700; font-size: .88rem; margin-top: 2px; }
+    .slot-round { font-size: .72rem; color: var(--muted); }
+    .slot-note { font-size: .72rem; color: var(--accent2); font-style: italic; margin-top: 2px; }
 
-    /* ── SUMMARY STATS STRIP ── */
-    .strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-    }
-    .strip-cell {
-      background: var(--surface);
-      padding: 1rem;
-      text-align: center;
-    }
-    .strip-val { font-size: 1.6rem; font-weight: 900; color: var(--text); }
-    .strip-val.green { color: var(--green); }
-    .strip-val.blue { color: var(--accent); }
-    .strip-val.yellow { color: var(--accent2); }
-    .strip-lbl { font-size: .72rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .8px; }
+    /* COMPARISON BAR */
+    .compare-bar { display: flex; align-items: center; gap: .5rem; margin: .5rem 0; }
+    .compare-label { width: 60px; font-size: .75rem; color: var(--muted); text-align: right; }
+    .compare-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; position: relative; }
+    .compare-fill { height: 6px; border-radius: 3px; transition: width .8s ease; }
 
-    /* ── PLACEHOLDER STATE ── */
-    .placeholder {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--muted);
-    }
-    .placeholder .icon { font-size: 3rem; margin-bottom: 1rem; }
-    .placeholder h3 { font-size: 1.2rem; color: var(--text); margin-bottom: .5rem; }
-    .placeholder p { font-size: .9rem; line-height: 1.6; }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 1.5rem; color: var(--muted); font-size: .8rem; margin-top: 4rem; }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted);
-      font-size: .8rem;
-      margin-top: 4rem;
-    }
+    /* TABS */
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .tab { padding: .45rem 1.1rem; border-radius: 8px; font-size: .85rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all .2s; }
+    .tab.active, .tab:hover { background: var(--surface2); color: var(--text); border-color: var(--accent); }
 
-    /* ── TABS ── */
-    .tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; }
-    .tab {
-      padding: .45rem 1.1rem;
-      border-radius: 8px;
-      font-size: .85rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      transition: all .2s;
-    }
-    .tab.active, .tab:hover {
-      background: var(--surface2);
-      color: var(--text);
-      border-color: var(--accent);
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .hero h1 { font-size: 1.8rem; }
       .container { padding: 1rem; }
       .hero { padding: 2rem 1rem 1.5rem; }
     }
-
-    /* ── SCROLL ── */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -371,120 +180,187 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">⚾ Issaquah <span>Swingers</span></div>
-  <a href="#grades" class="active">Team Grades</a>
-  <a href="#board">Draft Board</a>
-  <a href="#analysis">Analysis</a>
+  <div class="nav-logo">&#9918; Issaquah <span>Swingers</span></div>
+  <a href="#grades" class="active">Grades</a>
+  <a href="#predictions">Predictions</a>
+  <a href="#insights">Insights</a>
+  <a href="#standings">2025 Recap</a>
   <div class="nav-badge">2026 Draft</div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Post-Draft Analysis</div>
   <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
-  <p>Head-to-Head Categories · 10 Teams · 23 Rounds · Sun Mar 22, 2026</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="val">10</div><div class="lbl">Teams</div></div>
-    <div class="hero-stat"><div class="val">23</div><div class="lbl">Rounds</div></div>
-    <div class="hero-stat"><div class="val">230</div><div class="lbl">Total Picks</div></div>
-    <div class="hero-stat"><div class="val">5×5</div><div class="lbl">Categories</div></div>
-  </div>
+  <p>Head-to-Head Categories &middot; 10 Teams &middot; 23 Rounds &middot; Sun Mar 22, 2026</p>
 </div>
 
-<!-- MAIN -->
 <div class="container">
 
   <!-- SUMMARY STRIP -->
   <div class="strip" style="margin-top:2rem;">
-    <div class="strip-cell"><div class="strip-val green" id="topGrade">A+</div><div class="strip-lbl">Best Grade</div></div>
-    <div class="strip-cell"><div class="strip-val blue" id="avgPick">–</div><div class="strip-lbl">Avg Pick Depth</div></div>
-    <div class="strip-cell"><div class="strip-val yellow" id="bucknerGrade">–</div><div class="strip-lbl">Buckner Boots</div></div>
-    <div class="strip-cell"><div class="strip-val" id="draftDate">Mar 22</div><div class="strip-lbl">Draft Date</div></div>
+    <div class="strip-cell"><div class="strip-val green" id="topGrade">A</div><div class="strip-lbl">Best Grade</div></div>
+    <div class="strip-cell"><div class="strip-val blue">10</div><div class="strip-lbl">Teams</div></div>
+    <div class="strip-cell"><div class="strip-val yellow">15</div><div class="strip-lbl">Loyalty Picks</div></div>
+    <div class="strip-cell"><div class="strip-val">230</div><div class="strip-lbl">Total Picks</div></div>
+    <div class="strip-cell"><div class="strip-val">22</div><div class="strip-lbl">Reg. Season Wks</div></div>
   </div>
 
   <!-- TEAM GRADES -->
-  <div id="grades">
-    <div class="section-title">🏆 Team Grades</div>
-    <div class="teams-grid" id="teamsGrid">
-      <div class="placeholder">
-        <div class="icon">📋</div>
-        <h3>Draft In Progress</h3>
-        <p>Team grades and analysis will populate here<br/>once all picks are submitted after the draft.</p>
+  <div id="grades" style="margin-top:3rem;">
+    <div class="section-title">&#127942; Team Grades</div>
+    <div class="teams-grid" id="teamsGrid"></div>
+  </div>
+
+  <!-- SEASON PREDICTIONS -->
+  <div id="predictions" style="margin-top:3rem;">
+    <div class="section-title">&#128302; 2026 Season Predictions</div>
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">Methodology</div>
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.6;">
+        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS), with weekly variance to account for injuries, slumps, and waiver moves. Actual schedules used for all 22 regular season weeks + 3 playoff weeks.
+      </div>
+    </div>
+
+    <!-- Projected Standings -->
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">Projected Regular Season Standings</div>
+      <table class="standings-table" id="projectedStandings">
+        <thead>
+          <tr>
+            <th>Seed</th>
+            <th>Team</th>
+            <th>Proj. Record</th>
+            <th>Pct</th>
+            <th>Playoff%</th>
+            <th>Champ%</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Playoff Bracket -->
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">&#127942; Predicted Playoff Bracket (Weeks 23-25)</div>
+      <div style="font-size:.88rem;line-height:1.8;color:var(--muted);">
+        <div style="margin-bottom:1rem;">
+          <strong style="color:var(--text);">Week 23 — Quarterfinals</strong> (Seeds 1-2 bye)<br/>
+          #3 The Buckner Boots vs #6 Keanu Reeves &rarr; <span style="font-weight:700;">Buckner wins 6-4</span> (OBP advantage overwhelms volatile roster)<br/>
+          #4 877-Glas-Now vs #5 Decoy &rarr; <span style="font-weight:700;">Decoy wins 6-4</span> (Mason Miller + healthy aces swing SV/K)
+        </div>
+        <div style="margin-bottom:1rem;">
+          <strong style="color:var(--text);">Week 24 — Semifinals</strong><br/>
+          #1 One Ball Two Strikes vs #5 Decoy &rarr; <span style="font-weight:700;">One Ball wins 7-3</span> (deeper roster, better ratios)<br/>
+          #2 Good Vibes Only vs #3 The Buckner Boots &rarr; <span style="font-weight:700;">Buckner wins 6-4</span> (OBP edge + dual closers steal SV)
+        </div>
+        <div style="padding:1rem;background:var(--surface2);border-radius:10px;border:2px solid var(--green);">
+          <strong style="color:var(--text);font-size:1rem;">Week 25 — Championship</strong><br/>
+          #1 One Ball Two Strikes vs #3 The Buckner Boots<br/>
+          <div style="margin-top:.5rem;font-size:1.05rem;">
+            <span style="color:var(--green);font-weight:900;">&#127942; One Ball Two Strikes wins 6-4 &#127942;</span>
+          </div>
+          <div style="margin-top:.4rem;font-size:.82rem;color:var(--muted);">
+            One Ball's Skubal/Yamamoto duo dominates K and QS. Ramírez outproduces across the board. Buckner's OBP advantage keeps it close, but One Ball's deeper pitching rotation and Bednar/Jansen closer combo seals it. The best draft on paper converts to a title.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Season Narratives -->
+    <div class="card">
+      <div class="card-title">Season Storylines to Watch</div>
+      <div style="font-size:.88rem;line-height:1.7;color:var(--muted);">
+        <strong style="color:var(--text);">The 5-6 seed race will be chaos.</strong> Decoy (81%), Keanu (61%), and LetsPlay (51%) are all clustered between 98-103 projected wins. One hot streak or cold stretch decides who makes the playoffs and who watches from home. Decoy's health risk (Acuña, Glasnow, Cole) makes them the wildcard.<br/><br/>
+        <strong style="color:var(--text);">Busch Latte's schedule is brutal.</strong> They face the top 3 teams (One Ball, Vibes, Buckner) a combined 7 times in the first 10 weeks. With the weakest SP depth in the league, an 0-5 start in the pitching categories is very possible.<br/><br/>
+        <strong style="color:var(--text);">LetsPlay's title defense faces a real test.</strong> Last year's champs went from pick 7 to pick 4 but their SP depth downgraded significantly. They're banking on SB + SV dominance to compensate, but in H2H that only locks 2 of 10 categories.<br/><br/>
+        <strong style="color:var(--text);">Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand — the teams that work the wire hardest will rise.
       </div>
     </div>
   </div>
 
-  <!-- DRAFT BOARD -->
-  <div id="board" style="margin-top:3rem;">
-    <div class="section-title">📋 Full Draft Board</div>
-    <div class="draft-board">
-      <table id="draftTable">
+  <!-- YEAR-OVER-YEAR INSIGHTS -->
+  <div id="insights" style="margin-top:3rem;">
+    <div class="section-title">&#128269; Year-Over-Year Insights</div>
+
+    <div class="grid-2">
+      <!-- Loyalty Picks -->
+      <div class="card">
+        <div class="card-title">&#128257; Loyalty Picks — Same Player, Same Team</div>
+        <div id="loyaltyPicks"></div>
+      </div>
+
+      <!-- Biggest ADP Movers -->
+      <div class="card">
+        <div class="card-title">&#128200; Biggest Round Movers (Repeat Drafters)</div>
+        <div id="adpMovers"></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <!-- Complete Overhaul -->
+      <div class="card">
+        <div class="card-title">&#128260; Roster Turnover</div>
+        <div id="turnoverInsights"></div>
+      </div>
+
+      <!-- Ohtani Tracker -->
+      <div class="card">
+        <div class="card-title">&#127775; Notable Player Movement</div>
+        <div id="notableMovement"></div>
+      </div>
+    </div>
+
+    <!-- Narrative Section -->
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-title">&#128218; League Narratives</div>
+      <div id="narratives" style="font-size:.88rem;line-height:1.7;color:var(--muted);">
+        <strong style="color:var(--text);">The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. LetsPlay won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.<br/><br/>
+        <strong style="color:var(--text);">The Champion's Blueprint.</strong> LetsPlay won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Estévez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.<br/><br/>
+        <strong style="color:var(--text);">One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2025 STANDINGS -->
+  <div id="standings" style="margin-top:3rem;">
+    <div class="section-title">&#128202; 2025 Final Standings</div>
+    <div class="card">
+      <table class="standings-table">
         <thead>
           <tr>
-            <th>Pick</th>
-            <th>Round</th>
+            <th>Rank</th>
             <th>Team</th>
-            <th>Player</th>
-            <th>Pos</th>
-            <th>Key Cats</th>
+            <th>Record</th>
+            <th>Pct</th>
+            <th>Moves</th>
+            <th>2026 Grade</th>
           </tr>
         </thead>
-        <tbody id="draftBody">
-          <tr><td colspan="6" style="text-align:center;padding:3rem;color:var(--muted);">Draft board populates as picks are entered</td></tr>
-        </tbody>
+        <tbody id="standingsBody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- CATEGORY ANALYSIS -->
-  <div id="analysis" style="margin-top:3rem;">
-    <div class="section-title">📊 Category Strength by Team</div>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Projected Category Leaders</div>
-        <div id="catLeaders" style="color:var(--muted);font-size:.88rem;padding:.5rem 0;">Analysis generates after draft completion.</div>
-      </div>
-      <div class="card">
-        <div class="card-title">League-Wide Draft Tendencies</div>
-        <div id="tendencies" style="color:var(--muted);font-size:.88rem;padding:.5rem 0;">Analysis generates after draft completion.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LEAGUE SETTINGS REFERENCE -->
+  <!-- LEAGUE SETTINGS -->
   <div style="margin-top:3rem;">
-    <div class="section-title">⚙️ League Settings Reference</div>
+    <div class="section-title">&#9881;&#65039; League Settings</div>
     <div class="grid-2">
       <div class="card">
         <div class="card-title">Format</div>
-        <table class="stats-table">
+        <table class="standings-table">
           <tr><td style="color:var(--muted)">Scoring</td><td>Head-to-Head Categories</td></tr>
           <tr><td style="color:var(--muted)">Teams</td><td>10</td></tr>
           <tr><td style="color:var(--muted)">Draft Type</td><td>Live Snake Draft</td></tr>
           <tr><td style="color:var(--muted)">Rounds</td><td>23</td></tr>
-          <tr><td style="color:var(--muted)">Waiver Type</td><td>Continual Rolling List</td></tr>
-          <tr><td style="color:var(--muted)">Max Acq/Week</td><td>5</td></tr>
-          <tr><td style="color:var(--muted)">Min IP/Week</td><td>30</td></tr>
-          <tr><td style="color:var(--muted)">Playoffs</td><td>6 Teams, Wks 23–25</td></tr>
+          <tr><td style="color:var(--muted)">Playoffs</td><td>6 Teams, Wks 23-25</td></tr>
         </table>
       </div>
       <div class="card">
         <div class="card-title">Scoring Categories</div>
-        <table class="stats-table">
-          <tr><td style="color:var(--accent2);font-weight:700">BATTING</td><td></td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Runs (R)</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Home Runs (HR)</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">RBI</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Stolen Bases (SB)</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">OBP</td><td>✓</td></tr>
-          <tr><td style="color:var(--accent);font-weight:700;padding-top:.5rem">PITCHING</td><td></td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Saves (SV)</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Strikeouts (K)</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">ERA</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">WHIP</td><td>✓</td></tr>
-          <tr><td style="color:var(--muted);padding-left:1rem">Quality Starts (QS)</td><td>✓</td></tr>
+        <table class="standings-table">
+          <tr><td style="color:var(--accent2);font-weight:700">Batting</td><td>R, HR, RBI, SB, OBP</td></tr>
+          <tr><td style="color:var(--accent);font-weight:700">Pitching</td><td>SV, K, ERA, WHIP, QS</td></tr>
         </table>
       </div>
     </div>
@@ -492,443 +368,380 @@
 
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <p>Issaquah Swingers Fantasy Baseball · League ID 61583 · 2026 Season</p>
-  <p style="margin-top:.4rem">Generated by Claude · Post-Draft Analysis</p>
+  <p>Issaquah Swingers Fantasy Baseball &middot; League ID 61583 &middot; 2026 Season</p>
+  <p style="margin-top:.4rem">Generated by Claude &middot; Post-Draft Analysis</p>
 </footer>
 
 <script>
 // ═══════════════════════════════════════════
-// DRAFT DATA — populated after draft completes
+// DATA
 // ═══════════════════════════════════════════
 const TEAMS = [
-  { id: 'senga',    name: 'Senga man watchu smokin?',    pick: 1,  manager: '' },
-  { id: 'skenes',   name: "Skenes'n on deez Hoerners",   pick: 2,  manager: '' },
-  { id: 'glas',     name: '877-Glas-Now',                 pick: 3,  manager: '' },
-  { id: 'lets',     name: 'LetsPlayMajorLeagueBaseball',  pick: 4,  manager: '' },
-  { id: 'keanu',    name: 'Keanu Reeves',                 pick: 5,  manager: '' },
-  { id: 'vibes',    name: 'Good Vibes Only',              pick: 6,  manager: '' },
-  { id: 'rain',     name: 'Rain City Bombers',            pick: 7,  manager: '' },
-  { id: 'buckner',  name: 'The Buckner Boots',            pick: 8,  manager: 'Michael' },
-  { id: 'decoy',    name: 'Decoy',                        pick: 9,  manager: '' },
-  { id: 'oneball',  name: 'One Ball Two Strikes',         pick: 10, manager: '' },
+  { id: 'senga',   name: 'Busch Latte',                 pick: 1, manager: '' },
+  { id: 'skenes',  name: "Skenes'n on deez Hoerners",  pick: 2, manager: '' },
+  { id: 'glas',    name: '877-Glas-Now',                pick: 3, manager: '' },
+  { id: 'lets',    name: 'LetsPlayMajorLeagueBaseball', pick: 4, manager: '' },
+  { id: 'keanu',   name: 'Keanu Reeves',                pick: 5, manager: '' },
+  { id: 'vibes',   name: 'Good Vibes Only',             pick: 6, manager: '' },
+  { id: 'rain',    name: 'Rain City Bombers',           pick: 7, manager: '' },
+  { id: 'buckner', name: 'The Buckner Boots',           pick: 8, manager: 'Michael' },
+  { id: 'decoy',   name: 'Decoy',                       pick: 9, manager: '' },
+  { id: 'oneball', name: 'One Ball Two Strikes',        pick: 10, manager: '' },
 ];
 
-// DRAFT RESULTS — fill this in after draft
-// Format: { overall: #, round: #, pickInRound: #, teamId: 'id', player: 'Name', pos: 'OF', cats: 'HR/R/RBI' }
-const DRAFT_PICKS = [
-  { overall: 1, round: 1, pickInRound: 1, teamId: 'senga', player: 'Shohei Ohtani (Batter)', pos: 'OF', cats: 'HR/R/RBI/SB/OBP' },
-  { overall: 2, round: 1, pickInRound: 2, teamId: 'skenes', player: 'Bobby Witt Jr.', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 3, round: 1, pickInRound: 3, teamId: 'glas', player: 'Aaron Judge', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 4, round: 1, pickInRound: 4, teamId: 'lets', player: 'Elly De La Cruz', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 5, round: 1, pickInRound: 5, teamId: 'keanu', player: 'Juan Soto', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 6, round: 1, pickInRound: 6, teamId: 'vibes', player: 'Julio Rodríguez', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 7, round: 1, pickInRound: 7, teamId: 'rain', player: 'Paul Skenes', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 8, round: 1, pickInRound: 8, teamId: 'buckner', player: 'Kyle Tucker', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 9, round: 1, pickInRound: 9, teamId: 'decoy', player: 'Ronald Acuña Jr.', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 10, round: 1, pickInRound: 10, teamId: 'oneball', player: 'Tarik Skubal', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 11, round: 2, pickInRound: 1, teamId: 'oneball', player: 'José Ramírez', pos: '3B', cats: 'HR/R/RBI/SB/OBP' },
-  { overall: 12, round: 2, pickInRound: 2, teamId: 'decoy', player: 'Junior Caminero', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 13, round: 2, pickInRound: 3, teamId: 'buckner', player: 'Gunnar Henderson', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 14, round: 2, pickInRound: 4, teamId: 'rain', player: 'Fernando Tatis Jr.', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 15, round: 2, pickInRound: 5, teamId: 'vibes', player: 'Garrett Crochet', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 16, round: 2, pickInRound: 6, teamId: 'keanu', player: 'Kyle Schwarber', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 17, round: 2, pickInRound: 7, teamId: 'lets', player: 'Vladimir Guerrero Jr.', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 18, round: 2, pickInRound: 8, teamId: 'glas', player: 'Cal Raleigh', pos: 'C', cats: 'HR/R/RBI' },
-  { overall: 19, round: 2, pickInRound: 9, teamId: 'skenes', player: 'Yordan Alvarez', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 20, round: 2, pickInRound: 10, teamId: 'senga', player: 'Corbin Carroll', pos: 'OF', cats: 'R/SB/OBP' },
-  { overall: 21, round: 3, pickInRound: 1, teamId: 'senga', player: 'Jazz Chisholm Jr.', pos: '2B', cats: 'HR/R/RBI/SB' },
-  { overall: 22, round: 3, pickInRound: 2, teamId: 'skenes', player: 'Logan Gilbert', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 23, round: 3, pickInRound: 3, teamId: 'glas', player: 'Nick Kurtz', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 24, round: 3, pickInRound: 4, teamId: 'lets', player: 'Jackson Chourio', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 25, round: 3, pickInRound: 5, teamId: 'keanu', player: 'Cristopher Sánchez', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 26, round: 3, pickInRound: 6, teamId: 'vibes', player: 'Pete Alonso', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 27, round: 3, pickInRound: 7, teamId: 'rain', player: 'Francisco Lindor', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 28, round: 3, pickInRound: 8, teamId: 'buckner', player: 'Ketel Marte', pos: '2B', cats: 'HR/R/RBI/OBP' },
-  { overall: 29, round: 3, pickInRound: 9, teamId: 'decoy', player: 'Bryan Woo', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 30, round: 3, pickInRound: 10, teamId: 'oneball', player: 'Yoshinobu Yamamoto', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 31, round: 4, pickInRound: 1, teamId: 'oneball', player: 'Matt Olson', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 32, round: 4, pickInRound: 2, teamId: 'decoy', player: 'James Wood', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 33, round: 4, pickInRound: 3, teamId: 'buckner', player: 'Logan Webb', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 34, round: 4, pickInRound: 4, teamId: 'rain', player: 'Manny Machado', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 35, round: 4, pickInRound: 5, teamId: 'vibes', player: 'Brent Rooker', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 36, round: 4, pickInRound: 6, teamId: 'keanu', player: 'Zach Neto', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 37, round: 4, pickInRound: 7, teamId: 'lets', player: 'Pete Crow-Armstrong', pos: 'OF', cats: 'HR/R/SB' },
-  { overall: 38, round: 4, pickInRound: 8, teamId: 'glas', player: 'Trea Turner', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 39, round: 4, pickInRound: 9, teamId: 'skenes', player: 'Freddie Freeman', pos: '1B', cats: 'HR/R/RBI/OBP' },
-  { overall: 40, round: 4, pickInRound: 10, teamId: 'senga', player: 'Hunter Brown', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 41, round: 5, pickInRound: 1, teamId: 'senga', player: 'George Kirby', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 42, round: 5, pickInRound: 2, teamId: 'skenes', player: 'Rafael Devers', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 43, round: 5, pickInRound: 3, teamId: 'glas', player: 'Cole Ragans', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 44, round: 5, pickInRound: 4, teamId: 'lets', player: 'Cody Bellinger', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 45, round: 5, pickInRound: 5, teamId: 'keanu', player: 'Max Fried', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 46, round: 5, pickInRound: 6, teamId: 'vibes', player: 'Bryce Harper', pos: '1B', cats: 'HR/R/RBI/OBP' },
-  { overall: 47, round: 5, pickInRound: 7, teamId: 'rain', player: 'Roman Anthony', pos: 'OF', cats: 'HR/R/OBP' },
-  { overall: 48, round: 5, pickInRound: 8, teamId: 'buckner', player: 'Framber Valdez', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 49, round: 5, pickInRound: 9, teamId: 'decoy', player: 'Brice Turang', pos: '2B', cats: 'R/SB' },
-  { overall: 50, round: 5, pickInRound: 10, teamId: 'oneball', player: 'Jarren Duran', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 51, round: 6, pickInRound: 1, teamId: 'oneball', player: 'Riley Greene', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 52, round: 6, pickInRound: 2, teamId: 'decoy', player: 'Mason Miller', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 53, round: 6, pickInRound: 3, teamId: 'buckner', player: 'Chris Sale', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 54, round: 6, pickInRound: 4, teamId: 'rain', player: 'Jacob deGrom', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 55, round: 6, pickInRound: 5, teamId: 'vibes', player: 'Mookie Betts', pos: 'SS', cats: 'HR/R/RBI/SB/OBP' },
-  { overall: 56, round: 6, pickInRound: 6, teamId: 'keanu', player: 'Josh Naylor', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 57, round: 6, pickInRound: 7, teamId: 'lets', player: 'Joe Ryan', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 58, round: 6, pickInRound: 8, teamId: 'glas', player: 'Wyatt Langford', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 59, round: 6, pickInRound: 9, teamId: 'skenes', player: 'Andrés Muñoz', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 60, round: 6, pickInRound: 10, teamId: 'senga', player: 'William Contreras', pos: 'C', cats: 'HR/R/RBI' },
-  { overall: 61, round: 7, pickInRound: 1, teamId: 'senga', player: 'Edwin Díaz', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 62, round: 7, pickInRound: 2, teamId: 'skenes', player: 'Oneil Cruz', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 63, round: 7, pickInRound: 3, teamId: 'glas', player: 'Austin Riley', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 64, round: 7, pickInRound: 4, teamId: 'lets', player: 'Jesús Luzardo', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 65, round: 7, pickInRound: 5, teamId: 'keanu', player: 'Freddy Peralta', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 66, round: 7, pickInRound: 6, teamId: 'vibes', player: 'Kyle Bradish', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 67, round: 7, pickInRound: 7, teamId: 'rain', player: 'Maikel Garcia', pos: '2B', cats: 'R/SB' },
-  { overall: 68, round: 7, pickInRound: 8, teamId: 'buckner', player: 'CJ Abrams', pos: 'SS', cats: 'R/SB/OBP' },
-  { overall: 69, round: 7, pickInRound: 9, teamId: 'decoy', player: 'Vinnie Pasquantino', pos: '1B', cats: 'HR/R/RBI/OBP' },
-  { overall: 70, round: 7, pickInRound: 10, teamId: 'oneball', player: 'Geraldo Perdomo', pos: 'SS', cats: 'R/SB/OBP' },
-  { overall: 71, round: 8, pickInRound: 1, teamId: 'oneball', player: 'Shea Langeliers', pos: 'C', cats: 'HR/RBI' },
-  { overall: 72, round: 8, pickInRound: 2, teamId: 'decoy', player: 'Hunter Goodman', pos: 'C', cats: 'HR/RBI' },
-  { overall: 73, round: 8, pickInRound: 3, teamId: 'buckner', player: 'Corey Seager', pos: 'SS', cats: 'HR/R/RBI/OBP' },
-  { overall: 74, round: 8, pickInRound: 4, teamId: 'rain', player: 'Cade Smith', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 75, round: 8, pickInRound: 5, teamId: 'vibes', player: 'Dylan Cease', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 76, round: 8, pickInRound: 6, teamId: 'keanu', player: 'Jackson Merrill', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 77, round: 8, pickInRound: 7, teamId: 'lets', player: 'Nolan McLean', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 78, round: 8, pickInRound: 8, teamId: 'glas', player: 'Shohei Ohtani (Pitcher)', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 79, round: 8, pickInRound: 9, teamId: 'skenes', player: 'Nick Pivetta', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 80, round: 8, pickInRound: 10, teamId: 'senga', player: 'Jacob Misiorowski', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 81, round: 9, pickInRound: 1, teamId: 'senga', player: 'Randy Arozarena', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 82, round: 9, pickInRound: 2, teamId: 'skenes', player: 'Kevin Gausman', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 83, round: 9, pickInRound: 3, teamId: 'glas', player: 'Jhoan Duran', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 84, round: 9, pickInRound: 4, teamId: 'lets', player: 'Sonny Gray', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 85, round: 9, pickInRound: 5, teamId: 'keanu', player: 'Byron Buxton', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 86, round: 9, pickInRound: 6, teamId: 'vibes', player: 'Ben Rice', pos: '1B', cats: 'HR/R/RBI/OBP' },
-  { overall: 87, round: 9, pickInRound: 7, teamId: 'rain', player: 'Tyler Soderstrom', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 88, round: 9, pickInRound: 8, teamId: 'buckner', player: 'Devin Williams', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 89, round: 9, pickInRound: 9, teamId: 'decoy', player: 'Tyler Glasnow', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 90, round: 9, pickInRound: 10, teamId: 'oneball', player: 'Bo Bichette', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 91, round: 10, pickInRound: 1, teamId: 'oneball', player: 'David Bednar', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 92, round: 10, pickInRound: 2, teamId: 'decoy', player: 'Blake Snell', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 93, round: 10, pickInRound: 3, teamId: 'buckner', player: 'Alex Bregman', pos: '3B', cats: 'HR/R/RBI/OBP' },
-  { overall: 94, round: 10, pickInRound: 4, teamId: 'rain', player: 'Christian Yelich', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 95, round: 10, pickInRound: 5, teamId: 'vibes', player: 'Jose Altuve', pos: '2B', cats: 'HR/R/RBI/SB/OBP' },
-  { overall: 96, round: 10, pickInRound: 6, teamId: 'keanu', player: 'Aroldis Chapman', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 97, round: 10, pickInRound: 7, teamId: 'lets', player: 'Eury Pérez', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 98, round: 10, pickInRound: 8, teamId: 'glas', player: 'Luis Castillo', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 99, round: 10, pickInRound: 9, teamId: 'skenes', player: 'Tanner Bibee', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 100, round: 10, pickInRound: 10, teamId: 'senga', player: 'George Springer', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 101, round: 11, pickInRound: 1, teamId: 'senga', player: 'Luke Keaschall', pos: '2B', cats: 'R/SB' },
-  { overall: 102, round: 11, pickInRound: 2, teamId: 'skenes', player: 'Xavier Edwards', pos: 'SS', cats: 'R/SB/OBP' },
-  { overall: 103, round: 11, pickInRound: 3, teamId: 'glas', player: 'Cam Schlittler', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 104, round: 11, pickInRound: 4, teamId: 'lets', player: 'Salvador Perez', pos: 'C', cats: 'HR/RBI' },
-  { overall: 105, round: 11, pickInRound: 5, teamId: 'keanu', player: 'Nico Hoerner', pos: '2B', cats: 'R/SB/OBP' },
-  { overall: 106, round: 11, pickInRound: 6, teamId: 'vibes', player: 'Eugenio Suárez', pos: '3B', cats: 'HR/RBI' },
-  { overall: 107, round: 11, pickInRound: 7, teamId: 'rain', player: 'Nick Lodolo', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 108, round: 11, pickInRound: 8, teamId: 'buckner', player: 'Steven Kwan', pos: 'OF', cats: 'R/SB/OBP' },
-  { overall: 109, round: 11, pickInRound: 9, teamId: 'decoy', player: 'Jeremy Peña', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 110, round: 11, pickInRound: 10, teamId: 'oneball', player: 'Chase Burns', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 111, round: 12, pickInRound: 1, teamId: 'oneball', player: 'Nathan Eovaldi', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 112, round: 12, pickInRound: 2, teamId: 'decoy', player: 'Bubba Chandler', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 113, round: 12, pickInRound: 3, teamId: 'buckner', player: 'Adley Rutschman', pos: 'C', cats: 'OBP/HR/RBI' },
-  { overall: 114, round: 12, pickInRound: 4, teamId: 'rain', player: 'Michael Harris II', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 115, round: 12, pickInRound: 5, teamId: 'vibes', player: 'Teoscar Hernández', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 116, round: 12, pickInRound: 6, teamId: 'keanu', player: 'Matt Chapman', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 117, round: 12, pickInRound: 7, teamId: 'lets', player: 'Ozzie Albies', pos: '2B', cats: 'HR/R/RBI/SB' },
-  { overall: 118, round: 12, pickInRound: 8, teamId: 'glas', player: 'Brandon Woodruff', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 119, round: 12, pickInRound: 9, teamId: 'skenes', player: 'Max Muncy', pos: '3B', cats: 'HR/R/RBI/OBP' },
-  { overall: 120, round: 12, pickInRound: 10, teamId: 'senga', player: 'Spencer Strider', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 121, round: 13, pickInRound: 1, teamId: 'senga', player: 'Michael Busch', pos: '1B', cats: 'HR/R/RBI' },
-  { overall: 122, round: 13, pickInRound: 2, teamId: 'skenes', player: 'Marcus Semien', pos: '2B', cats: 'HR/R/RBI/SB' },
-  { overall: 123, round: 13, pickInRound: 3, teamId: 'glas', player: 'Emmet Sheehan', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 124, round: 13, pickInRound: 4, teamId: 'lets', player: 'Raisel Iglesias', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 125, round: 13, pickInRound: 5, teamId: 'keanu', player: 'Luis Robert Jr.', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 126, round: 13, pickInRound: 6, teamId: 'vibes', player: 'Kyle Stowers', pos: 'OF', cats: 'HR/RBI' },
-  { overall: 127, round: 13, pickInRound: 7, teamId: 'rain', player: 'Will Smith', pos: 'C', cats: 'HR/R/RBI/OBP' },
-  { overall: 128, round: 13, pickInRound: 8, teamId: 'buckner', player: 'Daniel Palencia', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 129, round: 13, pickInRound: 9, teamId: 'decoy', player: 'Brendan Donovan', pos: 'OF', cats: 'R/OBP' },
-  { overall: 130, round: 13, pickInRound: 10, teamId: 'oneball', player: 'Trey Yesavage', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 131, round: 14, pickInRound: 1, teamId: 'oneball', player: 'Sandy Alcantara', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 132, round: 14, pickInRound: 2, teamId: 'decoy', player: 'Ryan Helsley', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 133, round: 14, pickInRound: 3, teamId: 'buckner', player: 'Yandy Díaz', pos: '1B', cats: 'OBP/HR/RBI' },
-  { overall: 134, round: 14, pickInRound: 4, teamId: 'rain', player: 'Zack Wheeler', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 135, round: 14, pickInRound: 5, teamId: 'vibes', player: 'Ryan Pepiot', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 136, round: 14, pickInRound: 6, teamId: 'keanu', player: 'Gavin Williams', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 137, round: 14, pickInRound: 7, teamId: 'lets', player: 'Carlos Estévez', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 138, round: 14, pickInRound: 8, teamId: 'glas', player: 'Shane McClanahan', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 139, round: 14, pickInRound: 9, teamId: 'skenes', player: 'Emilio Pagán', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 140, round: 14, pickInRound: 10, teamId: 'senga', player: 'Seiya Suzuki', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 141, round: 15, pickInRound: 1, teamId: 'senga', player: 'Willy Adames', pos: 'SS', cats: 'HR/R/RBI/OBP' },
-  { overall: 142, round: 15, pickInRound: 2, teamId: 'skenes', player: 'Agustín Ramírez', pos: 'C', cats: 'HR/RBI' },
-  { overall: 143, round: 15, pickInRound: 3, teamId: 'glas', player: 'Michael King', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 144, round: 15, pickInRound: 4, teamId: 'lets', player: 'Josh Hader', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 145, round: 15, pickInRound: 5, teamId: 'keanu', player: 'Pete Fairbanks', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 146, round: 15, pickInRound: 6, teamId: 'vibes', player: 'Jeff Hoffman', pos: 'RP', cats: 'SV/K/ERA/WHIP' },
-  { overall: 147, round: 15, pickInRound: 7, teamId: 'rain', player: 'Jo Adell', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 148, round: 15, pickInRound: 8, teamId: 'buckner', player: 'Trevor Rogers', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 149, round: 15, pickInRound: 9, teamId: 'decoy', player: 'Robbie Ray', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 150, round: 15, pickInRound: 10, teamId: 'oneball', player: 'Kenley Jansen', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 151, round: 16, pickInRound: 1, teamId: 'oneball', player: 'Taylor Ward', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 152, round: 16, pickInRound: 2, teamId: 'decoy', player: 'Gerrit Cole', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 153, round: 16, pickInRound: 3, teamId: 'buckner', player: 'Brandon Nimmo', pos: 'OF', cats: 'R/OBP' },
-  { overall: 154, round: 16, pickInRound: 4, teamId: 'rain', player: 'Trevor Story', pos: 'SS', cats: 'HR/R/RBI/SB' },
-  { overall: 155, round: 16, pickInRound: 5, teamId: 'vibes', player: 'Ryan Walker', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 156, round: 16, pickInRound: 6, teamId: 'keanu', player: 'Drew Rasmussen', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 157, round: 16, pickInRound: 7, teamId: 'lets', player: 'Kazuma Okamoto', pos: '1B', cats: 'HR/RBI' },
-  { overall: 158, round: 16, pickInRound: 8, teamId: 'glas', player: 'Matt McLain', pos: '2B', cats: 'HR/R/RBI/SB' },
-  { overall: 159, round: 16, pickInRound: 9, teamId: 'skenes', player: 'Ceddanne Rafaela', pos: 'OF', cats: 'R/SB' },
-  { overall: 160, round: 16, pickInRound: 10, teamId: 'senga', player: 'Lawrence Butler', pos: 'OF', cats: 'HR/R/RBI/SB' },
-  { overall: 161, round: 17, pickInRound: 1, teamId: 'senga', player: 'Tatsuya Imai', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 162, round: 17, pickInRound: 2, teamId: 'skenes', player: 'Ranger Suárez', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 163, round: 17, pickInRound: 3, teamId: 'glas', player: 'Mike Trout', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 164, round: 17, pickInRound: 4, teamId: 'lets', player: 'Alec Burleson', pos: 'OF', cats: 'HR/RBI' },
-  { overall: 165, round: 17, pickInRound: 5, teamId: 'keanu', player: 'Drake Baldwin', pos: 'C', cats: 'HR/RBI' },
-  { overall: 166, round: 17, pickInRound: 6, teamId: 'vibes', player: 'MacKenzie Gore', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 167, round: 17, pickInRound: 7, teamId: 'rain', player: 'Jack Flaherty', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 168, round: 17, pickInRound: 8, teamId: 'buckner', player: 'Cade Horton', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 169, round: 17, pickInRound: 9, teamId: 'decoy', player: 'Dennis Santana', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 170, round: 17, pickInRound: 10, teamId: 'oneball', player: 'Trevor Megill', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 171, round: 18, pickInRound: 1, teamId: 'oneball', player: 'Willson Contreras', pos: '1B', cats: 'HR/RBI/OBP' },
-  { overall: 172, round: 18, pickInRound: 2, teamId: 'decoy', player: 'Jac Caglianone', pos: '1B', cats: 'HR/RBI' },
-  { overall: 173, round: 18, pickInRound: 3, teamId: 'buckner', player: 'Munetaka Murakami', pos: '1B', cats: 'HR/RBI' },
-  { overall: 174, round: 18, pickInRound: 4, teamId: 'rain', player: 'Shota Imanaga', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 175, round: 18, pickInRound: 5, teamId: 'vibes', player: 'Hunter Greene', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 176, round: 18, pickInRound: 6, teamId: 'keanu', player: 'Andrew Abbott', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 177, round: 18, pickInRound: 7, teamId: 'lets', player: 'Jakob Marsee', pos: 'OF', cats: 'R/SB' },
-  { overall: 178, round: 18, pickInRound: 8, teamId: 'glas', player: 'Robert Suarez', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 179, round: 18, pickInRound: 9, teamId: 'skenes', player: 'Ian Happ', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 180, round: 18, pickInRound: 10, teamId: 'senga', player: 'Griffin Jax', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 181, round: 19, pickInRound: 1, teamId: 'senga', player: 'Bryce Miller', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 182, round: 19, pickInRound: 2, teamId: 'skenes', player: 'Bryan Abreu', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 183, round: 19, pickInRound: 3, teamId: 'glas', player: 'Andy Pages', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 184, round: 19, pickInRound: 4, teamId: 'lets', player: 'Aaron Nola', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 185, round: 19, pickInRound: 5, teamId: 'keanu', player: 'Colson Montgomery', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 186, round: 19, pickInRound: 6, teamId: 'vibes', player: 'Seranthony Domínguez', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 187, round: 19, pickInRound: 7, teamId: 'rain', player: 'Spencer Torkelson', pos: '1B', cats: 'HR/RBI' },
-  { overall: 188, round: 19, pickInRound: 8, teamId: 'buckner', player: 'Colton Cowser', pos: 'OF', cats: 'HR/R/RBI/OBP' },
-  { overall: 189, round: 19, pickInRound: 9, teamId: 'decoy', player: 'Konnor Griffin', pos: 'OF', cats: 'R/SB' },
-  { overall: 190, round: 19, pickInRound: 10, teamId: 'oneball', player: 'Carlos Rodón', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 191, round: 20, pickInRound: 1, teamId: 'oneball', player: 'Otto Lopez', pos: '2B', cats: 'R/SB' },
-  { overall: 192, round: 20, pickInRound: 2, teamId: 'decoy', player: 'Zach Eflin', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 193, round: 20, pickInRound: 3, teamId: 'buckner', player: 'Robby Snelling', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 194, round: 20, pickInRound: 4, teamId: 'rain', player: 'Bobby Miller', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 195, round: 20, pickInRound: 5, teamId: 'vibes', player: 'Shane Bieber', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 196, round: 20, pickInRound: 6, teamId: 'keanu', player: 'Edward Cabrera', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 197, round: 20, pickInRound: 7, teamId: 'lets', player: 'Matthew Boyd', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 198, round: 20, pickInRound: 8, teamId: 'glas', player: 'Noelvi Marte', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 199, round: 20, pickInRound: 9, teamId: 'skenes', player: 'Addison Barger', pos: '3B', cats: 'HR/R/RBI' },
-  { overall: 200, round: 20, pickInRound: 10, teamId: 'senga', player: 'Paul Sewald', pos: 'RP', cats: 'SV/ERA/WHIP' },
-  { overall: 201, round: 21, pickInRound: 1, teamId: 'senga', player: 'Kris Bubic', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 202, round: 21, pickInRound: 2, teamId: 'skenes', player: 'Abner Uribe', pos: 'RP', cats: 'ERA/WHIP' },
-  { overall: 203, round: 21, pickInRound: 3, teamId: 'glas', player: 'Zac Gallen', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 204, round: 21, pickInRound: 4, teamId: 'lets', player: 'Ryne Nelson', pos: 'SP', cats: 'ERA/WHIP' },
-  { overall: 205, round: 21, pickInRound: 5, teamId: 'keanu', player: 'Shane Baz', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 206, round: 21, pickInRound: 6, teamId: 'vibes', player: 'Joe Musgrove', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 207, round: 21, pickInRound: 7, teamId: 'rain', player: 'Mike Burrows', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 208, round: 21, pickInRound: 8, teamId: 'buckner', player: 'Joey Cantillo', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 209, round: 21, pickInRound: 9, teamId: 'decoy', player: 'Brady Singer', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 210, round: 21, pickInRound: 10, teamId: 'oneball', player: 'Brenton Doyle', pos: 'OF', cats: 'HR/R/SB' },
-  { overall: 211, round: 22, pickInRound: 1, teamId: 'oneball', player: 'Connelly Early', pos: 'SP', cats: 'ERA/WHIP' },
-  { overall: 212, round: 22, pickInRound: 2, teamId: 'decoy', player: 'Cole Young', pos: '2B', cats: 'R/SB' },
-  { overall: 213, round: 22, pickInRound: 3, teamId: 'buckner', player: 'Parker Messick', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 214, round: 22, pickInRound: 4, teamId: 'rain', player: 'Roki Sasaki', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 215, round: 22, pickInRound: 5, teamId: 'vibes', player: 'Spencer Schwellenbach', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 216, round: 22, pickInRound: 6, teamId: 'keanu', player: 'Noah Cameron', pos: 'SP', cats: 'ERA/WHIP' },
-  { overall: 217, round: 22, pickInRound: 7, teamId: 'lets', player: 'José Caballero', pos: '2B', cats: 'R/SB' },
-  { overall: 218, round: 22, pickInRound: 8, teamId: 'glas', player: 'Mitch Keller', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 219, round: 22, pickInRound: 9, teamId: 'skenes', player: 'Adolis García', pos: 'OF', cats: 'HR/R/RBI' },
-  { overall: 220, round: 22, pickInRound: 10, teamId: 'senga', player: 'Kyle Manzardo', pos: '1B', cats: 'HR/RBI' },
-  { overall: 221, round: 23, pickInRound: 1, teamId: 'senga', player: 'Brayan Bello', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 222, round: 23, pickInRound: 2, teamId: 'skenes', player: 'Kodai Senga', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 223, round: 23, pickInRound: 3, teamId: 'glas', player: 'Kevin McGonigle', pos: 'SS', cats: 'R/SB' },
-  { overall: 224, round: 23, pickInRound: 4, teamId: 'lets', player: 'Shane Smith', pos: 'SP', cats: 'ERA/WHIP' },
-  { overall: 225, round: 23, pickInRound: 5, teamId: 'keanu', player: 'Michael Wacha', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 226, round: 23, pickInRound: 6, teamId: 'vibes', player: 'Corbin Burnes', pos: 'SP', cats: 'K/ERA/WHIP/QS' },
-  { overall: 227, round: 23, pickInRound: 7, teamId: 'rain', player: 'Merrill Kelly', pos: 'SP', cats: 'ERA/WHIP/QS' },
-  { overall: 228, round: 23, pickInRound: 8, teamId: 'buckner', player: 'Jack Leiter', pos: 'SP', cats: 'K/ERA/WHIP' },
-  { overall: 229, round: 23, pickInRound: 9, teamId: 'decoy', player: 'Colt Emerson', pos: 'SS', cats: 'R/SB' },
-  { overall: 230, round: 23, pickInRound: 10, teamId: 'oneball', player: 'Samuel Basallo', pos: 'C', cats: 'HR/RBI' }
+const STANDINGS_2025 = [
+  { teamId: 'lets',    rank: 1, record: '123-71-16', pct: '.624', moves: 81 },
+  { teamId: 'oneball', rank: 2, record: '117-76-17', pct: '.598', moves: 63 },
+  { teamId: 'glas',    rank: 3, record: '105-92-13', pct: '.531', moves: 94 },
+  { teamId: 'vibes',   rank: 4, record: '99-98-13',  pct: '.502', moves: 101 },
+  { teamId: 'decoy',   rank: 5, record: '107-89-14', pct: '.543', moves: 92 },
+  { teamId: 'keanu',   rank: 6, record: '109-92-9',  pct: '.540', moves: 36 },
+  { teamId: 'senga',   rank: 7, record: '85-115-10', pct: '.429', moves: 60 }, // fka Senga man watchu smokin?
+  { teamId: 'buckner', rank: 8, record: '70-119-21', pct: '.383', moves: 50 },
+  { teamId: 'rain',    rank: 9, record: '80-118-12', pct: '.410', moves: 17 },
+  { teamId: 'skenes',  rank: 10, record: '87-112-11', pct: '.440', moves: 82 },
 ];
 
-// TEAM GRADES — fill after analysis
-// Format: { teamId: 'id', grade: 'A+', analysis: '...', strengths: ['HR','RBI'], weaknesses: ['SB'] }
+const REPEAT_PICKS = [
+  { player: 'Adley Rutschman',    teamId: 'buckner', r25: 7,  r26: 12, diff: 5 },
+  { player: 'Cristopher Sánchez', teamId: 'keanu',   r25: 14, r26: 3,  diff: -11 },
+  { player: 'Jesús Luzardo',      teamId: 'lets',    r25: 19, r26: 7,  diff: -12 },
+  { player: 'Joe Ryan',           teamId: 'lets',    r25: 8,  r26: 6,  diff: -2 },
+  { player: 'Ozzie Albies',       teamId: 'lets',    r25: 5,  r26: 12, diff: 7 },
+  { player: 'Brent Rooker',       teamId: 'vibes',   r25: 7,  r26: 4,  diff: -3 },
+  { player: 'Eugenio Suárez',     teamId: 'vibes',   r25: 16, r26: 11, diff: -5 },
+  { player: 'Corbin Burnes',      teamId: 'vibes',   r25: 4,  r26: 23, diff: 19 },
+  { player: 'Michael King',       teamId: 'glas',    r25: 6,  r26: 15, diff: 9 },
+  { player: 'Robert Suarez',      teamId: 'glas',    r25: 15, r26: 18, diff: 3 },
+  { player: 'Carlos Rodón',       teamId: 'oneball', r25: 14, r26: 19, diff: 5 },
+  { player: 'Will Smith',         teamId: 'rain',    r25: 13, r26: 13, diff: 0 },
+  { player: 'Roki Sasaki',        teamId: 'rain',    r25: 10, r26: 22, diff: 12 },
+  { player: 'Kyle Manzardo',      teamId: 'senga',   r25: 21, r26: 22, diff: 1 },
+  { player: 'Zach Eflin',         teamId: 'decoy',   r25: 15, r26: 20, diff: 5 },
+];
+
+const BUCKNER_2026 = [
+  { round: 1, pick: 8, player: 'Kyle Tucker', pos: 'OF', note: '' },
+  { round: 2, pick: 13, player: 'Gunnar Henderson', pos: 'SS', note: '' },
+  { round: 3, pick: 28, player: 'Ketel Marte', pos: '2B', note: '' },
+  { round: 4, pick: 33, player: 'Logan Webb', pos: 'SP', note: '' },
+  { round: 5, pick: 48, player: 'Framber Valdez', pos: 'SP', note: 'QS machine' },
+  { round: 6, pick: 53, player: 'Chris Sale', pos: 'SP', note: 'K upside' },
+  { round: 7, pick: 68, player: 'CJ Abrams', pos: 'SS', note: '' },
+  { round: 8, pick: 73, player: 'Corey Seager', pos: 'SS', note: 'Steal of draft' },
+  { round: 9, pick: 88, player: 'Devin Williams', pos: 'RP', note: 'Closer 1' },
+  { round: 10, pick: 93, player: 'Alex Bregman', pos: '3B', note: 'OBP anchor' },
+  { round: 11, pick: 108, player: 'Steven Kwan', pos: 'OF', note: 'OBP/SB' },
+  { round: 12, pick: 113, player: 'Adley Rutschman', pos: 'C', note: '2025 keeper' },
+  { round: 13, pick: 128, player: 'Daniel Palencia', pos: 'RP', note: 'Closer 2' },
+  { round: 14, pick: 133, player: 'Yandy Díaz', pos: '1B', note: 'OBP elite' },
+  { round: 15, pick: 148, player: 'Trevor Rogers', pos: 'SP', note: '' },
+  { round: 16, pick: 153, player: 'Brandon Nimmo', pos: 'OF', note: 'OBP depth' },
+  { round: 17, pick: 168, player: 'Cade Horton', pos: 'SP', note: '' },
+  { round: 18, pick: 173, player: 'Munetaka Murakami', pos: '1B', note: 'Power upside' },
+  { round: 19, pick: 188, player: 'Colton Cowser', pos: 'OF', note: '' },
+  { round: 20, pick: 193, player: 'Robby Snelling', pos: 'SP', note: '' },
+  { round: 21, pick: 208, player: 'Joey Cantillo', pos: 'SP', note: '' },
+  { round: 22, pick: 213, player: 'Parker Messick', pos: 'SP', note: 'Opening Day rotation' },
+  { round: 23, pick: 228, player: 'Jack Leiter', pos: 'SP', note: '' },
+];
+
 const TEAM_GRADES = [
-  {
-    teamId: 'oneball',
-    grade: 'A',
-    analysis: '<strong>Best all-around draft in the league.</strong> Skubal + Yamamoto give an elite SP1-SP2 combo with QS upside. Ramírez is the ultimate H2H Categories anchor — contributes everywhere including SB and OBP. Olson/Duran/Greene provide power depth, Bednar + Jansen lock down SV, and late adds like Chase Burns and Eovaldi fill the pitching rotation with high-floor arms. The only concern is catcher (Langeliers), but the rest of the roster is built to compete in 8+ categories every week.',
-    strengths: ['HR','RBI','K','QS','SV','OBP'],
-    weaknesses: ['C depth']
-  },
-  {
-    teamId: 'vibes',
-    grade: 'A-',
-    analysis: '<strong>OBP monster with elite pitching depth.</strong> Harper/Betts/Altuve form the best OBP trio in the league, and Crochet anchors a pitching staff that runs 10+ deep with QS-eligible arms (Bradish, Cease, Gore, Pepiot, Bieber, Schwellenbach, Burnes). Jeff Hoffman and Ryan Walker add saves/holds flexibility. Weakness is a thin OF after Rooker and a lack of elite SB, but in H2H this team can realistically win 7 categories most weeks.',
-    strengths: ['OBP','ERA','WHIP','QS','K','SP depth'],
-    weaknesses: ['SB','OF depth']
-  },
-  {
-    teamId: 'buckner',
-    grade: 'A-',
-    analysis: '<strong>Best OBP-format exploitation in the draft.</strong> Tucker/Henderson as a 1-2 punch is elite, and the mid-round run of Marte/Bregman/Kwan/Rutschman/Nimmo/Cowser gives this team the highest projected OBP in the league. Webb + Valdez + Sale is a QS factory, Williams + Palencia lock down SV, and the late SP fliers (Horton, Snelling, Cantillo, Messick, Leiter) give massive upside. Seager at pick 73 was a steal. Only real gap is 1B production if Yandy/Murakami disappoint.',
-    strengths: ['OBP','QS','SV','R','roster flexibility'],
-    weaknesses: ['1B power','SB depth']
-  },
-  {
-    teamId: 'decoy',
-    grade: 'B+',
-    analysis: '<strong>Mason Miller is the league\'s best closer asset.</strong> Acuña\'s bounceback potential makes this a boom-or-bust roster. Cole/Glasnow/Snell give an elite SP trio when healthy, with Chandler and Ray as depth. Wood/Caminero provide power upside in the lineup. The risk is health — Acuña, Glasnow, and Cole all have significant injury histories. If they stay on the field, this is an A team. If not, it craters fast.',
-    strengths: ['SV','K','SP upside','HR'],
-    weaknesses: ['health risk','OBP','C production']
-  },
-  {
-    teamId: 'glas',
-    grade: 'B+',
-    analysis: '<strong>Judge + Ohtani (Pitcher) is the league\'s most unique two-way stack.</strong> Ragans/Castillo/Ohtani(P) give elite K upside, and the SP depth extends through Woodruff, McClanahan, Sheehan, King, Schlittler, Gallen, and Keller. Raleigh at C is a top-3 pick at the position. The lineup is thin on SB and the middle infield (Turner, McLain) has injury risk, but the pitching volume is absurd — this team can dominate K, ERA, WHIP, and QS if healthy.',
-    strengths: ['K','QS','ERA','WHIP','HR'],
-    weaknesses: ['SB','MI health','OF depth']
-  },
-  {
-    teamId: 'lets',
-    grade: 'B',
-    analysis: '<strong>Elly De La Cruz gives SB dominance no other team can match.</strong> Vlad Jr./Bellinger/Chourio add solid power, and 3 closers (Iglesias, Estévez, Hader) lock down saves. The problem is SP — Joe Ryan, Luzardo, Sonny Gray, and Nolan McLean are fine but lack a true ace, and Eury Pérez carries significant risk. Late-round SP (Nola, Boyd, Ryne Nelson, Shane Smith) are mostly back-end starters. This team wins SB and SV every week but may struggle in K and QS.',
-    strengths: ['SB','SV','HR','RBI'],
-    weaknesses: ['K','QS','SP depth','ERA risk']
-  },
-  {
-    teamId: 'keanu',
-    grade: 'B',
-    analysis: '<strong>Soto + Schwarber is the best OBP duo outside of Buckner Boots.</strong> Fried and Sánchez anchor solid QS pitching, and Peralta/Williams give K upside. Chapman and Fairbanks provide saves. The volatility is in the middle — Buxton, Luis Robert, and Merrill are all boom-or-bust guys. If the high-risk bats click, this is a playoff team. Drake Baldwin at C is a deep sleeper with upside. Late SP (Rasmussen, Abbott, Cabrera, Baz, Cameron, Wacha) are mostly depth plays.',
-    strengths: ['OBP','HR','SV','QS'],
-    weaknesses: ['consistency','SB','C production']
-  },
-  {
-    teamId: 'skenes',
-    grade: 'B',
-    analysis: '<strong>Witt/Yordan/Devers/Freeman is the most loaded power core in the league.</strong> Muñoz locks down saves, and Gilbert/Gausman/Pivetta/Bibee give solid SP depth. The weakness is the back half — Edwards, Rafaela, Barger, and García are low-floor dart throws, and there\'s no true SP ace after Gilbert. Senga in round 23 is a nice lottery ticket. This team mashes but could get hurt by poor ratios if Gausman or Bibee regress.',
-    strengths: ['HR','R','RBI','SV'],
-    weaknesses: ['C depth','SP ace','ERA risk','OBP']
-  },
-  {
-    teamId: 'rain',
-    grade: 'B-',
-    analysis: '<strong>Skenes is an elite SP1 but the rest of the pitching carries significant risk.</strong> deGrom is a health question mark every year, and Wheeler/Imanaga/Flaherty/Lodolo are good but not dominant. Tatis/Lindor/Anthony give the lineup star power, but Machado, Yelich, and Soderstrom are declining or unproven. Cade Smith at RP is a nice find, but only one closer is a weakness in a SV category league. The late SP pile (Sasaki, Bobby Miller, Burrows, Kelly) has upside but also lots of IL risk.',
-    strengths: ['K','QS','HR','R'],
-    weaknesses: ['SV','health risk','1B','bench depth']
-  },
-  {
-    teamId: 'senga',
-    grade: 'C+',
-    analysis: '<strong>Ohtani (Batter) carries this roster, but the supporting cast is thin.</strong> Carroll/Chisholm/Springer give speed, and Díaz locks down saves, but the SP depth is genuinely concerning — Hunter Brown, Kirby, and Misiorowski are the top arms, and after that it\'s Strider (health), Imai, Bryce Miller, Bubic, and Bello. The lineup has too many mid-tier guys (Contreras, Keaschall, Arozarena, Butler) without elite production. Suzuki and Adames were nice value picks, but this team lacks a second star-caliber player alongside Ohtani.',
-    strengths: ['SB','SV','OBP'],
-    weaknesses: ['SP depth','K','QS','2nd star']
-  }
+  { teamId: 'oneball', grade: 'A',
+    analysis: '<strong>Best all-around draft.</strong> Skubal + Yamamoto elite SP duo. Ramírez anchors everywhere including SB/OBP. Olson/Duran/Greene power depth. Bednar + Jansen lock down SV. Late adds (Burns, Eovaldi) fill rotation with high-floor arms.',
+    strengths: ['HR','RBI','K','QS','SV','OBP'], weaknesses: ['C depth'] },
+  { teamId: 'vibes', grade: 'A-',
+    analysis: '<strong>OBP monster with elite SP depth.</strong> Harper/Betts/Altuve best OBP trio in the league. Crochet anchors 10+ deep SP corps (Bradish, Cease, Gore, Pepiot, Bieber, Schwellenbach, Burnes). Drafted Corbin Burnes again in R23 — 19 rounds later than 2025\'s R4 pick.',
+    strengths: ['OBP','ERA','WHIP','QS','K','SP depth'], weaknesses: ['SB','OF depth'] },
+  { teamId: 'buckner', grade: 'A-',
+    analysis: '<strong>Best OBP-format exploitation.</strong> Tucker/Henderson 1-2 punch is elite. Marte/Bregman/Kwan/Rutschman/Nimmo/Cowser project for league\'s highest OBP. Webb + Valdez + Sale = QS factory. Williams + Palencia lock SV. 6 late SP lottery tickets for upside. Only Rutschman returns from 2025.',
+    strengths: ['OBP','QS','SV','R','depth'], weaknesses: ['1B power','SB depth'] },
+  { teamId: 'decoy', grade: 'B+',
+    analysis: '<strong>Mason Miller is the league\'s best closer.</strong> Acuña bounce-back potential makes this boom-or-bust. Cole/Glasnow/Snell elite SP trio when healthy. Risk is health — Acuña, Glasnow, Cole all fragile. If healthy, this is an A team.',
+    strengths: ['SV','K','SP upside','HR'], weaknesses: ['health risk','OBP','C'] },
+  { teamId: 'glas', grade: 'B+',
+    analysis: '<strong>Judge + Ohtani (Pitcher) most unique two-way stack.</strong> Ragans/Castillo/Ohtani(P) elite K upside. SP depth runs through Woodruff, McClanahan, Sheehan, King, Gallen, Keller. Re-drafted Michael King (R6→R15) and Robert Suarez (R15→R18). Pitching volume is absurd.',
+    strengths: ['K','QS','ERA','WHIP','HR'], weaknesses: ['SB','MI health','OF depth'] },
+  { teamId: 'lets', grade: 'B',
+    analysis: '<strong>The defending champs ran it back.</strong> Drafted Elly again (now R1 vs R7 in 2025). Kept Joe Ryan (R8→R6), Luzardo (R19→R7), and Albies (R5→R12). 3 closers (Iglesias, Estévez, Hader) lock SV. SP depth is the worry — no true ace after Ryan/Luzardo.',
+    strengths: ['SB','SV','HR','RBI'], weaknesses: ['K','QS','SP depth','ERA risk'] },
+  { teamId: 'keanu', grade: 'B',
+    analysis: '<strong>Soto + Schwarber best OBP duo outside Buckner.</strong> Promoted Cristopher Sánchez 11 rounds (R14→R3) — biggest single-player bet in the draft. Fried/Peralta give K upside. Chapman + Fairbanks provide saves. Middle is volatile (Buxton, Luis Robert, Merrill).',
+    strengths: ['OBP','HR','SV','QS'], weaknesses: ['consistency','SB','C'] },
+  { teamId: 'skenes', grade: 'B',
+    analysis: '<strong>Witt/Yordan/Devers/Freeman most loaded power core.</strong> Complete roster overhaul — zero repeat picks from 2025 (only team to do this). Muñoz saves, Gilbert/Gausman/Pivetta/Bibee SP depth. Back half is dart throws (Edwards, Rafaela, Barger, García).',
+    strengths: ['HR','R','RBI','SV'], weaknesses: ['C depth','SP ace','ERA risk','OBP'] },
+  { teamId: 'rain', grade: 'B-',
+    analysis: '<strong>Skenes elite SP1 but health risk everywhere.</strong> deGrom/Wheeler/Imanaga good but injury-prone. Tatis/Lindor star power in lineup but Machado/Yelich declining. Only 17 waiver moves in 2025 — fewest in the league. Kept Will Smith in the exact same round (R13→R13) and Sasaki (R10→R22).',
+    strengths: ['K','QS','HR','R'], weaknesses: ['SV','health risk','waiver activity'] },
+  { teamId: 'senga', grade: 'C+',
+    analysis: '<strong>Ohtani (Batter) carries everything.</strong> Rebranded from "Senga man watchu smokin?" to Busch Latte. Carroll/Chisholm/Springer give speed, Díaz locks saves. But SP depth is genuinely concerning — Hunter Brown and Kirby are fine, after that it\'s Strider (health), Imai, Bryce Miller, Bubic, Bello.',
+    strengths: ['SB','SV','OBP'], weaknesses: ['SP depth','K','QS','2nd star'] },
 ];
 
-
 // ═══════════════════════════════════════════
-// RENDER FUNCTIONS
+// RENDER
 // ═══════════════════════════════════════════
-function getPickClass(n) {
-  if (n === 1) return 'pick1';
-  if (n === 2) return 'pick2';
-  if (n === 3) return 'pick3';
+function getGradeClass(g) {
+  const m = { 'A+':'grade-A-plus','A':'grade-A','A-':'grade-A-minus','B+':'grade-B-plus','B':'grade-B','B-':'grade-B-minus','C+':'grade-C-plus','C':'grade-C','D':'grade-D' };
+  return m[g] || 'grade-B';
+}
+function getPosClass(p) {
+  if (!p) return '';
+  const u = p.toUpperCase();
+  if (u === 'SP') return 'pos-sp';
+  if (u === 'RP' || u === 'CL') return 'pos-rp';
+  if (u === 'C') return 'pos-c';
+  if (u === 'SS') return 'pos-ss';
+  if (['OF','LF','CF','RF'].includes(u)) return 'pos-of';
   return '';
 }
+function getPickClass(n) { return n === 1 ? 'pick1' : n === 2 ? 'pick2' : n === 3 ? 'pick3' : ''; }
+function teamName(id) { return TEAMS.find(t => t.id === id)?.name || id; }
 
-function getPosClass(pos) {
-  if (!pos) return '';
-  const p = pos.toUpperCase();
-  if (p === 'SP') return 'pos-sp';
-  if (p === 'RP' || p === 'CL') return 'pos-rp';
-  if (p === 'C') return 'pos-c';
-  if (p === 'SS') return 'pos-ss';
-  if (['OF','LF','CF','RF'].includes(p)) return 'pos-of';
-  return '';
+// Buckner Roster
+function renderBucknerRoster() {
+  const el = document.getElementById('bucknerRoster');
+  el.innerHTML = BUCKNER_2026.map(p => {
+    const isBat = ['OF','SS','2B','3B','1B','C'].includes(p.pos);
+    const isRP = p.pos === 'RP';
+    const slotClass = isRP ? 'slot-rp' : isBat ? 'slot-bat' : 'slot-pitch';
+    return `<div class="roster-slot ${slotClass}">
+      <div class="slot-label">${p.pos} &mdash; R${p.round} (#${p.pick})</div>
+      <div class="slot-player">${p.player}</div>
+      ${p.note ? `<div class="slot-note">${p.note}</div>` : ''}
+    </div>`;
+  }).join('');
 }
 
-function getGradeClass(grade) {
-  const map = {
-    'A+': 'grade-A-plus', 'A': 'grade-A', 'A-': 'grade-A-minus',
-    'B+': 'grade-B-plus', 'B': 'grade-B', 'B-': 'grade-B-minus',
-    'C+': 'grade-C-plus', 'C': 'grade-C',
-    'D': 'grade-D'
-  };
-  return map[grade] || 'grade-B';
-}
-
+// Team Grades
 function renderTeams() {
   const grid = document.getElementById('teamsGrid');
-  if (!TEAM_GRADES.length) return; // keep placeholder
-
   grid.innerHTML = '';
   TEAM_GRADES.forEach(g => {
     const team = TEAMS.find(t => t.id === g.teamId);
     if (!team) return;
-    const isFeatured = team.id === 'buckner';
-    const teamPicks = DRAFT_PICKS.filter(p => p.teamId === team.id)
-      .sort((a, b) => a.round - b.round)
-      .slice(0, 10);
+    const isFeatured = false;
+    const standing = STANDINGS_2025.find(s => s.teamId === team.id);
+    const repeats = REPEAT_PICKS.filter(r => r.teamId === team.id);
 
-    const strengthTags = (g.strengths || []).map(s =>
-      `<span class="tag tag-green">${s}</span>`).join('');
-    const weakTags = (g.weaknesses || []).map(s =>
-      `<span class="tag tag-red">${s}</span>`).join('');
+    const repeatHtml = repeats.length > 0 ?
+      `<div style="margin-top:.5rem;font-size:.78rem;color:var(--muted)"><strong style="color:var(--text)">Returning:</strong> ${repeats.map(r => `${r.player} (R${r.r25}→R${r.r26})`).join(', ')}</div>` :
+      (g.teamId === 'skenes' ? '<div style="margin-top:.5rem;font-size:.78rem;color:var(--accent2)">Complete roster overhaul — zero returning players</div>' : '');
 
-    const picksList = teamPicks.map(p => `
-      <li>
-        <span class="pick-round">R${p.round}</span>
-        <span class="pick-pos ${getPosClass(p.pos)}">${p.pos || '—'}</span>
-        <span class="pick-name">${p.player}</span>
-        <span class="pick-cat">${p.cats || ''}</span>
-      </li>`).join('');
+    const strengthTags = (g.strengths || []).map(s => `<span class="tag tag-green">${s}</span>`).join('');
+    const weakTags = (g.weaknesses || []).map(s => `<span class="tag tag-red">${s}</span>`).join('');
 
     grid.innerHTML += `
       <div class="team-card ${isFeatured ? 'featured' : ''}">
         <div class="team-header">
           <div class="team-pick ${getPickClass(team.pick)}">${team.pick}</div>
           <div class="team-info">
-            <div class="team-name ${isFeatured ? 'featured-name' : ''}">${team.name}${isFeatured ? ' ⭐' : ''}</div>
-            <div class="team-manager">${team.manager ? `Manager: ${team.manager}` : `Pick #${team.pick}`}</div>
+            <div class="team-name ${isFeatured ? 'featured-name' : ''}">${team.name}${isFeatured ? ' &#11088;' : ''}</div>
+            <div class="team-manager">${standing ? `2025: #${standing.rank} (${standing.record})` : `Pick #${team.pick}`}</div>
           </div>
           <div class="grade-badge ${getGradeClass(g.grade)}">${g.grade}</div>
         </div>
         <div class="team-body">
-          <ul class="team-picks-list">${picksList || '<li style="color:var(--muted)">No picks recorded</li>'}</ul>
           <div class="team-analysis">
             ${g.analysis || ''}
+            ${repeatHtml}
             ${strengthTags ? `<div class="team-strengths" style="margin-top:.5rem">${strengthTags}</div>` : ''}
             ${weakTags ? `<div class="team-weaknesses" style="margin-top:.4rem">${weakTags}</div>` : ''}
           </div>
         </div>
       </div>`;
   });
-
-  // Update buckner grade in strip
-  const bg = TEAM_GRADES.find(g => g.teamId === 'buckner');
-  if (bg) document.getElementById('bucknerGrade').textContent = bg.grade;
 }
 
-function renderBoard() {
-  const tbody = document.getElementById('draftBody');
-  if (!DRAFT_PICKS.length) return;
+// Loyalty Picks
+function renderLoyaltyPicks() {
+  const el = document.getElementById('loyaltyPicks');
+  const sorted = [...REPEAT_PICKS].sort((a,b) => Math.abs(a.diff) - Math.abs(b.diff));
+  el.innerHTML = sorted.map(r => {
+    const arrow = r.diff < 0 ? '&#9650;' : r.diff > 0 ? '&#9660;' : '&#9644;';
+    const cls = r.diff < 0 ? 'arrow-up' : r.diff > 0 ? 'arrow-down' : 'arrow-same';
+    const diffText = r.diff === 0 ? 'Same round' : r.diff < 0 ? `${Math.abs(r.diff)} rounds earlier` : `${r.diff} rounds later`;
+    return `<div class="insight-row">
+      <span class="insight-icon ${cls}">${arrow}</span>
+      <div style="flex:1">
+        <div class="insight-val">${r.player}</div>
+        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26} (${diffText})</div>
+      </div>
+    </div>`;
+  }).join('');
+}
 
-  tbody.innerHTML = DRAFT_PICKS.map(p => {
-    const isMine = p.teamId === 'buckner';
-    return `<tr class="${isMine ? 'my-pick' : ''}">
-      <td>${p.overall}</td>
-      <td>${p.round}.${p.pickInRound}</td>
-      <td style="${isMine ? 'color:var(--accent2);font-weight:700' : ''}">${TEAMS.find(t => t.id === p.teamId)?.name || p.teamId}</td>
-      <td style="font-weight:${isMine ? '700' : '400'}">${p.player}</td>
-      <td><span class="pick-pos ${getPosClass(p.pos)}" style="display:inline-block">${p.pos || '—'}</span></td>
-      <td style="color:var(--muted)">${p.cats || ''}</td>
+// ADP Movers
+function renderADPMovers() {
+  const el = document.getElementById('adpMovers');
+  const promos = [...REPEAT_PICKS].filter(r => r.diff < 0).sort((a,b) => a.diff - b.diff);
+  const demos = [...REPEAT_PICKS].filter(r => r.diff > 0).sort((a,b) => b.diff - a.diff);
+
+  let html = '<div style="margin-bottom:.5rem;font-size:.78rem;font-weight:700;color:var(--green)">BIGGEST PROMOTIONS</div>';
+  promos.forEach(r => {
+    html += `<div class="insight-row">
+      <span class="insight-icon arrow-up">&#9650;</span>
+      <div style="flex:1">
+        <div class="insight-val">${r.player} <span style="color:var(--green);font-size:.8rem;">+${Math.abs(r.diff)} rounds</span></div>
+        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26}</div>
+      </div>
+    </div>`;
+  });
+
+  html += '<div style="margin:.75rem 0 .5rem;font-size:.78rem;font-weight:700;color:var(--red)">BIGGEST DEMOTIONS</div>';
+  demos.slice(0, 4).forEach(r => {
+    html += `<div class="insight-row">
+      <span class="insight-icon arrow-down">&#9660;</span>
+      <div style="flex:1">
+        <div class="insight-val">${r.player} <span style="color:var(--red);font-size:.8rem;">-${r.diff} rounds</span></div>
+        <div class="insight-label">${teamName(r.teamId)} &mdash; R${r.r25} &#8594; R${r.r26}</div>
+      </div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// Turnover & Notable Movement
+function renderTurnover() {
+  const el = document.getElementById('turnoverInsights');
+  const counts = {};
+  TEAMS.forEach(t => { counts[t.id] = REPEAT_PICKS.filter(r => r.teamId === t.id).length; });
+  const sorted = Object.entries(counts).sort((a,b) => a[1] - b[1]);
+
+  el.innerHTML = sorted.map(([id, count]) => {
+    const pct = Math.round(((23 - count) / 23) * 100);
+    const color = count === 0 ? 'var(--accent2)' : count <= 1 ? 'var(--red)' : count >= 3 ? 'var(--green)' : 'var(--accent)';
+    return `<div class="insight-row">
+      <div style="flex:1">
+        <div class="insight-val">${teamName(id)}</div>
+        <div class="insight-label">${count} returning player${count !== 1 ? 's' : ''} &mdash; ${pct}% new roster</div>
+      </div>
+      <div style="font-weight:900;font-size:1.1rem;color:${color}">${count}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderNotableMovement() {
+  const el = document.getElementById('notableMovement');
+  const notables = [
+    { player: 'Shohei Ohtani (Batter)', from: 'Decoy (R1)', to: 'Senga (R1)', note: 'Still goes #1 overall, new owner' },
+    { player: 'Elly De La Cruz', from: 'One Ball (R1)', to: 'LetsPlay (R1)', note: 'Champion stole the runner-up\'s R1 pick' },
+    { player: 'Bobby Witt Jr.', from: '877-Glas-Now (R1)', to: "Skenes'n (R1)", note: 'New home, same round' },
+    { player: 'Kyle Tucker', from: "Skenes'n (R2)", to: 'Buckner Boots (R1)', note: 'Our new cornerstone' },
+    { player: 'Corbin Burnes', from: 'Vibes (R4)', to: 'Vibes (R23)', note: 'Same team, 19 rounds later!' },
+    { player: 'Will Smith', from: 'Rain City (R13)', to: 'Rain City (R13)', note: 'Exact same round, same team' },
+    { player: 'Cristopher Sánchez', from: 'Keanu (R14)', to: 'Keanu (R3)', note: 'Biggest promotion: +11 rounds' },
+  ];
+  el.innerHTML = notables.map(n => `<div class="insight-row">
+    <div style="flex:1">
+      <div class="insight-val">${n.player}</div>
+      <div class="insight-label">${n.from} &#8594; ${n.to}</div>
+    </div>
+    <div style="font-size:.75rem;color:var(--accent2);max-width:140px;text-align:right">${n.note}</div>
+  </div>`).join('');
+}
+
+// Standings
+function renderStandings() {
+  const tbody = document.getElementById('standingsBody');
+  tbody.innerHTML = STANDINGS_2025.map(s => {
+    const team = TEAMS.find(t => t.id === s.teamId);
+    const grade = TEAM_GRADES.find(g => g.teamId === s.teamId);
+    const rankClass = s.rank <= 3 ? `rank-${s.rank}` : '';
+    return `<tr>
+      <td><span class="rank-badge ${rankClass}">${s.rank}</span></td>
+      <td>${team?.name || s.teamId}</td>
+      <td>${s.record}</td>
+      <td>${s.pct}</td>
+      <td style="font-weight:700;${s.moves >= 80 ? 'color:var(--green)' : s.moves <= 36 ? 'color:var(--red)' : ''}">${s.moves}</td>
+      <td><span class="grade-badge ${getGradeClass(grade?.grade || 'B')}" style="width:36px;height:36px;font-size:1rem;">${grade?.grade || '—'}</span></td>
     </tr>`;
+  }).join('');
+}
+
+// PROJECTED STANDINGS DATA (500 sim avg)
+const PROJECTED = [
+  { teamId: 'oneball', w: 127, l: 77, t: 16, pct: '.598', playoff: '100%', champ: '34.8%' },
+  { teamId: 'vibes',   w: 127, l: 79, t: 14, pct: '.609', playoff: '100%', champ: '26.4%' },
+  { teamId: 'buckner', w: 120, l: 85, t: 15, pct: '.580', playoff: '100%', champ: '19.0%' },
+  { teamId: 'glas',    w: 109, l: 97, t: 14, pct: '.527', playoff: '95%',  champ: '10.8%' },
+  { teamId: 'decoy',   w: 103, l: 102, t: 15, pct: '.502', playoff: '81%', champ: '4.4%' },
+  { teamId: 'keanu',   w: 99,  l: 106, t: 15, pct: '.484', playoff: '61%', champ: '2.6%' },
+  { teamId: 'lets',    w: 98,  l: 109, t: 13, pct: '.475', playoff: '51%', champ: '1.6%' },
+  { teamId: 'skenes',  w: 90,  l: 115, t: 15, pct: '.443', playoff: '12%', champ: '0.2%' },
+  { teamId: 'rain',    w: 80,  l: 126, t: 14, pct: '.395', playoff: '1%',  champ: '0.2%' },
+  { teamId: 'senga',   w: 74,  l: 133, t: 13, pct: '.365', playoff: '0%',  champ: '0%' },
+];
+
+const BUCKNER_SCHEDULE = [
+  { week: 1, opp: 'oneball', diff: 'tough' },
+  { week: 2, opp: 'lets', diff: 'even' },
+  { week: 3, opp: 'senga', diff: 'easy' },
+  { week: 4, opp: 'skenes', diff: 'easy' },
+  { week: 5, opp: 'vibes', diff: 'tough' },
+  { week: 6, opp: 'decoy', diff: 'even' },
+  { week: 7, opp: 'keanu', diff: 'even' },
+  { week: 8, opp: 'glas', diff: 'even' },
+  { week: 9, opp: 'rain', diff: 'easy' },
+  { week: 10, opp: 'oneball', diff: 'tough' },
+  { week: 11, opp: 'lets', diff: 'even' },
+  { week: 12, opp: 'senga', diff: 'easy' },
+  { week: 13, opp: 'skenes', diff: 'easy' },
+  { week: 14, opp: 'vibes', diff: 'tough' },
+  { week: 15, opp: 'decoy', diff: 'even' },
+  { week: 16, opp: 'keanu', diff: 'even' },
+  { week: 17, opp: 'glas', diff: 'even' },
+  { week: 18, opp: 'rain', diff: 'easy' },
+  { week: 19, opp: 'oneball', diff: 'tough' },
+  { week: 20, opp: 'lets', diff: 'even' },
+  { week: 21, opp: 'senga', diff: 'easy' },
+  { week: 22, opp: 'skenes', diff: 'easy' },
+];
+
+function renderProjectedStandings() {
+  const tbody = document.querySelector('#projectedStandings tbody');
+  tbody.innerHTML = PROJECTED.map((p, i) => {
+    const team = TEAMS.find(t => t.id === p.teamId);
+    const isPlayoff = i < 6;
+    const champPct = parseFloat(p.champ);
+    const champColor = champPct >= 15 ? 'var(--green)' : champPct >= 5 ? 'var(--accent)' : champPct >= 1 ? 'var(--muted)' : 'var(--border)';
+    return `<tr style="${!isPlayoff ? 'opacity:.6' : ''}">
+      <td><span class="rank-badge ${i < 3 ? 'rank-' + (i+1) : ''}">${i+1}</span></td>
+      <td>${team?.name || p.teamId}</td>
+      <td>${p.w}-${p.l}-${p.t}</td>
+      <td>${p.pct}</td>
+      <td style="font-weight:700;${parseFloat(p.playoff) >= 80 ? 'color:var(--green)' : parseFloat(p.playoff) >= 40 ? 'color:var(--accent)' : 'color:var(--muted)'}">${p.playoff}</td>
+      <td style="font-weight:900;color:${champColor}">${p.champ}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderBucknerSchedule() {
+  const el = document.getElementById('bucknerSchedule');
+  const diffColors = { tough: 'var(--red)', even: 'var(--accent)', easy: 'var(--green)' };
+  const diffLabels = { tough: 'TOUGH', even: 'EVEN', easy: 'EASY' };
+
+  el.innerHTML = BUCKNER_SCHEDULE.map(s => {
+    const team = TEAMS.find(t => t.id === s.opp);
+    const grade = TEAM_GRADES.find(g => g.teamId === s.opp);
+    return `<div style="display:flex;align-items:center;gap:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.82rem;">
+      <span style="color:var(--muted);width:32px;text-align:right;font-weight:700;flex-shrink:0">Wk${s.week}</span>
+      <span style="flex:1;${s.opp === 'oneball' || s.opp === 'vibes' ? 'font-weight:700' : ''}">${team?.name || s.opp}</span>
+      <span style="font-size:.68rem;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(${s.diff === 'tough' ? '244,68,68' : s.diff === 'easy' ? '62,207,142' : '79,142,247'},.15);color:${diffColors[s.diff]}">${diffLabels[s.diff]}</span>
+    </div>`;
   }).join('');
 }
 
 // Init
 renderTeams();
-renderBoard();
+renderProjectedStandings();
+renderLoyaltyPicks();
+renderADPMovers();
+renderTurnover();
+renderNotableMovement();
+renderStandings();
 </script>
 </body>
 </html>
