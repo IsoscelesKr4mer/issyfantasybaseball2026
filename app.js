@@ -28,7 +28,7 @@ function canPlay(p, positions) {
 }
 function isBatter(p) { return !canPlay(p, ['SP','RP','CL']); }
 
-// Actual league roster: C,1B,2B,3B,SS,OF,OF,OF,Util,Util,SP,SP,RP,RP,P,P,P,BN×5,IL×3,NA
+// Actual league roster: C,1B,2B,3B,SS,OF,OF,OF,Util,Util,SP,SP,RP,RP,P,P,P,P,BN×5,IL×3,NA
 const LINEUP_SLOTS = [
   { slot: 'C',    label: 'C',    match: p => canPlay(p, ['C']) },
   { slot: '1B',   label: '1B',   match: p => canPlay(p, ['1B']) },
@@ -44,6 +44,7 @@ const LINEUP_SLOTS = [
   { slot: 'SP',   label: 'SP',   match: p => canPlay(p, ['SP']) },
   { slot: 'RP',   label: 'RP',   match: p => canPlay(p, ['RP','CL']) },
   { slot: 'RP',   label: 'RP',   match: p => canPlay(p, ['RP','CL']) },
+  { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
   { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
   { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
   { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
@@ -203,19 +204,19 @@ function renderPlayoffBracket() {
           <div class="bracket-matchup">
             <div class="bracket-team winner">
               <span class="seed">#3</span>
-              <span class="team-label">The Buckner Boots</span>
+              <span class="team-label">877-Glas-Now</span>
               <span class="score">6</span>
             </div>
             <div class="bracket-team">
               <span class="seed">#6</span>
-              <span class="team-label">LetsPlayMajorLeagueBaseball</span>
+              <span class="team-label">Keanu Reeves</span>
               <span class="score">4</span>
             </div>
           </div>
           <div class="bracket-matchup">
             <div class="bracket-team winner">
               <span class="seed">#4</span>
-              <span class="team-label">877-Glas-Now</span>
+              <span class="team-label">The Buckner Boots</span>
               <span class="score">6</span>
             </div>
             <div class="bracket-team">
@@ -250,7 +251,7 @@ function renderPlayoffBracket() {
             </div>
             <div class="bracket-team">
               <span class="seed">#4</span>
-              <span class="team-label">877-Glas-Now</span>
+              <span class="team-label">The Buckner Boots</span>
               <span class="score">3</span>
             </div>
           </div>
@@ -262,7 +263,7 @@ function renderPlayoffBracket() {
             </div>
             <div class="bracket-team">
               <span class="seed">#3</span>
-              <span class="team-label">The Buckner Boots</span>
+              <span class="team-label">877-Glas-Now</span>
               <span class="score">4</span>
             </div>
           </div>
@@ -293,7 +294,7 @@ function renderPlayoffBracket() {
             <div class="champion-tag">\u{1F3C6} Predicted Champion</div>
           </div>
           <div style="margin-top:.75rem;font-size:.8rem;color:var(--text-secondary);line-height:1.6;max-width:240px;">
-            One Ball's Skubal/Yamamoto/Eovaldi trio dominates K and QS across 7 pitching slots. Ram\u00edrez anchors all 5 batting categories. Vibes' OBP edge keeps it close, but One Ball's SV advantage (Bednar + Jansen + Burns) seals it.
+            One Ball's Skubal/Yamamoto/Eovaldi trio dominates K and QS across 8 pitching slots. Ram\u00edrez anchors all 5 batting categories. Vibes' OBP edge keeps it close, but One Ball's SV advantage (Bednar + Jansen + Burns) seals it.
           </div>
         </div>
       </div>

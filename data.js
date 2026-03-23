@@ -105,18 +105,18 @@ const TEAM_GRADES = [
     strengths: ['SB','SV','OBP'], weaknesses: ['SP depth','K','QS','2nd star'] },
 ];
 
-// PROJECTED STANDINGS DATA (500 sim avg, v2 — 7 pitching slots, full position eligibility)
+// PROJECTED STANDINGS DATA (500 sim avg, v3 — 8 pitching slots, full position eligibility)
 const PROJECTED = [
-  { teamId: 'oneball', w: 136, l: 78, t: 6, pct: '.631', playoff: '100%', champ: '42.8%' },
-  { teamId: 'vibes',   w: 127, l: 87, t: 6, pct: '.590', playoff: '100%', champ: '25.6%' },
-  { teamId: 'buckner', w: 120, l: 94, t: 6, pct: '.559', playoff: '99%',  champ: '13.8%' },
-  { teamId: 'glas',    w: 119, l: 95, t: 6, pct: '.554', playoff: '100%', champ: '14.8%' },
-  { teamId: 'decoy',   w: 102, l: 112, t: 6, pct: '.477', playoff: '58%', champ: '0.6%' },
-  { teamId: 'lets',    w: 101, l: 113, t: 6, pct: '.472', playoff: '49%', champ: '0.6%' },
-  { teamId: 'keanu',   w: 101, l: 113, t: 6, pct: '.472', playoff: '47%', champ: '0.6%' },
-  { teamId: 'skenes',  w: 100, l: 114, t: 6, pct: '.468', playoff: '42%', champ: '1.2%' },
-  { teamId: 'rain',    w: 90,  l: 124, t: 6, pct: '.422', playoff: '5%',  champ: '0.0%' },
-  { teamId: 'senga',   w: 74,  l: 141, t: 6, pct: '.348', playoff: '0%',  champ: '0.0%' },
+  { teamId: 'oneball', w: 134, l: 80, t: 6, pct: '.622', playoff: '100%', champ: '43.4%' },
+  { teamId: 'vibes',   w: 126, l: 88, t: 6, pct: '.586', playoff: '100%', champ: '23.8%' },
+  { teamId: 'glas',    w: 120, l: 94, t: 6, pct: '.559', playoff: '100%', champ: '15.4%' },
+  { teamId: 'buckner', w: 118, l: 97, t: 6, pct: '.547', playoff: '98%',  champ: '12.6%' },
+  { teamId: 'decoy',   w: 107, l: 107, t: 6, pct: '.500', playoff: '79%', champ: '2.8%' },
+  { teamId: 'keanu',   w: 101, l: 113, t: 6, pct: '.472', playoff: '45%', champ: '1.4%' },
+  { teamId: 'lets',    w: 100, l: 115, t: 6, pct: '.466', playoff: '33%', champ: '0.0%' },
+  { teamId: 'skenes',  w: 99,  l: 115, t: 6, pct: '.463', playoff: '33%', champ: '0.6%' },
+  { teamId: 'rain',    w: 94,  l: 120, t: 6, pct: '.440', playoff: '11%', champ: '0.0%' },
+  { teamId: 'senga',   w: 73,  l: 142, t: 5, pct: '.343', playoff: '0%',  champ: '0.0%' },
 ];
 
 const BUCKNER_SCHEDULE = [
