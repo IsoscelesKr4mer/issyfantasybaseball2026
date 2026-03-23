@@ -21,21 +21,32 @@ function teamName(id) { return TEAMS.find(t => t.id === id)?.name || id; }
 
 // ── Projected Starting Lineup ──
 // Yahoo H2H standard slots: C, 1B, 2B, 3B, SS, OF, OF, OF, UTIL, UTIL, SP, SP, RP, RP
+// Helper: check if player is eligible for a position (uses elig array if present, else falls back to pos)
+function canPlay(p, positions) {
+  const list = p.elig || [p.pos];
+  return list.some(e => positions.includes(e));
+}
+function isBatter(p) { return !canPlay(p, ['SP','RP','CL']); }
+
+// Actual league roster: C,1B,2B,3B,SS,OF,OF,OF,Util,Util,SP,SP,RP,RP,P,P,P,BN×5,IL×3,NA
 const LINEUP_SLOTS = [
-  { slot: 'C',  label: 'C',  match: p => p.pos === 'C' },
-  { slot: '1B', label: '1B', match: p => p.pos === '1B' },
-  { slot: '2B', label: '2B', match: p => p.pos === '2B' },
-  { slot: '3B', label: '3B', match: p => p.pos === '3B' },
-  { slot: 'SS', label: 'SS', match: p => p.pos === 'SS' },
-  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
-  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
-  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
-  { slot: 'UTIL', label: 'UTIL', match: p => !['SP','RP','CL'].includes(p.pos) },
-  { slot: 'UTIL', label: 'UTIL', match: p => !['SP','RP','CL'].includes(p.pos) },
-  { slot: 'SP', label: 'SP', match: p => p.pos === 'SP' },
-  { slot: 'SP', label: 'SP', match: p => p.pos === 'SP' },
-  { slot: 'RP', label: 'RP', match: p => ['RP','CL'].includes(p.pos) },
-  { slot: 'RP', label: 'RP', match: p => ['RP','CL'].includes(p.pos) },
+  { slot: 'C',    label: 'C',    match: p => canPlay(p, ['C']) },
+  { slot: '1B',   label: '1B',   match: p => canPlay(p, ['1B']) },
+  { slot: '3B',   label: '3B',   match: p => canPlay(p, ['3B']) },
+  { slot: '2B',   label: '2B',   match: p => canPlay(p, ['2B']) },
+  { slot: 'SS',   label: 'SS',   match: p => canPlay(p, ['SS']) },
+  { slot: 'OF',   label: 'OF',   match: p => canPlay(p, ['OF','LF','CF','RF']) },
+  { slot: 'OF',   label: 'OF',   match: p => canPlay(p, ['OF','LF','CF','RF']) },
+  { slot: 'OF',   label: 'OF',   match: p => canPlay(p, ['OF','LF','CF','RF']) },
+  { slot: 'UTIL', label: 'UTIL', match: p => isBatter(p) },
+  { slot: 'UTIL', label: 'UTIL', match: p => isBatter(p) },
+  { slot: 'SP',   label: 'SP',   match: p => canPlay(p, ['SP']) },
+  { slot: 'SP',   label: 'SP',   match: p => canPlay(p, ['SP']) },
+  { slot: 'RP',   label: 'RP',   match: p => canPlay(p, ['RP','CL']) },
+  { slot: 'RP',   label: 'RP',   match: p => canPlay(p, ['RP','CL']) },
+  { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
+  { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
+  { slot: 'P',    label: 'P',    match: p => canPlay(p, ['SP','RP','CL']) },
 ];
 
 function buildLineup(teamId) {
@@ -50,8 +61,8 @@ function buildLineup(teamId) {
       used.add(pick.overall);
       starters.push({ ...pick, slot: slot.label });
     } else {
-      // Fill UTIL with best remaining batter
-      const fallback = picks.find(p => !used.has(p.overall) && !['SP','RP','CL'].includes(p.pos));
+      // Fill UTIL/OF with best remaining batter
+      const fallback = picks.find(p => !used.has(p.overall) && isBatter(p));
       if (fallback && (slot.slot === 'UTIL' || slot.slot === 'OF')) {
         used.add(fallback.overall);
         starters.push({ ...fallback, slot: slot.label });
@@ -67,8 +78,8 @@ function buildLineup(teamId) {
 function renderLineup(teamId) {
   if (typeof DRAFT_PICKS === 'undefined') return '';
   const { starters, bench } = buildLineup(teamId);
-  const batters = starters.filter(s => !['SP','RP'].includes(s.slot));
-  const pitchers = starters.filter(s => ['SP','RP'].includes(s.slot));
+  const batters = starters.filter(s => !['SP','RP','P'].includes(s.slot));
+  const pitchers = starters.filter(s => ['SP','RP','P'].includes(s.slot));
 
   const renderSlot = (s) => `
     <div class="lineup-slot">
@@ -197,20 +208,20 @@ function renderPlayoffBracket() {
             </div>
             <div class="bracket-team">
               <span class="seed">#6</span>
-              <span class="team-label">Keanu Reeves</span>
+              <span class="team-label">LetsPlayMajorLeagueBaseball</span>
               <span class="score">4</span>
             </div>
           </div>
           <div class="bracket-matchup">
-            <div class="bracket-team">
+            <div class="bracket-team winner">
               <span class="seed">#4</span>
               <span class="team-label">877-Glas-Now</span>
-              <span class="score">4</span>
+              <span class="score">6</span>
             </div>
-            <div class="bracket-team winner">
+            <div class="bracket-team">
               <span class="seed">#5</span>
               <span class="team-label">Decoy</span>
-              <span class="score">6</span>
+              <span class="score">4</span>
             </div>
           </div>
           <div class="bracket-bye">
@@ -238,21 +249,21 @@ function renderPlayoffBracket() {
               <span class="score">7</span>
             </div>
             <div class="bracket-team">
-              <span class="seed">#5</span>
-              <span class="team-label">Decoy</span>
+              <span class="seed">#4</span>
+              <span class="team-label">877-Glas-Now</span>
               <span class="score">3</span>
             </div>
           </div>
           <div class="bracket-matchup">
-            <div class="bracket-team">
+            <div class="bracket-team winner">
               <span class="seed">#2</span>
               <span class="team-label">Good Vibes Only</span>
-              <span class="score">4</span>
+              <span class="score">6</span>
             </div>
-            <div class="bracket-team winner">
+            <div class="bracket-team">
               <span class="seed">#3</span>
               <span class="team-label">The Buckner Boots</span>
-              <span class="score">6</span>
+              <span class="score">4</span>
             </div>
           </div>
         </div>
@@ -275,14 +286,14 @@ function renderPlayoffBracket() {
               <span class="score">6</span>
             </div>
             <div class="bracket-team">
-              <span class="seed">#3</span>
-              <span class="team-label">The Buckner Boots</span>
+              <span class="seed">#2</span>
+              <span class="team-label">Good Vibes Only</span>
               <span class="score">4</span>
             </div>
             <div class="champion-tag">\u{1F3C6} Predicted Champion</div>
           </div>
           <div style="margin-top:.75rem;font-size:.8rem;color:var(--text-secondary);line-height:1.6;max-width:240px;">
-            One Ball's Skubal/Yamamoto duo dominates K and QS. Ram\u00edrez outproduces across the board. Buckner's OBP advantage keeps it close, but deeper pitching seals it.
+            One Ball's Skubal/Yamamoto/Eovaldi trio dominates K and QS across 7 pitching slots. Ram\u00edrez anchors all 5 batting categories. Vibes' OBP edge keeps it close, but One Ball's SV advantage (Bednar + Jansen + Burns) seals it.
           </div>
         </div>
       </div>
