@@ -19,6 +19,78 @@ function getPosClass(p) {
 function getPickClass(n) { return n === 1 ? 'pick1' : n === 2 ? 'pick2' : n === 3 ? 'pick3' : ''; }
 function teamName(id) { return TEAMS.find(t => t.id === id)?.name || id; }
 
+// ── Projected Starting Lineup ──
+// Yahoo H2H standard slots: C, 1B, 2B, 3B, SS, OF, OF, OF, UTIL, UTIL, SP, SP, RP, RP
+const LINEUP_SLOTS = [
+  { slot: 'C',  label: 'C',  match: p => p.pos === 'C' },
+  { slot: '1B', label: '1B', match: p => p.pos === '1B' },
+  { slot: '2B', label: '2B', match: p => p.pos === '2B' },
+  { slot: '3B', label: '3B', match: p => p.pos === '3B' },
+  { slot: 'SS', label: 'SS', match: p => p.pos === 'SS' },
+  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
+  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
+  { slot: 'OF', label: 'OF', match: p => ['OF','LF','CF','RF'].includes(p.pos) },
+  { slot: 'UTIL', label: 'UTIL', match: p => !['SP','RP','CL'].includes(p.pos) },
+  { slot: 'UTIL', label: 'UTIL', match: p => !['SP','RP','CL'].includes(p.pos) },
+  { slot: 'SP', label: 'SP', match: p => p.pos === 'SP' },
+  { slot: 'SP', label: 'SP', match: p => p.pos === 'SP' },
+  { slot: 'RP', label: 'RP', match: p => ['RP','CL'].includes(p.pos) },
+  { slot: 'RP', label: 'RP', match: p => ['RP','CL'].includes(p.pos) },
+];
+
+function buildLineup(teamId) {
+  if (typeof DRAFT_PICKS === 'undefined') return { starters: [], bench: [] };
+  const picks = DRAFT_PICKS.filter(p => p.teamId === teamId).sort((a, b) => a.round - b.round);
+  const used = new Set();
+  const starters = [];
+
+  for (const slot of LINEUP_SLOTS) {
+    const pick = picks.find(p => !used.has(p.overall) && slot.match(p));
+    if (pick) {
+      used.add(pick.overall);
+      starters.push({ ...pick, slot: slot.label });
+    } else {
+      // Fill UTIL with best remaining batter
+      const fallback = picks.find(p => !used.has(p.overall) && !['SP','RP','CL'].includes(p.pos));
+      if (fallback && (slot.slot === 'UTIL' || slot.slot === 'OF')) {
+        used.add(fallback.overall);
+        starters.push({ ...fallback, slot: slot.label });
+      } else {
+        starters.push({ slot: slot.label, player: '—', pos: '', round: 0, cats: '' });
+      }
+    }
+  }
+  const bench = picks.filter(p => !used.has(p.overall));
+  return { starters, bench };
+}
+
+function renderLineup(teamId) {
+  if (typeof DRAFT_PICKS === 'undefined') return '';
+  const { starters, bench } = buildLineup(teamId);
+  const batters = starters.filter(s => !['SP','RP'].includes(s.slot));
+  const pitchers = starters.filter(s => ['SP','RP'].includes(s.slot));
+
+  const renderSlot = (s) => `
+    <div class="lineup-slot">
+      <span class="lineup-pos-tag">${s.slot}</span>
+      <span class="lineup-player">${s.player}</span>
+      ${s.round ? `<span class="lineup-round">R${s.round}</span>` : ''}
+    </div>`;
+
+  return `
+    <div class="lineup-section">
+      <div class="lineup-group">
+        <div class="lineup-group-label">Batting</div>
+        ${batters.map(renderSlot).join('')}
+      </div>
+      <div class="lineup-group">
+        <div class="lineup-group-label">Pitching</div>
+        ${pitchers.map(renderSlot).join('')}
+      </div>
+      <div class="lineup-bench-label">${bench.length} on bench</div>
+    </div>`;
+}
+
 // ── Team Roster (within grade card) ──
 function renderTeamRoster(teamId) {
   if (typeof DRAFT_PICKS === 'undefined') return '';
@@ -68,6 +140,7 @@ function renderTeams() {
           <div class="grade-badge ${getGradeClass(g.grade)}">${g.grade}</div>
         </div>
         <div class="team-body">
+          ${renderLineup(team.id)}
           <div class="team-analysis">
             ${g.analysis || ''}
             ${repeatHtml}

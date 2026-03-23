@@ -502,6 +502,68 @@ nav a.active::after { transform: scaleX(1); }
 .tag-blue { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(79, 142, 247, .15); }
 .tag-yellow { background: var(--accent2-dim); color: var(--accent2); border: 1px solid rgba(247, 201, 72, .15); }
 
+/* ── PROJECTED LINEUP ── */
+.lineup-section {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  padding-bottom: .75rem;
+  margin-bottom: .75rem;
+  border-bottom: 1px solid var(--border);
+}
+.lineup-group {
+  flex: 1;
+  min-width: 140px;
+}
+.lineup-group-label {
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .35rem;
+  padding-bottom: .2rem;
+  border-bottom: 1px solid var(--border);
+}
+.lineup-slot {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .18rem 0;
+  font-size: .78rem;
+}
+.lineup-pos-tag {
+  background: var(--surface2);
+  border-radius: 3px;
+  padding: 0 5px;
+  font-size: .62rem;
+  font-weight: 800;
+  color: var(--muted);
+  width: 30px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.lineup-player {
+  flex: 1;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lineup-round {
+  font-size: .62rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.lineup-bench-label {
+  width: 100%;
+  font-size: .68rem;
+  color: var(--muted);
+  text-align: center;
+  padding-top: .3rem;
+}
+
 /* ── ROSTER TOGGLE ── */
 .team-roster-toggle {
   display: flex;
