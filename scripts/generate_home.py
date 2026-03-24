@@ -18,6 +18,25 @@ from yahoo_api import YahooFantasyAPI
 
 BASE_DIR = Path(__file__).parent.parent
 
+# ── Headshot mapping (team name → relative img path) ─────────────────────────
+TEAM_HEADSHOTS = {
+    'One Ball Two Strikes':       'img/headshots/one-ball.png',
+    'The Ragans Administration':  'img/headshots/ragans.jpeg',
+    'Decoy':                      'img/headshots/decoy.jpeg',
+    'Good Vibes Only':            'img/headshots/good-vibes.jpeg',
+    'Keanu Reeves':               'img/headshots/keanu.jpeg',
+    'Ete Crow':                   'img/headshots/ete-crow.jpeg',
+    'Rain City Bombers':          'img/headshots/rain-city.jpeg',
+    'Busch Latte':                'img/headshots/busch-latte.jpg',
+    "Skenes'n on deez Hoerners":  'img/headshots/skenes.jpeg',
+    'The Buckner Boots':          'img/headshots/buckner.jpeg',
+}
+
+def headshot_img(team_name: str, size_class: str = '') -> str:
+    src = TEAM_HEADSHOTS.get(team_name, 'img/headshots/one-ball.png')
+    cls = f'headshot {size_class}'.strip()
+    return f'<img src="{src}" alt="{team_name}" class="{cls}" />'
+
 # ── Week dates lookup (add as season progresses) ──────────────────────────────
 WEEK_DATES = {
     1:  ('Mar 25', 'Mar 29'),
@@ -69,10 +88,11 @@ def render_standings(teams: list) -> str:
         moves = t['moves']
         # Add playoff cutline marker after 6th team
         style = ' class="playoff-cutline"' if rank == 6 else ''
+        img = headshot_img(name, 'headshot-sm')
         rows.append(
             f'            <tr{style}>'
             f'<td class="rank-cell">{rank}</td>'
-            f'<td>{name}</td>'
+            f'<td><div class="team-cell">{img}<span class="team-cell-name">{name}</span></div></td>'
             f'<td class="muted-cell">{mgr}</td>'
             f'<td>{rec}</td>'
             f'<td>{pct}</td>'
@@ -105,16 +125,24 @@ def render_matchups(matchups: list, week: int) -> str:
                 return '0&ndash;0&ndash;0'
             return str(int(t['points'])) if t['points'] else '0'
 
+        img0 = headshot_img(t0['name'], 'headshot-sm')
+        img1 = headshot_img(t1['name'], 'headshot-sm')
         cards.append(f'''      <div class="matchup-card reveal">
         {meta_html}<div class="matchup-teams">
           <div class="matchup-team">
-            <div class="matchup-team-name">{t0["name"]}</div>
-            <div class="matchup-record">{score_display(t0)}</div>
+            {img0}
+            <div class="matchup-team-info">
+              <div class="matchup-team-name">{t0["name"]}</div>
+              <div class="matchup-record">{score_display(t0)}</div>
+            </div>
           </div>
           <div class="matchup-vs">VS</div>
           <div class="matchup-team">
-            <div class="matchup-team-name">{t1["name"]}</div>
-            <div class="matchup-record">{score_display(t1)}</div>
+            {img1}
+            <div class="matchup-team-info">
+              <div class="matchup-team-name">{t1["name"]}</div>
+              <div class="matchup-record">{score_display(t1)}</div>
+            </div>
           </div>
         </div>
         <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Preview &rarr;</a></div>
