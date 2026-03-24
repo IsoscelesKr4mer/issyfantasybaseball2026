@@ -284,14 +284,30 @@ class YahooFantasyAPI:
         for i in range(int(players_raw['count'])):
             p = players_raw[str(i)]['player']
             meta = p[0]
-            name     = meta[2]['full'] if len(meta) > 2 else '?'
-            pos      = meta[-1].get('display_position', '') if meta else ''
-            status   = meta[-2].get('status', '') if len(meta) > 1 else ''
-            selected = p[1].get('selected_position', [{}])[1].get('position', '')
+            # Extract fields by searching for the right key in each meta item
+            name, pos, status, mlb_team = '?', '', '', ''
+            for item in meta:
+                if not isinstance(item, dict):
+                    continue
+                if 'name' in item:
+                    name = item['name'].get('full', '?')
+                if 'display_position' in item:
+                    pos = item['display_position']
+                if 'status' in item and item['status']:
+                    status = item['status']
+                if 'editorial_team_abbr' in item:
+                    mlb_team = item['editorial_team_abbr']
+            selected = ''
+            sel_raw = p[1].get('selected_position', []) if isinstance(p[1], dict) else []
+            for s in sel_raw:
+                if isinstance(s, dict) and 'position' in s:
+                    selected = s['position']
+                    break
             players.append({
                 'name':     name,
                 'pos':      pos,
                 'status':   status,
+                'mlb_team': mlb_team,
                 'starting': selected,
             })
         return players
