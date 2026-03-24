@@ -15,6 +15,7 @@ from datetime import datetime
 # Add parent dir to path so we can import yahoo_api
 sys.path.insert(0, str(Path(__file__).parent))
 from yahoo_api import YahooFantasyAPI
+import generate_teams
 
 BASE_DIR = Path(__file__).parent.parent
 
@@ -28,7 +29,7 @@ TEAM_HEADSHOTS = {
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',
     'Rain City Bombers':          'img/headshots/rain-city.jpeg',
     'Busch Latte':                'img/headshots/busch-latte.jpg',
-    "Skenes'n on deez Hoerners":  'img/headshots/skenes.jpeg',
+    'Skenes\u2019n on deez Hoerners':  'img/headshots/skenes.jpeg',
     'The Buckner Boots':          'img/headshots/buckner.jpeg',
 }
 
@@ -271,6 +272,10 @@ def main():
 
     index_path.write_text(html)
     print(f'  ✅  index.html updated (Week {current_week}, {updated_at})')
+
+    # Also regenerate all team pages with live data
+    print('\n🔄  Regenerating team pages...')
+    generate_teams.main()
 
 if __name__ == '__main__':
     main()
