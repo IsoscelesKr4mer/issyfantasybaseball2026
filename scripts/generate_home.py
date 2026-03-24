@@ -118,7 +118,7 @@ def render_matchups(matchups: list, week: int) -> str:
         t0, t1 = teams[0], teams[1]
         is_motw = i == 0  # First matchup is matchup of the week
 
-        meta_html = '<div class="matchup-meta">Matchup of the Week</div>\n        ' if is_motw else ''
+        meta_html = '        <div class="matchup-meta">&#11088; Matchup of the Week</div>\n' if is_motw else ''
 
         # Show score if live/post, projected if pre
         def score_display(t):
@@ -129,7 +129,7 @@ def render_matchups(matchups: list, week: int) -> str:
         img0 = headshot_img(t0['name'], 'headshot-sm')
         img1 = headshot_img(t1['name'], 'headshot-sm')
         cards.append(f'''      <div class="matchup-card reveal">
-        {meta_html}<div class="matchup-teams">
+{meta_html}        <div class="matchup-teams">
           <div class="matchup-team">
             {img0}
             <div class="matchup-team-info">
@@ -137,7 +137,6 @@ def render_matchups(matchups: list, week: int) -> str:
               <div class="matchup-record">{score_display(t0)}</div>
             </div>
           </div>
-          <div class="matchup-vs">VS</div>
           <div class="matchup-team">
             {img1}
             <div class="matchup-team-info">
@@ -146,7 +145,7 @@ def render_matchups(matchups: list, week: int) -> str:
             </div>
           </div>
         </div>
-        <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Preview &rarr;</a></div>
+        <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Full Preview &rarr;</a></div>
       </div>''')
 
     return '    <div class="matchups-grid">\n' + '\n\n'.join(cards) + '\n\n    </div>'
