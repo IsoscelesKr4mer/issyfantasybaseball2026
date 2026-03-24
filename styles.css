@@ -1277,3 +1277,68 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 /* ── Reveal animation (shared) ── */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+
+
+/* ═══════════════════════════════════════════
+   MANAGER HEADSHOTS
+   ═══════════════════════════════════════════ */
+
+.headshot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--border-light);
+  flex-shrink: 0;
+  background: var(--surface3);
+}
+.headshot-sm {
+  width: 28px;
+  height: 28px;
+}
+.headshot-lg {
+  width: 52px;
+  height: 52px;
+  border-width: 2px;
+}
+.headshot-xl {
+  width: 72px;
+  height: 72px;
+  border-width: 3px;
+  border-color: var(--accent-dim);
+}
+
+/* Standings table with headshots */
+.standings-live .team-cell {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.standings-live .team-cell-name { line-height: 1.2; }
+
+/* Matchup card team row with headshot */
+.matchup-team {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+}
+.matchup-team-info { flex: 1; min-width: 0; }
+.matchup-team-name {
+  font-size: .88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Matchup detail header with headshots */
+.matchup-detail-team-block {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+}
+.matchup-detail-team-block .matchup-detail-team {
+  font-size: 1rem;
+}
