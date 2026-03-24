@@ -60,66 +60,90 @@ def render_team_record(team_data: dict) -> str:
 
 # ── Render roster HTML ─────────────────────────────────────────────────────────
 PITCHER_POSITIONS = {'SP', 'RP', 'P'}
-BATTER_POSITIONS  = {'C', '1B', '2B', '3B', 'SS', 'OF', 'Util', 'DH', 'LF', 'CF', 'RF', 'MI', 'CI'}
+BENCH_SLOTS       = {'BN', 'Bench', 'IL', 'IL10', 'IL15', 'IL60', 'NA', ''}
 
 def _slot_badge(slot: str) -> str:
-    if slot in ('BN', 'Bench'):
-        return f'<span class="roster-slot-badge bench">BN</span>'
-    if slot in ('IL', 'IL10', 'IL15', 'IL60'):
-        return f'<span class="roster-slot-badge il">IL</span>'
-    return f'<span class="roster-slot-badge">{slot}</span>'
+    s = slot.upper()
+    if s in ('BN', 'BENCH', ''):
+        return f'<span class="slot-badge bench">BN</span>'
+    if s.startswith('IL') or s.startswith('DL'):
+        return f'<span class="slot-badge il">{slot}</span>'
+    if s == 'NA':
+        return f'<span class="slot-badge na">NA</span>'
+    return f'<span class="slot-badge active">{slot}</span>'
 
-def _status_badge(status: str) -> str:
+def _inj_badge(status: str) -> str:
     if not status:
         return ''
     s = status.upper()
     if 'DTD' in s:
-        return '<span class="status-badge dtd">DTD</span>'
-    if s.startswith('IL') or s.startswith('DL') or 'INJ' in s:
-        return '<span class="status-badge il">IL</span>'
-    return f'<span class="status-badge dtd">{status}</span>'
+        return '<span class="inj-badge dtd">DTD</span>'
+    if s.startswith('IL') or s.startswith('DL') or s == 'NA':
+        return f'<span class="inj-badge il">{status}</span>'
+    return f'<span class="inj-badge dtd">{status}</span>'
+
+def _player_row(p: dict) -> str:
+    name     = p['name']
+    pos      = p['pos']
+    mlb_team = p.get('mlb_team', '')
+    slot     = p.get('starting', '')
+    status   = p.get('status', '')
+    return (
+        f'      <div class="player-row">'
+        f'<div class="player-row-info">'
+        f'<div class="player-row-name">{name}</div>'
+        f'<div class="player-row-mlb">{mlb_team}</div>'
+        f'</div>'
+        f'<div class="player-row-badges">'
+        f'<span class="pos-badge">{pos}</span>'
+        f'{_slot_badge(slot)}'
+        f'{_inj_badge(status)}'
+        f'</div>'
+        f'</div>'
+    )
+
+def _roster_panel(title: str, starters: list, bench: list) -> str:
+    count = len(starters) + len(bench)
+    lines = [
+        f'    <div class="roster-panel">',
+        f'      <div class="roster-panel-header">',
+        f'        <span class="roster-panel-title">{title}</span>',
+        f'        <span class="roster-panel-count">{count}</span>',
+        f'      </div>',
+    ]
+    if starters:
+        lines.append('      <div class="roster-divider">Starting</div>')
+        for p in starters:
+            lines.append(_player_row(p))
+    if bench:
+        lines.append('      <div class="roster-divider">Bench / Reserve</div>')
+        for p in bench:
+            lines.append(_player_row(p))
+    if not starters and not bench:
+        lines.append('      <div class="team-tx-empty">No players found.</div>')
+    lines.append('    </div>')
+    return '\n'.join(lines)
 
 def render_roster(players: list) -> str:
+    if not players:
+        return '    <div class="team-tx-empty">Roster data unavailable — will load on next refresh.</div>'
+
     batters  = [p for p in players if p['pos'].split(',')[0].strip() not in PITCHER_POSITIONS]
     pitchers = [p for p in players if p['pos'].split(',')[0].strip() in PITCHER_POSITIONS]
 
-    def player_rows(group):
-        if not group:
-            return '<tr><td colspan="4" class="team-tx-empty">No players found.</td></tr>'
-        rows = []
-        for p in group:
-            name   = p['name']
-            pos    = p['pos']
-            slot   = p.get('starting', '')
-            status = p.get('status', '')
-            rows.append(
-                f'          <tr>'
-                f'<td class="player-name">{name}</td>'
-                f'<td><span class="roster-pos-badge">{pos}</span></td>'
-                f'<td>{_slot_badge(slot)}</td>'
-                f'<td>{_status_badge(status)}</td>'
-                f'</tr>'
-            )
-        return '\n'.join(rows)
+    def split_bench(group):
+        starters = [p for p in group if p.get('starting', '').upper() not in ('BN', 'BENCH', 'IL', 'IL10', 'IL15', 'IL60', 'NA', '')]
+        bench    = [p for p in group if p.get('starting', '').upper() in    ('BN', 'BENCH', 'IL', 'IL10', 'IL15', 'IL60', 'NA', '')]
+        return starters, bench
 
-    def roster_table(group, title):
-        return (
-            f'      <div class="card">\n'
-            f'        <div class="roster-col-title">{title}</div>\n'
-            f'        <table class="roster-table">\n'
-            f'          <thead><tr><th>Player</th><th>Pos</th><th>Slot</th><th>Status</th></tr></thead>\n'
-            f'          <tbody>\n'
-            f'{player_rows(group)}\n'
-            f'          </tbody>\n'
-            f'        </table>\n'
-            f'      </div>'
-        )
+    bat_start, bat_bench = split_bench(batters)
+    pit_start, pit_bench = split_bench(pitchers)
 
     return (
-        f'    <div class="roster-grid">\n'
-        f'{roster_table(batters, "Batters")}\n'
-        f'{roster_table(pitchers, "Pitchers")}\n'
-        f'    </div>'
+        '    <div class="roster-panels">\n'
+        + _roster_panel('Batters',  bat_start, bat_bench) + '\n'
+        + _roster_panel('Pitchers', pit_start, pit_bench) + '\n'
+        + '    </div>'
     )
 
 # ── Render mini standings table ────────────────────────────────────────────────
@@ -227,13 +251,12 @@ def update_team_page(slug: str, team_name: str, team_data: dict,
 
     html = page_path.read_text()
 
-    html = replace_section(html, 'TEAM_RECORD',     render_team_record(team_data))
-    html = replace_section(html, 'ROSTER',          render_roster(roster))
-    html = replace_section(html, 'TEAM_STANDINGS',  render_standings(all_standings, team_name))
+    html = replace_section(html, 'TEAM_RECORD',       render_team_record(team_data))
+    html = replace_section(html, 'ROSTER',            render_roster(roster))
     html = replace_section(html, 'TEAM_TRANSACTIONS', render_team_transactions(all_txs, team_name))
     html = replace_section(html, 'UPDATED_AT',
         f'<span class="muted">Updated {updated_at} Pacific</span>')
-    html = replace_section(html, 'WEEK_LINKS',      render_week_links(current_week))
+    html = replace_section(html, 'WEEK_LINKS',        render_week_links(current_week))
     html = replace_section(html, 'NAV_BADGE',
         f'  <div class="nav-badge">Week {current_week}</div>')
 
@@ -295,7 +318,7 @@ def main():
             team_name=name,
             team_data=team_data,
             roster=roster,
-            all_standings=all_standings,
+            all_standings=[],   # standings removed from team pages
             all_txs=all_txs,
             current_week=current_week,
             updated_at=updated_at,
