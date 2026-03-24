@@ -3,20 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Issaquah Swingers — 2026 Draft War Room</title>
+  <title>Issaquah Swingers — 2026 League Hub</title>
 
-  <!-- Open Graph / Link Preview -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Issaquah Swingers — 2026 Draft Report" />
-  <meta property="og:description" content="Post-draft grades, projected standings, Monte Carlo season predictions, and year-over-year insights for all 10 teams." />
+  <meta property="og:title" content="Issaquah Swingers — 2026 Fantasy Baseball" />
+  <meta property="og:description" content="Live standings, weekly matchup previews, recaps, and trash talk for the Issaquah Swingers fantasy baseball league." />
   <meta property="og:image" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/preview.png" />
   <meta property="og:url" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Issaquah Swingers — 2026 Draft Report" />
-  <meta name="twitter:description" content="Draft grades, projected standings & season predictions for all 10 teams." />
-  <meta name="twitter:image" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/preview.png" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -24,227 +17,233 @@
 
 <!-- NAVIGATION -->
 <nav>
-  <div class="nav-logo">&#9918; Issaquah <span>Swingers</span></div>
+  <a href="index.html" class="nav-logo">&#9918; Issaquah <span>Swingers</span></a>
   <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
   <div class="nav-links">
-    <a href="#grades" class="active">Grades</a>
-    <a href="#predictions">Predictions</a>
-    <a href="#insights">Insights</a>
-    <a href="#narratives">Narratives</a>
-    <a href="#standings">2025 Recap</a>
-    <a href="#settings">Settings</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="draft.html">Draft</a>
+    <div class="nav-dropdown">
+      <a href="week-01.html" class="nav-dropdown-toggle">Week 1 &#9662;</a>
+      <div class="nav-dropdown-menu" id="weekDropdown">
+        <!-- AUTO:WEEK_LINKS_START -->
+        <a href="week-01.html" class="active">Week 1 &mdash; Mar 25&ndash;Mar 29</a>
+    <!-- AUTO:WEEK_LINKS_END -->
+      </div>
+    </div>
+    <a href="season.html" class="muted">Season</a>
   </div>
-  <div class="nav-badge">2026 Draft</div>
+  <!-- AUTO:NAV_BADGE_START -->
+  <div class="nav-badge">Week 1</div>
+    <!-- AUTO:NAV_BADGE_END -->
 </nav>
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero hero-home">
   <div class="hero-content">
-    <div class="hero-tag">Post-Draft Analysis</div>
-    <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
+    <div class="hero-tag">2026 Season</div>
+    <h1>Issaquah Swingers<br/><span>League Hub</span></h1>
     <p class="hero-sub">
-      Head-to-Head Categories
+      <!-- AUTO:HERO_WEEK_START -->
+      Week 1 &mdash; Mar 25&ndash;Mar 29
+    <!-- AUTO:HERO_WEEK_END -->
       <span class="sep"></span>
       10 Teams
       <span class="sep"></span>
-      23 Rounds
-      <span class="sep"></span>
-      Sun Mar 22, 2026
+      H2H Categories
     </p>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- SUMMARY STRIP -->
-  <div class="strip reveal">
-    <div class="strip-cell">
-      <div class="strip-val green" id="topGrade">A</div>
-      <div class="strip-lbl">Best Grade</div>
-    </div>
-    <div class="strip-cell">
-      <div class="strip-val blue">10</div>
-      <div class="strip-lbl">Teams</div>
-    </div>
-    <div class="strip-cell">
-      <div class="strip-val yellow">15</div>
-      <div class="strip-lbl">Loyalty Picks</div>
-    </div>
-    <div class="strip-cell">
-      <div class="strip-val">230</div>
-      <div class="strip-lbl">Total Picks</div>
-    </div>
-    <div class="strip-cell">
-      <div class="strip-val">22</div>
-      <div class="strip-lbl">Reg. Season Wks</div>
-    </div>
-  </div>
-
-  <!-- TEAM GRADES -->
-  <section id="grades" class="section">
+  <!-- CURRENT WEEK SNAPSHOT -->
+  <section class="section">
     <h2 class="section-title">
-      <span class="section-icon">&#127942;</span> Team Grades
+      <span class="section-icon">&#9876;&#65039;</span>
+      <!-- AUTO:MATCHUP_TITLE_START -->
+      Week 1 Matchups &mdash; Mar 25&ndash;Mar 29
+    <!-- AUTO:MATCHUP_TITLE_END -->
     </h2>
-    <div class="teams-grid stagger-children" id="teamsGrid"></div>
+    <!-- AUTO:MATCHUPS_START -->
+    <div class="matchups-grid">
+      <div class="matchup-card reveal">
+        <div class="matchup-meta">Matchup of the Week</div>
+        <div class="matchup-teams">
+          <div class="matchup-team">
+            <div class="matchup-team-name">One Ball Two Strikes</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+          <div class="matchup-vs">VS</div>
+          <div class="matchup-team">
+            <div class="matchup-team-name">The Buckner Boots</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+        </div>
+        <div class="matchup-preview-link"><a href="week-01.html#matchup-1">Preview &rarr;</a></div>
+      </div>
+
+      <div class="matchup-card reveal">
+        <div class="matchup-teams">
+          <div class="matchup-team">
+            <div class="matchup-team-name">The Ragans Administration</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+          <div class="matchup-vs">VS</div>
+          <div class="matchup-team">
+            <div class="matchup-team-name">Rain City Bombers</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+        </div>
+        <div class="matchup-preview-link"><a href="week-01.html#matchup-2">Preview &rarr;</a></div>
+      </div>
+
+      <div class="matchup-card reveal">
+        <div class="matchup-teams">
+          <div class="matchup-team">
+            <div class="matchup-team-name">Decoy</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+          <div class="matchup-vs">VS</div>
+          <div class="matchup-team">
+            <div class="matchup-team-name">Ete Crow</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+        </div>
+        <div class="matchup-preview-link"><a href="week-01.html#matchup-3">Preview &rarr;</a></div>
+      </div>
+
+      <div class="matchup-card reveal">
+        <div class="matchup-teams">
+          <div class="matchup-team">
+            <div class="matchup-team-name">Good Vibes Only</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+          <div class="matchup-vs">VS</div>
+          <div class="matchup-team">
+            <div class="matchup-team-name">Busch Latte</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+        </div>
+        <div class="matchup-preview-link"><a href="week-01.html#matchup-4">Preview &rarr;</a></div>
+      </div>
+
+      <div class="matchup-card reveal">
+        <div class="matchup-teams">
+          <div class="matchup-team">
+            <div class="matchup-team-name">Keanu Reeves</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+          <div class="matchup-vs">VS</div>
+          <div class="matchup-team">
+            <div class="matchup-team-name">Skenes’n on deez Hoerners</div>
+            <div class="matchup-record">0&ndash;0&ndash;0</div>
+          </div>
+        </div>
+        <div class="matchup-preview-link"><a href="week-01.html#matchup-5">Preview &rarr;</a></div>
+      </div>
+
+    </div>
+    <!-- AUTO:MATCHUPS_END -->
   </section>
 
-  <!-- SEASON PREDICTIONS -->
-  <section id="predictions" class="section">
+  <!-- STANDINGS -->
+  <section class="section">
     <h2 class="section-title">
-      <span class="section-icon">&#128302;</span> 2026 Season Predictions
-    </h2>
-
-    <!-- Methodology -->
-    <div class="card reveal" style="margin-bottom:1.5rem;">
-      <div class="card-title">
-        <span class="card-icon">&#128200;</span> Methodology
-      </div>
-      <p class="methodology-text">
-        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS) based on actual 18-starter lineups (10 batters + 8 pitchers including 4 generic P slots) with full Yahoo position eligibility. Pitching ratings reflect realistic weekly usage &mdash; each SP gets 1&ndash;2 starts per week regardless of lineup slots, so depth provides consistency rather than linear production gains. Weekly variance accounts for injuries, slumps, and waiver moves. Streaming is not modeled (this is a draft-day snapshot). 22 regular season weeks + 3 playoff weeks simulated.
-      </p>
-    </div>
-
-    <!-- Projected Standings -->
-    <div class="card reveal" style="margin-bottom:1.5rem;">
-      <div class="card-title">Projected Regular Season Standings</div>
-      <div class="table-wrapper">
-        <table class="standings-table" id="projectedStandings">
-          <thead>
-            <tr>
-              <th>Seed</th>
-              <th>Team</th>
-              <th>Proj. Record</th>
-              <th>Pct</th>
-              <th>Playoff%</th>
-              <th>Champ%</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Playoff Bracket -->
-    <div class="card reveal" style="margin-bottom:1.5rem;">
-      <div class="card-title">
-        <span class="card-icon">&#127942;</span> Predicted Playoff Bracket (Weeks 23-25)
-      </div>
-      <div id="playoffBracket"></div>
-    </div>
-
-    <!-- Season Storylines -->
-    <div class="card reveal">
-      <div class="card-title">Season Storylines to Watch</div>
-      <div class="storyline">
-        <p><strong>The 5-6-7-8 seed race will be chaos.</strong> Decoy (58%), LetsPlay (49%), Keanu (47%), and Skenes (42%) are all clustered within 2 projected wins of each other. One hot streak or cold stretch decides who makes the playoffs and who watches. Decoy's health risk (Acu&ntilde;a, Glasnow, Cole) makes them the most volatile team in the league.</p>
-        <p><strong>8 pitching slots change everything.</strong> With 2 SP + 2 RP + 4 P starters, pitching depth matters more than ever. But each SP only gets 1&ndash;2 starts per week, so filling all 8 slots with quality arms is about consistency, not volume. Vibes (10+ SP), Glas-Now (Ohtani/Ragans/Castillo/Woodruff), and One Ball (Skubal/Yamamoto/Eovaldi/Alcantara/Burns) load every slot with real production. Busch Latte can't &mdash; and it shows.</p>
-        <p><strong>LetsPlay's title defense faces a real test.</strong> The defending champs ran back the SB + SV formula, but their SP depth drops off fast after Ryan/Luzardo. With 8 pitching slots to fill and each SP realistically getting 1&ndash;2 starts per week, McLean/Gray/Eury P&eacute;rez need to step up or ERA/WHIP/QS become weekly liabilities.</p>
-        <p><strong>Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand &mdash; the teams that work the wire hardest will rise. With 5 max acquisitions per week, there's no excuse not to be active.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- YEAR-OVER-YEAR INSIGHTS -->
-  <section id="insights" class="section">
-    <h2 class="section-title">
-      <span class="section-icon">&#128269;</span> Year-Over-Year Insights
-    </h2>
-
-    <div class="grid-2">
-      <div class="card reveal">
-        <div class="card-title">
-          <span class="card-icon">&#128257;</span> Loyalty Picks &mdash; Same Player, Same Team
-        </div>
-        <div id="loyaltyPicks"></div>
-      </div>
-      <div class="card reveal">
-        <div class="card-title">
-          <span class="card-icon">&#128200;</span> Biggest Round Movers (Repeat Drafters)
-        </div>
-        <div id="adpMovers"></div>
-      </div>
-    </div>
-
-    <div class="grid-2" style="margin-top:1.5rem;">
-      <div class="card reveal">
-        <div class="card-title">
-          <span class="card-icon">&#128260;</span> Roster Turnover
-        </div>
-        <div id="turnoverInsights"></div>
-      </div>
-      <div class="card reveal">
-        <div class="card-title">
-          <span class="card-icon">&#127775;</span> Notable Player Movement
-        </div>
-        <div id="notableMovement"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEAGUE NARRATIVES -->
-  <section id="narratives" class="section">
-    <h2 class="section-title">
-      <span class="section-icon">&#128218;</span> League Narratives
-    </h2>
-    <div class="card reveal">
-      <div class="narrative-text" id="narratives-text">
-        <p><strong>The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. LetsPlay won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.</p>
-        <p><strong>The Champion's Blueprint.</strong> LetsPlay won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Est&eacute;vez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.</p>
-        <p><strong>One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2025 FINAL STANDINGS -->
-  <section id="standings" class="section">
-    <h2 class="section-title">
-      <span class="section-icon">&#128202;</span> 2025 Final Standings
+      <span class="section-icon">&#128202;</span> 2026 Standings
     </h2>
     <div class="card reveal">
       <div class="table-wrapper">
-        <table class="standings-table">
+        <!-- AUTO:STANDINGS_START -->
+        <table class="standings-table standings-live">
           <thead>
             <tr>
-              <th>Rank</th>
-              <th>Team</th>
-              <th>Record</th>
-              <th>Pct</th>
-              <th>Moves</th>
-              <th>2026 Grade</th>
+              <th>Rank</th><th>Team</th><th>Manager</th>
+              <th>W&ndash;L&ndash;T</th><th>Pct</th><th>Moves</th>
             </tr>
           </thead>
-          <tbody id="standingsBody"></tbody>
+          <tbody>
+            <tr><td class="rank-cell">1</td><td>One Ball Two Strikes</td><td class="muted-cell">Garth W</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>0</td></tr>
+            <tr><td class="rank-cell">2</td><td>The Ragans Administration</td><td class="muted-cell">TylerV</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>2</td></tr>
+            <tr><td class="rank-cell">3</td><td>Decoy</td><td class="muted-cell">Mario</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
+            <tr><td class="rank-cell">4</td><td>Good Vibes Only</td><td class="muted-cell">Michael</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>2</td></tr>
+            <tr><td class="rank-cell">5</td><td>Keanu Reeves</td><td class="muted-cell">Duke Joe</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>0</td></tr>
+            <tr class="playoff-cutline"><td class="rank-cell">6</td><td>Ete Crow</td><td class="muted-cell">Jace Allison</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>0</td></tr>
+            <tr><td class="rank-cell">7</td><td>Rain City Bombers</td><td class="muted-cell">Taylor</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
+            <tr><td class="rank-cell">8</td><td>Busch Latte</td><td class="muted-cell">Rose</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>2</td></tr>
+            <tr><td class="rank-cell">9</td><td>Skenes’n on deez Hoerners</td><td class="muted-cell">TylerR</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
+            <tr><td class="rank-cell">10</td><td>The Buckner Boots</td><td class="muted-cell">Michael</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
+          </tbody>
         </table>
+    <!-- AUTO:STANDINGS_END -->
+      </div>
+      <div class="table-footer">
+        <!-- AUTO:STANDINGS_UPDATED_START -->
+        <span class="muted">Updated Mar 24 at 3:51 PM Pacific</span>
+    <!-- AUTO:STANDINGS_UPDATED_END -->
       </div>
     </div>
   </section>
 
-  <!-- LEAGUE SETTINGS -->
-  <section id="settings" class="section">
+  <!-- RECENT TRANSACTIONS -->
+  <section class="section">
     <h2 class="section-title">
-      <span class="section-icon">&#9881;&#65039;</span> League Settings
+      <span class="section-icon">&#128257;</span> Recent Transactions
     </h2>
-    <div class="grid-2">
-      <div class="card reveal">
-        <div class="card-title">Format</div>
-        <table class="settings-table">
-          <tr><td>Scoring</td><td>Head-to-Head Categories</td></tr>
-          <tr><td>Teams</td><td>10</td></tr>
-          <tr><td>Draft Type</td><td>Live Snake Draft</td></tr>
-          <tr><td>Rounds</td><td>23</td></tr>
-          <tr><td>Roster</td><td>C,1B,2B,3B,SS,OF&times;3,Util&times;2,SP&times;2,RP&times;2,P&times;4,BN&times;5,IL&times;3,NA</td></tr>
-          <tr><td>Playoffs</td><td>6 Teams, Wks 23-25 (ends Sep 20)</td></tr>
-          <tr><td>Max Adds/Wk</td><td>5</td></tr>
-          <tr><td>Min IP/Wk</td><td>30</td></tr>
-        </table>
+    <div class="card reveal">
+      <!-- AUTO:TRANSACTIONS_START -->
+      <div class="transactions-list">
+        <div class="tx-row"><span class="tx-date">Mar 23</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Cody Ponce</span><span class="tx-team">&rarr; Good Vibes Only</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 23</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Garrett Cleavinger</span><span class="tx-team">&rarr; Rain City Bombers</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 23</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Justin Steele</span><span class="tx-team">&rarr; Skenes’n on deez Hoerners</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 23</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Brayan Bello</span><span class="tx-team">&rarr; Busch Latte</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 23</span><span class="tx-type tx-type-add">add</span><span class="tx-player">JJ Wetherholt</span><span class="tx-team">&rarr; Busch Latte</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Chandler Simpson</span><span class="tx-team">&rarr; Good Vibes Only</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Grant Taylor</span><span class="tx-team">&rarr; The Buckner Boots</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Robert Garcia</span><span class="tx-team">&rarr; The Ragans Administration</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Grant Holmes</span><span class="tx-team">&rarr; Decoy</span></div>
+        <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Ernie Clement</span><span class="tx-team">&rarr; The Ragans Administration</span></div>
       </div>
-      <div class="card reveal">
-        <div class="card-title">Scoring Categories</div>
-        <table class="settings-table">
-          <tr><td style="color:var(--accent2);font-weight:700">Batting</td><td>R, HR, RBI, SB, OBP</td></tr>
-          <tr><td style="color:var(--accent);font-weight:700">Pitching</td><td>SV, K, ERA, WHIP, QS</td></tr>
-        </table>
-      </div>
+    <!-- AUTO:TRANSACTIONS_END -->
+    </div>
+  </section>
+
+  <!-- WEEK ARCHIVE -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128197;</span> Season Archive
+    </h2>
+    <div class="weeks-grid">
+      <!-- AUTO:WEEK_ARCHIVE_START -->
+      <a href="week-01.html" class="week-tile week-tile-active">
+        <div class="week-tile-num">Week 1</div>
+        <div class="week-tile-dates">Mar 25&ndash;Mar 29</div>
+        <div class="week-tile-status status-preview">Preview</div>
+      </a>
+      <div class="week-tile week-tile-locked">Week 2</div>
+      <div class="week-tile week-tile-locked">Week 3</div>
+      <div class="week-tile week-tile-locked">Week 4</div>
+      <div class="week-tile week-tile-locked">Week 5</div>
+      <div class="week-tile week-tile-locked">Week 6</div>
+      <div class="week-tile week-tile-locked">Week 7</div>
+      <div class="week-tile week-tile-locked">Week 8</div>
+      <div class="week-tile week-tile-locked">Week 9</div>
+      <div class="week-tile week-tile-locked">Week 10</div>
+      <div class="week-tile week-tile-locked">Week 11</div>
+      <div class="week-tile week-tile-locked">Week 12</div>
+      <div class="week-tile week-tile-locked">Week 13</div>
+      <div class="week-tile week-tile-locked">Week 14</div>
+      <div class="week-tile week-tile-locked">Week 15</div>
+      <div class="week-tile week-tile-locked">Week 16</div>
+      <div class="week-tile week-tile-locked">Week 17</div>
+      <div class="week-tile week-tile-locked">Week 18</div>
+      <div class="week-tile week-tile-locked">Week 19</div>
+      <div class="week-tile week-tile-locked">Week 20</div>
+      <div class="week-tile week-tile-locked">Week 21</div>
+      <div class="week-tile week-tile-locked">Week 22</div>
+      <div class="week-tile week-tile-locked playoff-tile">Week 23 &#127942;</div>
+      <div class="week-tile week-tile-locked playoff-tile">Week 24 &#127942;</div>
+      <div class="week-tile week-tile-locked playoff-tile">Week 25 &#127942;</div>
+    <!-- AUTO:WEEK_ARCHIVE_END -->
     </div>
   </section>
 
@@ -253,10 +252,36 @@
 <!-- FOOTER -->
 <footer>
   <p>Issaquah Swingers Fantasy Baseball &middot; League ID 61583 &middot; 2026 Season</p>
-  <p>Generated by Claude &middot; Post-Draft Analysis</p>
+  <p>Powered by Yahoo Fantasy API &middot; Auto-updated every Sunday night</p>
 </footer>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script>
+// Mobile nav toggle
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+  document.querySelector('.nav-links').classList.toggle('nav-open');
+});
+
+// Dropdown
+const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+if (dropdownToggle) {
+  dropdownToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    this.closest('.nav-dropdown').classList.toggle('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+}
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+revealEls.forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>

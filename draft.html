@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Draft Recap — Issaquah Swingers</title>
+
+  <!-- Open Graph / Link Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Issaquah Swingers — 2026 Draft Report" />
+  <meta property="og:description" content="Post-draft grades, projected standings, Monte Carlo season predictions, and year-over-year insights for all 10 teams." />
+  <meta property="og:image" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/preview.png" />
+  <meta property="og:url" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/draft.html" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Issaquah Swingers — 2026 Draft Report" />
+  <meta name="twitter:description" content="Draft grades, projected standings & season predictions for all 10 teams." />
+  <meta name="twitter:image" content="https://isosceleskr4mer.github.io/issyfantasybaseball2026/preview.png" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html" class="nav-logo">&#9918; Issaquah <span>Swingers</span></a>
+  <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="draft.html" class="active">Draft</a>
+    <div class="nav-dropdown">
+      <a href="week-01.html" class="nav-dropdown-toggle">Weeks &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="week-01.html">Week 1 &mdash; Mar 25&ndash;29</a>
+      </div>
+    </div>
+    <a href="#grades">Grades</a>
+    <a href="#predictions">Predictions</a>
+    <a href="#insights">Insights</a>
+    <a href="#standings">2025 Recap</a>
+  </div>
+  <div class="nav-badge">2026 Draft</div>
+</nav>
+<script>
+const dt = document.querySelector('.nav-dropdown-toggle');
+if (dt) {
+  dt.addEventListener('click', function(e) { e.preventDefault(); this.closest('.nav-dropdown').classList.toggle('open'); });
+  document.addEventListener('click', function(e) { if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); });
+}
+</script>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Post-Draft Analysis</div>
+    <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
+    <p class="hero-sub">
+      Head-to-Head Categories
+      <span class="sep"></span>
+      10 Teams
+      <span class="sep"></span>
+      23 Rounds
+      <span class="sep"></span>
+      Sun Mar 22, 2026
+    </p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- SUMMARY STRIP -->
+  <div class="strip reveal">
+    <div class="strip-cell">
+      <div class="strip-val green" id="topGrade">A</div>
+      <div class="strip-lbl">Best Grade</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val blue">10</div>
+      <div class="strip-lbl">Teams</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val yellow">15</div>
+      <div class="strip-lbl">Loyalty Picks</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val">230</div>
+      <div class="strip-lbl">Total Picks</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-val">22</div>
+      <div class="strip-lbl">Reg. Season Wks</div>
+    </div>
+  </div>
+
+  <!-- TEAM GRADES -->
+  <section id="grades" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#127942;</span> Team Grades
+    </h2>
+    <div class="teams-grid stagger-children" id="teamsGrid"></div>
+  </section>
+
+  <!-- SEASON PREDICTIONS -->
+  <section id="predictions" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128302;</span> 2026 Season Predictions
+    </h2>
+
+    <!-- Methodology -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#128200;</span> Methodology
+      </div>
+      <p class="methodology-text">
+        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS) based on actual 18-starter lineups (10 batters + 8 pitchers including 4 generic P slots) with full Yahoo position eligibility. Pitching ratings reflect realistic weekly usage &mdash; each SP gets 1&ndash;2 starts per week regardless of lineup slots, so depth provides consistency rather than linear production gains. Weekly variance accounts for injuries, slumps, and waiver moves. Streaming is not modeled (this is a draft-day snapshot). 22 regular season weeks + 3 playoff weeks simulated.
+      </p>
+    </div>
+
+    <!-- Projected Standings -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">Projected Regular Season Standings</div>
+      <div class="table-wrapper">
+        <table class="standings-table" id="projectedStandings">
+          <thead>
+            <tr>
+              <th>Seed</th>
+              <th>Team</th>
+              <th>Proj. Record</th>
+              <th>Pct</th>
+              <th>Playoff%</th>
+              <th>Champ%</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Playoff Bracket -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#127942;</span> Predicted Playoff Bracket (Weeks 23-25)
+      </div>
+      <div id="playoffBracket"></div>
+    </div>
+
+    <!-- Season Storylines -->
+    <div class="card reveal">
+      <div class="card-title">Season Storylines to Watch</div>
+      <div class="storyline">
+        <p><strong>The 5-6-7-8 seed race will be chaos.</strong> Decoy (58%), LetsPlay (49%), Keanu (47%), and Skenes (42%) are all clustered within 2 projected wins of each other. One hot streak or cold stretch decides who makes the playoffs and who watches. Decoy's health risk (Acu&ntilde;a, Glasnow, Cole) makes them the most volatile team in the league.</p>
+        <p><strong>8 pitching slots change everything.</strong> With 2 SP + 2 RP + 4 P starters, pitching depth matters more than ever. But each SP only gets 1&ndash;2 starts per week, so filling all 8 slots with quality arms is about consistency, not volume. Vibes (10+ SP), Glas-Now (Ohtani/Ragans/Castillo/Woodruff), and One Ball (Skubal/Yamamoto/Eovaldi/Alcantara/Burns) load every slot with real production. Busch Latte can't &mdash; and it shows.</p>
+        <p><strong>LetsPlay's title defense faces a real test.</strong> The defending champs ran back the SB + SV formula, but their SP depth drops off fast after Ryan/Luzardo. With 8 pitching slots to fill and each SP realistically getting 1&ndash;2 starts per week, McLean/Gray/Eury P&eacute;rez need to step up or ERA/WHIP/QS become weekly liabilities.</p>
+        <p><strong>Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand &mdash; the teams that work the wire hardest will rise. With 5 max acquisitions per week, there's no excuse not to be active.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YEAR-OVER-YEAR INSIGHTS -->
+  <section id="insights" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128269;</span> Year-Over-Year Insights
+    </h2>
+
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128257;</span> Loyalty Picks &mdash; Same Player, Same Team
+        </div>
+        <div id="loyaltyPicks"></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128200;</span> Biggest Round Movers (Repeat Drafters)
+        </div>
+        <div id="adpMovers"></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128260;</span> Roster Turnover
+        </div>
+        <div id="turnoverInsights"></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#127775;</span> Notable Player Movement
+        </div>
+        <div id="notableMovement"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAGUE NARRATIVES -->
+  <section id="narratives" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128218;</span> League Narratives
+    </h2>
+    <div class="card reveal">
+      <div class="narrative-text" id="narratives-text">
+        <p><strong>The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. LetsPlay won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.</p>
+        <p><strong>The Champion's Blueprint.</strong> LetsPlay won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Est&eacute;vez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.</p>
+        <p><strong>One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2025 FINAL STANDINGS -->
+  <section id="standings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128202;</span> 2025 Final Standings
+    </h2>
+    <div class="card reveal">
+      <div class="table-wrapper">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Record</th>
+              <th>Pct</th>
+              <th>Moves</th>
+              <th>2026 Grade</th>
+            </tr>
+          </thead>
+          <tbody id="standingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAGUE SETTINGS -->
+  <section id="settings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#9881;&#65039;</span> League Settings
+    </h2>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-title">Format</div>
+        <table class="settings-table">
+          <tr><td>Scoring</td><td>Head-to-Head Categories</td></tr>
+          <tr><td>Teams</td><td>10</td></tr>
+          <tr><td>Draft Type</td><td>Live Snake Draft</td></tr>
+          <tr><td>Rounds</td><td>23</td></tr>
+          <tr><td>Roster</td><td>C,1B,2B,3B,SS,OF&times;3,Util&times;2,SP&times;2,RP&times;2,P&times;4,BN&times;5,IL&times;3,NA</td></tr>
+          <tr><td>Playoffs</td><td>6 Teams, Wks 23-25 (ends Sep 20)</td></tr>
+          <tr><td>Max Adds/Wk</td><td>5</td></tr>
+          <tr><td>Min IP/Wk</td><td>30</td></tr>
+        </table>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Scoring Categories</div>
+        <table class="settings-table">
+          <tr><td style="color:var(--accent2);font-weight:700">Batting</td><td>R, HR, RBI, SB, OBP</td></tr>
+          <tr><td style="color:var(--accent);font-weight:700">Pitching</td><td>SV, K, ERA, WHIP, QS</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Issaquah Swingers Fantasy Baseball &middot; League ID 61583 &middot; 2026 Season</p>
+  <p>Generated by Claude &middot; Post-Draft Analysis</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
