@@ -1098,37 +1098,67 @@ nav a.muted { color: var(--muted); }
 /* ── Matchups grid (home page) ── */
 .matchups-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+@media (max-width: 960px)  { .matchups-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px)  { .matchups-grid { grid-template-columns: 1fr; } }
+
 .matchup-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.2rem 1.4rem;
+  padding: 1.1rem 1.3rem;
   transition: var(--transition-med);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
 }
 .matchup-card:hover { border-color: var(--border-light); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
 .matchup-meta {
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .6px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .8px;
   text-transform: uppercase;
   color: var(--accent2);
-  margin-bottom: .6rem;
 }
-.matchup-teams { display: flex; align-items: center; gap: .6rem; margin-bottom: .8rem; }
-.matchup-team { flex: 1; }
-.matchup-team-name { font-size: .88rem; font-weight: 700; line-height: 1.2; }
-.matchup-record { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+/* Vertical stacked team layout — no truncation */
+.matchup-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.matchup-team {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .5rem 0;
+}
+.matchup-team + .matchup-team {
+  border-top: 1px solid var(--border);
+}
+.matchup-team-info { flex: 1; min-width: 0; }
+.matchup-team-name {
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  /* No truncation — let it wrap cleanly */
+  word-break: break-word;
+}
+.matchup-record { font-size: .74rem; color: var(--muted); margin-top: .1rem; font-family: var(--font-mono); }
+.matchup-vs-divider {
+  display: none; /* handled by border-top on second team */
+}
 .matchup-vs {
-  font-size: .72rem; font-weight: 800; color: var(--muted);
-  letter-spacing: .5px; padding: .2rem .4rem;
+  font-size: .65rem; font-weight: 800; color: var(--muted);
+  letter-spacing: .5px; padding: .15rem .4rem;
   background: var(--surface2); border-radius: 4px; flex-shrink: 0;
+  text-transform: uppercase;
 }
-.matchup-preview-link { font-size: .8rem; }
-.matchup-preview-link a { color: var(--accent); text-decoration: none; }
+.matchup-preview-link { font-size: .8rem; margin-top: auto; }
+.matchup-preview-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .matchup-preview-link a:hover { text-decoration: underline; }
 
 /* ── Transactions ── */
@@ -1317,21 +1347,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .standings-live .team-cell-name { line-height: 1.2; }
 
-/* Matchup card team row with headshot */
-.matchup-team {
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-}
-.matchup-team-info { flex: 1; min-width: 0; }
-.matchup-team-name {
-  font-size: .88rem;
-  font-weight: 700;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* Matchup card team row — see .matchup-team in matchup section above */
 
 /* Matchup detail header with headshots */
 .matchup-detail-team-block {
