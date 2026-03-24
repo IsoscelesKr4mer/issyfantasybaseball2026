@@ -161,15 +161,29 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 ---
 
+## Content Accuracy Rules
+
+**MANDATORY before writing any player-specific insights, sleeper picks, waiver wire targets, or injury notes:**
+
+1. **Always call the Yahoo API first.** Fetch current rosters via `league/{key}/teams` or `team/{key}/roster` before making any claims about who is on a team, who is starting, who is on IL, or what a player's role is.
+2. **Never fabricate player context.** Do not describe a player's role, status, or history from memory. If the API doesn't confirm it, don't say it.
+3. **Cross-reference with live data.** Use the API response to verify starting rotation spots, injury status, and roster ownership before writing waiver/sleeper content.
+4. **If API data is unavailable**, omit the player-specific section entirely rather than guessing. It's better to have no sleeper pick than a wrong one.
+
+**Why this rule exists:** In Week 1 content, Emerson Hancock was incorrectly described as an "Opening Day starter with strikeout stuff" and Parker Messick was incorrectly described as being in the Opening Day rotation the prior year. Both were wrong. All insights must be grounded in verified data.
+
+---
+
 ## Weekly Content Checklist
 
 ### Preview (generated Sunday night, before week starts)
+- [ ] Fetch all 10 team rosters from Yahoo API BEFORE writing any content
 - [ ] All 5 matchups listed with team records
 - [ ] Category-by-category strength comparison for each matchup
 - [ ] 3–5 "Storylines to Watch" with commentary
 - [ ] Bold prediction for each matchup winner
-- [ ] "Sleeper of the Week" player pick
-- [ ] "Waiver Wire Moves to Make" section
+- [ ] "Sleeper of the Week" player pick — must be verified via API roster data
+- [ ] "Waiver Wire Moves to Make" section — players must be confirmed unowned via API
 
 ### Recap (generated Sunday night, after week ends)
 - [ ] Final scores for all 5 matchups
