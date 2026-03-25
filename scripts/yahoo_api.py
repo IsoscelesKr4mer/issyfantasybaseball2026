@@ -456,6 +456,59 @@ class YahooFantasyAPI:
                 print(f'    ⚠️  Week stats batch failed (chunk {i}): {e}')
         return result
 
+    def get_player_projected_stats(self, player_keys: list, week: int) -> dict:
+        """Fetch Yahoo's projected-week stats for a list of players.
+
+        Primary source for Monte Carlo simulation.
+        Endpoint: players;out=stats;type=projected_week;week={N}
+
+        Returns {player_key: {cat_name: value, ...}}.
+        Stat IDs: R=7, HR=12, RBI=13, SB=16, OBP=4,
+                  ERA=26, WHIP=27, K=42, SV=32, QS=83, IP=50.
+        """
+        if not player_keys:
+            return {}
+        STAT_MAP = {
+            '7': 'R', '12': 'HR', '13': 'RBI', '16': 'SB', '4': 'OBP',
+            '26': 'ERA', '27': 'WHIP', '42': 'K', '32': 'SV', '83': 'QS', '50': 'IP',
+        }
+        result = {}
+        for i in range(0, len(player_keys), 25):
+            chunk = player_keys[i:i + 25]
+            try:
+                data = self._get(
+                    f'players;player_keys={",".join(chunk)};out=stats;type=projected_week;week={week}'
+                )
+                players_out = data['fantasy_content']['players']
+                for j in range(int(players_out.get('count', 0))):
+                    pl = players_out[str(j)]['player']
+                    p_key = next(
+                        (m['player_key'] for m in pl[0]
+                         if isinstance(m, dict) and 'player_key' in m), ''
+                    )
+                    stats_raw = pl[1].get('player_stats', {}).get('stats', [])
+                    stats = {}
+                    if isinstance(stats_raw, list):
+                        for s in stats_raw:
+                            if isinstance(s, dict) and 'stat' in s:
+                                sid = str(s['stat'].get('stat_id', ''))
+                                val = s['stat'].get('value', '-')
+                                if sid in STAT_MAP and val not in ('', None, '-', '0', 0):
+                                    stats[STAT_MAP[sid]] = val
+                    elif isinstance(stats_raw, dict):
+                        for idx in range(int(stats_raw.get('count', 0))):
+                            s = stats_raw.get(str(idx), {})
+                            if isinstance(s, dict) and 'stat' in s:
+                                sid = str(s['stat'].get('stat_id', ''))
+                                val = s['stat'].get('value', '-')
+                                if sid in STAT_MAP and val not in ('', None, '-', '0', 0):
+                                    stats[STAT_MAP[sid]] = val
+                    if p_key:
+                        result[p_key] = stats
+            except Exception as e:
+                print(f'    ⚠️  Projected stats batch failed (chunk {i}): {e}')
+        return result
+
     def get_league_week(self) -> int:
         """Returns the current week number from the league."""
         info = self.get_league_info()
