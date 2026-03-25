@@ -350,11 +350,6 @@
 document.querySelector('.nav-toggle').addEventListener('click', function() {
   document.querySelector('.nav-links').classList.toggle('nav-open');
 });
-const dt = document.querySelector('.nav-dropdown-toggle');
-if (dt) {
-  dt.addEventListener('click', function(e) { e.preventDefault(); this.closest('.nav-dropdown').classList.toggle('open'); });
-  document.addEventListener('click', function(e) { if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); });
-}
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
