@@ -469,8 +469,41 @@ def create_week_page(week: int):
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Week {week} — Issaquah Swingers 2026</title>
-  <meta property="og:title" content="Week {week} — Issaquah Swingers 2026" />
+  <title>Week {week} Preview — Issaquah Swingers 2026</title>
+  <meta name="description" content="Week {week} matchup previews and Monte Carlo predictions for the Issaquah Swingers fantasy baseball league. {start}&#x2013;{end}, 2026." />
+  <link rel="canonical" href="https://issaquahswingers.com/week-{week:02d}.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Week {week} Preview — Issaquah Swingers 2026" />
+  <meta property="og:description" content="Week {week} matchup previews, Monte Carlo predictions, and storylines for the Issaquah Swingers fantasy baseball league. {start}&#x2013;{end}, 2026." />
+  <meta property="og:image" content="https://issaquahswingers.com/preview.png" />
+  <meta property="og:url" content="https://issaquahswingers.com/week-{week:02d}.html" />
+  <meta property="og:site_name" content="Issaquah Swingers Fantasy Baseball" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Week {week} Preview — Issaquah Swingers 2026" />
+  <meta name="twitter:description" content="Week {week} matchup previews and Monte Carlo predictions. {start}&#x2013;{end}, 2026." />
+  <meta name="twitter:image" content="https://issaquahswingers.com/preview.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Issaquah Swingers Week {week} Fantasy Baseball Preview — {start}&#x2013;{end}, 2026",
+    "description": "Week {week} matchup previews and Monte Carlo predictions for the Issaquah Swingers fantasy baseball league.",
+    "url": "https://issaquahswingers.com/week-{week:02d}.html",
+    "publisher": {{
+      "@type": "Organization",
+      "name": "Issaquah Swingers Fantasy Baseball"
+    }},
+    "datePublished": "{dates[0]}"
+  }}
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍍</text></svg>" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -545,6 +578,26 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </html>'''
     page_path.write_text(template)
     print(f'  📄  Created week-{week:02d}.html')
+    update_sitemap(week)
+
+def update_sitemap(week: int):
+    """Add a new week URL to sitemap.xml if not already present."""
+    sitemap_path = BASE_DIR / 'sitemap.xml'
+    if not sitemap_path.exists():
+        return
+    sitemap = sitemap_path.read_text(encoding='utf-8')
+    url = f'https://issaquahswingers.com/week-{week:02d}.html'
+    if url in sitemap:
+        return  # Already in sitemap
+    new_entry = f'''  <url>
+    <loc>{url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>'''
+    # Insert before </urlset>
+    sitemap = sitemap.replace('</urlset>', f'{new_entry}\n\n</urlset>')
+    sitemap_path.write_text(sitemap, encoding='utf-8')
+    print(f'  🗺️  Added week-{week:02d} to sitemap.xml')
 
 # ── GIT PUSH ──────────────────────────────────────────────────────────────────
 def git_push(week: int, action: str):
