@@ -71,8 +71,7 @@ WEEK_DATES = {
 def replace_section(html: str, tag: str, new_content: str) -> str:
     """Replace content between <!-- AUTO:TAG_START --> and <!-- AUTO:TAG_END -->"""
     pattern = rf'(<!-- AUTO:{tag}_START -->).*?(<!-- AUTO:{tag}_END -->)'
-    replacement = rf'\1\n{new_content}\n    \2'
-    result = re.sub(pattern, replacement, html, flags=re.DOTALL)
+    result = re.sub(pattern, lambda m: f'{m.group(1)}\n{new_content}\n    {m.group(2)}', html, flags=re.DOTALL)
     if result == html:
         print(f'  ⚠️  Warning: tag AUTO:{tag} not found in HTML')
     return result
