@@ -196,18 +196,18 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
 
 # ── TEAM METADATA ─────────────────────────────────────────────────────────────
 TEAM_META = {
-    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1},
-    "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2},
-    '877-Glas-Now':                 {'2025_rank': 3,  'draft_slot': 3},
-    'LetsPlayMajorLeagueBaseball':  {'2025_rank': 1,  'draft_slot': 4},
-    'The Ragans Administration':    {'2025_rank': 1,  'draft_slot': 4},
-    'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5},
-    'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6},
-    'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7},
-    'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8},
-    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9},
-    'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10},
-    'Ete Crow':                     {'2025_rank': 3,  'draft_slot': 3},
+    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.png'},
+    "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.png'},
+    '877-Glas-Now':                 {'2025_rank': 3,  'draft_slot': 3,  'img': 'glas-now.png'},
+    'LetsPlayMajorLeagueBaseball':  {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.png'},
+    'The Ragans Administration':    {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.png'},
+    'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.png'},
+    'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.png'},
+    'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.png'},
+    'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8,  'img': 'buckner.jpeg'},
+    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.png'},
+    'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10, 'img': 'one-ball.png'},
+    'Ete Crow':                     {'2025_rank': 3,  'draft_slot': 3,  'img': 'ete-crow.png'},
 }
 
 def _summarize_roster(roster: list) -> dict:
@@ -320,14 +320,25 @@ def generate_preview(api: YahooFantasyAPI, week: int, analysis: dict = None) -> 
         cats_html = _render_cat_edges(cat_edges) if cat_edges else \
             '          <div class="cat-row"><span class="cat-name muted">Category breakdown pending</span></div>'
 
+        t0_img = TEAM_META.get(t0['name'], {}).get('img', '')
+        t1_img = TEAM_META.get(t1['name'], {}).get('img', '')
+        t0_hs  = f'<img src="img/headshots/{t0_img}" class="headshot" alt="{t0["name"]}" />' if t0_img else ''
+        t1_hs  = f'<img src="img/headshots/{t1_img}" class="headshot" alt="{t1["name"]}" />' if t1_img else ''
+
         matchup_cards.append(f'''    <div class="matchup-detail-card reveal" id="matchup-{i+1}">
       <!-- AUTO:LIVE_SCORE_{i+1}_START -->
       <!-- AUTO:LIVE_SCORE_{i+1}_END -->
       <div class="matchup-detail-header">
         <div class="matchup-detail-teams">
-          <span class="matchup-detail-team">{t0["name"]}</span>
+          <div class="matchup-detail-team-block">
+            {t0_hs}
+            <span class="matchup-detail-team">{t0["name"]}</span>
+          </div>
           <span class="matchup-detail-vs">vs</span>
-          <span class="matchup-detail-team">{t1["name"]}</span>
+          <div class="matchup-detail-team-block">
+            {t1_hs}
+            <span class="matchup-detail-team">{t1["name"]}</span>
+          </div>
         </div>
         <div class="matchup-detail-meta">Week {week} &bull; {date_str}</div>
       </div>
