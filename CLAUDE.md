@@ -36,20 +36,18 @@ matchup previews, weekly recaps, and running commentary.
 
 ## Teams
 
-| ID       | Team Name                      | Owner    | 2025 Rank | Draft Slot |
-|----------|-------------------------------|----------|-----------|------------|
-| senga    | Busch Latte                   | TBD      | 7th       | 1          |
-| skenes   | Skenes'n on deez Hoerners     | TBD      | 10th      | 2          |
-| glas     | The Ragans Administration     | TylerV   | 3rd       | 3          |
-| lets     | Ete Crow                      | Jace Allison | 1st 🏆 | 4          |
-| keanu    | Keanu Reeves                  | TBD      | 6th       | 5          |
-| vibes    | Good Vibes Only               | TBD      | 4th       | 6          |
-| rain     | Rain City Bombers             | TBD      | 9th       | 7          |
-| buckner  | The Buckner Boots             | Michael  | 8th       | 8          |
-| decoy    | Decoy                         | TBD      | 5th       | 9          |
-| oneball  | One Ball Two Strikes          | TBD      | 2nd       | 10         |
-
-*Note: Update owner names as they become available from Yahoo API.*
+| ID       | Team Name                      | Owner        | 2025 Rank | Draft Slot |
+|----------|-------------------------------|--------------|-----------|------------|
+| senga    | Busch Latte                   | Rose         | 7th       | 1          |
+| skenes   | Skenes'n on deez Hoerners     | TylerR       | 10th      | 2          |
+| glas     | The Ragans Administration     | TylerV       | 3rd       | 3          |
+| lets     | Ete Crow                      | Jace Allison | 1st 🏆    | 4          |
+| keanu    | Keanu Reeves                  | Duke Joe     | 6th       | 5          |
+| vibes    | Good Vibes Only               | Michael      | 4th       | 6          |
+| rain     | Rain City Bombers             | Taylor       | 9th       | 7          |
+| buckner  | The Buckner Boots             | Michael      | 8th       | 8          |
+| decoy    | Decoy                         | Mario        | 5th       | 9          |
+| oneball  | One Ball Two Strikes          | Garth W      | 2nd       | 10         |
 
 ---
 
