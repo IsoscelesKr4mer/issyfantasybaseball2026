@@ -210,18 +210,24 @@ TEAM_META = {
 }
 
 def _summarize_roster(roster: list) -> dict:
-    """Split a roster into batters/pitchers/closers."""
+    """Split a roster into active batters/starters/relievers and bench/IL.
+
+    Uses 'starting' (selected slot) and 'pos' (eligible positions) from
+    get_team_roster() output. IL/IL+/NA slots are bench; BN is bench.
+    """
     PITCHER_SLOTS = {'SP', 'RP', 'P'}
     BENCH_SLOTS   = {'BN', 'IL', 'IL+', 'NA'}
     batters, starters, relievers, bench = [], [], [], []
     for p in roster:
-        slot   = p.get('selected_position', '')
-        pos    = p.get('display_position', '')
-        name   = p.get('name', 'Unknown')
-        status = p.get('status', '')
-        label  = f"{name} ({pos})" + (f" [{status}]" if status else '')
-        is_pitcher = slot in PITCHER_SLOTS or (slot in BENCH_SLOTS and ('SP' in pos or 'RP' in pos))
+        slot        = p.get('starting', '')       # actual rostered slot (C, 1B, SP, IL, BN, ...)
+        pos         = p.get('pos', '')            # eligible positions (e.g. "SP", "2B,SS", "RP")
+        name        = p.get('name', 'Unknown')
+        status      = p.get('status', '')
+        injury_note = p.get('injury_note', '')
+        status_tag  = f"{status}: {injury_note}" if (status and injury_note) else status
+        label  = f"{name} ({pos})" + (f" [{status_tag}]" if status_tag else '')
         is_bench   = slot in BENCH_SLOTS
+        is_pitcher = slot in PITCHER_SLOTS or (is_bench and ('SP' in pos or 'RP' in pos))
         if is_pitcher:
             if 'SP' in pos:
                 (bench if is_bench else starters).append(label)
@@ -334,6 +340,29 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
                     projected_stats[pk] = monte_carlo._scale_to_week(stats, is_p)
         except Exception as e:
             print(f'    ⚠️  Season stats fallback failed: {e}')
+
+    # ── Player news ───────────────────────────────────────────────────────────
+    print(f'  Fetching player news...')
+    player_news_by_key = {}
+    if all_player_keys:
+        try:
+            player_news_by_key = api.get_player_news(all_player_keys)
+            print(f'    News: {len(player_news_by_key)} players have recent notes')
+        except Exception as e:
+            print(f'    ⚠️  Player news fetch failed: {e}')
+
+    # Build a name → [news items] lookup from raw rosters before we pop them.
+    # Stored per-team so Claude can see "Ketel Marte has X note" when writing
+    # about The Buckner Boots without needing to cross-reference player keys.
+    for m in matchups_data:
+        for tk in ('t0', 't1'):
+            news_for_team = {}
+            for p in m[tk].get('_raw_roster', []):
+                pk   = p.get('player_key', '')
+                name = p.get('name', '')
+                if pk and name and pk in player_news_by_key:
+                    news_for_team[name] = player_news_by_key[pk]
+            m[tk]['player_news'] = news_for_team  # persists in JSON
 
     # Simulate each matchup; pop _raw_roster before saving JSON
     for m in matchups_data:
