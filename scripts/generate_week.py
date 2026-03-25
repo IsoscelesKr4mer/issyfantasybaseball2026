@@ -196,18 +196,18 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
 
 # ── TEAM METADATA ─────────────────────────────────────────────────────────────
 TEAM_META = {
-    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.png'},
-    "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.png'},
-    '877-Glas-Now':                 {'2025_rank': 3,  'draft_slot': 3,  'img': 'glas-now.png'},
-    'LetsPlayMajorLeagueBaseball':  {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.png'},
-    'The Ragans Administration':    {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.png'},
-    'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.png'},
-    'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.png'},
-    'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.png'},
+    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.jpg'},
+    "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.jpeg'},
+    '877-Glas-Now':                 {'2025_rank': 3,  'draft_slot': 3,  'img': ''},
+    'LetsPlayMajorLeagueBaseball':  {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.jpeg'},
+    'The Ragans Administration':    {'2025_rank': 1,  'draft_slot': 4,  'img': 'ragans.jpeg'},
+    'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.jpeg'},
+    'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.jpeg'},
+    'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.jpeg'},
     'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8,  'img': 'buckner.jpeg'},
-    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.png'},
+    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
     'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10, 'img': 'one-ball.png'},
-    'Ete Crow':                     {'2025_rank': 3,  'draft_slot': 3,  'img': 'ete-crow.png'},
+    'Ete Crow':                     {'2025_rank': 3,  'draft_slot': 3,  'img': 'ete-crow.jpeg'},
 }
 
 def _summarize_roster(roster: list) -> dict:
