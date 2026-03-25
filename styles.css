@@ -1242,6 +1242,14 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   margin-bottom: .3rem;
   flex-wrap: wrap;
 }
+/* Bigger headshots inside matchup detail cards */
+.matchup-detail-team-block .headshot {
+  width: 72px;
+  height: 72px;
+  border-width: 2px;
+  border-color: var(--border-light);
+}
+
 .matchup-detail-team { font-size: 1.05rem; font-weight: 800; }
 .matchup-detail-vs { font-size: .78rem; color: var(--muted); font-weight: 700; letter-spacing: .4px; }
 .matchup-detail-meta { font-size: .78rem; color: var(--muted); }
@@ -1265,6 +1273,109 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .prediction-label { font-weight: 800; color: var(--accent2); margin-right: .5rem; }
 .prediction-text { color: var(--text-secondary); }
+
+/* ── Embedded live score strip (mdc-live) ── */
+.mdc-live {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(79,142,247,.05) 0%, transparent 60%);
+  padding: .65rem 1.4rem .5rem;
+}
+.mdc-live-pending {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .55rem 1.4rem;
+}
+.mdc-live-note {
+  font-size: .75rem;
+  color: var(--muted);
+}
+.mdc-live-header {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: .45rem;
+  flex-wrap: wrap;
+}
+.mdc-live-status {
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.status-live    { background: rgba(255,68,68,.15);  color: var(--red); }
+.status-final   { background: var(--surface3);      color: var(--muted); }
+.status-upcoming{ background: var(--accent-dim);    color: var(--accent); }
+
+.mdc-score-block {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.mdc-score-name {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  flex-shrink: 1;
+  min-width: 0;
+}
+.mdc-score-num {
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.mdc-score-num.score-lead { color: var(--green); text-shadow: 0 0 10px rgba(62,207,142,.3); }
+.mdc-score-dash { color: var(--border-light); font-size: .9rem; flex-shrink: 0; }
+.mdc-updated {
+  font-size: .65rem;
+  color: var(--muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Category rows inside the strip */
+.mdc-cat-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+.mdc-cell {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  flex: 1;
+  padding: .28rem .3rem;
+  border-right: 1px solid var(--border);
+}
+.mdc-cell:last-child { border-right: none; }
+.mdc-cat {
+  font-size: .6rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  min-width: 2.1rem;
+  flex-shrink: 0;
+}
+.mdc-val {
+  font-size: .75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+.mdc-val.mdc-lead { color: var(--green); font-weight: 800; }
+.mdc-sep {
+  font-size: .65rem;
+  color: var(--border-light);
+  margin: 0 .1rem;
+}
 
 /* ── Sleeper + waiver ── */
 .sleeper-content p { font-size: .85rem; color: var(--text-secondary); line-height: 1.5; }
