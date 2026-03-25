@@ -190,7 +190,7 @@ def render_matchups(matchups: list, week: int) -> str:
 
         if has_data:
             cat_table_html = _render_cat_table(m)
-        elif m['status'] == 'preevent':
+        else:
             cat_table_html = (
                 '<div class="mc-cats">'
                 '<div class="mc-score-tally">'
@@ -207,8 +207,6 @@ def render_matchups(matchups: list, week: int) -> str:
                 )
                 + '</div></div>'
             )
-        else:
-            cat_table_html = ''
 
         cards.append(f'''      <div class="matchup-card reveal">
 {meta_html}        <div class="matchup-teams">
