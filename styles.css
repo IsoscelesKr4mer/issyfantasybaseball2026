@@ -2878,38 +2878,28 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
     font-size: .88rem !important;
     font-weight: 800;
   }
-  /* All matchup cards stack vertically on mobile */
-  .matchup-teams {
-    flex-direction: column !important;
+  /* Keep horizontal layout on mobile — just scale down */
+  .matchup-card .headshot-sm {
+    width: 36px !important;
+    height: 36px !important;
   }
-  .matchup-team {
-    flex-direction: row !important;
-    text-align: left !important;
-    gap: .65rem !important;
-    flex: unset !important;
+  .matchup-team-name {
+    font-size: .8rem !important;
+  }
+  .matchup-teams {
+    padding: .75rem .8rem .5rem !important;
   }
   .matchup-teams::before {
-    width: 100% !important;
-    height: 1px !important;
+    height: 40px;
   }
   .matchup-teams::after {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 28px !important;
-    height: 28px !important;
-    font-size: .55rem !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: .5rem !important;
   }
-  .matchup-card .headshot-sm {
-    width: 42px !important;
-    height: 42px !important;
-  }
-  .matchups-grid > .matchup-card:first-child .mc-cat-rows {
+  .matchups-grid > .matchup-card:first-child .mc-cat-rows,
+  .mc-cat-rows {
     grid-template-columns: 1fr 1fr;
-  }
-  .matchups-grid > .matchup-card:first-child .mc-score-num {
-    font-size: 1.35rem;
   }
 
   /* Matchup detail cards */
