@@ -122,6 +122,14 @@ nav a:hover { color: var(--text); }
 nav a:hover::after { transform: scaleX(1); }
 nav a.active { color: var(--text); }
 nav a.active::after { transform: scaleX(1); }
+.nav-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--border-light);
+  margin: 0 .5rem;
+  flex-shrink: 0;
+}
+
 .nav-badge {
   margin-left: auto;
   background: linear-gradient(135deg, var(--accent), #6ba3ff);
