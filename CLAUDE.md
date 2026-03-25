@@ -7,9 +7,9 @@ to generate weekly previews, recaps, and site updates without additional context
 
 ## Project Overview
 
-**Site:** https://isosceleskr4mer.github.io/issyfantasybaseball2026/
+**Site:** https://issaquahswingers.com
 **Repo:** https://github.com/IsoscelesKr4mer/issyfantasybaseball2026
-**Hosting:** GitHub Pages (static HTML)
+**Hosting:** Vercel (static HTML, auto-deploys on git push)
 **Stack:** Vanilla HTML/CSS/JS + Python scripts for data fetching + content generation
 
 The site is the unofficial league hub for the Issaquah Swingers fantasy baseball league,
