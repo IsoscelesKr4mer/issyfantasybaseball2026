@@ -180,15 +180,15 @@ nav > .nav-links > a.active::after { transform: scaleX(1); }
       45deg,
       transparent,
       transparent 30px,
-      rgba(255, 255, 255, .015) 30px,
-      rgba(255, 255, 255, .015) 31px
+      rgba(255, 255, 255, .045) 30px,
+      rgba(255, 255, 255, .045) 31px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent,
       transparent 30px,
-      rgba(255, 255, 255, .015) 30px,
-      rgba(255, 255, 255, .015) 31px
+      rgba(255, 255, 255, .045) 30px,
+      rgba(255, 255, 255, .045) 31px
     );
   pointer-events: none;
 }
@@ -2946,7 +2946,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 
   /* Hero sizing — extra top padding since top nav is hidden */
   .hero {
-    padding: 5rem 1rem 3rem;
+    padding: 5rem 1rem 1.5rem;
   }
   .hero h1 {
     font-size: 2.2rem;
