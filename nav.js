@@ -78,13 +78,28 @@ document.addEventListener('DOMContentLoaded', linkTeamNames);
 function renderPlayerHeadshots() {
   document.querySelectorAll('.player-row[data-headshot]').forEach(function (row) {
     var url = row.getAttribute('data-headshot');
-    if (!url) return;
-    var img = document.createElement('img');
-    img.src = url;
-    img.alt = row.getAttribute('data-name') || '';
-    img.className = 'player-row-img';
-    img.onerror = function () { this.style.display = 'none'; };
-    row.insertBefore(img, row.firstChild);
+    var pos = row.getAttribute('data-pos') || '';
+
+    // Inject headshot image
+    if (url) {
+      var img = document.createElement('img');
+      img.src = url;
+      img.alt = row.getAttribute('data-name') || '';
+      img.className = 'player-row-img';
+      img.onerror = function () { this.style.display = 'none'; };
+      row.insertBefore(img, row.firstChild);
+    }
+
+    // Inject position eligibility next to the MLB team name
+    if (pos) {
+      var mlbEl = row.querySelector('.player-row-mlb');
+      if (mlbEl) {
+        var posSpan = document.createElement('span');
+        posSpan.className = 'player-row-pos';
+        posSpan.textContent = pos;
+        mlbEl.appendChild(posSpan);
+      }
+    }
   });
 }
 

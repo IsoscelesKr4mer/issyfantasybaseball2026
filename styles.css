@@ -1990,6 +1990,18 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   margin-top: .1rem;
   font-family: var(--font-mono);
   letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.player-row-pos {
+  color: var(--accent);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: .1rem .35rem;
+  background: var(--accent-dim);
+  border-radius: 3px;
 }
 
 .player-row-badges {
