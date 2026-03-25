@@ -98,6 +98,9 @@ This is a **boys' league**. The writing voice should be:
 
 **Avoid:** cringe corporate-speak, over-hedging ("this could potentially be..."), sycophantic lead-ins.
 
+**Humanizer rules (writing style):**
+- **No em dashes.** Never use `—` or `&mdash;` in generated prose. Rewrite the sentence instead. A comma, period, or colon almost always works better.
+
 ---
 
 ## Automation Schedule
@@ -177,6 +180,40 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 ---
 
+## Player News Data
+
+`fetch_week_data()` also calls `api.get_player_news()` for every rostered player and stores the results in the data JSON under `matchups[i]['t0']['player_news']` and `matchups[i]['t1']['player_news']`. Structure:
+
+```json
+{
+  "Ketel Marte": [
+    {
+      "headline": "Experiences lower-leg soreness",
+      "summary": "Marte was scratched from Tuesday's exhibition game due to lower-leg soreness...",
+      "url": "https://...",
+      "timestamp": "Mar 25 05:15 AM"
+    }
+  ]
+}
+```
+
+**How to use this data when writing analysis:**
+- Read `player_news` for both teams before writing any team analysis or category edges.
+- Use the news **to inform your confidence and framing**, not to generate a dedicated news section.
+- If a key player has a DTD/IL note, factor it into category edges (e.g. "HR/RBI edge narrows if Marte misses games") and call it out naturally in the team analysis paragraph.
+- If the note is minor ("no concern for Opening Day"), write about the player normally — don't flag it.
+- If the note confirms a missed week or IL stint, treat that player as effectively absent for category projections.
+- Never invent news; if `player_news` is empty for a player, don't speculate about their health.
+
+**IL slots rule (critical for injury analysis):**
+Teams have dedicated IL slots, so a player on the IL does NOT eliminate an active roster spot. The team can and will replace that player with a healthy roster addition. This means:
+- 3 players on IL = team still fields a full active lineup, just with different players filling those spots.
+- The damage from an IL injury is losing that specific player's production, not losing a roster slot entirely.
+- Only injuries to players in **active slots** (not IL slots) actually shrink the active roster.
+- When writing about a team's injuries, distinguish between "their ace is IL-stashed but they've backfilled the rotation" vs. "their 2B is actively hurt with no replacement yet." The first is manageable; the second actually hurts.
+
+---
+
 ## Monte Carlo Simulation Layer
 
 `scripts/monte_carlo.py` runs 10,000 per-matchup simulations using Yahoo's projected-week
@@ -249,14 +286,16 @@ Weekly preview analysis is written by **Claude directly** as part of the Cowork 
 
 **How it works:**
 1. The scheduled task runs `python3 scripts/generate_week.py dump {N}` which fetches all Yahoo data and saves it to `data/week-NN-preview-data.json`
-2. Claude reads that JSON — full rosters for both teams in every matchup, current W-L records, 2025 finish ranks
-3. Claude writes the analysis directly: team breakdowns, category edges, predictions, and 4 storyline paragraphs
-4. Claude saves the analysis as `data/week-NN-analysis.json` then calls `generate_preview(api, week, analysis)` with that data
-5. The HTML is rendered and pushed to GitHub
+2. Claude reads that JSON — full rosters for both teams in every matchup, current W-L records, 2025 finish ranks, **and `player_news` for every rostered player**
+3. Claude reads `player_news` for both teams in each matchup BEFORE writing any analysis — injury context shapes category edges and prose framing
+4. Claude writes the analysis directly: team breakdowns, category edges, predictions, and 4 storyline paragraphs
+5. Claude saves the analysis as `data/week-NN-analysis.json` then calls `generate_preview(api, week, analysis)` with that data
+6. The HTML is rendered and pushed to GitHub
 
 **What makes it accurate:**
 - Every player mentioned is pulled from the actual Yahoo API roster response for that week
 - Category edges reflect real roster composition — closer depth, SP quality, power vs. speed profile
+- Player news (Rotowire/beat writer blurbs) informs injury framing — DTD vs. IL, severity, timeline
 - Records and standings are live at generation time
 - Claude has full context of all 5 matchups simultaneously, so storylines reference actual cross-matchup dynamics
 
@@ -280,8 +319,9 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 
 ### Preview (generated Sunday night, before week starts)
 - [ ] Fetch all 10 team rosters from Yahoo API BEFORE writing any content
+- [ ] Read `player_news` for both teams in every matchup BEFORE writing any analysis
 - [ ] All 5 matchups listed with team records
-- [ ] Category-by-category strength comparison for each matchup
+- [ ] Category-by-category strength comparison for each matchup — injury news informs edge confidence
 - [ ] 3–5 "Storylines to Watch" with commentary
 - [ ] Bold prediction for each matchup winner
 - [ ] "Sleeper of the Week" player pick — must be verified via API roster data
