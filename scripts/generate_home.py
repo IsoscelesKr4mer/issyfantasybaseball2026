@@ -387,11 +387,14 @@ def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
             ordered.append(None)
             continue
         block = block_m.group(1)
+        # Try headshot alt attributes first (hand-crafted cards), fall back to span text
         alts = re.findall(r'class="headshot[^"]*"[^>]*alt="([^"]+)"', block)
+        if len(alts) < 2:
+            alts = re.findall(r'class="matchup-detail-team"[^>]*>([^<]+)<', block)
         if len(alts) < 2:
             ordered.append(None)
             continue
-        card_name0, card_name1 = alts[0], alts[1]
+        card_name0, card_name1 = alts[0].strip(), alts[1].strip()
         # Find the API matchup that contains either team
         found = None
         for m in api_matchups:
