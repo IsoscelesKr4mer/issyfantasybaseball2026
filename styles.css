@@ -1465,6 +1465,14 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   min-height: 26px;
 }
 .mdc-rost-row-bench { opacity: .45; }
+.mdc-rost-row-totals {
+  border-top: 1px solid var(--border-light);
+  border-bottom: 2px solid var(--border-light);
+  margin-bottom: .3rem;
+  background: rgba(255,255,255,.03);
+}
+.mdc-rost-row-totals .mdc-rost-name { color: var(--accent); font-size: .72rem; }
+.mdc-rost-total { color: var(--text) !important; font-weight: 600; }
 .mdc-rost-img {
   width: 22px;
   height: 22px;
