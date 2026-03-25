@@ -40,7 +40,7 @@
     </div>
     <div class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Teams &#9662;</a>
-      <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-menu">
         <a href="teams/busch-latte.html">Busch Latte</a>
         <a href="teams/skenes.html">Skenes&#x2019;n on deez Hoerners</a>
         <a href="teams/ete-crow.html">Ete Crow</a>
@@ -62,12 +62,7 @@
   </div>
   <div class="nav-badge">2026 Draft</div>
 </nav>
-<script>
-document.querySelectorAll('.nav-dropdown-toggle').forEach(function(dt) {
-  dt.addEventListener('click', function(e) { e.preventDefault(); this.closest('.nav-dropdown').classList.toggle('open'); });
-});
-document.addEventListener('click', function(e) { if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); });
-</script>
+<script src="nav.js"></script>
 
 <!-- HERO -->
 <header class="hero">
