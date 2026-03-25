@@ -3284,6 +3284,12 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   .mdc-rost.open .mdc-rost-close-btn {
     display: flex;
   }
+  /* Lock background scroll when roster modal is open */
+  html.roster-open,
+  html.roster-open body {
+    overflow: hidden;
+    touch-action: none;
+  }
 
   /* Footer above bottom nav */
   footer {
