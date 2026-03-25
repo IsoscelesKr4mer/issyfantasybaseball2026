@@ -2738,6 +2738,95 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 
 /* ═══════════════════════════════════════════
+   TEAMS BOTTOM SHEET (mobile)
+   ═══════════════════════════════════════════ */
+
+.teams-sheet {
+  display: none;
+}
+@media (max-width: 640px) {
+  .teams-sheet {
+    display: block;
+    pointer-events: none;
+  }
+  .teams-sheet.open {
+    pointer-events: auto;
+  }
+  .teams-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 199;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .teams-sheet.open .teams-sheet-backdrop {
+    opacity: 1;
+  }
+  .teams-sheet-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 201;
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-radius: 16px 16px 0 0;
+    padding: .5rem 1rem calc(60px + env(safe-area-inset-bottom) + .5rem);
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+  }
+  .teams-sheet.open .teams-sheet-panel {
+    transform: translateY(0);
+  }
+  .teams-sheet-handle {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border-light);
+    margin: .25rem auto .75rem;
+  }
+  .teams-sheet-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--text);
+    margin-bottom: .5rem;
+    padding-left: .25rem;
+  }
+  .teams-sheet-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .teams-sheet-item {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .65rem .25rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(38, 43, 61, .5);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .teams-sheet-item:last-child {
+    border-bottom: none;
+  }
+  .teams-sheet-item:active {
+    background: rgba(255, 255, 255, .03);
+  }
+  .teams-sheet-item .headshot-sm {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ═══════════════════════════════════════════
    REDESIGN v2 — MOBILE BOTTOM NAV
    Visible only at < 640px, 4 items
    ═══════════════════════════════════════════ */
