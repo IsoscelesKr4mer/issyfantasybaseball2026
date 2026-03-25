@@ -28,7 +28,16 @@
   <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="draft.html" class="active">Draft</a>
+    <div class="nav-dropdown">
+      <a href="draft.html" class="nav-dropdown-toggle active">Draft &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="draft.html" class="active">Full Draft Report</a>
+        <a href="#grades">Draft Grades</a>
+        <a href="#predictions">Predictions</a>
+        <a href="#insights">Insights</a>
+        <a href="#standings">2025 Recap</a>
+      </div>
+    </div>
     <div class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Teams &#9662;</a>
       <div class="nav-dropdown-menu">
@@ -50,19 +59,14 @@
         <a href="week-01.html">Week 1 &mdash; Mar 25&ndash;29</a>
       </div>
     </div>
-    <a href="#grades">Grades</a>
-    <a href="#predictions">Predictions</a>
-    <a href="#insights">Insights</a>
-    <a href="#standings">2025 Recap</a>
   </div>
   <div class="nav-badge">2026 Draft</div>
 </nav>
 <script>
-const dt = document.querySelector('.nav-dropdown-toggle');
-if (dt) {
+document.querySelectorAll('.nav-dropdown-toggle').forEach(function(dt) {
   dt.addEventListener('click', function(e) { e.preventDefault(); this.closest('.nav-dropdown').classList.toggle('open'); });
-  document.addEventListener('click', function(e) { if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); });
-}
+});
+document.addEventListener('click', function(e) { if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); });
 </script>
 
 <!-- HERO -->
