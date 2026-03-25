@@ -21,8 +21,8 @@ Deploy to GitHub Pages:
 |----|-----------|
 | senga | Busch Latte (fka Senga man watchu smokin?) |
 | skenes | Skenes'n on deez Hoerners |
-| glas | 877-Glas-Now |
-| lets | LetsPlayMajorLeagueBaseball |
+| glas | The Ragans Administration (fka 877-Glas-Now) |
+| lets | Ete Crow (fka LetsPlayMajorLeagueBaseball) |
 | keanu | Keanu Reeves |
 | vibes | Good Vibes Only |
 | rain | Rain City Bombers |

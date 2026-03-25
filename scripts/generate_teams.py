@@ -26,8 +26,8 @@ TEAMS_DIR = BASE_DIR / 'teams'
 TEAM_CONFIG = [
     {'id': 'senga',   'slug': 'busch-latte',  'name': 'Busch Latte',                'headshot': '../img/headshots/busch-latte.jpg'},
     {'id': 'skenes',  'slug': 'skenes',        'name': 'Skenes\u2019n on deez Hoerners',  'headshot': '../img/headshots/skenes.jpeg'},
-    {'id': 'glas',    'slug': 'ete-crow',      'name': 'Ete Crow',                   'headshot': '../img/headshots/ete-crow.jpeg'},
-    {'id': 'lets',    'slug': 'ragans',        'name': 'The Ragans Administration',  'headshot': '../img/headshots/ragans.jpeg'},
+    {'id': 'glas',    'slug': 'ragans',        'name': 'The Ragans Administration',  'headshot': '../img/headshots/ragans.jpeg'},
+    {'id': 'lets',    'slug': 'ete-crow',      'name': 'Ete Crow',                   'headshot': '../img/headshots/ete-crow.jpeg'},
     {'id': 'keanu',   'slug': 'keanu',         'name': 'Keanu Reeves',               'headshot': '../img/headshots/keanu.jpeg'},
     {'id': 'vibes',   'slug': 'good-vibes',    'name': 'Good Vibes Only',            'headshot': '../img/headshots/good-vibes.jpeg'},
     {'id': 'rain',    'slug': 'rain-city',     'name': 'Rain City Bombers',          'headshot': '../img/headshots/rain-city.jpeg'},

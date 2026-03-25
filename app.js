@@ -207,7 +207,7 @@ function renderPlayoffBracket() {
           <div class="bracket-matchup">
             <div class="bracket-team winner">
               <span class="seed">#3</span>
-              <span class="team-label">877-Glas-Now</span>
+              <span class="team-label">The Ragans Administration</span>
               <span class="score">6</span>
             </div>
             <div class="bracket-team">
@@ -266,7 +266,7 @@ function renderPlayoffBracket() {
             </div>
             <div class="bracket-team">
               <span class="seed">#3</span>
-              <span class="team-label">877-Glas-Now</span>
+              <span class="team-label">The Ragans Administration</span>
               <span class="score">4</span>
             </div>
           </div>
@@ -377,8 +377,8 @@ function renderNotableMovement() {
   const el = document.getElementById('notableMovement');
   const notables = [
     { player: 'Shohei Ohtani (Batter)', from: 'Decoy (R1)', to: 'Senga (R1)', note: 'Still goes #1 overall, new owner' },
-    { player: 'Elly De La Cruz', from: 'One Ball (R1)', to: 'LetsPlay (R1)', note: 'Champion stole the runner-up\'s R1 pick' },
-    { player: 'Bobby Witt Jr.', from: '877-Glas-Now (R1)', to: "Skenes'n (R1)", note: 'New home, same round' },
+    { player: 'Elly De La Cruz', from: 'One Ball (R1)', to: 'Ete Crow (R1)', note: 'Champion stole the runner-up\'s R1 pick' },
+    { player: 'Bobby Witt Jr.', from: 'Ragans (R1)', to: "Skenes'n (R1)", note: 'New home, same round' },
     { player: 'Kyle Tucker', from: "Skenes'n (R2)", to: 'Buckner Boots (R1)', note: 'Our new cornerstone' },
     { player: 'Corbin Burnes', from: 'Vibes (R4)', to: 'Vibes (R23)', note: 'Same team, 19 rounds later!' },
     { player: 'Will Smith', from: 'Rain City (R13)', to: 'Rain City (R13)', note: 'Exact same round, same team' },

@@ -5,8 +5,8 @@
 const TEAMS = [
   { id: 'senga',   name: 'Busch Latte',                 pick: 1, manager: '' },
   { id: 'skenes',  name: "Skenes'n on deez Hoerners",  pick: 2, manager: '' },
-  { id: 'glas',    name: 'Ete Crow',                     pick: 3, manager: 'Jace Allison' }, // fka 877-Glas-Now
-  { id: 'lets',    name: 'The Ragans Administration',   pick: 4, manager: 'TylerV' },       // fka LetsPlayMajorLeagueBaseball
+  { id: 'glas',    name: 'The Ragans Administration',   pick: 3, manager: 'TylerV' },        // fka 877-Glas-Now
+  { id: 'lets',    name: 'Ete Crow',                     pick: 4, manager: 'Jace Allison' }, // fka LetsPlayMajorLeagueBaseball
   { id: 'keanu',   name: 'Keanu Reeves',                pick: 5, manager: '' },
   { id: 'vibes',   name: 'Good Vibes Only',             pick: 6, manager: '' },
   { id: 'rain',    name: 'Rain City Bombers',           pick: 7, manager: '' },

@@ -40,8 +40,8 @@ matchup previews, weekly recaps, and running commentary.
 |----------|-------------------------------|----------|-----------|------------|
 | senga    | Busch Latte                   | TBD      | 7th       | 1          |
 | skenes   | Skenes'n on deez Hoerners     | TBD      | 10th      | 2          |
-| glas     | 877-Glas-Now                  | TBD      | 3rd       | 3          |
-| lets     | LetsPlayMajorLeagueBaseball   | TBD      | 1st 🏆    | 4          |
+| glas     | The Ragans Administration     | TylerV   | 3rd       | 3          |
+| lets     | Ete Crow                      | Jace Allison | 1st 🏆 | 4          |
 | keanu    | Keanu Reeves                  | TBD      | 6th       | 5          |
 | vibes    | Good Vibes Only               | TBD      | 4th       | 6          |
 | rain     | Rain City Bombers             | TBD      | 9th       | 7          |
