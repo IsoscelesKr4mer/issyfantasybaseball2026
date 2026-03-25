@@ -100,6 +100,8 @@ def render_standings(teams: list) -> str:
             f'<td>{moves}</td>'
             f'</tr>'
         )
+        if rank == 6:
+            rows.append('            <tr class="playoff-line-row"><td colspan="6"><span class="playoff-line-label">Poverty Line</span></td></tr>')
     header = '''        <table class="standings-table standings-live">
           <thead>
             <tr>
@@ -227,7 +229,7 @@ def render_matchups(matchups: list, week: int) -> str:
           </div>
         </div>
         {cat_table_html}
-        <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Full Preview &rarr;</a></div>
+        <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Full Matchup Breakdown &rarr;</a></div>
       </div>''')
 
     return '    <div class="matchups-grid">\n' + '\n\n'.join(cards) + '\n\n    </div>'

@@ -1153,52 +1153,125 @@ nav a.muted { color: var(--muted); }
 /* ── Matchups grid (home page) ── */
 .matchups-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
 }
-@media (max-width: 960px)  { .matchups-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 580px)  { .matchups-grid { grid-template-columns: 1fr; } }
+.matchups-grid > .matchup-card:first-child {
+  grid-column: 1 / -1;
+}
+@media (max-width: 640px)  { .matchups-grid { grid-template-columns: 1fr; } }
 
 .matchup-card {
-  background: var(--surface);
+  background:
+    linear-gradient(135deg, rgba(79, 142, 247, .04) 0%, transparent 40%),
+    linear-gradient(225deg, rgba(247, 201, 72, .03) 0%, transparent 40%),
+    var(--surface);
   border: 1px solid var(--border);
-  border-top: 1px solid rgba(255,255,255,.06);
   border-radius: var(--radius-lg);
-  padding: 1.4rem 1.6rem;
+  padding: 0;
   transition: var(--transition-med);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: .85rem;
+  overflow: hidden;
+}
+.matchup-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: .6;
 }
 /* Bigger avatars inside matchup cards specifically */
 .matchup-card .headshot-sm {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--border-light);
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
-.matchup-card:hover { border-color: var(--border-light); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.matchup-card:hover {
+  border-color: rgba(79, 142, 247, .3);
+  box-shadow: var(--shadow-hover), 0 0 50px rgba(79, 142, 247, .06);
+  transform: translateY(-3px);
+}
+.matchup-card:hover::before { opacity: 1; }
 .matchup-meta {
-  font-size: .68rem;
+  font-size: .65rem;
   font-weight: 800;
-  letter-spacing: .8px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--accent2);
+  padding: .75rem 1.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
 }
-/* Vertical stacked team layout — no truncation */
+.matchup-meta::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent2), transparent);
+  opacity: .3;
+}
+/* Horizontal team layout — teams flanking VS badge */
 .matchup-teams {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 0;
+  padding: 1rem 1.2rem .6rem;
+  position: relative;
 }
 .matchup-team {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .65rem;
-  padding: .5rem 0;
+  text-align: center;
+  gap: .4rem;
+  flex: 1;
+  padding: .3rem 0;
 }
 .matchup-team + .matchup-team {
-  border-top: 1px solid var(--border);
+  border-top: none;
 }
+/* Vertical divider line between teams */
+.matchup-teams::before {
+  content: '';
+  order: 1;
+  width: 1px;
+  height: 50px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+/* VS badge — sits on the divider line */
+.matchup-teams::after {
+  content: 'VS';
+  order: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+/* First team left, second team right */
+.matchup-team:first-child { order: 0; }
+.matchup-team:last-child  { order: 2; }
 .matchup-team-info { flex: 1; min-width: 0; }
 .matchup-team-name {
   font-size: .9rem;
@@ -1210,10 +1283,14 @@ nav a.muted { color: var(--muted); }
 /* Larger team names inside the homepage matchup grid */
 .matchup-card .matchup-team-name {
   font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: .3px;
+  text-transform: uppercase;
 }
 .matchup-record { font-size: .74rem; color: var(--muted); margin-top: .1rem; font-family: var(--font-mono); }
 .matchup-vs-divider {
-  display: none; /* handled by border-top on second team */
+  display: none;
 }
 .matchup-vs {
   font-size: .65rem; font-weight: 800; color: var(--muted);
@@ -1221,9 +1298,30 @@ nav a.muted { color: var(--muted); }
   background: var(--surface2); border-radius: 4px; flex-shrink: 0;
   text-transform: uppercase;
 }
-.matchup-preview-link { font-size: .8rem; margin-top: auto; }
-.matchup-preview-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
-.matchup-preview-link a:hover { text-decoration: underline; }
+.matchup-preview-link {
+  padding: .65rem 1.2rem .85rem;
+  margin-top: auto;
+}
+.matchup-preview-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: .35rem .75rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-dim);
+  border: 1px solid rgba(79, 142, 247, .15);
+  transition: var(--transition-fast);
+}
+.matchup-preview-link a:hover {
+  background: rgba(79, 142, 247, .2);
+  border-color: rgba(79, 142, 247, .3);
+  text-decoration: none;
+}
 
 /* ── Transactions ── */
 .transactions-list { display: flex; flex-direction: column; gap: .6rem; }
@@ -1962,8 +2060,9 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .mc-tally-lead { color: var(--green); background: var(--green-dim); }
 
 .mc-cats {
+  background: var(--bg-subtle);
   border-top: 1px solid var(--border);
-  padding: .55rem .85rem .45rem;
+  padding: .65rem 1rem .5rem;
 }
 .mc-cats-pending {
   color: var(--muted);
@@ -1976,47 +2075,61 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .4rem;
-  margin-bottom: .45rem;
+  gap: .5rem;
+  margin-bottom: .55rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
 }
 .mc-score-num {
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--muted);
-  font-family: var(--font-mono);
-  min-width: 1.4rem;
+  font-family: var(--font-display);
+  min-width: 1.6rem;
   text-align: center;
+  letter-spacing: .5px;
 }
 .mc-score-num.mc-score-lead { color: var(--green); }
-.mc-score-dash { color: var(--border-light); font-size: .9rem; }
+.mc-score-dash {
+  color: var(--border-light);
+  font-size: .85rem;
+  font-weight: 300;
+}
 
-.mc-cat-rows { display: flex; flex-direction: column; }
+.mc-cat-rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
 .mc-cat-row {
   display: grid;
-  grid-template-columns: 1fr 2.5rem 1fr;
+  grid-template-columns: 1fr 2.2rem 1fr;
   align-items: center;
-  padding: .2rem 0;
-  border-top: 1px solid var(--border);
+  padding: .25rem .3rem;
+  border-radius: 4px;
+}
+.mc-cat-row:nth-child(odd) {
+  background: rgba(255, 255, 255, .02);
 }
 .mc-cat-row:first-child { border-top: none; }
 .mc-cat-name {
   text-align: center;
-  font-size: .65rem;
-  font-weight: 700;
+  font-size: .6rem;
+  font-weight: 800;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: .4px;
+  letter-spacing: .6px;
 }
 .mc-cat-val {
-  font-size: .78rem;
+  font-size: .75rem;
   font-weight: 600;
   color: var(--text-secondary);
   font-family: var(--font-mono);
   text-align: center;
 }
 .mc-cat-val.mc-cat-lead { color: var(--green); font-weight: 800; }
-.mc-cat-row .mc-cat-val:first-child { text-align: right; padding-right: .3rem; }
-.mc-cat-row .mc-cat-val:last-child  { text-align: left;  padding-left: .3rem; }
+.mc-cat-row .mc-cat-val:first-child { text-align: right; padding-right: .2rem; }
+.mc-cat-row .mc-cat-val:last-child  { text-align: left;  padding-left: .2rem; }
 
 
 /* ══════════════════════════════════════════
@@ -2273,9 +2386,8 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
    REDESIGN v2 — GLASS CARD HIGHLIGHTS
    ═══════════════════════════════════════════ */
 
-/* Glass panel top highlight on all cards */
+/* Glass panel top highlight on all cards (not matchup-card — it has its own gradient top) */
 .card,
-.matchup-card,
 .matchup-detail-card,
 .team-card,
 .ls-card {
@@ -2313,30 +2425,25 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 
 /* ═══════════════════════════════════════════
-   REDESIGN v2 — ENHANCED MATCHUP CARDS
+   REDESIGN v3 — BROADCAST SCOREBOARD CARDS
    Classes used by generate_home.py: matchup-card
    ═══════════════════════════════════════════ */
 
 .matchup-card {
-  transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease, border-color .25s ease;
-}
-.matchup-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(79, 142, 247, .25);
-  box-shadow: var(--shadow-hover), 0 0 40px rgba(79, 142, 247, .06);
+  transition: transform .35s cubic-bezier(.16, 1, .3, 1), box-shadow .35s ease, border-color .25s ease;
 }
 
 /* Win probability bar — added by generate_home.py inside matchup-card */
 .matchup-wp-bar {
   height: 3px;
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--surface3);
   overflow: hidden;
-  margin-top: .5rem;
+  margin: 0;
 }
 .matchup-wp-fill {
   height: 100%;
-  border-radius: 2px;
+  border-radius: 0;
   background: linear-gradient(90deg, var(--accent), var(--green));
   transition: width .8s cubic-bezier(.16, 1, .3, 1);
 }
@@ -2344,19 +2451,60 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 /* Record badges on matchup cards */
 .matchup-record-badge {
   display: inline-block;
-  font-size: .68rem;
+  font-size: .65rem;
   font-weight: 700;
   color: var(--muted);
   background: var(--surface3);
   padding: 2px 8px;
   border-radius: 10px;
   font-family: var(--font-mono);
-  margin-bottom: .15rem;
+  margin-top: .15rem;
 }
 
 /* Predicted winner accent */
 .matchup-card.matchup-winner {
   border-left: 3px solid var(--accent2);
+}
+.matchup-card.matchup-winner::before {
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  opacity: .8;
+}
+
+/* Featured card (first in grid) — bigger everything */
+.matchups-grid > .matchup-card:first-child .matchup-teams {
+  padding: 1.3rem 1.5rem .9rem;
+}
+.matchups-grid > .matchup-card:first-child .matchup-teams::before {
+  height: 60px;
+}
+.matchups-grid > .matchup-card:first-child .matchup-team {
+  gap: .5rem;
+}
+.matchups-grid > .matchup-card:first-child .headshot-sm {
+  width: 64px;
+  height: 64px;
+}
+.matchups-grid > .matchup-card:first-child .matchup-team-name {
+  font-size: 1.15rem;
+}
+.matchups-grid > .matchup-card:first-child .matchup-teams::after {
+  width: 36px;
+  height: 36px;
+  font-size: .65rem;
+}
+.matchups-grid > .matchup-card:first-child .mc-cat-rows {
+  grid-template-columns: repeat(5, 1fr);
+}
+.matchups-grid > .matchup-card:first-child .mc-score-num {
+  font-size: 1.6rem;
+}
+.matchups-grid > .matchup-card:first-child .matchup-preview-link {
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .matchups-grid > .matchup-card:first-child .mc-cat-rows {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -2705,13 +2853,46 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
     display: none;
   }
 
-  /* Matchup cards full width */
+  /* Matchup cards mobile */
   .matchup-card {
-    padding: 1rem;
+    padding: 0;
   }
   .matchup-team-name {
-    font-size: .95rem;
+    font-size: .88rem !important;
     font-weight: 800;
+  }
+  /* All matchup cards stack vertically on mobile */
+  .matchup-teams {
+    flex-direction: column !important;
+  }
+  .matchup-team {
+    flex-direction: row !important;
+    text-align: left !important;
+    gap: .65rem !important;
+    flex: unset !important;
+  }
+  .matchup-teams::before {
+    width: 100% !important;
+    height: 1px !important;
+  }
+  .matchup-teams::after {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: .55rem !important;
+  }
+  .matchup-card .headshot-sm {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .matchups-grid > .matchup-card:first-child .mc-cat-rows {
+    grid-template-columns: 1fr 1fr;
+  }
+  .matchups-grid > .matchup-card:first-child .mc-score-num {
+    font-size: 1.35rem;
   }
 
   /* Matchup detail cards */
@@ -2837,8 +3018,10 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
    REDESIGN v2 — WEEK TILE GRID ENHANCEMENTS
    ═══════════════════════════════════════════ */
 
-.week-tile {
+.week-tile:not(.week-tile-active) {
   border-top: 1px solid rgba(255, 255, 255, .04);
+}
+.week-tile {
   transition: transform .2s ease, border-color .15s ease, background .15s ease;
 }
 .week-tile-num {
