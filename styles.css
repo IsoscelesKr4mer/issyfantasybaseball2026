@@ -1062,9 +1062,10 @@ a.nav-logo:hover { color: var(--accent2); opacity: .85; }
 /* ── Nav dropdown ── */
 .nav-dropdown { position: relative; height: 100%; display: flex; align-items: center; }
 .nav-dropdown-toggle { cursor: pointer; }
-/* Kill the indicator on ALL dropdown toggles by default — re-enabled below for .active only */
-.nav-dropdown-toggle::after,
-.nav-dropdown-toggle:hover::after { display: none !important; }
+/* Nuke the pseudo-element entirely for all dropdown toggles.
+   content:none is more fundamental than display:none — nothing can override it
+   except a more specific rule with content:'' (see .active rule at end of file) */
+.nav-dropdown-toggle::after { content: none !important; }
 .nav-dropdown-menu {
   display: none;
   position: absolute;
@@ -1733,7 +1734,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 
 /* ── Teams nav dropdown active state ─────────── */
 .nav-dropdown-toggle.active { color: var(--text) !important; }
-.nav-dropdown-toggle.active::after { transform: scaleX(1) !important; display: block !important; }
+.nav-dropdown-toggle.active::after { content: '' !important; display: block !important; transform: scaleX(1) !important; }
 
 /* ── Responsive hero ─────────────────────────── */
 @media (max-width: 600px) {
