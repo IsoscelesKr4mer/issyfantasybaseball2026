@@ -448,12 +448,7 @@ def main():
     html = replace_section(html, 'HERO_WEEK',
         f'      Week {current_week} &mdash; {date_str}')
 
-    # Update the dropdown toggle label on nav
-    html = re.sub(
-        r'(<a href="week-\d+\.html" class="nav-dropdown-toggle">)Week \d+ &#9662;',
-        rf'\1Week {current_week} &#9662;',
-        html
-    )
+    # Update the Weeks dropdown href to point to the current week page
     html = re.sub(
         r'(<a href=")week-\d+(\.html" class="nav-dropdown-toggle">)',
         rf'\1week-{current_week:02d}\2',
