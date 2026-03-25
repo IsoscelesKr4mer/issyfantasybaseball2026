@@ -3030,13 +3030,26 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
     letter-spacing: .5px;
   }
 
-  /* Playoff line row — full width */
+  /* Playoff cutline — remove dashed borders from individual cells */
+  .standings-table tr.playoff-cutline td {
+    border-bottom: none !important;
+  }
+  .standings-table tr.playoff-cutline {
+    border-bottom: 2px dashed rgba(247, 201, 72, .35);
+  }
+  .standings-table tr.playoff-cutline + tr td {
+    padding-top: 0;
+  }
+
+  /* Playoff line label row — full width */
   .standings-table tr.playoff-line-row {
     display: block;
-    padding: 0;
+    padding: .2rem 0;
+    border-bottom: none;
   }
   .standings-table tr.playoff-line-row td {
     display: block;
+    padding: 0;
   }
 
   /* My-team highlight */
