@@ -1,10 +1,10 @@
 /**
- * nav.js — Shared dropdown handling for all pages.
- * Handles open/close for every .nav-dropdown-toggle on the page.
+ * nav.js — Shared dropdown + mobile drawer handling for all pages.
  */
 (function () {
   'use strict';
 
+  // Desktop dropdown toggles
   document.querySelectorAll('.nav-dropdown-toggle').forEach(function (toggle) {
     toggle.addEventListener('click', function (e) {
       e.preventDefault();
@@ -25,6 +25,30 @@
       document.querySelectorAll('.nav-dropdown').forEach(function (d) {
         d.classList.remove('open');
       });
+    }
+  });
+
+  // Mobile hamburger — slide-down drawer
+  var navToggle = document.querySelector('.nav-toggle');
+  var navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      navLinks.classList.toggle('nav-open');
+    });
+  }
+
+  // Close drawer on outside click
+  document.addEventListener('click', function (e) {
+    if (navLinks && !e.target.closest('nav')) {
+      navLinks.classList.remove('nav-open');
+    }
+  });
+
+  // Close drawer on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && navLinks) {
+      navLinks.classList.remove('nav-open');
     }
   });
 })();

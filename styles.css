@@ -1,7 +1,9 @@
 /* ═══════════════════════════════════════════
-   ISSAQUAH SWINGERS — 2026 DRAFT WAR ROOM
-   Premium Sports Analytics Dark Theme
+   ISSAQUAH SWINGERS — 2026 LEAGUE HUB
+   Premium Sports Analytics Dark Theme v2
    ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   --bg: #0a0c12;
@@ -22,8 +24,8 @@
   --text: #e8eaf0;
   --text-secondary: #b0b8cc;
   --muted: #6e7891;
-  --font-display: 'Avenir Next', 'Avenir', 'SF Pro Display', 'Helvetica Neue', sans-serif;
-  --font-body: 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', 'Avenir Next', 'Avenir', sans-serif;
+  --font-body: 'Inter', 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -60,10 +62,10 @@ body {
 
 /* ── NAVIGATION ── */
 nav {
-  background: rgba(20, 23, 34, .85);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid var(--border);
+  background: rgba(10, 12, 18, .72);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
   padding: 0 2rem;
   display: flex;
   align-items: center;
@@ -118,10 +120,12 @@ nav a::after {
   transition: transform var(--transition-med);
   border-radius: 1px;
 }
-nav a:hover { color: var(--text); }
-nav a:hover::after { transform: scaleX(1); }
-nav a.active { color: var(--text); }
-nav a.active::after { transform: scaleX(1); }
+nav > .nav-links > a:hover { color: var(--text); }
+nav > .nav-links > a:hover::after { transform: scaleX(1); }
+nav > .nav-links > a.active { color: var(--text); }
+nav > .nav-links > a.active::after { transform: scaleX(1); }
+/* Dropdown menu links should never show the nav underline */
+.nav-dropdown-menu a::after { content: none !important; }
 .nav-sep {
   width: 1px;
   height: 20px;
@@ -147,7 +151,7 @@ nav a.active::after { transform: scaleX(1); }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 2rem 3.5rem;
+  padding: 5.5rem 2rem 4.5rem;
   text-align: center;
   background: var(--bg);
 }
@@ -156,9 +160,24 @@ nav a.active::after { transform: scaleX(1); }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79, 142, 247, .08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 30% 100%, rgba(247, 201, 72, .04) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 70% 100%, rgba(62, 207, 142, .04) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79, 142, 247, .1) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 30% 100%, rgba(247, 201, 72, .05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 70% 100%, rgba(62, 207, 142, .05) 0%, transparent 60%),
+    /* Diagonal grid pattern */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255, 255, 255, .015) 30px,
+      rgba(255, 255, 255, .015) 31px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(255, 255, 255, .015) 30px,
+      rgba(255, 255, 255, .015) 31px
+    );
   pointer-events: none;
 }
 .hero::after {
@@ -167,10 +186,35 @@ nav a.active::after { transform: scaleX(1); }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-light) 30%, var(--border-light) 70%, transparent);
+  height: 80px;
+  background: linear-gradient(to top, var(--bg), transparent);
+  pointer-events: none;
 }
+/* Baseball diamond SVG watermark */
 .hero-content { position: relative; z-index: 1; }
+.hero-content::after {
+  content: '';
+  position: absolute;
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 220px;
+  height: 220px;
+  border: 2px solid rgba(255, 255, 255, .04);
+  border-radius: 8px;
+  pointer-events: none;
+}
+/* Noise grain overlay */
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -200,11 +244,12 @@ nav a.active::after { transform: scaleX(1); }
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-size: 3.2rem;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-  line-height: 1.08;
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.05;
   margin-bottom: .5rem;
+  text-transform: uppercase;
 }
 .hero h1 span {
   background: linear-gradient(135deg, var(--accent2), #ffe08a);
@@ -997,25 +1042,7 @@ footer a:hover { text-decoration: underline; }
 @media (max-width: 768px) {
   nav { padding: 0 1rem; }
   .nav-toggle { display: flex; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    height: auto;
-    padding: .5rem 0;
-  }
-  .nav-links.open { display: flex; }
-  nav a {
-    height: auto;
-    padding: .75rem 1.5rem;
-    width: 100%;
-  }
-  nav a::after { display: none; }
+  /* Drawer nav is handled by REDESIGN v2 section below */
 }
 
 @media (max-width: 640px) {
@@ -1095,8 +1122,18 @@ a.nav-logo:hover { color: var(--accent2); opacity: .85; }
 nav a.muted { color: var(--muted); }
 
 /* ── Hero variants ── */
-.hero-home .hero-content h1 span { color: var(--accent); }
-.hero-week .hero-content h1 span { color: var(--accent2); }
+.hero-home .hero-content h1 span {
+  background: linear-gradient(135deg, var(--accent), #6ba3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-week .hero-content h1 span {
+  background: linear-gradient(135deg, var(--accent2), #ffe08a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .week-badge { background: rgba(247, 201, 72, .15); color: var(--accent2) !important; border-color: rgba(247, 201, 72, .3) !important; }
 
 /* ── Standings (live) ── */
@@ -2155,6 +2192,32 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   background: var(--border);
 }
 
+/* ── Team Links ─────────────────────────
+   Used by linkTeamNames() and teamLink() in app.js.
+   Applied to any clickable team name across all pages.
+   ──────────────────────────────────────── */
+.team-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.team-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+/* Headshot+name blocks get a pointer so the whole area feels clickable */
+.matchup-detail-team-block,
+.matchup-team {
+  cursor: pointer;
+}
+.matchup-detail-team-block:hover .matchup-detail-team,
+.matchup-team:hover .matchup-team-name {
+  color: var(--accent);
+  transition: color var(--transition-fast);
+}
+
 /* ── Stats grid ────────────────────────── */
 .tip-stats-grid {
   display: grid;
@@ -2188,4 +2251,583 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   color: var(--muted);
   font-size: .78rem;
   text-align: center;
+}
+
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — GLASS CARD HIGHLIGHTS
+   ═══════════════════════════════════════════ */
+
+/* Glass panel top highlight on all cards */
+.card,
+.matchup-card,
+.matchup-detail-card,
+.team-card,
+.ls-card {
+  border-top: 1px solid rgba(255, 255, 255, .06);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — HERO STATUS PILL
+   Used by index.html for season status
+   ═══════════════════════════════════════════ */
+
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--green-dim);
+  color: var(--green);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(62, 207, 142, .2);
+  margin-top: 1.25rem;
+}
+.hero-status-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-dot 2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(62, 207, 142, .6);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — ENHANCED MATCHUP CARDS
+   Classes used by generate_home.py: matchup-card
+   ═══════════════════════════════════════════ */
+
+.matchup-card {
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease, border-color .25s ease;
+}
+.matchup-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(79, 142, 247, .25);
+  box-shadow: var(--shadow-hover), 0 0 40px rgba(79, 142, 247, .06);
+}
+
+/* Win probability bar — added by generate_home.py inside matchup-card */
+.matchup-wp-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--surface3);
+  overflow: hidden;
+  margin-top: .5rem;
+}
+.matchup-wp-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  transition: width .8s cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Record badges on matchup cards */
+.matchup-record-badge {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface3);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  margin-bottom: .15rem;
+}
+
+/* Predicted winner accent */
+.matchup-card.matchup-winner {
+  border-left: 3px solid var(--accent2);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — CATEGORY EDGE PILL REDESIGN
+   Classes used by generate_week.py: cat-row, cat-name, cat-edge, edge-away, edge-home, edge-even
+   ═══════════════════════════════════════════ */
+
+.cat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem .6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .03);
+  font-size: .82rem;
+  gap: .8rem;
+  border-radius: var(--radius-sm);
+  transition: background .15s ease;
+}
+.cat-row:nth-child(even) {
+  background: rgba(255, 255, 255, .02);
+}
+.cat-row:last-child {
+  border-bottom: none;
+}
+.cat-row:hover {
+  background: rgba(255, 255, 255, .04);
+}
+.cat-edge {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: .2rem .65rem;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+.edge-away {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(79, 142, 247, .2);
+}
+.edge-home {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(62, 207, 142, .2);
+}
+.edge-even {
+  background: var(--surface3);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* Prediction banner at top of matchup detail card */
+.matchup-prediction {
+  padding: 1rem 1.4rem;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(247, 201, 72, .06), rgba(247, 201, 72, .02));
+  font-size: .88rem;
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+}
+.prediction-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .9rem;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — STANDINGS ENHANCEMENTS
+   Classes used by generate_home.py: standings-live, standings-table
+   ═══════════════════════════════════════════ */
+
+/* Zebra striping */
+.standings-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, .015);
+}
+.standings-table tbody tr:nth-child(even):hover {
+  background: rgba(255, 255, 255, .035);
+}
+
+/* Playoff cutline with label */
+.playoff-cutline {
+  position: relative;
+}
+.playoff-cutline td {
+  border-bottom: 2px dashed rgba(247, 201, 72, .35) !important;
+}
+.standings-table tr.playoff-cutline + tr td {
+  padding-top: .75rem;
+}
+.playoff-line-label {
+  display: block;
+  text-align: center;
+  font-size: .6rem;
+  font-weight: 800;
+  color: var(--accent2);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: .35rem 0;
+  background: var(--surface);
+  position: relative;
+}
+.playoff-line-row td {
+  padding: 0 !important;
+  border-bottom: none !important;
+  background: var(--surface);
+}
+.playoff-line-row:hover td {
+  background: var(--surface) !important;
+}
+
+/* User's team highlight (The Buckner Boots — Michael) */
+.standings-table tr.my-team td {
+  background: rgba(79, 142, 247, .04);
+}
+.standings-table tr.my-team {
+  position: relative;
+}
+.standings-table tr.my-team td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — TRANSACTIONS CARD-STYLE
+   Classes used by generate_home.py: tx-row, tx-type, tx-type-add, tx-type-drop, tx-type-trade
+   ═══════════════════════════════════════════ */
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.tx-row {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  padding: .7rem 1rem;
+  border-bottom: none;
+  border-radius: var(--radius-md);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: .85rem;
+  transition: background .15s ease, border-color .15s ease;
+}
+.tx-row:last-child {
+  border-bottom: none;
+}
+.tx-row:hover {
+  background: var(--surface3);
+  border-color: var(--border-light);
+}
+.tx-type {
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  min-width: 42px;
+  text-align: center;
+}
+/* Transaction type left-border accents */
+.tx-row:has(.tx-type-add) {
+  border-left: 3px solid var(--green);
+}
+.tx-row:has(.tx-type-drop) {
+  border-left: 3px solid var(--red);
+}
+.tx-row:has(.tx-type-trade) {
+  border-left: 3px solid var(--accent);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — SKELETON SHIMMER
+   ═══════════════════════════════════════════ */
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--surface3) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  color: transparent !important;
+}
+.skeleton * { visibility: hidden; }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — HORIZONTAL SCROLL FADE
+   Used on .table-wrapper for mobile
+   ═══════════════════════════════════════════ */
+
+.table-scroll-container {
+  position: relative;
+}
+.table-scroll-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, var(--surface));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.table-scroll-container.has-scroll::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — MOBILE BOTTOM NAV
+   Visible only at < 640px, 4 items
+   ═══════════════════════════════════════════ */
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(10, 12, 18, .92);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  height: 60px;
+  padding: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottom-nav-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 60px;
+}
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  transition: color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.bottom-nav-item:hover,
+.bottom-nav-item.active {
+  color: var(--accent);
+}
+.bottom-nav-item.active::after {
+  display: none;
+}
+.bottom-nav-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — MOBILE SLIDE-DOWN DRAWER
+   Replaces the current hamburger dropdown
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex !important;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 16, 24, .97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    height: auto;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: .5rem 0 1rem;
+    transform: translateY(-110%);
+    transition: transform .3s cubic-bezier(.16, 1, .3, 1), opacity .3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99;
+  }
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  nav a {
+    height: auto;
+    padding: .85rem 1.5rem;
+    width: 100%;
+    font-size: .88rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  nav a::after { display: none; }
+  .nav-badge { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — MOBILE OVERRIDES (< 640px)
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  /* Show bottom nav */
+  .bottom-nav {
+    display: block;
+  }
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+
+  /* Hero sizing */
+  .hero {
+    padding: 3.5rem 1rem 3rem;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    letter-spacing: -.5px;
+  }
+  .hero-sub {
+    font-size: .85rem;
+  }
+  .hero-content::after {
+    display: none;
+  }
+
+  /* Matchup cards full width */
+  .matchup-card {
+    padding: 1rem;
+  }
+  .matchup-team-name {
+    font-size: .95rem;
+    font-weight: 800;
+  }
+
+  /* Matchup detail cards */
+  .matchup-detail-header {
+    padding: .85rem 1rem .65rem;
+  }
+  .matchup-detail-body {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Roster modal overlay on mobile */
+  .mdc-rost.open .mdc-rost-body {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: var(--bg);
+    overflow-y: auto;
+    padding: 1rem 1rem 5rem;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mdc-rost-close-btn {
+    display: flex;
+  }
+
+  /* Footer above bottom nav */
+  footer {
+    margin-bottom: 0;
+  }
+}
+
+/* Roster modal close button (hidden on desktop) */
+.mdc-rost-close-btn {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding: .75rem 0;
+  margin-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+  align-items: center;
+}
+.mdc-rost-close-btn span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.mdc-rost-close-x {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.mdc-rost-close-x:hover {
+  background: var(--surface3);
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — MATCHUP DETAIL CARD POSITION BADGES
+   Classes used by generate_week.py: mdc-rost-slot
+   ═══════════════════════════════════════════ */
+
+/* Position-group coloring for roster slots */
+.mdc-rost-slot[data-pos="SP"],
+.mdc-rost-slot[data-pos="RP"] {
+  color: var(--accent);
+}
+.mdc-rost-slot[data-pos="C"],
+.mdc-rost-slot[data-pos="1B"],
+.mdc-rost-slot[data-pos="2B"],
+.mdc-rost-slot[data-pos="3B"],
+.mdc-rost-slot[data-pos="SS"],
+.mdc-rost-slot[data-pos="OF"] {
+  color: var(--green);
+}
+.mdc-rost-slot[data-pos="UTIL"] {
+  color: #b07de8;
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — COUNTER ANIMATION
+   Add .counter-animate to elements with data-target
+   ═══════════════════════════════════════════ */
+
+.counter-animate {
+  transition: none;
+}
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — ENHANCED REVEAL STAGGER
+   ═══════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+/* Auto-stagger direct children with .reveal */
+.matchups-grid .reveal:nth-child(1) { transition-delay: 0s; }
+.matchups-grid .reveal:nth-child(2) { transition-delay: .06s; }
+.matchups-grid .reveal:nth-child(3) { transition-delay: .08s; }
+.matchups-grid .reveal:nth-child(4) { transition-delay: .12s; }
+.matchups-grid .reveal:nth-child(5) { transition-delay: .16s; }
+
+/* ═══════════════════════════════════════════
+   REDESIGN v2 — WEEK TILE GRID ENHANCEMENTS
+   ═══════════════════════════════════════════ */
+
+.week-tile {
+  border-top: 1px solid rgba(255, 255, 255, .04);
+  transition: transform .2s ease, border-color .15s ease, background .15s ease;
+}
+.week-tile-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
 }

@@ -65,6 +65,7 @@
 
 <!-- HERO -->
 <header class="hero hero-home">
+  <div class="hero-noise"></div>
   <div class="hero-content">
     <div class="hero-tag">2026 Season</div>
     <h1>Issaquah Swingers<br/><span>League Hub</span></h1>
@@ -77,6 +78,7 @@
       <span class="sep"></span>
       H2H Categories
     </p>
+    <div class="hero-status-pill">Week 1 Live</div>
   </div>
 </header>
 
@@ -224,10 +226,11 @@
             <tr><td class="rank-cell">4</td><td><div class="team-cell"><img src="img/headshots/good-vibes.jpeg" alt="Good Vibes Only" class="headshot headshot-sm" /><span class="team-cell-name">Good Vibes Only</span></div></td><td class="muted-cell">Michael</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>2</td></tr>
             <tr><td class="rank-cell">5</td><td><div class="team-cell"><img src="img/headshots/keanu.jpeg" alt="Keanu Reeves" class="headshot headshot-sm" /><span class="team-cell-name">Keanu Reeves</span></div></td><td class="muted-cell">Duke Joe</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>0</td></tr>
             <tr class="playoff-cutline"><td class="rank-cell">6</td><td><div class="team-cell"><img src="img/headshots/ete-crow.jpeg" alt="Ete Crow" class="headshot headshot-sm" /><span class="team-cell-name">Ete Crow</span></div></td><td class="muted-cell">Jace Allison</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>0</td></tr>
+            <tr class="playoff-line-row"><td colspan="6"><span class="playoff-line-label">Playoff Line</span></td></tr>
             <tr><td class="rank-cell">7</td><td><div class="team-cell"><img src="img/headshots/rain-city.jpeg" alt="Rain City Bombers" class="headshot headshot-sm" /><span class="team-cell-name">Rain City Bombers</span></div></td><td class="muted-cell">Taylor</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
             <tr><td class="rank-cell">8</td><td><div class="team-cell"><img src="img/headshots/busch-latte.jpg" alt="Busch Latte" class="headshot headshot-sm" /><span class="team-cell-name">Busch Latte</span></div></td><td class="muted-cell">Rose</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>2</td></tr>
             <tr><td class="rank-cell">9</td><td><div class="team-cell"><img src="img/headshots/skenes.jpeg" alt="Skenes’n on deez Hoerners" class="headshot headshot-sm" /><span class="team-cell-name">Skenes’n on deez Hoerners</span></div></td><td class="muted-cell">TylerR</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
-            <tr><td class="rank-cell">10</td><td><div class="team-cell"><img src="img/headshots/buckner.jpeg" alt="The Buckner Boots" class="headshot headshot-sm" /><span class="team-cell-name">The Buckner Boots</span></div></td><td class="muted-cell">Michael</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
+            <tr class="my-team"><td class="rank-cell">10</td><td><div class="team-cell"><img src="img/headshots/buckner.jpeg" alt="The Buckner Boots" class="headshot headshot-sm" /><span class="team-cell-name">The Buckner Boots</span></div></td><td class="muted-cell">Michael</td><td>0&ndash;0&ndash;0</td><td>.000</td><td>1</td></tr>
           </tbody>
         </table>
     <!-- AUTO:STANDINGS_END -->
@@ -311,18 +314,50 @@
   <p>Powered by Yahoo Fantasy API &middot; Auto-updated every Sunday night</p>
 </footer>
 
-<script>
-// Mobile nav toggle
-document.querySelector('.nav-toggle').addEventListener('click', function() {
-  document.querySelector('.nav-links').classList.toggle('nav-open');
-});
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bottom-nav-item active">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="week-01.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Weeks</span>
+    </a>
+    <a href="draft.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Draft</span>
+    </a>
+    <a href="#" class="bottom-nav-item" onclick="document.querySelector('.standings-table').scrollIntoView({behavior:'smooth'});return false;">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      <span>Standings</span>
+    </a>
+  </div>
+</nav>
 
+<script>
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
 revealEls.forEach(el => observer.observe(el));
+
+// Table scroll fade detection
+document.querySelectorAll('.table-wrapper').forEach(function(el) {
+  var container = el.parentElement;
+  if (!container) return;
+  function checkScroll() {
+    if (el.scrollWidth > el.clientWidth + 2) {
+      container.classList.add('table-scroll-container', 'has-scroll');
+    } else {
+      container.classList.remove('has-scroll');
+    }
+  }
+  checkScroll();
+  window.addEventListener('resize', checkScroll);
+});
 </script>
 
 </body>

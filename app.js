@@ -2,6 +2,75 @@
 // RENDER FUNCTIONS & INITIALIZATION
 // ═══════════════════════════════════════════
 
+// ── Team Links ──
+// Map every team name to its profile page. Used by teamLink() and linkTeamNames().
+const TEAM_LINKS = {
+  'One Ball Two Strikes':        '/teams/one-ball.html',
+  'The Buckner Boots':           '/teams/buckner.html',
+  'The Ragans Administration':   '/teams/ragans.html',
+  'Rain City Bombers':           '/teams/rain-city.html',
+  'Decoy':                       '/teams/decoy.html',
+  'Ete Crow':                    '/teams/ete-crow.html',
+  'Good Vibes Only':             '/teams/good-vibes.html',
+  'Busch Latte':                 '/teams/busch-latte.html',
+  'Keanu Reeves':                '/teams/keanu.html',
+  "Skenes'n on deez Hoerners":   '/teams/skenes.html',
+};
+
+// Returns an <a> tag if the name is a known team, otherwise returns the name as-is.
+function teamLink(name) {
+  const href = TEAM_LINKS[name];
+  if (!href) return name;
+  return `<a href="${href}" class="team-link">${name}</a>`;
+}
+
+// Auto-link static HTML team names (runs after DOMContentLoaded).
+// Covers: home matchup cards, week matchup detail cards, standings table, live score bar.
+function linkTeamNames() {
+  const selectors = [
+    '.matchup-team-name',
+    '.matchup-detail-team',
+    '.team-cell-name',
+    '.mdc-score-name',
+    '.team-label',
+  ];
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      if (el.closest('a')) return; // already linked
+      const name = el.textContent.trim();
+      const href = TEAM_LINKS[name];
+      if (!href) return;
+      el.innerHTML = `<a href="${href}" class="team-link">${name}</a>`;
+    });
+  });
+
+  // Make entire matchup-detail-team-block (headshot + name) clickable as a unit
+  document.querySelectorAll('.matchup-detail-team-block').forEach(block => {
+    const nameEl = block.querySelector('.matchup-detail-team a, .matchup-detail-team');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    const href = TEAM_LINKS[name];
+    if (!href) return;
+    block.style.cursor = 'pointer';
+    block.addEventListener('click', e => {
+      if (!e.target.closest('a')) window.location.href = href;
+    });
+  });
+
+  // Make entire home-page matchup-team block (headshot + name) clickable as a unit
+  document.querySelectorAll('.matchup-team').forEach(block => {
+    const nameEl = block.querySelector('.matchup-team-name a, .matchup-team-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    const href = TEAM_LINKS[name];
+    if (!href) return;
+    block.style.cursor = 'pointer';
+    block.addEventListener('click', e => {
+      if (!e.target.closest('a')) window.location.href = href;
+    });
+  });
+}
+
 function getGradeClass(g) {
   const m = { 'A+':'grade-A-plus','A':'grade-A','A-':'grade-A-minus','B+':'grade-B-plus','B':'grade-B','B-':'grade-B-minus','C+':'grade-C-plus','C':'grade-C','D':'grade-D' };
   return m[g] || 'grade-B';
@@ -176,7 +245,7 @@ function renderProjectedStandings() {
     const champColor = champPct >= 15 ? 'var(--green)' : champPct >= 5 ? 'var(--accent)' : champPct >= 1 ? 'var(--muted)' : 'var(--border)';
     return `<tr class="${isCutline ? 'cutline' : ''} ${!isPlayoff ? 'below-cut' : ''}">
       <td><span class="rank-badge ${i < 3 ? 'rank-' + (i+1) : ''}">${i+1}</span></td>
-      <td>${team?.name || p.teamId}</td>
+      <td>${teamLink(team?.name || p.teamId)}</td>
       <td>${p.w}-${p.l}-${p.t}</td>
       <td>${p.pct}</td>
       <td style="font-weight:700;${parseFloat(p.playoff) >= 80 ? 'color:var(--green)' : parseFloat(p.playoff) >= 40 ? 'color:var(--accent)' : 'color:var(--muted)'}">${p.playoff}</td>
@@ -314,7 +383,7 @@ function renderLoyaltyPicks() {
       <span class="insight-icon ${cls}">${arrow}</span>
       <div style="flex:1">
         <div class="insight-val">${r.player}</div>
-        <div class="insight-label">${teamName(r.teamId)} \u2014 R${r.r25} \u2192 R${r.r26} (${diffText})</div>
+        <div class="insight-label">${teamLink(teamName(r.teamId))} \u2014 R${r.r25} \u2192 R${r.r26} (${diffText})</div>
       </div>
     </div>`;
   }).join('');
@@ -332,7 +401,7 @@ function renderADPMovers() {
       <span class="insight-icon arrow-up">\u25B2</span>
       <div style="flex:1">
         <div class="insight-val">${r.player} <span style="color:var(--green);font-size:.8rem;">+${Math.abs(r.diff)} rounds</span></div>
-        <div class="insight-label">${teamName(r.teamId)} \u2014 R${r.r25} \u2192 R${r.r26}</div>
+        <div class="insight-label">${teamLink(teamName(r.teamId))} \u2014 R${r.r25} \u2192 R${r.r26}</div>
       </div>
     </div>`;
   });
@@ -343,7 +412,7 @@ function renderADPMovers() {
       <span class="insight-icon arrow-down">\u25BC</span>
       <div style="flex:1">
         <div class="insight-val">${r.player} <span style="color:var(--red);font-size:.8rem;">-${r.diff} rounds</span></div>
-        <div class="insight-label">${teamName(r.teamId)} \u2014 R${r.r25} \u2192 R${r.r26}</div>
+        <div class="insight-label">${teamLink(teamName(r.teamId))} \u2014 R${r.r25} \u2192 R${r.r26}</div>
       </div>
     </div>`;
   });
@@ -362,7 +431,7 @@ function renderTurnover() {
     const color = count === 0 ? 'var(--accent2)' : count <= 1 ? 'var(--red)' : count >= 3 ? 'var(--green)' : 'var(--accent)';
     return `<div class="insight-row">
       <div style="flex:1">
-        <div class="insight-val">${teamName(id)}</div>
+        <div class="insight-val">${teamLink(teamName(id))}</div>
         <div class="insight-label">${count} returning player${count !== 1 ? 's' : ''} \u2014 ${pct}% new roster</div>
       </div>
       <div style="font-weight:900;font-size:1.1rem;color:${color}">${count}</div>
@@ -399,7 +468,7 @@ function renderStandings() {
     const rankClass = s.rank <= 3 ? `rank-${s.rank}` : '';
     return `<tr>
       <td><span class="rank-badge ${rankClass}">${s.rank}</span></td>
-      <td>${team?.name || s.teamId}</td>
+      <td>${teamLink(team?.name || s.teamId)}</td>
       <td>${s.record}</td>
       <td>${s.pct}</td>
       <td style="font-weight:700;${s.moves >= 80 ? 'color:var(--green)' : s.moves <= 36 ? 'color:var(--red)' : ''}">${s.moves}</td>
@@ -436,7 +505,7 @@ function renderBucknerSchedule() {
     const grade = TEAM_GRADES.find(g => g.teamId === s.opp);
     return `<div style="display:flex;align-items:center;gap:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.82rem;">
       <span style="color:var(--muted);width:32px;text-align:right;font-weight:700;flex-shrink:0">Wk${s.week}</span>
-      <span style="flex:1;${s.opp === 'oneball' || s.opp === 'vibes' ? 'font-weight:700' : ''}">${team?.name || s.opp}</span>
+      <span style="flex:1;${s.opp === 'oneball' || s.opp === 'vibes' ? 'font-weight:700' : ''}">${teamLink(team?.name || s.opp)}</span>
       <span style="font-size:.68rem;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(${s.diff === 'tough' ? '244,68,68' : s.diff === 'easy' ? '62,207,142' : '79,142,247'},.15);color:${diffColors[s.diff]}">${diffLabels[s.diff]}</span>
     </div>`;
   }).join('');
@@ -457,7 +526,7 @@ function initScrollReveal() {
 
 // ── Active Nav Tracking ──
 function initNavTracking() {
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]:not(.nav-dropdown-toggle)');
 
   function updateActiveNav() {
     const scrollY = window.scrollY + 100; // offset for sticky nav
@@ -503,6 +572,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTurnover();
   renderNotableMovement();
   renderStandings();
+
+  // Link all static team names to their profile pages
+  linkTeamNames();
 
   // Delayed init for scroll effects
   requestAnimationFrame(() => {
