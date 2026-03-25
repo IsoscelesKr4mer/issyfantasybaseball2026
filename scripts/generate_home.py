@@ -222,6 +222,151 @@ def render_matchups(matchups: list, week: int) -> str:
 BATTING_CATS  = ['R', 'HR', 'RBI', 'SB', 'OBP']
 PITCHING_CATS = ['SV', 'K', 'ERA', 'WHIP', 'QS']
 
+# ── Roster rendering ──────────────────────────────────────────────────────────
+_PITCHER_SLOTS = {'SP', 'RP', 'P'}
+_BENCH_SLOTS   = {'BN', 'IL', 'IL+', 'NA'}
+_SLOT_ORDER_BAT = ['C', '1B', '2B', '3B', 'SS', 'OF', 'LF', 'CF', 'RF', 'Util', 'DH', 'BN', 'IL', 'IL+', 'NA']
+_SLOT_ORDER_PIT = ['SP', 'RP', 'P', 'BN', 'IL', 'IL+', 'NA']
+
+def _player_is_pitcher(slot: str, pos: str) -> bool:
+    s = slot.upper()
+    if any(x in s for x in ['SP', 'RP']):
+        return True
+    if s in ('C', '1B', '2B', '3B', 'SS', 'OF', 'LF', 'CF', 'RF', 'UTIL', 'DH'):
+        return False
+    p = pos.upper()
+    return any(x in p for x in ['SP', 'RP'])
+
+def _slot_sort(slot: str, pitcher: bool) -> int:
+    order = _SLOT_ORDER_PIT if pitcher else _SLOT_ORDER_BAT
+    try:    return order.index(slot)
+    except ValueError:
+        return 99
+
+def _roster_player_row(player: dict, cats: list) -> str:
+    slot   = player.get('starting', '')
+    pos    = player.get('pos', '')
+    name   = player.get('name', '?')
+    mlb    = player.get('mlb_team', '').upper()
+    status = player.get('status', '')
+    hs     = player.get('headshot_url', '')
+    stats  = player.get('stats', {})
+    bench  = slot in _BENCH_SLOTS
+
+    img = (f'<img src="{hs}" class="mdc-rost-img" onerror="this.style.display=\'none\'" />'
+           if hs else
+           f'<span class="mdc-rost-img mdc-rost-img-ph">{(name[0] if name else "?").upper()}</span>')
+
+    badge = ''
+    if status in ('IL', 'IL+', 'DL', 'DTD'):
+        badge = f'<span class="mdc-rost-badge badge-il">{status}</span>'
+    elif status == 'NA':
+        badge = '<span class="mdc-rost-badge badge-na">NA</span>'
+
+    stat_cells = ''.join(
+        f'<span class="mdc-rost-stat">{stats.get(c, "-")}</span>' for c in cats
+    )
+    row_cls = ' mdc-rost-row-bench' if bench else ''
+    return (
+        f'<div class="mdc-rost-row{row_cls}">'
+        f'{img}'
+        f'<span class="mdc-rost-slot">{slot or pos}</span>'
+        f'<span class="mdc-rost-name">{name}{badge}</span>'
+        f'<span class="mdc-rost-mlb">{mlb}</span>'
+        f'<div class="mdc-rost-stats">{stat_cells}</div>'
+        f'</div>'
+    )
+
+def _roster_team_col(players: list, team_name: str) -> str:
+    pitcher_flag = {p.get('player_key',''): _player_is_pitcher(p.get('starting',''), p.get('pos',''))
+                    for p in players}
+    batters  = sorted([p for p in players if not pitcher_flag[p.get('player_key','')]],
+                      key=lambda p: _slot_sort(p.get('starting',''), False))
+    pitchers = sorted([p for p in players if pitcher_flag[p.get('player_key','')]],
+                      key=lambda p: _slot_sort(p.get('starting',''), True))
+
+    def subhdr(label, cats):
+        lbls = ''.join(f'<span>{c}</span>' for c in cats)
+        return (f'<div class="mdc-rost-subhdr">'
+                f'<span class="mdc-rost-subhdr-lbl">{label}</span>'
+                f'<div class="mdc-rost-stat-lbls">{lbls}</div>'
+                f'</div>')
+
+    bat_rows = ''.join(_roster_player_row(p, BATTING_CATS)  for p in batters)
+    pit_rows = ''.join(_roster_player_row(p, PITCHING_CATS) for p in pitchers)
+    return (
+        f'<div class="mdc-rost-col">'
+        f'<div class="mdc-rost-team-hdr">{team_name}</div>'
+        f'{subhdr("BATTING", BATTING_CATS)}{bat_rows}'
+        f'{subhdr("PITCHING", PITCHING_CATS)}{pit_rows}'
+        f'</div>'
+    )
+
+def render_roster_section(roster0: list, roster1: list, name0: str, name1: str) -> str:
+    """Expandable two-team roster strip for a matchup card."""
+    if not roster0 and not roster1:
+        return ''
+    col0 = _roster_team_col(roster0, name0)
+    col1 = _roster_team_col(roster1, name1)
+    toggle_js = ("var r=this.closest('.mdc-rost');"
+                 "r.classList.toggle('open');"
+                 "this.querySelector('.mdc-rost-chevron').textContent="
+                 "r.classList.contains('open')?'\u25b4':'\u25be';")
+    return (
+        f'<div class="mdc-rost">'
+        f'<button class="mdc-rost-toggle" onclick="{toggle_js}">'
+        f'<span>Show Rosters</span>'
+        f'<span class="mdc-rost-chevron">&#9662;</span>'
+        f'</button>'
+        f'<div class="mdc-rost-body">'
+        f'<div class="mdc-rost-grid">{col0}{col1}</div>'
+        f'</div>'
+        f'</div>'
+    )
+
+def get_rosters_for_week(api, ordered_matchups: list, week: int) -> list:
+    """Fetch rosters + current-week stats for every team in the matchup list.
+    Returns [(roster0, roster1), ...] aligned with ordered_matchups."""
+    # Collect unique team keys preserving matchup order
+    all_keys = []
+    for m in ordered_matchups:
+        if m:
+            for t in m['teams']:
+                k = t.get('team_key', '')
+                if k and k not in all_keys:
+                    all_keys.append(k)
+
+    # Fetch each team's roster
+    rosters_by_key = {}
+    for tk in all_keys:
+        try:
+            rosters_by_key[tk] = api.get_team_roster(tk, week)
+        except Exception as e:
+            print(f'    ⚠️  Roster fetch failed for {tk}: {e}')
+            rosters_by_key[tk] = []
+
+    # Batch-fetch week stats for every player across all rosters
+    all_player_keys = [p['player_key'] for players in rosters_by_key.values()
+                       for p in players if p.get('player_key')]
+    print(f'  Fetching week {week} player stats ({len(all_player_keys)} players)...')
+    stats_map = api.get_player_week_stats_batch(all_player_keys, week)
+
+    # Inject stats into each player dict
+    for players in rosters_by_key.values():
+        for p in players:
+            p['stats'] = stats_map.get(p.get('player_key', ''), {})
+
+    # Pair rosters to matchups
+    result = []
+    for m in ordered_matchups:
+        if m is None:
+            result.append(([], []))
+        else:
+            t0k = m['teams'][0].get('team_key', '')
+            t1k = m['teams'][1].get('team_key', '')
+            result.append((rosters_by_key.get(t0k, []), rosters_by_key.get(t1k, [])))
+    return result
+
 def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
     """Return API matchups re-ordered and re-paired to match the week HTML card order.
     Uses team names in headshot alt attributes to find the right matchup for each card.
@@ -458,19 +603,35 @@ def main():
     index_path.write_text(html)
     print(f'  ✅  index.html updated (Week {current_week}, {updated_at})')
 
-    # Update per-matchup live score strips on the current week page
+    # Update per-matchup live score + roster strips on the current week page
     week_path = BASE_DIR / f'week-{current_week:02d}.html'
     if week_path.exists():
-        print(f'\n🔄  Updating week-{current_week:02d}.html live scores...')
+        print(f'\n🔄  Updating week-{current_week:02d}.html...')
         week_html = week_path.read_text()
         ordered = _ordered_matchups_for_week(week_html, matchups)
+
+        # Live scores
         for n, m in enumerate(ordered, start=1):
             week_html = replace_section(week_html, f'LIVE_SCORE_{n}',
                 render_matchup_live_score(m, updated_at))
+
+        # Rosters with week stats
+        roster_pairs = get_rosters_for_week(api, ordered, current_week)
+        for n, (m, (r0, r1)) in enumerate(zip(ordered, roster_pairs), start=1):
+            if m:
+                roster_html = render_roster_section(
+                    r0, r1,
+                    m['teams'][0]['name'],
+                    m['teams'][1]['name']
+                )
+            else:
+                roster_html = ''
+            week_html = replace_section(week_html, f'ROSTER_{n}', roster_html)
+
         week_path.write_text(week_html)
-        print(f'  ✅  week-{current_week:02d}.html live scores updated')
+        print(f'  ✅  week-{current_week:02d}.html updated (live scores + rosters)')
     else:
-        print(f'  ⚠️  week-{current_week:02d}.html not found, skipping live scores')
+        print(f'  ⚠️  week-{current_week:02d}.html not found, skipping')
 
     # Also regenerate all team pages with live data
     print('\n🔄  Regenerating team pages...')
