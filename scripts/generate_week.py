@@ -161,7 +161,9 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
             f'<td>{t["pct"]}</td></tr>'
         )
 
-    generated_at = datetime.now().strftime('%b %d at %-I:%M %p')
+    generated_at  = datetime.now().strftime('%b %d at %-I:%M %p')
+    scores_html   = '\n'.join(score_rows)
+    standings_html = '\n'.join(stand_rows)
     return f'''  <section class="section" id="recap">
     <h2 class="section-title">
       <span class="section-icon">&#128202;</span> Week {week} Recap
@@ -169,7 +171,7 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
 
     <div class="card reveal" style="margin-bottom:1.5rem;">
       <div class="card-title">Final Scores</div>
-{''.join(chr(10) + r for r in score_rows)}
+{scores_html}
     </div>
 
 {biggest_win_html}
@@ -181,7 +183,7 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
         <table class="standings-table standings-live">
           <thead><tr><th>Rank</th><th>Team</th><th>Record</th><th>Pct</th></tr></thead>
           <tbody>
-{'chr(10).join(stand_rows)}
+{standings_html}
           </tbody>
         </table>
       </div>
@@ -513,6 +515,13 @@ def main():
     week = int(sys.argv[2]) if len(sys.argv) > 2 else current_week
 
     print(f'\n🗓  Running generate_week.py — mode={mode}, week={week}')
+
+    if mode == 'dump':
+        # Just fetch and save roster/matchup data — Claude reads the JSON and writes analysis
+        print(f'\n📦  Dumping Week {week} data...')
+        fetch_week_data(api, week)
+        print(f'\n✅  Done. Read data/week-{week:02d}-preview-data.json to write analysis.')
+        return
 
     if mode == 'recap' or mode == 'auto':
         # Generate recap for the week that just ended
