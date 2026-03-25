@@ -54,7 +54,7 @@
     <div class="nav-dropdown">
       <a href="draft.html" class="nav-dropdown-toggle active">Draft &#9662;</a>
       <div class="nav-dropdown-menu">
-        <a href="draft.html" class="active">Full Draft Report</a>
+        <a href="draft.html" id="nav-top-link">Full Draft Report</a>
         <a href="#grades">Draft Grades</a>
         <a href="#predictions">Predictions</a>
         <a href="#insights">Insights</a>
@@ -263,5 +263,44 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+
+<script>
+// Scrollspy: highlight the correct Draft sub-nav link based on scroll position
+(function () {
+  var SECTIONS = ['grades', 'predictions', 'insights', 'standings'];
+  var OFFSET = 80; // sticky nav height + buffer
+
+  function getLink(href) {
+    return document.querySelector('.nav-dropdown-menu a[href="' + href + '"]');
+  }
+
+  var topLink    = document.getElementById('nav-top-link');
+  var sectionMap = SECTIONS.map(function (id) {
+    return { id: id, el: document.getElementById(id), link: getLink('#' + id) };
+  }).filter(function (s) { return s.el && s.link; });
+
+  function update() {
+    var scrollY = window.scrollY + OFFSET;
+    var active  = null;
+    sectionMap.forEach(function (s) {
+      if (s.el.offsetTop <= scrollY) active = s;
+    });
+
+    // Clear all
+    if (topLink) topLink.classList.remove('active');
+    sectionMap.forEach(function (s) { s.link.classList.remove('active'); });
+
+    // Set active
+    if (active) {
+      active.link.classList.add('active');
+    } else if (topLink) {
+      topLink.classList.add('active');
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update(); // run once on load
+})();
+</script>
 </body>
 </html>
