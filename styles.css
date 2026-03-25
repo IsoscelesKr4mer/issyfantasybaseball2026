@@ -2842,9 +2842,12 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
    ═══════════════════════════════════════════ */
 
 @media (max-width: 640px) {
-  /* Show bottom nav */
+  /* Show bottom nav, hide top nav */
   .bottom-nav {
     display: block;
+  }
+  nav {
+    display: none;
   }
   body {
     padding-bottom: calc(60px + env(safe-area-inset-bottom));
