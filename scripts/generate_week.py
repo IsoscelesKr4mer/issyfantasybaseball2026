@@ -22,6 +22,7 @@ from datetime import datetime, date
 
 sys.path.insert(0, str(Path(__file__).parent))
 from yahoo_api import YahooFantasyAPI
+import monte_carlo
 
 BASE_DIR = Path(__file__).parent.parent
 
@@ -248,10 +249,18 @@ def _render_cat_edges(cat_edges: list) -> str:
     return '\n'.join(rows)
 
 def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
-    """Fetch all matchup + roster data for a week. Returns structured dict and saves to JSON.
+    """Fetch all matchup + roster data for a week, run Monte Carlo simulations,
+    and save to JSON.
 
     This is the data-gathering phase. Claude (running as the scheduled task agent)
     reads this JSON and writes the actual analysis content — no separate API call needed.
+
+    Monte Carlo simulation is injected into each matchup under the 'simulation' key:
+        matchups[i]['simulation'] = {
+            'cat_probs':      {'R': 0.61, 'HR': 0.74, ...},
+            'expected_score': [6.3, 3.7],
+            'win_pct':        0.71,
+        }
     """
     print(f'  Fetching scoreboard + standings for Week {week}...')
     matchups  = api.get_scoreboard(week)
@@ -269,17 +278,79 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
         t0_raw, t1_raw = teams[0], teams[1]
         def enrich(t):
             info = dict(t)
+            raw_roster = []
             try:
-                roster = api.get_team_roster(t.get('team_key', ''))
-                info['roster_summary'] = _summarize_roster(roster)
+                raw_roster = api.get_team_roster(t.get('team_key', ''), week)
+                info['roster_summary'] = _summarize_roster(raw_roster)
             except Exception as ex:
                 print(f'    ⚠️  Roster fetch failed for {t["name"]}: {ex}')
                 info['roster_summary'] = {}
+            # _raw_roster is used for simulation below; stripped before JSON save
+            info['_raw_roster'] = raw_roster
             s = stand_by_name.get(t['name'], {})
             info['record'] = f"{s.get('wins',0)}-{s.get('losses',0)}-{s.get('ties',0)}"
             info['meta']   = TEAM_META.get(t['name'], {})
             return info
         matchups_data.append({'t0': enrich(t0_raw), 't1': enrich(t1_raw)})
+
+    # ── Monte Carlo simulation ─────────────────────────────────────────────────
+    print(f'  Running Monte Carlo simulations ({monte_carlo.N_SIMS:,} runs/matchup)...')
+
+    # Collect all unique player keys across every active roster
+    all_player_keys = []
+    seen_keys = set()
+    for m in matchups_data:
+        for tk in ('t0', 't1'):
+            for p in m[tk].get('_raw_roster', []):
+                pk = p.get('player_key', '')
+                if pk and pk not in seen_keys:
+                    all_player_keys.append(pk)
+                    seen_keys.add(pk)
+
+    # Primary: Yahoo projected-week stats
+    projected_stats = {}
+    if all_player_keys:
+        try:
+            projected_stats = api.get_player_projected_stats(all_player_keys, week)
+            n_proj = sum(1 for v in projected_stats.values() if v)
+            print(f'    Projections: {n_proj}/{len(all_player_keys)} players covered')
+        except Exception as e:
+            print(f'    ⚠️  Projected stats fetch failed: {e}')
+
+    # Fallback: season stats for players without projected-week data
+    missing_keys = [k for k in all_player_keys
+                    if not projected_stats.get(k)]
+    if missing_keys:
+        print(f'    Falling back to season stats for {len(missing_keys)} players...')
+        # Build a player-key → player-dict lookup for position detection
+        player_lookup = {}
+        for m in matchups_data:
+            for tk in ('t0', 't1'):
+                for p in m[tk].get('_raw_roster', []):
+                    player_lookup[p.get('player_key', '')] = p
+        try:
+            season = api.get_player_stats_batch(missing_keys)
+            for pk, stats in season.items():
+                if not projected_stats.get(pk):
+                    is_p = monte_carlo._is_pitcher(player_lookup.get(pk, {}))
+                    projected_stats[pk] = monte_carlo._scale_to_week(stats, is_p)
+        except Exception as e:
+            print(f'    ⚠️  Season stats fallback failed: {e}')
+
+    # Simulate each matchup; pop _raw_roster before saving JSON
+    for m in matchups_data:
+        t0_roster = m['t0'].pop('_raw_roster', [])
+        t1_roster = m['t1'].pop('_raw_roster', [])
+        try:
+            sim = monte_carlo.simulate_matchup(t0_roster, t1_roster, projected_stats)
+            m['simulation'] = sim
+            exp = sim['expected_score']
+            t0n = m['t0'].get('name', '?')
+            t1n = m['t1'].get('name', '?')
+            print(f'    {t0n}  {exp[0]}–{exp[1]}  {t1n}  (t0 win% {sim["win_pct"]:.0%})')
+        except Exception as e:
+            print(f'    ⚠️  Simulation failed for matchup: {e}')
+            m['simulation'] = None
 
     data = {'week': week, 'matchups': matchups_data, 'standings': standings}
 
