@@ -1994,6 +1994,9 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   align-items: center;
   gap: .4rem;
 }
+/* pos-badge is redundant inside player rows — position now shown next to name */
+.player-row .pos-badge { display: none; }
+
 .player-row-pos {
   color: var(--accent);
   font-size: .65rem;
