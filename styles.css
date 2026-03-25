@@ -175,20 +175,24 @@ nav > .nav-links > a.active::after { transform: scaleX(1); }
     radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79, 142, 247, .1) 0%, transparent 70%),
     radial-gradient(ellipse 40% 40% at 30% 100%, rgba(247, 201, 72, .05) 0%, transparent 60%),
     radial-gradient(ellipse 40% 40% at 70% 100%, rgba(62, 207, 142, .05) 0%, transparent 60%),
-    /* Diagonal grid pattern */
+    /* Diagonal grid — thicker lines with soft fade for glassy depth */
     repeating-linear-gradient(
       45deg,
       transparent,
-      transparent 30px,
-      rgba(255, 255, 255, .03) 30px,
-      rgba(255, 255, 255, .03) 31px
+      transparent 29px,
+      rgba(255, 255, 255, .025) 29px,
+      rgba(255, 255, 255, .04) 30.5px,
+      rgba(255, 255, 255, .025) 32px,
+      transparent 32px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent,
-      transparent 30px,
-      rgba(255, 255, 255, .03) 30px,
-      rgba(255, 255, 255, .03) 31px
+      transparent 29px,
+      rgba(255, 255, 255, .025) 29px,
+      rgba(255, 255, 255, .04) 30.5px,
+      rgba(255, 255, 255, .025) 32px,
+      transparent 32px
     );
   pointer-events: none;
 }
@@ -2436,6 +2440,87 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   background: var(--green);
   animation: pulse-dot 2s ease-in-out infinite;
   box-shadow: 0 0 8px rgba(62, 207, 142, .6);
+}
+
+/* ── Weekly Preview Banner ──────────────────── */
+.preview-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(79, 142, 247, .25);
+  background: linear-gradient(135deg, rgba(79, 142, 247, .08) 0%, rgba(62, 207, 142, .06) 100%);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .25s, transform .15s;
+  cursor: pointer;
+}
+.preview-banner:hover {
+  border-color: rgba(79, 142, 247, .45);
+  transform: translateY(-1px);
+}
+.preview-banner-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 100% at 0% 50%, rgba(79, 142, 247, .1), transparent 70%);
+  pointer-events: none;
+}
+.preview-banner-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.preview-banner-label {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .35rem;
+}
+.preview-banner-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+.preview-banner-sub {
+  font-size: .82rem;
+  color: var(--text-dim);
+  margin-top: .25rem;
+  line-height: 1.4;
+}
+.preview-banner-arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: var(--accent);
+  opacity: .6;
+  transition: opacity .25s, transform .25s;
+  flex-shrink: 0;
+}
+.preview-banner:hover .preview-banner-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+@media (max-width: 599px) {
+  .preview-banner {
+    padding: 1rem 1.15rem;
+    gap: 1rem;
+  }
+  .preview-banner-title {
+    font-size: .95rem;
+  }
+  .preview-banner-sub {
+    font-size: .78rem;
+  }
 }
 
 /* ═══════════════════════════════════════════
