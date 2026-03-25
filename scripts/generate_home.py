@@ -368,6 +368,10 @@ def render_roster_section(roster0: list, roster1: list, name0: str, name1: str) 
                  "r.classList.toggle('open');"
                  "this.querySelector('.mdc-rost-chevron').textContent="
                  "r.classList.contains('open')?'\u25b4':'\u25be';")
+    close_js = ("var r=this.closest('.mdc-rost');"
+                "r.classList.remove('open');"
+                "r.querySelector('.mdc-rost-chevron').textContent='\\u25be';"
+                "document.body.style.overflow='';")
     return (
         f'<div class="mdc-rost">'
         f'<button class="mdc-rost-toggle" onclick="{toggle_js}">'
@@ -375,6 +379,10 @@ def render_roster_section(roster0: list, roster1: list, name0: str, name1: str) 
         f'<span class="mdc-rost-chevron">&#9662;</span>'
         f'</button>'
         f'<div class="mdc-rost-body">'
+        f'<div class="mdc-rost-close-btn">'
+        f'<span>Rosters</span>'
+        f'<button class="mdc-rost-close-x" onclick="{close_js}">&times;</button>'
+        f'</div>'
         f'<div class="mdc-rost-grid">{col0}{col1}</div>'
         f'</div>'
         f'</div>'
