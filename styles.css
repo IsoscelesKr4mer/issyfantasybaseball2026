@@ -109,14 +109,15 @@ nav a {
 nav a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
+  bottom: auto;
   left: 1rem;
   right: 1rem;
-  height: 2px;
+  height: 3px;
   background: var(--accent);
   transform: scaleX(0);
   transition: transform var(--transition-med);
-  border-radius: 1px;
+  border-radius: 0 0 3px 3px;
 }
 nav a:hover { color: var(--text); }
 nav a:hover::after { transform: scaleX(1); }
@@ -1062,8 +1063,9 @@ a.nav-logo:hover { color: var(--accent2); opacity: .85; }
 /* ── Nav dropdown ── */
 .nav-dropdown { position: relative; height: 100%; display: flex; align-items: center; }
 .nav-dropdown-toggle { cursor: pointer; }
-/* Suppress the underline on dropdown toggles unless they are the active section */
-.nav-dropdown-toggle:not(.active)::after { display: none; }
+/* Suppress the indicator on non-active dropdown toggles, even on hover */
+.nav-dropdown-toggle:not(.active)::after,
+.nav-dropdown-toggle:not(.active):hover::after { display: none !important; }
 .nav-dropdown-menu {
   display: none;
   position: absolute;
@@ -1732,7 +1734,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 
 /* ── Teams nav dropdown active state ─────────── */
 .nav-dropdown-toggle.active { color: var(--text) !important; }
-.nav-dropdown-toggle.active::after { transform: scaleX(1) !important; }
+.nav-dropdown-toggle.active::after { transform: scaleX(1) !important; display: block !important; }
 
 /* ── Responsive hero ─────────────────────────── */
 @media (max-width: 600px) {
