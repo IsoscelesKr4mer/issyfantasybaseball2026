@@ -197,7 +197,7 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
 
 # ── TEAM METADATA ─────────────────────────────────────────────────────────────
 TEAM_META = {
-    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.jpg'},
+    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.png'},
     "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.jpeg'},
     'The Ragans Administration':    {'2025_rank': 3,  'draft_slot': 3,  'img': 'ragans.jpeg'},
     'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.jpeg'},
