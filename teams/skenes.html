@@ -196,17 +196,7 @@
 document.querySelector('.nav-toggle').addEventListener('click', function() {
   document.querySelector('.nav-links').classList.toggle('nav-open');
 });
-document.querySelectorAll('.nav-dropdown-toggle').forEach(function(toggle) {
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault();
-    this.closest('.nav-dropdown').classList.toggle('open');
-  });
-});
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-dropdown')) {
-    document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
-  }
-});
+
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
