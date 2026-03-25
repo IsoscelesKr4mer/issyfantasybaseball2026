@@ -432,11 +432,22 @@ def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
 
 def render_matchup_live_score(matchup: dict, updated_at: str) -> str:
     """Compact two-row score strip for one matchup card."""
-    if matchup is None or not _cats_have_data(matchup):
+    if matchup is None:
+        return ''
+    if not _cats_have_data(matchup):
+        t0, t1 = matchup['teams'][0], matchup['teams'][1]
         return (
-            '<div class="mdc-live mdc-live-pending">'
-            '<span class="mdc-live-status status-upcoming">Upcoming</span>'
-            '<span class="mdc-live-note">Live scores update every 4\u00a0hours once play begins</span>'
+            '<div class="mdc-live">'
+            '<div class="mdc-live-header">'
+            '<span class="mdc-live-status status-upcoming">Pre-Game</span>'
+            '<span class="mdc-score-block">'
+            f'<span class="mdc-score-name">{t0["name"]}</span>'
+            '<span class="mdc-score-num">0</span>'
+            '<span class="mdc-score-dash">&mdash;</span>'
+            '<span class="mdc-score-num">0</span>'
+            f'<span class="mdc-score-name">{t1["name"]}</span>'
+            '</span>'
+            '</div>'
             '</div>'
         )
 
