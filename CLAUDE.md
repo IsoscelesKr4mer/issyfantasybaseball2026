@@ -84,9 +84,9 @@ matchup previews, weekly recaps, and running commentary.
 This is a **boys' league**. The writing voice should be:
 
 - **Dry humor** — deadpan observations, mock-serious analysis, understated savagery
-- **Occasionally vulgar** — mild to moderate profanity is fine, think locker room not shock value
+- **Occasionally vulgar** — extreme profanity is allowed — Shock value is appreciated.
 - **Stats-forward** — every joke is grounded in actual data or matchup facts
-- **Personally targeted** — call out specific managers by team name for good/bad moves
+- **Personally targeted** — call out specific managers by name for good/bad moves
 - **Confident predictions** — don't hedge, make bold calls and own them
 - **Short and punchy** — no paragraph-long wind-ups, get to the point
 
@@ -171,6 +171,35 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 4. **If API data is unavailable**, omit the player-specific section entirely rather than guessing. It's better to have no sleeper pick than a wrong one.
 
 **Why this rule exists:** In Week 1 content, Emerson Hancock was incorrectly described as an "Opening Day starter with strikeout stuff" and Parker Messick was incorrectly described as being in the Opening Day rotation the prior year. Both were wrong. All insights must be grounded in verified data.
+
+---
+
+## AI-Generated Matchup Analysis
+
+Weekly preview analysis is written by **Claude directly** as part of the Cowork scheduled task — not via a separate API call. Claude IS the agent running the Sunday task, so no API key is needed.
+
+**How it works:**
+1. The scheduled task runs `python3 scripts/generate_week.py dump {N}` which fetches all Yahoo data and saves it to `data/week-NN-preview-data.json`
+2. Claude reads that JSON — full rosters for both teams in every matchup, current W-L records, 2025 finish ranks
+3. Claude writes the analysis directly: team breakdowns, category edges, predictions, and 4 storyline paragraphs
+4. Claude saves the analysis as `data/week-NN-analysis.json` then calls `generate_preview(api, week, analysis)` with that data
+5. The HTML is rendered and pushed to GitHub
+
+**What makes it accurate:**
+- Every player mentioned is pulled from the actual Yahoo API roster response for that week
+- Category edges reflect real roster composition — closer depth, SP quality, power vs. speed profile
+- Records and standings are live at generation time
+- Claude has full context of all 5 matchups simultaneously, so storylines reference actual cross-matchup dynamics
+
+**Tone:** Same voice as the rest of this file — dry, stats-forward, personally targeted, no hedging.
+
+**Data file location:** `data/week-NN-preview-data.json` (gitignored — not committed to repo)
+
+**What Claude writes per matchup:**
+- `team0_analysis` — 2–3 sentences on that team's strengths/weaknesses this specific week
+- `team1_analysis` — same for the opponent
+- `cat_edges` — 6 rows: HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV — each with edge (team0/team1/even) and short label
+- `prediction` — "TeamName X-Y. One punchy sentence." format, X+Y=10
 
 ---
 
