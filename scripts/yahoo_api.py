@@ -179,10 +179,19 @@ class YahooFantasyAPI:
         return teams
 
     def get_scoreboard(self, week: int) -> list:
-        """Returns list of matchups for the given week."""
+        """Returns list of matchups for the given week, including per-category stats."""
         data = self._get(f'league/{self.league_key}/scoreboard;week={week}')
         league = data['fantasy_content']['league']
         matchups_raw = league[1]['scoreboard']['0']['matchups']
+
+        STAT_MAP = {
+            '7': 'R', '12': 'HR', '13': 'RBI', '16': 'SB', '4': 'OBP',
+            '26': 'ERA', '27': 'WHIP', '42': 'K', '32': 'SV', '83': 'QS',
+        }
+        # These stats: lower value = winning
+        LOWER_BETTER = {'ERA', 'WHIP'}
+        CAT_ORDER = ['R', 'HR', 'RBI', 'SB', 'OBP', 'SV', 'K', 'ERA', 'WHIP', 'QS']
+
         matchups = []
         for i in range(int(matchups_raw['count'])):
             m = matchups_raw[str(i)]['matchup']
@@ -197,21 +206,71 @@ class YahooFantasyAPI:
                 team_proj   = t[1].get('team_projected_points', {})
                 team_stats  = t[1].get('team_stats', {})
 
-                name = meta[2]['name']
+                name     = meta[2]['name']
                 team_key = meta[0]['team_key']
-                points = team_pts.get('total', '0')
+                points   = team_pts.get('total', '0')
                 projected = team_proj.get('total', '0')
 
+                # Parse per-category stats
+                cats = {}
+                stats_raw = team_stats.get('stats', [])
+                # Yahoo returns stats as a list of {"stat": {"stat_id": "N", "value": "V"}}
+                if isinstance(stats_raw, list):
+                    for s in stats_raw:
+                        if isinstance(s, dict) and 'stat' in s:
+                            sid = str(s['stat'].get('stat_id', ''))
+                            val = s['stat'].get('value', '-')
+                            if sid in STAT_MAP:
+                                cats[STAT_MAP[sid]] = val if val not in ('', None) else '-'
+                elif isinstance(stats_raw, dict):
+                    for idx in range(int(stats_raw.get('count', 0))):
+                        s = stats_raw.get(str(idx), {})
+                        if isinstance(s, dict) and 'stat' in s:
+                            sid = str(s['stat'].get('stat_id', ''))
+                            val = s['stat'].get('value', '-')
+                            if sid in STAT_MAP:
+                                cats[STAT_MAP[sid]] = val if val not in ('', None) else '-'
+
                 teams.append({
-                    'team_key': team_key,
-                    'name':     name,
-                    'points':   float(points),
+                    'team_key':  team_key,
+                    'name':      name,
+                    'points':    float(points),
                     'projected': float(projected),
+                    'cats':      cats,
                 })
+
+            # Determine per-category winner: 0 = team0 wins, 1 = team1 wins, None = tie/-
+            cat_winners = {}
+            if len(teams) == 2:
+                for cat in CAT_ORDER:
+                    v0 = teams[0]['cats'].get(cat, '-')
+                    v1 = teams[1]['cats'].get(cat, '-')
+                    try:
+                        f0, f1 = float(v0), float(v1)
+                        if cat in LOWER_BETTER:
+                            if f0 < f1:   cat_winners[cat] = 0
+                            elif f1 < f0: cat_winners[cat] = 1
+                            else:          cat_winners[cat] = None
+                        else:
+                            if f0 > f1:   cat_winners[cat] = 0
+                            elif f1 > f0: cat_winners[cat] = 1
+                            else:          cat_winners[cat] = None
+                    except (ValueError, TypeError):
+                        cat_winners[cat] = None
+
+            # Tally category wins
+            wins = [0, 0]
+            for w in cat_winners.values():
+                if w == 0: wins[0] += 1
+                elif w == 1: wins[1] += 1
+
             matchups.append({
-                'week':   week_num,
-                'status': status,
-                'teams':  teams,
+                'week':        week_num,
+                'status':      status,
+                'teams':       teams,
+                'cat_winners': cat_winners,
+                'cat_wins':    wins,   # [team0_wins, team1_wins]
+                'cat_order':   CAT_ORDER,
             })
         return matchups
 
@@ -285,10 +344,12 @@ class YahooFantasyAPI:
             p = players_raw[str(i)]['player']
             meta = p[0]
             # Extract fields by searching for the right key in each meta item
-            name, pos, status, mlb_team = '?', '', '', ''
+            name, pos, status, mlb_team, player_key, headshot_url = '?', '', '', '', '', ''
             for item in meta:
                 if not isinstance(item, dict):
                     continue
+                if 'player_key' in item:
+                    player_key = item['player_key']
                 if 'name' in item:
                     name = item['name'].get('full', '?')
                 if 'display_position' in item:
@@ -297,6 +358,8 @@ class YahooFantasyAPI:
                     status = item['status']
                 if 'editorial_team_abbr' in item:
                     mlb_team = item['editorial_team_abbr']
+                if 'headshot' in item:
+                    headshot_url = item['headshot'].get('url', '')
             selected = ''
             sel_raw = p[1].get('selected_position', []) if isinstance(p[1], dict) else []
             for s in sel_raw:
@@ -304,13 +367,45 @@ class YahooFantasyAPI:
                     selected = s['position']
                     break
             players.append({
-                'name':     name,
-                'pos':      pos,
-                'status':   status,
-                'mlb_team': mlb_team,
-                'starting': selected,
+                'player_key':   player_key,
+                'name':         name,
+                'pos':          pos,
+                'status':       status,
+                'mlb_team':     mlb_team,
+                'headshot_url': headshot_url,
+                'starting':     selected,
             })
         return players
+
+    def get_player_stats_batch(self, player_keys: list) -> dict:
+        """Fetch season stats for a list of player keys.
+        Returns {player_key: {'R': val, 'HR': val, ...}}.
+        Stat IDs: R=7, HR=12, RBI=13, SB=16, OBP=4,
+                  ERA=26, WHIP=27, K=42, SV=32, QS=83, IP=50.
+        """
+        if not player_keys:
+            return {}
+        STAT_MAP = {
+            '7': 'R', '12': 'HR', '13': 'RBI', '16': 'SB', '4': 'OBP',
+            '26': 'ERA', '27': 'WHIP', '42': 'K', '32': 'SV', '83': 'QS', '50': 'IP',
+        }
+        result = {}
+        for i in range(0, len(player_keys), 25):
+            chunk = player_keys[i:i + 25]
+            try:
+                data = self._get(f'players;player_keys={",".join(chunk)};out=stats')
+                players_out = data['fantasy_content']['players']
+                for j in range(int(players_out.get('count', 0))):
+                    pl = players_out[str(j)]['player']
+                    p_key = next((m['player_key'] for m in pl[0] if isinstance(m, dict) and 'player_key' in m), '')
+                    stats_raw = pl[1].get('player_stats', {}).get('stats', [])
+                    stats = {STAT_MAP[str(s['stat']['stat_id'])]: s['stat'].get('value', '-')
+                             for s in stats_raw if str(s['stat']['stat_id']) in STAT_MAP}
+                    if p_key:
+                        result[p_key] = stats
+            except Exception as e:
+                print(f'    ⚠️  Stats batch failed: {e}')
+        return result
 
     def get_league_week(self) -> int:
         """Returns the current week number from the league."""
