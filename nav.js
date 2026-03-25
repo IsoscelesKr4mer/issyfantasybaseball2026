@@ -72,6 +72,24 @@ function linkTeamNames() {
 
 document.addEventListener('DOMContentLoaded', linkTeamNames);
 
+// ── Player Headshots on Team Pages ──
+// The generator stores headshot URLs in data-headshot on each .player-row.
+// This injects the <img> as the first child so it appears before the name.
+function renderPlayerHeadshots() {
+  document.querySelectorAll('.player-row[data-headshot]').forEach(function (row) {
+    var url = row.getAttribute('data-headshot');
+    if (!url) return;
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = row.getAttribute('data-name') || '';
+    img.className = 'player-row-img';
+    img.onerror = function () { this.style.display = 'none'; };
+    row.insertBefore(img, row.firstChild);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderPlayerHeadshots);
+
 (function () {
   'use strict';
 

@@ -1960,6 +1960,16 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .player-row:last-child { border-bottom: none; }
 .player-row:hover { background: var(--surface2); }
 
+.player-row-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+}
+
 .player-row-info {
   flex: 1;
   min-width: 0;
