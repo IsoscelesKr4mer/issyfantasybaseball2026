@@ -277,6 +277,43 @@ def _roster_player_row(player: dict, cats: list) -> str:
         f'</div>'
     )
 
+def _roster_totals_row(players: list, cats: list) -> str:
+    """Compute and render an aggregated totals row for active (non-bench) players."""
+    RATE_CATS  = {'OBP', 'ERA', 'WHIP'}
+    SUM_CATS   = {'R', 'HR', 'RBI', 'SB', 'SV', 'K', 'QS'}
+    active = [p for p in players if p.get('starting','') not in _BENCH_SLOTS]
+    totals = {}
+    for cat in cats:
+        vals = []
+        for p in active:
+            v = p.get('stats', {}).get(cat)
+            try:
+                vals.append(float(v))
+            except (TypeError, ValueError):
+                pass
+        if not vals:
+            totals[cat] = '—'
+        elif cat in SUM_CATS:
+            totals[cat] = str(int(sum(vals)))
+        elif cat == 'OBP':
+            totals[cat] = f'{sum(vals)/len(vals):.3f}'
+        elif cat in ('ERA', 'WHIP'):
+            totals[cat] = f'{sum(vals)/len(vals):.2f}'
+        else:
+            totals[cat] = '—'
+    cells = ''.join(
+        f'<span class="mdc-rost-stat mdc-rost-total">{totals.get(c,"—")}</span>'
+        for c in cats
+    )
+    return (
+        f'<div class="mdc-rost-row mdc-rost-row-totals">'
+        f'<span class="mdc-rost-slot"></span>'
+        f'<span class="mdc-rost-name"><strong>TOTALS</strong></span>'
+        f'<span class="mdc-rost-mlb"></span>'
+        f'<div class="mdc-rost-stats">{cells}</div>'
+        f'</div>'
+    )
+
 def _roster_team_col(players: list, team_name: str) -> str:
     pitcher_flag = {p.get('player_key',''): _player_is_pitcher(p.get('starting',''), p.get('pos',''))
                     for p in players}
@@ -292,13 +329,15 @@ def _roster_team_col(players: list, team_name: str) -> str:
                 f'<div class="mdc-rost-stat-lbls">{lbls}</div>'
                 f'</div>')
 
-    bat_rows = ''.join(_roster_player_row(p, BATTING_CATS)  for p in batters)
-    pit_rows = ''.join(_roster_player_row(p, PITCHING_CATS) for p in pitchers)
+    bat_totals = _roster_totals_row(batters,  BATTING_CATS)
+    pit_totals = _roster_totals_row(pitchers, PITCHING_CATS)
+    bat_rows   = ''.join(_roster_player_row(p, BATTING_CATS)  for p in batters)
+    pit_rows   = ''.join(_roster_player_row(p, PITCHING_CATS) for p in pitchers)
     return (
         f'<div class="mdc-rost-col">'
         f'<div class="mdc-rost-team-hdr">{team_name}</div>'
-        f'{subhdr("BATTING", BATTING_CATS)}{bat_rows}'
-        f'{subhdr("PITCHING", PITCHING_CATS)}{pit_rows}'
+        f'{subhdr("BATTING", BATTING_CATS)}{bat_totals}{bat_rows}'
+        f'{subhdr("PITCHING", PITCHING_CATS)}{pit_totals}{pit_rows}'
         f'</div>'
     )
 
@@ -439,6 +478,17 @@ def render_matchup_live_score(matchup: dict, updated_at: str) -> str:
         return ''
     if not _cats_have_data(matchup):
         t0, t1 = matchup['teams'][0], matchup['teams'][1]
+        def blank_row(cats):
+            cells = ''.join(
+                f'<span class="mdc-cell">'
+                f'<span class="mdc-cat">{c}</span>'
+                f'<span class="mdc-val">&mdash;</span>'
+                f'<span class="mdc-sep">/</span>'
+                f'<span class="mdc-val">&mdash;</span>'
+                f'</span>'
+                for c in cats
+            )
+            return f'<div class="mdc-cat-row">{cells}</div>'
         return (
             '<div class="mdc-live">'
             '<div class="mdc-live-header">'
@@ -451,6 +501,8 @@ def render_matchup_live_score(matchup: dict, updated_at: str) -> str:
             f'<span class="mdc-score-name">{t1["name"]}</span>'
             '</span>'
             '</div>'
+            f'{blank_row(BATTING_CATS)}'
+            f'{blank_row(PITCHING_CATS)}'
             '</div>'
         )
 
