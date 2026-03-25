@@ -11,6 +11,7 @@ Usage:
 
 import sys
 import re
+import json
 from pathlib import Path
 from datetime import datetime
 
@@ -82,14 +83,36 @@ def _inj_badge(status: str) -> str:
         return f'<span class="inj-badge il">{status}</span>'
     return f'<span class="inj-badge dtd">{status}</span>'
 
+PITCHER_STAT_KEYS = ['ERA', 'WHIP', 'K', 'SV', 'QS', 'IP']
+BATTER_STAT_KEYS  = ['R', 'HR', 'RBI', 'SB', 'OBP']
+
 def _player_row(p: dict) -> str:
-    name     = p['name']
-    pos      = p['pos']
-    mlb_team = p.get('mlb_team', '')
-    slot     = p.get('starting', '')
-    status   = p.get('status', '')
+    name        = p['name']
+    pos         = p['pos']
+    mlb_team    = p.get('mlb_team', '')
+    slot        = p.get('starting', '')
+    status      = p.get('status', '')
+    headshot    = p.get('headshot_url', '')
+    player_key  = p.get('player_key', '')
+    stats       = p.get('stats', {})
+
+    # Pick relevant stat keys based on position
+    is_pitcher = pos.split(',')[0].strip() in PITCHER_POSITIONS
+    stat_keys  = PITCHER_STAT_KEYS if is_pitcher else BATTER_STAT_KEYS
+    stats_display = {k: stats.get(k, '-') for k in stat_keys}
+
+    # Embed as data attributes for the JS tooltip
+    data_attrs = (
+        f' data-name="{name}"'
+        f' data-pos="{pos}"'
+        f' data-mlb="{mlb_team}"'
+        f' data-headshot="{headshot}"'
+        f' data-status="{status}"'
+        f' data-stats=\'{json.dumps(stats_display)}\''
+    )
+
     return (
-        f'      <div class="player-row">'
+        f'      <div class="player-row"{data_attrs}>'
         f'<div class="player-row-info">'
         f'<div class="player-row-name">{name}</div>'
         f'<div class="player-row-mlb">{mlb_team}</div>'
@@ -297,7 +320,7 @@ def main():
     for cfg in TEAM_CONFIG:
         name = cfg['name']
         slug = cfg['slug']
-        print(f'  Fetching roster: {name}...')
+        print(f'  Fetching roster + stats: {name}...')
 
         # Get team_key from standings
         team_data = standings_by_name.get(name, {})
@@ -306,8 +329,14 @@ def main():
         if team_key:
             try:
                 roster = api.get_team_roster(team_key)
+                # Batch-fetch stats for all players on this roster
+                player_keys = [p['player_key'] for p in roster if p.get('player_key')]
+                stats_map = api.get_player_stats_batch(player_keys)
+                # Merge stats into each player dict
+                for p in roster:
+                    p['stats'] = stats_map.get(p.get('player_key', ''), {})
             except Exception as e:
-                print(f'    ⚠️  Roster fetch failed for {name}: {e}')
+                print(f'    ⚠️  Roster/stats fetch failed for {name}: {e}')
                 roster = []
         else:
             print(f'    ⚠️  team_key not found for {name} in standings')
