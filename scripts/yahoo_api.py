@@ -344,7 +344,8 @@ class YahooFantasyAPI:
             p = players_raw[str(i)]['player']
             meta = p[0]
             # Extract fields by searching for the right key in each meta item
-            name, pos, status, mlb_team, player_key, headshot_url = '?', '', '', '', '', ''
+            name, pos, status, status_full, injury_note = '?', '', '', '', ''
+            mlb_team, player_key, headshot_url = '', '', ''
             for item in meta:
                 if not isinstance(item, dict):
                     continue
@@ -356,6 +357,10 @@ class YahooFantasyAPI:
                     pos = item['display_position']
                 if 'status' in item and item['status']:
                     status = item['status']
+                if 'status_full' in item and item['status_full']:
+                    status_full = item['status_full']
+                if 'injury_note' in item and item['injury_note']:
+                    injury_note = item['injury_note']
                 if 'editorial_team_abbr' in item:
                     mlb_team = item['editorial_team_abbr']
                 if 'headshot' in item:
@@ -371,6 +376,8 @@ class YahooFantasyAPI:
                 'name':         name,
                 'pos':          pos,
                 'status':       status,
+                'status_full':  status_full,   # e.g. "Day-to-Day", "15-Day IL"
+                'injury_note':  injury_note,   # e.g. "Lower Leg", "Elbow"
                 'mlb_team':     mlb_team,
                 'headshot_url': headshot_url,
                 'starting':     selected,
@@ -509,6 +516,54 @@ class YahooFantasyAPI:
                 print(f'    ⚠️  Projected stats batch failed (chunk {i}): {e}')
         return result
 
+    def get_player_news(self, player_keys: list) -> dict:
+        """Fetch injury status and notes for a list of player keys.
+
+        Yahoo's Fantasy API does not expose Rotowire blurbs directly.
+        This method batch-fetches the default player resource and extracts
+        status, status_full, and injury_note for any player with a flag.
+
+        Returns {player_key: [{'headline': str, 'summary': str, 'url': str, 'timestamp': str}]}.
+        Players with no injury status are omitted from the result.
+        """
+        if not player_keys:
+            return {}
+        result = {}
+        for i in range(0, len(player_keys), 25):
+            chunk = player_keys[i:i + 25]
+            try:
+                data = self._get(
+                    f'players;player_keys={",".join(chunk)}'
+                )
+                players_out = data['fantasy_content']['players']
+                for j in range(int(players_out.get('count', 0))):
+                    pl = players_out[str(j)]['player']
+                    meta = pl[0]
+                    p_key, status, status_full, injury_note = '', '', '', ''
+                    for item in meta:
+                        if not isinstance(item, dict):
+                            continue
+                        if 'player_key' in item:
+                            p_key = item['player_key']
+                        if 'status' in item and item['status']:
+                            status = item['status']
+                        if 'status_full' in item and item['status_full']:
+                            status_full = item['status_full']
+                        if 'injury_note' in item and item['injury_note']:
+                            injury_note = item['injury_note']
+                    if p_key and status:
+                        headline = status_full or status
+                        summary  = injury_note or 'No body part listed.'
+                        result[p_key] = [{
+                            'headline':  headline,
+                            'summary':   summary,
+                            'url':       '',
+                            'timestamp': '',
+                        }]
+            except Exception as e:
+                print(f'    ⚠️  Player news batch failed (chunk {i}): {e}')
+        return result
+
     def get_league_week(self) -> int:
         """Returns the current week number from the league."""
         info = self.get_league_info()
@@ -556,3 +611,18 @@ if __name__ == '__main__':
 
     elif cmd == 'week':
         print(f'Current week: {api.get_league_week()}')
+
+    elif cmd == 'news':
+        # Usage: python3 yahoo_api.py news <player_key> [<player_key2> ...]
+        keys = sys.argv[2:] if len(sys.argv) > 2 else []
+        if not keys:
+            print('Usage: python3 yahoo_api.py news <player_key> [<player_key2> ...]')
+        else:
+            news = api.get_player_news(keys)
+            if not news:
+                print('No news found for the given player keys.')
+            for pk, items in news.items():
+                print(f'\n{pk}:')
+                for it in items:
+                    print(f'  [{it["timestamp"]}] {it["headline"]}')
+                    print(f'  {it["summary"][:200]}...' if len(it["summary"]) > 200 else f'  {it["summary"]}')
