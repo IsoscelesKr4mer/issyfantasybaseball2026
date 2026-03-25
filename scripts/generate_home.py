@@ -218,70 +218,127 @@ def render_matchups(matchups: list, week: int) -> str:
     return '    <div class="matchups-grid">\n' + '\n\n'.join(cards) + '\n\n    </div>'
 
 
-# ── Render weekly live score section (for week-XX.html) ───────────────────────
-def render_week_live_scores(matchups: list, week: int, updated_at: str) -> str:
-    """Full-width live scoreboard injected into week-XX.html."""
-    has_any = any(_cats_have_data(m) for m in matchups)
+# ── Per-card live score strip (embedded in matchup-detail-card) ───────────────
+BATTING_CATS  = ['R', 'HR', 'RBI', 'SB', 'OBP']
+PITCHING_CATS = ['SV', 'K', 'ERA', 'WHIP', 'QS']
 
-    if not has_any:
-        return (
-            f'  <section class="section">\n'
-            f'    <h2 class="section-title"><span class="section-icon">&#128202;</span> Week {week} Live Scores</h2>\n'
-            f'    <div class="card reveal" style="text-align:center;padding:2rem;color:var(--muted);">'
-            f'Season kicks off March 25. Scores update every 4 hours once games are in play.</div>\n'
-            f'    <div class="ls-updated">Last checked: {updated_at} Pacific</div>\n'
-            f'  </section>'
+def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
+    """Return API matchups re-ordered and re-paired to match the week HTML card order.
+    Uses team names in headshot alt attributes to find the right matchup for each card.
+    Returns a list of length 5; None entries mean no matching API matchup found."""
+    name_to_matchup = {}
+    for m in api_matchups:
+        for t in m['teams']:
+            name_to_matchup[t['name']] = m
+
+    ordered = []
+    for n in range(1, 6):
+        # Extract the two headshot alt attributes from this card
+        block_m = re.search(
+            rf'id="matchup-{n}"(.*?)(?:id="matchup-{n+1}"|<!-- SLEEPER|</section>)',
+            week_html, re.DOTALL
         )
-
-    cards = []
-    for i, m in enumerate(matchups):
-        t0, t1 = m['teams'][0], m['teams'][1]
-        cat_winners = m.get('cat_winners', {})
-        cat_wins    = m.get('cat_wins', [0, 0])
-        motw = ' ls-motw' if i == 0 else ''
-
-        w0_cls = ' ls-score-lead' if cat_wins[0] > cat_wins[1] else ''
-        w1_cls = ' ls-score-lead' if cat_wins[1] > cat_wins[0] else ''
-
-        rows = ''
+        if not block_m:
+            ordered.append(None)
+            continue
+        block = block_m.group(1)
+        alts = re.findall(r'class="headshot[^"]*"[^>]*alt="([^"]+)"', block)
+        if len(alts) < 2:
+            ordered.append(None)
+            continue
+        card_name0, card_name1 = alts[0], alts[1]
+        # Find the API matchup that contains either team
+        found = None
+        for m in api_matchups:
+            api_names = {t['name'] for t in m['teams']}
+            if card_name0 in api_names or card_name1 in api_names:
+                found = m
+                break
+        if found is None:
+            ordered.append(None)
+            continue
+        # Re-pair so team order matches the card (left=card_name0, right=card_name1)
+        t_by_name = {t['name']: t for t in found['teams']}
+        t0 = t_by_name.get(card_name0, found['teams'][0])
+        t1 = t_by_name.get(card_name1, found['teams'][1])
+        entry = dict(found)
+        entry['teams'] = [t0, t1]
+        # Recalculate cat_winners and cat_wins with the new team ordering
+        LOWER_BETTER = {'ERA', 'WHIP'}
+        cat_winners = {}
         for cat in CAT_ORDER:
-            v0 = t0['cats'].get(cat, '—')
-            v1 = t1['cats'].get(cat, '—')
-            w  = cat_winners.get(cat)
-            r0 = ' ls-lead' if w == 0 else ''
-            r1 = ' ls-lead' if w == 1 else ''
-            rows += (
-                f'<div class="ls-cat-row">'
-                f'<span class="ls-cat-val{r0}">{v0 if v0 not in ("", None) else "—"}</span>'
-                f'<span class="ls-cat-name">{cat}</span>'
-                f'<span class="ls-cat-val{r1}">{v1 if v1 not in ("", None) else "—"}</span>'
-                f'</div>'
-            )
+            v0 = t0['cats'].get(cat, '-')
+            v1 = t1['cats'].get(cat, '-')
+            try:
+                f0, f1 = float(v0), float(v1)
+                if cat in LOWER_BETTER:
+                    cat_winners[cat] = 0 if f0 < f1 else (1 if f1 < f0 else None)
+                else:
+                    cat_winners[cat] = 0 if f0 > f1 else (1 if f1 > f0 else None)
+            except (ValueError, TypeError):
+                cat_winners[cat] = None
+        wins = [sum(1 for w in cat_winners.values() if w == 0),
+                sum(1 for w in cat_winners.values() if w == 1)]
+        entry['cat_winners'] = cat_winners
+        entry['cat_wins']    = wins
+        ordered.append(entry)
+    return ordered
 
-        img0 = headshot_img(t0['name'], 'headshot-sm')
-        img1 = headshot_img(t1['name'], 'headshot-sm')
 
-        cards.append(
-            f'    <div class="ls-card reveal{motw}">\n'
-            f'      <div class="ls-header">\n'
-            f'        <div class="ls-team">{img0}<span class="ls-team-name">{t0["name"]}</span>'
-            f'<span class="ls-score{w0_cls}">{cat_wins[0]}</span></div>\n'
-            f'        <div class="ls-vs">vs</div>\n'
-            f'        <div class="ls-team ls-team-right"><span class="ls-score{w1_cls}">{cat_wins[1]}</span>'
-            f'<span class="ls-team-name">{t1["name"]}</span>{img1}</div>\n'
-            f'      </div>\n'
-            f'      <div class="ls-cats">{rows}</div>\n'
-            f'    </div>'
+def render_matchup_live_score(matchup: dict, updated_at: str) -> str:
+    """Compact two-row score strip for one matchup card."""
+    if matchup is None or not _cats_have_data(matchup):
+        return (
+            '<div class="mdc-live mdc-live-pending">'
+            '<span class="mdc-live-status status-upcoming">Upcoming</span>'
+            '<span class="mdc-live-note">Live scores update every 4\u00a0hours once play begins</span>'
+            '</div>'
         )
 
-    grid = '    <div class="ls-grid">\n' + '\n\n'.join(cards) + '\n    </div>'
+    t0, t1 = matchup['teams'][0], matchup['teams'][1]
+    cat_winners = matchup.get('cat_winners', {})
+    cat_wins    = matchup.get('cat_wins', [0, 0])
+    status      = matchup.get('status', 'midevent')
+
+    status_text = 'Final' if status == 'postevent' else 'Live'
+    status_cls  = 'status-final' if status == 'postevent' else 'status-live'
+    w0_cls = ' score-lead' if cat_wins[0] > cat_wins[1] else ''
+    w1_cls = ' score-lead' if cat_wins[1] > cat_wins[0] else ''
+
+    def cat_row_html(cats):
+        cells = []
+        for cat in cats:
+            v0 = t0['cats'].get(cat, '—') or '—'
+            v1 = t1['cats'].get(cat, '—') or '—'
+            w  = cat_winners.get(cat)
+            c0 = ' mdc-lead' if w == 0 else ''
+            c1 = ' mdc-lead' if w == 1 else ''
+            cells.append(
+                f'<span class="mdc-cell">'
+                f'<span class="mdc-cat">{cat}</span>'
+                f'<span class="mdc-val{c0}">{v0}</span>'
+                f'<span class="mdc-sep">/</span>'
+                f'<span class="mdc-val{c1}">{v1}</span>'
+                f'</span>'
+            )
+        return f'<div class="mdc-cat-row">{"".join(cells)}</div>'
 
     return (
-        f'  <section class="section">\n'
-        f'    <h2 class="section-title"><span class="section-icon">&#128202;</span> Week {week} Live Scores</h2>\n'
-        f'{grid}\n'
-        f'    <div class="ls-updated">Updated {updated_at} Pacific &mdash; refreshes every 4 hours</div>\n'
-        f'  </section>'
+        f'<div class="mdc-live">'
+        f'<div class="mdc-live-header">'
+        f'<span class="mdc-live-status {status_cls}">{status_text}</span>'
+        f'<span class="mdc-score-block">'
+        f'<span class="mdc-score-name">{t0["name"]}</span>'
+        f'<span class="mdc-score-num{w0_cls}">{cat_wins[0]}</span>'
+        f'<span class="mdc-score-dash">&mdash;</span>'
+        f'<span class="mdc-score-num{w1_cls}">{cat_wins[1]}</span>'
+        f'<span class="mdc-score-name">{t1["name"]}</span>'
+        f'</span>'
+        f'<span class="mdc-updated">{updated_at}</span>'
+        f'</div>'
+        f'{cat_row_html(BATTING_CATS)}'
+        f'{cat_row_html(PITCHING_CATS)}'
+        f'</div>'
     )
 
 # ── Render transactions HTML ──────────────────────────────────────────────────
@@ -406,13 +463,15 @@ def main():
     index_path.write_text(html)
     print(f'  ✅  index.html updated (Week {current_week}, {updated_at})')
 
-    # Update live scores section on the current week page
+    # Update per-matchup live score strips on the current week page
     week_path = BASE_DIR / f'week-{current_week:02d}.html'
     if week_path.exists():
         print(f'\n🔄  Updating week-{current_week:02d}.html live scores...')
         week_html = week_path.read_text()
-        week_html = replace_section(week_html, 'LIVE_SCORES',
-            render_week_live_scores(matchups, current_week, updated_at))
+        ordered = _ordered_matchups_for_week(week_html, matchups)
+        for n, m in enumerate(ordered, start=1):
+            week_html = replace_section(week_html, f'LIVE_SCORE_{n}',
+                render_matchup_live_score(m, updated_at))
         week_path.write_text(week_html)
         print(f'  ✅  week-{current_week:02d}.html live scores updated')
     else:
