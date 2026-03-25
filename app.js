@@ -2,74 +2,8 @@
 // RENDER FUNCTIONS & INITIALIZATION
 // ═══════════════════════════════════════════
 
-// ── Team Links ──
-// Map every team name to its profile page. Used by teamLink() and linkTeamNames().
-const TEAM_LINKS = {
-  'One Ball Two Strikes':        '/teams/one-ball.html',
-  'The Buckner Boots':           '/teams/buckner.html',
-  'The Ragans Administration':   '/teams/ragans.html',
-  'Rain City Bombers':           '/teams/rain-city.html',
-  'Decoy':                       '/teams/decoy.html',
-  'Ete Crow':                    '/teams/ete-crow.html',
-  'Good Vibes Only':             '/teams/good-vibes.html',
-  'Busch Latte':                 '/teams/busch-latte.html',
-  'Keanu Reeves':                '/teams/keanu.html',
-  "Skenes'n on deez Hoerners":   '/teams/skenes.html',
-};
-
-// Returns an <a> tag if the name is a known team, otherwise returns the name as-is.
-function teamLink(name) {
-  const href = TEAM_LINKS[name];
-  if (!href) return name;
-  return `<a href="${href}" class="team-link">${name}</a>`;
-}
-
-// Auto-link static HTML team names (runs after DOMContentLoaded).
-// Covers: home matchup cards, week matchup detail cards, standings table, live score bar.
-function linkTeamNames() {
-  const selectors = [
-    '.matchup-team-name',
-    '.matchup-detail-team',
-    '.team-cell-name',
-    '.mdc-score-name',
-    '.team-label',
-  ];
-  selectors.forEach(sel => {
-    document.querySelectorAll(sel).forEach(el => {
-      if (el.closest('a')) return; // already linked
-      const name = el.textContent.trim();
-      const href = TEAM_LINKS[name];
-      if (!href) return;
-      el.innerHTML = `<a href="${href}" class="team-link">${name}</a>`;
-    });
-  });
-
-  // Make entire matchup-detail-team-block (headshot + name) clickable as a unit
-  document.querySelectorAll('.matchup-detail-team-block').forEach(block => {
-    const nameEl = block.querySelector('.matchup-detail-team a, .matchup-detail-team');
-    if (!nameEl) return;
-    const name = nameEl.textContent.trim();
-    const href = TEAM_LINKS[name];
-    if (!href) return;
-    block.style.cursor = 'pointer';
-    block.addEventListener('click', e => {
-      if (!e.target.closest('a')) window.location.href = href;
-    });
-  });
-
-  // Make entire home-page matchup-team block (headshot + name) clickable as a unit
-  document.querySelectorAll('.matchup-team').forEach(block => {
-    const nameEl = block.querySelector('.matchup-team-name a, .matchup-team-name');
-    if (!nameEl) return;
-    const name = nameEl.textContent.trim();
-    const href = TEAM_LINKS[name];
-    if (!href) return;
-    block.style.cursor = 'pointer';
-    block.addEventListener('click', e => {
-      if (!e.target.closest('a')) window.location.href = href;
-    });
-  });
-}
+// Note: TEAM_LINKS, teamLink(), and linkTeamNames() are defined in nav.js
+// which loads on every page before app.js.
 
 function getGradeClass(g) {
   const m = { 'A+':'grade-A-plus','A':'grade-A','A-':'grade-A-minus','B+':'grade-B-plus','B':'grade-B','B-':'grade-B-minus','C+':'grade-C-plus','C':'grade-C','D':'grade-D' };
@@ -572,9 +506,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTurnover();
   renderNotableMovement();
   renderStandings();
-
-  // Link all static team names to their profile pages
-  linkTeamNames();
 
   // Delayed init for scroll effects
   requestAnimationFrame(() => {

@@ -1,6 +1,77 @@
 /**
  * nav.js — Shared dropdown + mobile drawer handling for all pages.
+ * Also defines TEAM_LINKS, teamLink(), and linkTeamNames() globally
+ * so they are available on every page (index, week-XX, draft, teams).
  */
+
+// ── Team Links (global — used by app.js render functions too) ──
+var TEAM_LINKS = {
+  'One Ball Two Strikes':        '/teams/one-ball.html',
+  'The Buckner Boots':           '/teams/buckner.html',
+  'The Ragans Administration':   '/teams/ragans.html',
+  'Rain City Bombers':           '/teams/rain-city.html',
+  'Decoy':                       '/teams/decoy.html',
+  'Ete Crow':                    '/teams/ete-crow.html',
+  'Good Vibes Only':             '/teams/good-vibes.html',
+  'Busch Latte':                 '/teams/busch-latte.html',
+  'Keanu Reeves':                '/teams/keanu.html',
+  "Skenes'n on deez Hoerners":   '/teams/skenes.html',
+};
+
+function teamLink(name) {
+  var href = TEAM_LINKS[name];
+  if (!href) return name;
+  return '<a href="' + href + '" class="team-link">' + name + '</a>';
+}
+
+function linkTeamNames() {
+  var selectors = [
+    '.matchup-team-name',
+    '.matchup-detail-team',
+    '.team-cell-name',
+    '.mdc-score-name',
+    '.team-label',
+  ];
+  selectors.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      if (el.closest('a')) return;
+      // Normalize curly apostrophe → straight so Skenes lookup works
+      var name = el.textContent.trim().replace(/\u2019/g, "'");
+      var href = TEAM_LINKS[name];
+      if (!href) return;
+      el.innerHTML = '<a href="' + href + '" class="team-link">' + el.textContent.trim() + '</a>';
+    });
+  });
+
+  // Make entire matchup-detail-team-block (headshot + name) clickable as a unit
+  document.querySelectorAll('.matchup-detail-team-block').forEach(function (block) {
+    var nameEl = block.querySelector('.matchup-detail-team a, .matchup-detail-team');
+    if (!nameEl) return;
+    var name = nameEl.textContent.trim().replace(/\u2019/g, "'");
+    var href = TEAM_LINKS[name];
+    if (!href) return;
+    block.style.cursor = 'pointer';
+    block.addEventListener('click', function (e) {
+      if (!e.target.closest('a')) window.location.href = href;
+    });
+  });
+
+  // Make entire home-page matchup-team block (headshot + name) clickable as a unit
+  document.querySelectorAll('.matchup-team').forEach(function (block) {
+    var nameEl = block.querySelector('.matchup-team-name a, .matchup-team-name');
+    if (!nameEl) return;
+    var name = nameEl.textContent.trim().replace(/\u2019/g, "'");
+    var href = TEAM_LINKS[name];
+    if (!href) return;
+    block.style.cursor = 'pointer';
+    block.addEventListener('click', function (e) {
+      if (!e.target.closest('a')) window.location.href = href;
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', linkTeamNames);
+
 (function () {
   'use strict';
 
