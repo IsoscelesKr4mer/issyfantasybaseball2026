@@ -110,45 +110,179 @@ def render_standings(teams: list) -> str:
           <tbody>\n'''
     return header + '\n'.join(rows) + '\n          </tbody>\n        </table>'
 
+# ── Category score helpers ────────────────────────────────────────────────────
+CAT_ORDER = ['R', 'HR', 'RBI', 'SB', 'OBP', 'SV', 'K', 'ERA', 'WHIP', 'QS']
+
+def _cats_have_data(matchup: dict) -> bool:
+    """Return True if at least one team has a non-zero category value."""
+    for t in matchup.get('teams', []):
+        for v in t.get('cats', {}).values():
+            try:
+                if float(v) != 0:
+                    return True
+            except (ValueError, TypeError):
+                pass
+    return False
+
+def _render_cat_table(matchup: dict) -> str:
+    """Compact 10-cat table for a home-page matchup card."""
+    teams = matchup['teams']
+    t0, t1 = teams[0], teams[1]
+    cat_winners = matchup.get('cat_winners', {})
+    cat_wins    = matchup.get('cat_wins', [0, 0])
+
+    w0_cls = ' mc-score-lead' if cat_wins[0] > cat_wins[1] else ''
+    w1_cls = ' mc-score-lead' if cat_wins[1] > cat_wins[0] else ''
+
+    score_line = (
+        f'<div class="mc-score-tally">'
+        f'<span class="mc-score-num{w0_cls}">{cat_wins[0]}</span>'
+        f'<span class="mc-score-dash">&ndash;</span>'
+        f'<span class="mc-score-num{w1_cls}">{cat_wins[1]}</span>'
+        f'</div>'
+    )
+
+    rows = []
+    for cat in CAT_ORDER:
+        v0 = t0['cats'].get(cat, '—')
+        v1 = t1['cats'].get(cat, '—')
+        w  = cat_winners.get(cat)
+        c0 = ' mc-cat-lead' if w == 0 else ''
+        c1 = ' mc-cat-lead' if w == 1 else ''
+        rows.append(
+            f'<div class="mc-cat-row">'
+            f'<span class="mc-cat-val{c0}">{v0 if v0 not in ("", None) else "—"}</span>'
+            f'<span class="mc-cat-name">{cat}</span>'
+            f'<span class="mc-cat-val{c1}">{v1 if v1 not in ("", None) else "—"}</span>'
+            f'</div>'
+        )
+
+    return (
+        f'<div class="mc-cats">'
+        f'{score_line}'
+        f'<div class="mc-cat-rows">{"".join(rows)}</div>'
+        f'</div>'
+    )
+
+
 # ── Render matchups HTML ──────────────────────────────────────────────────────
 def render_matchups(matchups: list, week: int) -> str:
     cards = []
     for i, m in enumerate(matchups):
         teams = m['teams']
         t0, t1 = teams[0], teams[1]
-        is_motw = i == 0  # First matchup is matchup of the week
+        is_motw = i == 0
+        has_data = _cats_have_data(m)
 
         meta_html = '        <div class="matchup-meta">&#11088; Matchup of the Week</div>\n' if is_motw else ''
 
-        # Show score if live/post, projected if pre
-        def score_display(t):
-            if m['status'] == 'preevent':
-                return '0&ndash;0&ndash;0'
-            return str(int(t['points'])) if t['points'] else '0'
-
         img0 = headshot_img(t0['name'], 'headshot-sm')
         img1 = headshot_img(t1['name'], 'headshot-sm')
+
+        # Win tally badge next to team name when data is live
+        def tally(idx):
+            if not has_data: return ''
+            wins = m.get('cat_wins', [0, 0])[idx]
+            lead = wins > m.get('cat_wins', [0, 0])[1 - idx]
+            cls  = ' mc-tally-lead' if lead else ''
+            return f'<span class="mc-tally{cls}">{wins}</span>'
+
+        if has_data:
+            cat_table_html = _render_cat_table(m)
+        elif m['status'] == 'preevent':
+            cat_table_html = '<div class="mc-cats mc-cats-pending">Season starts Mar 25 &mdash; live scores update every 4 hours</div>'
+        else:
+            cat_table_html = ''
+
         cards.append(f'''      <div class="matchup-card reveal">
 {meta_html}        <div class="matchup-teams">
           <div class="matchup-team">
             {img0}
             <div class="matchup-team-info">
               <div class="matchup-team-name">{t0["name"]}</div>
-              <div class="matchup-record">{score_display(t0)}</div>
             </div>
+            {tally(0)}
           </div>
           <div class="matchup-team">
             {img1}
             <div class="matchup-team-info">
               <div class="matchup-team-name">{t1["name"]}</div>
-              <div class="matchup-record">{score_display(t1)}</div>
             </div>
+            {tally(1)}
           </div>
         </div>
+        {cat_table_html}
         <div class="matchup-preview-link"><a href="week-{week:02d}.html#matchup-{i+1}">Full Preview &rarr;</a></div>
       </div>''')
 
     return '    <div class="matchups-grid">\n' + '\n\n'.join(cards) + '\n\n    </div>'
+
+
+# ── Render weekly live score section (for week-XX.html) ───────────────────────
+def render_week_live_scores(matchups: list, week: int, updated_at: str) -> str:
+    """Full-width live scoreboard injected into week-XX.html."""
+    has_any = any(_cats_have_data(m) for m in matchups)
+
+    if not has_any:
+        return (
+            f'  <section class="section">\n'
+            f'    <h2 class="section-title"><span class="section-icon">&#128202;</span> Week {week} Live Scores</h2>\n'
+            f'    <div class="card reveal" style="text-align:center;padding:2rem;color:var(--muted);">'
+            f'Season kicks off March 25. Scores update every 4 hours once games are in play.</div>\n'
+            f'    <div class="ls-updated">Last checked: {updated_at} Pacific</div>\n'
+            f'  </section>'
+        )
+
+    cards = []
+    for i, m in enumerate(matchups):
+        t0, t1 = m['teams'][0], m['teams'][1]
+        cat_winners = m.get('cat_winners', {})
+        cat_wins    = m.get('cat_wins', [0, 0])
+        motw = ' ls-motw' if i == 0 else ''
+
+        w0_cls = ' ls-score-lead' if cat_wins[0] > cat_wins[1] else ''
+        w1_cls = ' ls-score-lead' if cat_wins[1] > cat_wins[0] else ''
+
+        rows = ''
+        for cat in CAT_ORDER:
+            v0 = t0['cats'].get(cat, '—')
+            v1 = t1['cats'].get(cat, '—')
+            w  = cat_winners.get(cat)
+            r0 = ' ls-lead' if w == 0 else ''
+            r1 = ' ls-lead' if w == 1 else ''
+            rows += (
+                f'<div class="ls-cat-row">'
+                f'<span class="ls-cat-val{r0}">{v0 if v0 not in ("", None) else "—"}</span>'
+                f'<span class="ls-cat-name">{cat}</span>'
+                f'<span class="ls-cat-val{r1}">{v1 if v1 not in ("", None) else "—"}</span>'
+                f'</div>'
+            )
+
+        img0 = headshot_img(t0['name'], 'headshot-sm')
+        img1 = headshot_img(t1['name'], 'headshot-sm')
+
+        cards.append(
+            f'    <div class="ls-card reveal{motw}">\n'
+            f'      <div class="ls-header">\n'
+            f'        <div class="ls-team">{img0}<span class="ls-team-name">{t0["name"]}</span>'
+            f'<span class="ls-score{w0_cls}">{cat_wins[0]}</span></div>\n'
+            f'        <div class="ls-vs">vs</div>\n'
+            f'        <div class="ls-team ls-team-right"><span class="ls-score{w1_cls}">{cat_wins[1]}</span>'
+            f'<span class="ls-team-name">{t1["name"]}</span>{img1}</div>\n'
+            f'      </div>\n'
+            f'      <div class="ls-cats">{rows}</div>\n'
+            f'    </div>'
+        )
+
+    grid = '    <div class="ls-grid">\n' + '\n\n'.join(cards) + '\n    </div>'
+
+    return (
+        f'  <section class="section">\n'
+        f'    <h2 class="section-title"><span class="section-icon">&#128202;</span> Week {week} Live Scores</h2>\n'
+        f'{grid}\n'
+        f'    <div class="ls-updated">Updated {updated_at} Pacific &mdash; refreshes every 4 hours</div>\n'
+        f'  </section>'
+    )
 
 # ── Render transactions HTML ──────────────────────────────────────────────────
 def render_transactions(transactions: list) -> str:
@@ -271,6 +405,18 @@ def main():
 
     index_path.write_text(html)
     print(f'  ✅  index.html updated (Week {current_week}, {updated_at})')
+
+    # Update live scores section on the current week page
+    week_path = BASE_DIR / f'week-{current_week:02d}.html'
+    if week_path.exists():
+        print(f'\n🔄  Updating week-{current_week:02d}.html live scores...')
+        week_html = week_path.read_text()
+        week_html = replace_section(week_html, 'LIVE_SCORES',
+            render_week_live_scores(matchups, current_week, updated_at))
+        week_path.write_text(week_html)
+        print(f'  ✅  week-{current_week:02d}.html live scores updated')
+    else:
+        print(f'  ⚠️  week-{current_week:02d}.html not found, skipping live scores')
 
     # Also regenerate all team pages with live data
     print('\n🔄  Regenerating team pages...')
