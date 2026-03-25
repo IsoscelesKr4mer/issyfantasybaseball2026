@@ -2902,6 +2902,30 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
     grid-template-columns: 1fr 1fr;
   }
 
+  /* Mobile standings — hide Manager, Pct, Moves columns */
+  .standings-table th:nth-child(3),
+  .standings-table td:nth-child(3),
+  .standings-table th:nth-child(5),
+  .standings-table td:nth-child(5),
+  .standings-table th:nth-child(6),
+  .standings-table td:nth-child(6) {
+    display: none;
+  }
+  .standings-table th,
+  .standings-table td {
+    padding: .55rem .5rem;
+  }
+  .standings-table {
+    font-size: .82rem;
+  }
+  .standings-live .team-cell {
+    gap: .5rem;
+  }
+  .standings-live .headshot-sm {
+    width: 32px;
+    height: 32px;
+  }
+
   /* Matchup detail cards */
   .matchup-detail-header {
     padding: .85rem 1rem .65rem;
