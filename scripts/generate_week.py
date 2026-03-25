@@ -192,20 +192,135 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
     </div>
   </section>'''
 
+# ── TEAM METADATA ─────────────────────────────────────────────────────────────
+TEAM_META = {
+    'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1},
+    "Skenes'n on deez Hoerners":    {'2025_rank': 10, 'draft_slot': 2},
+    '877-Glas-Now':                 {'2025_rank': 3,  'draft_slot': 3},
+    'LetsPlayMajorLeagueBaseball':  {'2025_rank': 1,  'draft_slot': 4},
+    'The Ragans Administration':    {'2025_rank': 1,  'draft_slot': 4},
+    'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5},
+    'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6},
+    'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7},
+    'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8},
+    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9},
+    'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10},
+    'Ete Crow':                     {'2025_rank': 3,  'draft_slot': 3},
+}
+
+def _summarize_roster(roster: list) -> dict:
+    """Split a roster into batters/pitchers/closers."""
+    PITCHER_SLOTS = {'SP', 'RP', 'P'}
+    BENCH_SLOTS   = {'BN', 'IL', 'IL+', 'NA'}
+    batters, starters, relievers, bench = [], [], [], []
+    for p in roster:
+        slot   = p.get('selected_position', '')
+        pos    = p.get('display_position', '')
+        name   = p.get('name', 'Unknown')
+        status = p.get('status', '')
+        label  = f"{name} ({pos})" + (f" [{status}]" if status else '')
+        is_pitcher = slot in PITCHER_SLOTS or (slot in BENCH_SLOTS and ('SP' in pos or 'RP' in pos))
+        is_bench   = slot in BENCH_SLOTS
+        if is_pitcher:
+            if 'SP' in pos:
+                (bench if is_bench else starters).append(label)
+            else:
+                relievers.append(label)
+        else:
+            (bench if is_bench else batters).append(label)
+    return {'batters': batters, 'starters': starters, 'relievers': relievers, 'bench': bench}
+
+def _render_cat_edges(cat_edges: list) -> str:
+    edge_map = {0: 'edge-away', 1: 'edge-home', -1: 'edge-even'}
+    rows = []
+    for e in cat_edges:
+        css   = edge_map.get(e.get('edge', -1), 'edge-even')
+        label = e.get('label', 'Even')
+        cats  = e.get('cats', '')
+        rows.append(
+            f'          <div class="cat-row">'
+            f'<span class="cat-name">{cats}</span>'
+            f'<span class="cat-edge {css}">{label}</span>'
+            f'</div>'
+        )
+    return '\n'.join(rows)
+
+def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
+    """Fetch all matchup + roster data for a week. Returns structured dict and saves to JSON.
+
+    This is the data-gathering phase. Claude (running as the scheduled task agent)
+    reads this JSON and writes the actual analysis content — no separate API call needed.
+    """
+    print(f'  Fetching scoreboard + standings for Week {week}...')
+    matchups  = api.get_scoreboard(week)
+    try:
+        standings = api.get_standings()
+    except Exception:
+        standings = []
+
+    stand_by_name = {s['name']: s for s in standings}
+
+    print(f'  Fetching rosters for all matchup teams...')
+    matchups_data = []
+    for m in matchups:
+        teams = m['teams']
+        t0_raw, t1_raw = teams[0], teams[1]
+        def enrich(t):
+            info = dict(t)
+            try:
+                roster = api.get_team_roster(t.get('team_key', ''))
+                info['roster_summary'] = _summarize_roster(roster)
+            except Exception as ex:
+                print(f'    ⚠️  Roster fetch failed for {t["name"]}: {ex}')
+                info['roster_summary'] = {}
+            s = stand_by_name.get(t['name'], {})
+            info['record'] = f"{s.get('wins',0)}-{s.get('losses',0)}-{s.get('ties',0)}"
+            info['meta']   = TEAM_META.get(t['name'], {})
+            return info
+        matchups_data.append({'t0': enrich(t0_raw), 't1': enrich(t1_raw)})
+
+    data = {'week': week, 'matchups': matchups_data, 'standings': standings}
+
+    # Save JSON so the Cowork scheduled task (Claude) can read it
+    out_path = BASE_DIR / 'data' / f'week-{week:02d}-preview-data.json'
+    out_path.parent.mkdir(exist_ok=True)
+    with open(out_path, 'w') as f:
+        json.dump(data, f, indent=2)
+    print(f'  ✅  Data saved → {out_path}')
+    return data
+
 # ── PREVIEW GENERATOR ─────────────────────────────────────────────────────────
-def generate_preview(api: YahooFantasyAPI, week: int) -> str:
-    """Fetch upcoming matchups and generate preview HTML."""
-    matchups = api.get_scoreboard(week)
+
+def generate_preview(api: YahooFantasyAPI, week: int, analysis: dict = None) -> str:
+    """Generate the preview HTML for a week.
+
+    If `analysis` is provided (a dict with 'storylines' and 'matchups' keys written
+    by Claude after reading the data JSON), it is injected into the cards.
+    Otherwise builds the scaffold with placeholder markers so Claude can fill it in.
+    """
+    data     = fetch_week_data(api, week)
     dates    = WEEK_DATES.get(week, ('', ''))
     start    = fmt_date(dates[0]) if dates[0] else ''
     end      = fmt_date(dates[1]) if dates[1] else ''
     date_str = f'{start}&ndash;{end}' if start else f'Week {week}'
 
     matchup_cards = []
-    for i, m in enumerate(matchups):
-        teams = m['teams']
-        t0, t1 = teams[0], teams[1]
+    for i, m in enumerate(data['matchups']):
+        t0, t1 = m['t0'], m['t1']
+        ai     = (analysis or {}).get('matchups', [{}] * 5)
+        ai_m   = ai[i] if i < len(ai) else {}
+
+        t0_analysis = ai_m.get('team0_analysis', '<!-- Claude analysis pending -->')
+        t1_analysis = ai_m.get('team1_analysis', '<!-- Claude analysis pending -->')
+        prediction  = ai_m.get('prediction', 'TBD.')
+        cat_edges   = ai_m.get('cat_edges', [])
+
+        cats_html = _render_cat_edges(cat_edges) if cat_edges else \
+            '          <div class="cat-row"><span class="cat-name muted">Category breakdown pending</span></div>'
+
         matchup_cards.append(f'''    <div class="matchup-detail-card reveal" id="matchup-{i+1}">
+      <!-- AUTO:LIVE_SCORE_{i+1}_START -->
+      <!-- AUTO:LIVE_SCORE_{i+1}_END -->
       <div class="matchup-detail-header">
         <div class="matchup-detail-teams">
           <span class="matchup-detail-team">{t0["name"]}</span>
@@ -216,14 +331,25 @@ def generate_preview(api: YahooFantasyAPI, week: int) -> str:
       </div>
       <div class="matchup-detail-body">
         <div class="matchup-detail-analysis">
-          <p>Preview analysis coming soon. Check back after the schedule generator runs.</p>
+          <p>{t0_analysis}</p>
+          <p>{t1_analysis}</p>
+        </div>
+        <div class="matchup-detail-cats">
+{cats_html}
         </div>
       </div>
       <div class="matchup-prediction">
         <span class="prediction-label">Prediction:</span>
-        <span class="prediction-text">TBD.</span>
+        <span class="prediction-text">{prediction}</span>
       </div>
+      <!-- AUTO:ROSTER_{i+1}_START -->
+      <!-- AUTO:ROSTER_{i+1}_END -->
     </div>''')
+
+    if analysis and analysis.get('storylines'):
+        storylines_html = '\n        '.join(analysis['storylines'])
+    else:
+        storylines_html = '<p><em>Preview analysis pending — Claude will fill this in as part of the scheduled task.</em></p>'
 
     generated_at = datetime.now().strftime('%b %d at %-I:%M %p')
     return f'''  <section class="section">
@@ -233,12 +359,13 @@ def generate_preview(api: YahooFantasyAPI, week: int) -> str:
     <div class="card reveal" style="margin-bottom:1.5rem;">
       <div class="card-title">&#128218; Storylines to Watch</div>
       <div class="storyline">
-        <p><em>Preview content generated {generated_at} Pacific. Full analysis added by your commissioner.</em></p>
+        {storylines_html}
       </div>
     </div>
 
     <h3 class="subsection-title">Matchup Breakdown</h3>
 {chr(10).join(matchup_cards)}
+    <p class="muted" style="font-size:.75rem;margin-top:1rem;">Generated {generated_at} Pacific</p>
   </section>'''
 
 # ── PAGE CREATOR ──────────────────────────────────────────────────────────────
