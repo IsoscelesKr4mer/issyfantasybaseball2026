@@ -190,7 +190,22 @@ def render_matchups(matchups: list, week: int) -> str:
         if has_data:
             cat_table_html = _render_cat_table(m)
         elif m['status'] == 'preevent':
-            cat_table_html = '<div class="mc-cats mc-cats-pending">Season starts Mar 25 &mdash; live scores update every 4 hours</div>'
+            cat_table_html = (
+                '<div class="mc-cats">'
+                '<div class="mc-score-tally">'
+                '<span class="mc-score-num">0</span>'
+                '<span class="mc-score-dash">&ndash;</span>'
+                '<span class="mc-score-num">0</span>'
+                '</div>'
+                '<div class="mc-cat-rows">'
+                + ''.join(
+                    f'<div class="mc-cat-row"><span class="mc-cat-val">&mdash;</span>'
+                    f'<span class="mc-cat-name">{c}</span>'
+                    f'<span class="mc-cat-val">&mdash;</span></div>'
+                    for c in ['R','HR','RBI','SB','OBP','SV','K','ERA','WHIP','QS']
+                )
+                + '</div></div>'
+            )
         else:
             cat_table_html = ''
 
