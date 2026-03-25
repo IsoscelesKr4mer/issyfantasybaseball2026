@@ -3279,8 +3279,9 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
     padding: 1rem 1rem 5rem;
     display: block;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
-  .mdc-rost-close-btn {
+  .mdc-rost.open .mdc-rost-close-btn {
     display: flex;
   }
 
@@ -3290,15 +3291,15 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   }
 }
 
-/* Roster modal close button (hidden on desktop) */
+/* Roster modal close button (hidden on desktop, shown via media query above) */
 .mdc-rost-close-btn {
   display: none;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 310;
   background: var(--bg);
-  padding: .75rem 0;
-  margin-bottom: .5rem;
+  padding: .75rem 1rem;
+  margin: -1rem -1rem .5rem;
   border-bottom: 1px solid var(--border);
   justify-content: space-between;
   align-items: center;
