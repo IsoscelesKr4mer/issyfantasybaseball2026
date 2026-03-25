@@ -70,6 +70,7 @@ matchup previews, weekly recaps, and running commentary.
 ├── scripts/
 │   ├── yahoo_auth.py       ← One-time OAuth setup
 │   ├── yahoo_api.py        ← Yahoo API client (token refresh, all API calls)
+│   ├── monte_carlo.py      ← Monte Carlo simulation layer (10k sims/matchup)
 │   ├── generate_week.py    ← Weekly preview + recap generator
 │   └── generate_home.py    ← Home page standings + transactions updater
 ├── .env                ← Credentials (GITIGNORED)
@@ -129,7 +130,9 @@ Key endpoints used:
 | `league/{key}/scoreboard;week={n}` | Matchups for a week |
 | `league/{key}/transactions` | Recent add/drops/trades |
 | `league/{key}/teams` | All team rosters |
-| `team/{key}/roster` | Individual team roster |
+| `team/{key}/roster;week={n}` | Individual team roster for a specific week |
+| `players;player_keys={keys};out=stats;type=projected_week;week={n}` | Projected week stats (Monte Carlo primary source) |
+| `players;player_keys={keys};out=stats` | Season-to-date stats (Monte Carlo fallback) |
 
 **League key format:** `mlb.l.{YAHOO_LEAGUE_ID}`
 **Team key format:** `mlb.l.{YAHOO_LEAGUE_ID}.t.{1-10}`
@@ -174,6 +177,72 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 ---
 
+## Monte Carlo Simulation Layer
+
+`scripts/monte_carlo.py` runs 10,000 per-matchup simulations using Yahoo's projected-week
+stats to produce probabilistic category win estimates. These numbers are **not suggestions** —
+Claude should treat them as ground truth inputs and write analysis that reflects them.
+
+### How it works
+
+1. `fetch_week_data()` calls `api.get_player_projected_stats(player_keys, week)` — Yahoo's
+   `projected_week` endpoint — for every active player across all 10 rosters.
+2. Players without projected-week data fall back to season-average stats scaled to one week
+   (÷ 25 for batters; × weekly_IP/season_IP for pitchers).
+3. For each simulation: sample every active player's stats from a distribution, sum to
+   team totals, determine category winner.
+   - Counting stats (R, HR, RBI, SB, K, SV, QS) → Poisson(λ = weekly projection)
+   - OBP → Beta(α, β) anchored at projected OBP with 80 effective at-bats of "noise"
+   - ERA/WHIP → derive ER and H+BB via Poisson, sample IP via Normal(proj_IP, 20% σ);
+     team ERA = sum(ER)/sum(IP)×9, team WHIP = sum(H+BB)/sum(IP)
+4. After 10,000 runs, record what fraction team0 wins each category.
+
+### Output format (stored in `matchups[i]['simulation']`)
+
+```json
+{
+  "cat_probs": {
+    "R": 0.61, "HR": 0.74, "RBI": 0.68, "SB": 0.44, "OBP": 0.52,
+    "SV": 0.91, "K": 0.58, "ERA": 0.38, "WHIP": 0.41, "QS": 0.55
+  },
+  "expected_score": [6.3, 3.7],
+  "win_pct": 0.71
+}
+```
+
+`cat_probs` values are **team0's win probability** per category (0 = team1 dominates, 1 = team0 dominates).
+
+### How Claude uses simulation data when writing analysis
+
+**Category edges (`cat_edges`):**
+Use `cat_probs` to determine edge direction and label. Rule of thumb:
+- `prob ≥ 0.60` → edge: 0 (team0). Label: "Team0 edge (XX%)"
+- `prob ≤ 0.40` → edge: 1 (team1). Label: "Team1 edge (XX%)"
+- `0.40 < prob < 0.60` → edge: -1 (even). Label: "Toss-up (XX%/XX%)"
+
+Group correlated categories to stay within 6 display rows:
+  HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV
+
+**Prediction format:**
+Use `expected_score` as the score and `win_pct` to calibrate confidence.
+- "TeamName 6.3–3.7. One punchy sentence." when `win_pct ≥ 0.65`
+- "TeamName 5.8–4.2. Close matchup, lean TeamName because [specific reason]." when `win_pct` is 0.55–0.65
+- Still round X+Y to 10.0 in the prediction text.
+
+**Example:** `expected_score: [6.3, 3.7], win_pct: 0.71` → "One Ball Two Strikes 6–4. Their bullpen is a fire hydrant and the other team's closers are all named 'TBD.'"
+
+**Don't:** mechanically paste probability numbers into the prose. Use them to anchor confidence and pick the right winners. The jokes and voice are yours; the math just tells you who to pick.
+
+### Standalone testing
+
+```bash
+# After running dump to generate the data file:
+python3 scripts/generate_week.py dump 1
+python3 scripts/monte_carlo.py data/week-01-preview-data.json
+```
+
+---
+
 ## AI-Generated Matchup Analysis
 
 Weekly preview analysis is written by **Claude directly** as part of the Cowork scheduled task — not via a separate API call. Claude IS the agent running the Sunday task, so no API key is needed.
@@ -198,8 +267,12 @@ Weekly preview analysis is written by **Claude directly** as part of the Cowork 
 **What Claude writes per matchup:**
 - `team0_analysis` — 2–3 sentences on that team's strengths/weaknesses this specific week
 - `team1_analysis` — same for the opponent
-- `cat_edges` — 6 rows: HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV — each with edge (team0/team1/even) and short label
-- `prediction` — "TeamName X-Y. One punchy sentence." format, X+Y=10
+- `cat_edges` — 6 rows: HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV — each with edge (team0/team1/even) and short label derived from Monte Carlo `cat_probs`
+- `prediction` — "TeamName X-Y. One punchy sentence." format, X+Y=10; X and Y come from Monte Carlo `expected_score` (rounded to nearest integer)
+
+**Simulation data is already in the JSON** under `matchups[i]['simulation']`. Read it.
+See the **Monte Carlo Simulation Layer** section above for exactly how to translate
+`cat_probs` → edge labels and `expected_score`/`win_pct` → prediction score.
 
 ---
 
