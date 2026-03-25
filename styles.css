@@ -180,15 +180,15 @@ nav > .nav-links > a.active::after { transform: scaleX(1); }
       45deg,
       transparent,
       transparent 30px,
-      rgba(255, 255, 255, .045) 30px,
-      rgba(255, 255, 255, .045) 31px
+      rgba(255, 255, 255, .03) 30px,
+      rgba(255, 255, 255, .03) 31px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent,
       transparent 30px,
-      rgba(255, 255, 255, .045) 30px,
-      rgba(255, 255, 255, .045) 31px
+      rgba(255, 255, 255, .03) 30px,
+      rgba(255, 255, 255, .03) 31px
     );
   pointer-events: none;
 }
