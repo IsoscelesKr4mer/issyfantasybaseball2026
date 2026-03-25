@@ -1621,6 +1621,186 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 
 /* ══════════════════════════════════════════
+   MATCHUP CARD — CATEGORY SCORE TABLE
+   (home page compact view)
+   ══════════════════════════════════════════ */
+
+.mc-tally {
+  font-size: .88rem;
+  font-weight: 800;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: .15rem .45rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface3);
+}
+.mc-tally-lead { color: var(--green); background: var(--green-dim); }
+
+.mc-cats {
+  border-top: 1px solid var(--border);
+  padding: .55rem .85rem .45rem;
+}
+.mc-cats-pending {
+  color: var(--muted);
+  font-size: .75rem;
+  text-align: center;
+  padding: .65rem;
+}
+
+.mc-score-tally {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  margin-bottom: .45rem;
+}
+.mc-score-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  min-width: 1.4rem;
+  text-align: center;
+}
+.mc-score-num.mc-score-lead { color: var(--green); }
+.mc-score-dash { color: var(--border-light); font-size: .9rem; }
+
+.mc-cat-rows { display: flex; flex-direction: column; }
+.mc-cat-row {
+  display: grid;
+  grid-template-columns: 1fr 2.5rem 1fr;
+  align-items: center;
+  padding: .2rem 0;
+  border-top: 1px solid var(--border);
+}
+.mc-cat-row:first-child { border-top: none; }
+.mc-cat-name {
+  text-align: center;
+  font-size: .65rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.mc-cat-val {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  text-align: center;
+}
+.mc-cat-val.mc-cat-lead { color: var(--green); font-weight: 800; }
+.mc-cat-row .mc-cat-val:first-child { text-align: right; padding-right: .3rem; }
+.mc-cat-row .mc-cat-val:last-child  { text-align: left;  padding-left: .3rem; }
+
+
+/* ══════════════════════════════════════════
+   WEEK PAGE — LIVE SCOREBOARD
+   ══════════════════════════════════════════ */
+
+.ls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+.ls-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-fast);
+}
+.ls-card:hover { box-shadow: var(--shadow-hover); }
+.ls-card.ls-motw {
+  border-color: var(--accent2);
+  box-shadow: 0 0 0 1px var(--accent2), var(--shadow-glow-gold);
+}
+
+.ls-header {
+  display: flex;
+  align-items: center;
+  padding: .75rem 1rem;
+  gap: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.ls-team {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  flex: 1;
+  min-width: 0;
+}
+.ls-team-right { flex-direction: row-reverse; text-align: right; }
+.ls-team-name {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+.ls-score {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+.ls-score.ls-score-lead {
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(62, 207, 142, .35);
+}
+.ls-vs {
+  font-size: .65rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  flex-shrink: 0;
+}
+
+.ls-cats { padding: .3rem 0; }
+.ls-cat-row {
+  display: grid;
+  grid-template-columns: 1fr 3rem 1fr;
+  align-items: center;
+  padding: .22rem .9rem;
+  border-bottom: 1px solid var(--border);
+}
+.ls-cat-row:last-child { border-bottom: none; }
+.ls-cat-name {
+  text-align: center;
+  font-size: .65rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.ls-cat-val {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+.ls-cat-val.ls-lead { color: var(--green); font-weight: 800; }
+.ls-cat-row .ls-cat-val:first-child { text-align: right; padding-right: .35rem; }
+.ls-cat-row .ls-cat-val:last-child  { text-align: left;  padding-left: .35rem; }
+.ls-updated {
+  text-align: right;
+  font-size: .72rem;
+  color: var(--muted);
+  padding: .25rem .5rem 0;
+}
+@media (max-width: 700px) { .ls-grid { grid-template-columns: 1fr; } }
+
+
+/* ══════════════════════════════════════════
    PLAYER HOVER TOOLTIP
    ══════════════════════════════════════════ */
 .player-tooltip {
