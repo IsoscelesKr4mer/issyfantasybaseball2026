@@ -350,16 +350,18 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.06 });
 revealEls.forEach(el => observer.observe(el));
 
-// Roster toggle — mobile modal close
+// Mobile roster modal — lock body scroll when open
 document.querySelectorAll('.mdc-rost-toggle').forEach(function(btn) {
   btn.addEventListener('click', function() {
+    // The inline onclick already toggles .open — just handle body scroll lock for mobile
     var rost = this.closest('.mdc-rost');
-    rost.classList.toggle('open');
-    if (rost.classList.contains('open') && window.innerWidth <= 640) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    setTimeout(function() {
+      if (rost.classList.contains('open') && window.innerWidth <= 640) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }, 0);
   });
 });
 document.querySelectorAll('.mdc-rost-close-x').forEach(function(btn) {
