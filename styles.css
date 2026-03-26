@@ -1436,13 +1436,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .matchup-detail-vs { font-size: .78rem; color: var(--muted); font-weight: 700; letter-spacing: .4px; }
 .matchup-detail-meta { font-size: .78rem; color: var(--muted); }
 
-/* Week pages: categories always expanded, toggle hidden */
-.matchup-detail-card .mc-toggle { display: none; }
-.matchup-detail-card .mc-cats {
-  max-height: none;
-  opacity: 1;
-  padding: .65rem 1rem .5rem;
-}
+/* Week pages: collapsible categories (same as home page) */
 .matchup-detail-body { display: grid; grid-template-columns: 1fr; gap: 1.2rem; padding: 1.2rem 1.4rem; }
 .matchup-detail-analysis p { margin-bottom: .75rem; font-size: .88rem; line-height: 1.55; color: var(--text-secondary); }
 .matchup-detail-analysis p:last-child { margin-bottom: 0; }
