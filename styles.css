@@ -2130,9 +2130,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .mc-tally-lead { color: var(--green); background: var(--green-dim); }
 
 .mc-cats {
-  background: var(--bg-subtle);
-  border-top: 1px solid var(--border);
-  padding: .65rem 1rem .5rem;
+  display: none;  /* category breakdown hidden on home; full detail lives on week pages */
 }
 .mc-cats-pending {
   color: var(--muted);
