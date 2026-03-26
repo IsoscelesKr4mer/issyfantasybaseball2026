@@ -1520,35 +1520,34 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   white-space: nowrap;
 }
 
-/* Category rows inside the strip */
+/* Category rows inside the strip — desktop: 5 cells per row */
 .mdc-cat-row {
   display: flex;
   gap: 0;
   border-top: 1px solid var(--border);
-  overflow: hidden;
 }
 .mdc-cell {
   display: flex;
   align-items: center;
-  gap: .15rem;
+  justify-content: center;
+  gap: .2rem;
   flex: 1 1 0;
   min-width: 0;
-  padding: .28rem .2rem;
+  padding: .28rem .3rem;
   border-right: 1px solid var(--border);
-  overflow: hidden;
 }
 .mdc-cell:last-child { border-right: none; }
 .mdc-cat {
-  font-size: .55rem;
+  font-size: .6rem;
   font-weight: 800;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .3px;
-  min-width: 1.6rem;
+  min-width: 1.8rem;
   flex-shrink: 0;
 }
 .mdc-val {
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 600;
   font-family: var(--font-mono);
   color: var(--text-secondary);
@@ -1556,9 +1555,33 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .mdc-val.mdc-lead { color: var(--green); font-weight: 800; }
 .mdc-sep {
-  font-size: .6rem;
+  font-size: .65rem;
   color: var(--border-light);
   flex-shrink: 0;
+}
+/* Mobile: stack categories vertically, 1 per row */
+@media (max-width: 640px) {
+  .mdc-cat-row {
+    flex-direction: column;
+  }
+  .mdc-cell {
+    display: grid;
+    grid-template-columns: 1fr 2.4rem 1fr;
+    gap: .15rem;
+    padding: .25rem .5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .mdc-cell:last-child { border-bottom: none; }
+  .mdc-cat {
+    text-align: center;
+    min-width: unset;
+    font-size: .6rem;
+  }
+  .mdc-val { font-size: .78rem; }
+  .mdc-val:first-of-type { text-align: right; }
+  .mdc-val:last-of-type  { text-align: left; }
+  .mdc-sep { display: none; }
 }
 
 /* ── Matchup card roster ──────────────────────── */
