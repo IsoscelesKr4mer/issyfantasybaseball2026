@@ -255,8 +255,8 @@ Use `cat_probs` to determine edge direction and label. Rule of thumb:
 - `prob ≤ 0.40` → edge: 1 (team1). Label: "Team1 edge (XX%)"
 - `0.40 < prob < 0.60` → edge: -1 (even). Label: "Toss-up (XX%/XX%)"
 
-Group correlated categories to stay within 6 display rows:
-  HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV
+Show all 10 categories individually. Do not group them. Each category gets its own row.
+Order: R, HR, RBI, SB, OBP, K, QS, ERA, WHIP, SV
 
 **Prediction format:**
 Use `expected_score` as the score and `win_pct` to calibrate confidence.
@@ -304,7 +304,7 @@ Weekly preview analysis is written by **Claude directly** as part of the Cowork 
 **What Claude writes per matchup:**
 - `team0_analysis` — 2–3 sentences on that team's strengths/weaknesses this specific week
 - `team1_analysis` — same for the opponent
-- `cat_edges` — 6 rows: HR/RBI/R, SB, OBP, K/QS, ERA/WHIP, SV — each with edge (team0/team1/even) and short label derived from Monte Carlo `cat_probs`
+- `cat_edges` — 10 rows, one per category, in order: R, HR, RBI, SB, OBP, K, QS, ERA, WHIP, SV — each with edge (team0/team1/even) and short label derived from Monte Carlo `cat_probs`. Do not group categories.
 - `prediction` — "TeamName X-Y. One punchy sentence." format, X+Y=10; X and Y come from Monte Carlo `expected_score` (rounded to nearest integer)
 
 **Simulation data is already in the JSON** under `matchups[i]['simulation']`. Read it.
