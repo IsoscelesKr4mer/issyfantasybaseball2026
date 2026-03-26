@@ -183,9 +183,24 @@ def _render_cat_table(matchup: dict) -> str:
         f'</div>'
     )
 
+    banner = (
+        f'<div class="mc-score-banner">'
+        f'<span class="mc-score-num{w0_cls}">{cat_wins[0]}</span>'
+        f'<span class="mc-score-dash">&ndash;</span>'
+        f'<span class="mc-score-num{w1_cls}">{cat_wins[1]}</span>'
+        f'</div>'
+    )
+
+    toggle = (
+        '<button class="mc-toggle" onclick="this.classList.toggle(\'mc-active\');\n'
+        'this.nextElementSibling.classList.toggle(\'mc-open\')">'
+        'Category Breakdown <span class="mc-toggle-arrow">&#9660;</span></button>'
+    )
+
     return (
+        f'{banner}'
+        f'{toggle}'
         f'<div class="mc-cats">'
-        f'{score_line}'
         f'{header}'
         f'<div class="mc-cat-rows">{"".join(rows)}</div>'
         f'</div>'
@@ -225,12 +240,15 @@ def render_matchups(matchups: list, week: int) -> str:
                 f'</div>'
             )
             cat_table_html = (
-                '<div class="mc-cats">'
-                '<div class="mc-score-tally">'
+                '<div class="mc-score-banner">'
                 '<span class="mc-score-num">0</span>'
                 '<span class="mc-score-dash">&ndash;</span>'
                 '<span class="mc-score-num">0</span>'
                 '</div>'
+                '<button class="mc-toggle" onclick="this.classList.toggle(\'mc-active\');'
+                'this.nextElementSibling.classList.toggle(\'mc-open\')">'
+                'Category Breakdown <span class="mc-toggle-arrow">&#9660;</span></button>'
+                '<div class="mc-cats">'
                 + header +
                 '<div class="mc-cat-rows">'
                 + ''.join(

@@ -2129,8 +2129,79 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .mc-tally-lead { color: var(--green); background: var(--green-dim); }
 
+/* ── Big centered score banner (always visible) ── */
+.mc-score-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: .8rem 0 .6rem;
+  border-top: 1px solid var(--border);
+}
+.mc-score-banner .mc-score-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--muted);
+  font-family: var(--font-display);
+  min-width: 2rem;
+  text-align: center;
+  letter-spacing: .5px;
+  line-height: 1;
+}
+.mc-score-banner .mc-score-num.mc-score-lead { color: var(--green); }
+.mc-score-banner .mc-score-dash {
+  color: var(--border-light);
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* ── Collapsible toggle ── */
+.mc-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  padding: .3rem 0;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  opacity: .6;
+  transition: opacity .2s;
+  user-select: none;
+  border: none;
+  background: none;
+  width: 100%;
+}
+.mc-toggle:hover { opacity: 1; }
+.mc-toggle-arrow {
+  display: inline-block;
+  transition: transform .25s ease;
+  font-size: .55rem;
+}
+.mc-cats.mc-open + .mc-toggle-wrap .mc-toggle-arrow,
+.mc-toggle.mc-active .mc-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Category detail (collapsed by default) ── */
 .mc-cats {
-  display: none;  /* category breakdown hidden on home; full detail lives on week pages */
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  padding: .65rem 1rem .5rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.mc-cats.mc-open {
+  max-height: 500px;
+  opacity: 1;
+  padding: .65rem 1rem .5rem;
 }
 .mc-cats-pending {
   color: var(--muted);
@@ -2140,13 +2211,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 
 .mc-score-tally {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  margin-bottom: .55rem;
-  padding-bottom: .5rem;
-  border-bottom: 1px solid var(--border);
+  display: none; /* score now lives in .mc-score-banner */
 }
 .mc-score-num {
   font-size: 1.35rem;
