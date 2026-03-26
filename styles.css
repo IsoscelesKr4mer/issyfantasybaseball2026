@@ -1525,36 +1525,40 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   display: flex;
   gap: 0;
   border-top: 1px solid var(--border);
+  overflow: hidden;
 }
 .mdc-cell {
   display: flex;
   align-items: center;
-  gap: .2rem;
-  flex: 1;
-  padding: .28rem .3rem;
+  gap: .15rem;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: .28rem .2rem;
   border-right: 1px solid var(--border);
+  overflow: hidden;
 }
 .mdc-cell:last-child { border-right: none; }
 .mdc-cat {
-  font-size: .6rem;
+  font-size: .55rem;
   font-weight: 800;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .3px;
-  min-width: 2.1rem;
+  min-width: 1.6rem;
   flex-shrink: 0;
 }
 .mdc-val {
-  font-size: .75rem;
+  font-size: .7rem;
   font-weight: 600;
   font-family: var(--font-mono);
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 .mdc-val.mdc-lead { color: var(--green); font-weight: 800; }
 .mdc-sep {
-  font-size: .65rem;
+  font-size: .6rem;
   color: var(--border-light);
-  margin: 0 .1rem;
+  flex-shrink: 0;
 }
 
 /* ── Matchup card roster ──────────────────────── */
