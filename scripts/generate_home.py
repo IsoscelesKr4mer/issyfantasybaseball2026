@@ -654,7 +654,34 @@ def render_transactions(transactions: list) -> str:
                 f'</div>'
             )
 
-    return '      <div class="transactions-list">\n' + '\n'.join(rows) + '\n      </div>'
+    pager = (
+        '      <div class="tx-pager">\n'
+        '        <button class="tx-pager-btn" id="tx-prev" disabled>&larr; Prev</button>\n'
+        '        <span class="tx-pager-info" id="tx-info"></span>\n'
+        '        <button class="tx-pager-btn" id="tx-next">Next &rarr;</button>\n'
+        '      </div>\n'
+        '      <script>\n'
+        '      (function(){\n'
+        "        var rows = document.querySelectorAll('#tx-list .tx-row');\n"
+        '        var perPage = 10, page = 0, total = rows.length, pages = Math.ceil(total / perPage);\n'
+        "        var prev = document.getElementById('tx-prev');\n"
+        "        var next = document.getElementById('tx-next');\n"
+        "        var info = document.getElementById('tx-info');\n"
+        '        function render() {\n'
+        '          rows.forEach(function(r, i) {\n'
+        "            r.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? '' : 'none';\n"
+        '          });\n'
+        '          prev.disabled = page === 0;\n'
+        '          next.disabled = page >= pages - 1;\n'
+        "          info.textContent = (page + 1) + ' / ' + pages;\n"
+        '        }\n'
+        "        prev.addEventListener('click', function() { if (page > 0) { page--; render(); } });\n"
+        "        next.addEventListener('click', function() { if (page < pages - 1) { page++; render(); } });\n"
+        '        render();\n'
+        '      })();\n'
+        '      </script>'
+    )
+    return '      <div class="transactions-list" id="tx-list">\n' + '\n'.join(rows) + '\n      </div>\n' + pager
 
 # ── Render week archive HTML ──────────────────────────────────────────────────
 def render_week_archive(current_week: int) -> str:
