@@ -1356,6 +1356,30 @@ nav a.muted { color: var(--muted); }
 .tx-team { color: var(--muted); font-size: .8rem; }
 .tx-empty { color: var(--muted); font-style: italic; padding: .5rem 0; }
 
+.tx-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: .75rem 0 .25rem;
+  border-top: 1px solid var(--border);
+  margin-top: .25rem;
+}
+.tx-pager-btn {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .35rem .75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s, opacity .15s;
+}
+.tx-pager-btn:hover:not(:disabled) { background: var(--accent-dim); }
+.tx-pager-btn:disabled { opacity: .3; cursor: default; }
+.tx-pager-info { font-size: .75rem; color: var(--muted); font-weight: 600; }
+
 /* ── Week archive grid ── */
 .weeks-grid {
   display: grid;

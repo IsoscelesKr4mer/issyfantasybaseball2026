@@ -315,7 +315,7 @@
     </h2>
     <div class="card reveal">
       <!-- AUTO:TRANSACTIONS_START -->
-      <div class="transactions-list">
+      <div class="transactions-list" id="tx-list">
         <div class="tx-row"><span class="tx-date">Mar 25</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Mick Abel</span><span class="tx-team">&rarr; One Ball Two Strikes</span></div>
         <div class="tx-row"><span class="tx-date">Mar 25</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Brandon Sproat</span><span class="tx-team">&rarr; Good Vibes Only</span></div>
         <div class="tx-row"><span class="tx-date">Mar 25</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Giancarlo Stanton</span><span class="tx-team">&rarr; Ray Donovan</span></div>
@@ -337,6 +337,31 @@
         <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Grant Holmes</span><span class="tx-team">&rarr; Ray Donovan</span></div>
         <div class="tx-row"><span class="tx-date">Mar 22</span><span class="tx-type tx-type-add">add</span><span class="tx-player">Ernie Clement</span><span class="tx-team">&rarr; The Ragans Administration</span></div>
       </div>
+      <div class="tx-pager">
+        <button class="tx-pager-btn" id="tx-prev" disabled>&larr; Prev</button>
+        <span class="tx-pager-info" id="tx-info"></span>
+        <button class="tx-pager-btn" id="tx-next">Next &rarr;</button>
+      </div>
+      <script>
+      (function(){
+        var rows = document.querySelectorAll(‘#tx-list .tx-row’);
+        var perPage = 10, page = 0, total = rows.length, pages = Math.ceil(total / perPage);
+        var prev = document.getElementById(‘tx-prev’);
+        var next = document.getElementById(‘tx-next’);
+        var info = document.getElementById(‘tx-info’);
+        function render() {
+          rows.forEach(function(r, i) {
+            r.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? ‘’ : ‘none’;
+          });
+          prev.disabled = page === 0;
+          next.disabled = page >= pages - 1;
+          info.textContent = (page + 1) + ‘ / ‘ + pages;
+        }
+        prev.addEventListener(‘click’, function() { if (page > 0) { page--; render(); } });
+        next.addEventListener(‘click’, function() { if (page < pages - 1) { page++; render(); } });
+        render();
+      })();
+      </script>
     <!-- AUTO:TRANSACTIONS_END -->
     </div>
   </section>
