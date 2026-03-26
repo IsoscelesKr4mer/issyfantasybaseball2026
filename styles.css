@@ -1449,14 +1449,25 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .edge-home { background: var(--green-dim); color: var(--green); }
 .edge-even { background: var(--surface3); color: var(--muted); }
 .matchup-prediction {
-  padding: .85rem 1.4rem;
   border-top: 1px solid var(--border);
   background: rgba(247, 201, 72, .04);
-  font-size: .85rem;
-  text-align: left;
+  font-size: .88rem;
+  line-height: 1.5;
 }
-.prediction-label { font-weight: 800; color: var(--accent2); margin-right: .5rem; display: block; margin-bottom: .3rem; text-transform: uppercase; font-size: .7rem; letter-spacing: .5px; }
-.prediction-text { color: var(--text-secondary); }
+.prediction-label {
+  display: block;
+  font-weight: 900;
+  color: var(--accent2);
+  text-transform: uppercase;
+  font-size: .65rem;
+  letter-spacing: 1.2px;
+  padding: .6rem 1.2rem .25rem;
+}
+.prediction-text {
+  display: block;
+  color: var(--text-secondary);
+  padding: 0 1.2rem .75rem;
+}
 
 /* ── Embedded live score strip (mdc-live) ── */
 .mdc-live {
@@ -1789,10 +1800,10 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 2px solid rgba(99, 210, 151, .35);
+  border: 2.5px solid rgba(255, 255, 255, .45);
   flex-shrink: 0;
   background: var(--surface3);
-  box-shadow: 0 0 8px rgba(99, 210, 151, .15), 0 0 0 1px rgba(255,255,255,.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .1);
 }
 .headshot-sm {
   width: 28px;
