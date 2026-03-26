@@ -1450,7 +1450,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .cat-row { display: flex; justify-content: space-between; align-items: center; padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .8rem; gap: .8rem; }
 .cat-row:last-child { border-bottom: none; }
 .cat-name { color: var(--text-secondary); }
-.cat-edge { font-size: .72rem; font-weight: 700; letter-spacing: .3px; padding: .15rem .45rem; border-radius: 4px; white-space: normal; text-align: right; }
+.cat-edge { font-size: .72rem; font-weight: 700; letter-spacing: .3px; padding: .15rem .45rem; border-radius: 4px; white-space: normal; text-align: left; }
 .edge-away { background: var(--accent-dim); color: var(--accent); }
 .edge-home { background: var(--green-dim); color: var(--green); }
 .edge-even { background: var(--surface3); color: var(--muted); }
@@ -2778,7 +2778,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   padding: .2rem .65rem;
   border-radius: 12px;
   white-space: normal;
-  text-align: right;
+  text-align: left;
   flex-shrink: 1;
 }
 .edge-away {
