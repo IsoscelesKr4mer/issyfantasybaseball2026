@@ -1412,16 +1412,17 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .matchup-detail-card:hover { border-color: var(--border-light); }
 .matchup-detail-header {
-  padding: 1rem 1.4rem .8rem;
+  padding: 1.2rem 1.4rem .8rem;
   border-bottom: 1px solid var(--border);
   background: var(--surface2);
+  text-align: center;
 }
 .matchup-detail-teams {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .75rem;
   margin-bottom: .3rem;
-  flex-wrap: wrap;
 }
 /* Bigger headshots inside matchup detail cards */
 .matchup-detail-team-block .headshot {
@@ -1434,6 +1435,14 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .matchup-detail-team { font-size: 1.05rem; font-weight: 800; }
 .matchup-detail-vs { font-size: .78rem; color: var(--muted); font-weight: 700; letter-spacing: .4px; }
 .matchup-detail-meta { font-size: .78rem; color: var(--muted); }
+
+/* Week pages: categories always expanded, toggle hidden */
+.matchup-detail-card .mc-toggle { display: none; }
+.matchup-detail-card .mc-cats {
+  max-height: none;
+  opacity: 1;
+  padding: .65rem 1rem .5rem;
+}
 .matchup-detail-body { display: grid; grid-template-columns: 1fr; gap: 1.2rem; padding: 1.2rem 1.4rem; }
 .matchup-detail-analysis p { margin-bottom: .75rem; font-size: .88rem; line-height: 1.55; color: var(--text-secondary); }
 .matchup-detail-analysis p:last-child { margin-bottom: 0; }
@@ -1818,11 +1827,16 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 /* Matchup detail header with headshots */
 .matchup-detail-team-block {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .65rem;
+  gap: .35rem;
+  flex: 1;
 }
 .matchup-detail-team-block .matchup-detail-team {
-  font-size: 1rem;
+  font-size: .85rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5px;
 }
 
 
