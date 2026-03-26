@@ -240,12 +240,18 @@ class YahooFantasyAPI:
                 })
 
             # Determine per-category winner: 0 = team0 wins, 1 = team1 wins, None = tie/-
+            # Yahoo rule: if one team has a value and the other has "-", the team
+            # with the posted value wins the category.
             cat_winners = {}
             if len(teams) == 2:
                 for cat in CAT_ORDER:
                     v0 = teams[0]['cats'].get(cat, '-')
                     v1 = teams[1]['cats'].get(cat, '-')
-                    try:
+                    def _is_num(v):
+                        try: float(v); return True
+                        except (ValueError, TypeError): return False
+                    has0, has1 = _is_num(v0), _is_num(v1)
+                    if has0 and has1:
                         f0, f1 = float(v0), float(v1)
                         if cat in LOWER_BETTER:
                             if f0 < f1:   cat_winners[cat] = 0
@@ -255,7 +261,11 @@ class YahooFantasyAPI:
                             if f0 > f1:   cat_winners[cat] = 0
                             elif f1 > f0: cat_winners[cat] = 1
                             else:          cat_winners[cat] = None
-                    except (ValueError, TypeError):
+                    elif has0 and not has1:
+                        cat_winners[cat] = 0
+                    elif has1 and not has0:
+                        cat_winners[cat] = 1
+                    else:
                         cat_winners[cat] = None
 
             # Tally category wins

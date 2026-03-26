@@ -38,6 +38,23 @@ def headshot_img(team_name: str, size_class: str = '') -> str:
     cls = f'headshot {size_class}'.strip()
     return f'<img src="{src}" alt="{team_name}" class="{cls}" />'
 
+# Short names for the category header row
+SHORT_NAMES = {
+    'One Ball Two Strikes': 'One Ball',
+    'The Ragans Administration': 'Ragans',
+    'The Buckner Boots': 'Buckner',
+    'Good Vibes Only': 'GVO',
+    'Rain City Bombers': 'Rain City',
+    'Busch Latte': 'Busch',
+    'Keanu Reeves': 'Keanu',
+    'Ete Crow': 'Ete Crow',
+    'Decoy': 'Decoy',
+    'Skenes\u2019n on deez Hoerners': 'Skenes',
+}
+
+def _short(name: str) -> str:
+    return SHORT_NAMES.get(name, name.split()[0])
+
 # ── Week dates lookup (add as season progresses) ──────────────────────────────
 WEEK_DATES = {
     1:  ('Mar 25', 'Mar 29'),
@@ -158,9 +175,18 @@ def _render_cat_table(matchup: dict) -> str:
             f'</div>'
         )
 
+    header = (
+        f'<div class="mc-cat-header">'
+        f'<span class="mc-cat-header-name">{_short(t0["name"])}</span>'
+        f'<span></span>'
+        f'<span class="mc-cat-header-name">{_short(t1["name"])}</span>'
+        f'</div>'
+    )
+
     return (
         f'<div class="mc-cats">'
         f'{score_line}'
+        f'{header}'
         f'<div class="mc-cat-rows">{"".join(rows)}</div>'
         f'</div>'
     )
@@ -191,6 +217,13 @@ def render_matchups(matchups: list, week: int) -> str:
         if has_data:
             cat_table_html = _render_cat_table(m)
         else:
+            header = (
+                f'<div class="mc-cat-header">'
+                f'<span class="mc-cat-header-name">{_short(t0["name"])}</span>'
+                f'<span></span>'
+                f'<span class="mc-cat-header-name">{_short(t1["name"])}</span>'
+                f'</div>'
+            )
             cat_table_html = (
                 '<div class="mc-cats">'
                 '<div class="mc-score-tally">'
@@ -198,6 +231,7 @@ def render_matchups(matchups: list, week: int) -> str:
                 '<span class="mc-score-dash">&ndash;</span>'
                 '<span class="mc-score-num">0</span>'
                 '</div>'
+                + header +
                 '<div class="mc-cat-rows">'
                 + ''.join(
                     f'<div class="mc-cat-row"><span class="mc-cat-val">&mdash;</span>'
@@ -478,13 +512,21 @@ def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
         for cat in CAT_ORDER:
             v0 = t0['cats'].get(cat, '-')
             v1 = t1['cats'].get(cat, '-')
-            try:
+            def _is_num(v):
+                try: float(v); return True
+                except (ValueError, TypeError): return False
+            has0, has1 = _is_num(v0), _is_num(v1)
+            if has0 and has1:
                 f0, f1 = float(v0), float(v1)
                 if cat in LOWER_BETTER:
                     cat_winners[cat] = 0 if f0 < f1 else (1 if f1 < f0 else None)
                 else:
                     cat_winners[cat] = 0 if f0 > f1 else (1 if f1 > f0 else None)
-            except (ValueError, TypeError):
+            elif has0 and not has1:
+                cat_winners[cat] = 0
+            elif has1 and not has0:
+                cat_winners[cat] = 1
+            else:
                 cat_winners[cat] = None
         wins = [sum(1 for w in cat_winners.values() if w == 0),
                 sum(1 for w in cat_winners.values() if w == 1)]
