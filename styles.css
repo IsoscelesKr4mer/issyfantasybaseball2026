@@ -1171,6 +1171,7 @@ nav a.muted { color: var(--muted); }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.1rem;
+  align-items: start;
 }
 .matchups-grid > .matchup-card:first-child {
   grid-column: 1 / -1;
