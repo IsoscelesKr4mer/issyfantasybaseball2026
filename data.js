@@ -11,7 +11,7 @@ const TEAMS = [
   { id: 'vibes',   name: 'Good Vibes Only',             pick: 6, manager: '' },
   { id: 'rain',    name: 'Rain City Bombers',           pick: 7, manager: '' },
   { id: 'buckner', name: 'The Buckner Boots',           pick: 8, manager: 'Michael' },
-  { id: 'decoy',   name: 'Decoy',                       pick: 9, manager: '' },
+  { id: 'decoy',   name: 'Ray Donovan',                       pick: 9, manager: '' },
   { id: 'oneball', name: 'One Ball Two Strikes',        pick: 10, manager: '' },
 ];
 

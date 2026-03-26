@@ -27,7 +27,7 @@ Deploy to GitHub Pages:
 | vibes | Good Vibes Only |
 | rain | Rain City Bombers |
 | buckner | The Buckner Boots |
-| decoy | Decoy |
+| decoy | Ray Donovan |
 | oneball | One Ball Two Strikes |
 
 ## League Settings

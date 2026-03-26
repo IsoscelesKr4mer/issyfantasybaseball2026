@@ -46,7 +46,7 @@ matchup previews, weekly recaps, and running commentary.
 | vibes    | Good Vibes Only               | Michael      | 4th       | 6          |
 | rain     | Rain City Bombers             | Taylor       | 9th       | 7          |
 | buckner  | The Buckner Boots             | Michael      | 8th       | 8          |
-| decoy    | Decoy                         | Mario        | 5th       | 9          |
+| decoy    | Ray Donovan                         | Mario        | 5th       | 9          |
 | oneball  | One Ball Two Strikes          | Garth W      | 2nd       | 10         |
 
 ---

@@ -204,7 +204,7 @@ TEAM_META = {
     'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.jpeg'},
     'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.jpeg'},
     'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8,  'img': 'buckner.jpeg'},
-    'Decoy':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
+    'Ray Donovan':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
     'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10, 'img': 'one-ball.png'},
     'Ete Crow':                     {'2025_rank': 1,  'draft_slot': 4,  'img': 'ete-crow.jpeg'},
 }

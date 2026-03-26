@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).parent.parent
 TEAM_HEADSHOTS = {
     'One Ball Two Strikes':       'img/headshots/one-ball.png',
     'The Ragans Administration':  'img/headshots/ragans.jpeg',
-    'Decoy':                      'img/headshots/decoy.jpeg',
+    'Ray Donovan':                      'img/headshots/decoy.jpeg',
     'Good Vibes Only':            'img/headshots/good-vibes.jpeg',
     'Keanu Reeves':               'img/headshots/keanu.jpeg',
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',
@@ -48,7 +48,7 @@ SHORT_NAMES = {
     'Busch Latte': 'Busch',
     'Keanu Reeves': 'Keanu',
     'Ete Crow': 'Ete Crow',
-    'Decoy': 'Decoy',
+    'Ray Donovan': 'Donovan',
     'Skenes\u2019n on deez Hoerners': 'Skenes',
 }
 
