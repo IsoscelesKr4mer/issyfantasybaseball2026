@@ -1434,8 +1434,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .matchup-detail-team { font-size: 1.05rem; font-weight: 800; }
 .matchup-detail-vs { font-size: .78rem; color: var(--muted); font-weight: 700; letter-spacing: .4px; }
 .matchup-detail-meta { font-size: .78rem; color: var(--muted); }
-.matchup-detail-body { display: grid; grid-template-columns: 1fr auto; gap: 1.2rem; padding: 1.2rem 1.4rem; }
-@media (max-width: 640px) { .matchup-detail-body { grid-template-columns: 1fr; } }
+.matchup-detail-body { display: grid; grid-template-columns: 1fr; gap: 1.2rem; padding: 1.2rem 1.4rem; }
 .matchup-detail-analysis p { margin-bottom: .75rem; font-size: .88rem; line-height: 1.55; color: var(--text-secondary); }
 .matchup-detail-analysis p:last-child { margin-bottom: 0; }
 .matchup-detail-cats { min-width: 220px; }
