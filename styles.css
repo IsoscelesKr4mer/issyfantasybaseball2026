@@ -1319,6 +1319,7 @@ nav a.muted { color: var(--muted); }
 .matchup-preview-link {
   padding: .65rem 1.2rem .85rem;
   margin-top: auto;
+  text-align: center;
 }
 .matchup-preview-link a {
   display: inline-flex;
@@ -2117,17 +2118,9 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
    ══════════════════════════════════════════ */
 
 .mc-tally {
-  font-size: .88rem;
-  font-weight: 800;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  flex-shrink: 0;
-  margin-left: auto;
-  padding: .15rem .45rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface3);
+  display: none; /* score now shown in the centered banner */
 }
-.mc-tally-lead { color: var(--green); background: var(--green-dim); }
+.mc-tally-lead { }
 
 /* ── Big centered score banner (always visible) ── */
 .mc-score-banner {
