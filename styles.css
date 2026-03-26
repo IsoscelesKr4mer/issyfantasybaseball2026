@@ -1780,10 +1780,10 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid #fff;
+  border: 2px solid var(--accent2);
   flex-shrink: 0;
   background: var(--surface3);
-  box-shadow: 0 0 12px rgba(99, 210, 151, .4), 0 0 4px rgba(99, 210, 151, .25);
+  box-shadow: 0 0 10px rgba(247, 201, 72, .3);
 }
 .headshot-sm {
   width: 28px;
