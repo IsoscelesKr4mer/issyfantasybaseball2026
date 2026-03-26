@@ -1453,8 +1453,9 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   border-top: 1px solid var(--border);
   background: rgba(247, 201, 72, .04);
   font-size: .85rem;
+  text-align: left;
 }
-.prediction-label { font-weight: 800; color: var(--accent2); margin-right: .5rem; }
+.prediction-label { font-weight: 800; color: var(--accent2); margin-right: .5rem; display: block; margin-bottom: .3rem; text-transform: uppercase; font-size: .7rem; letter-spacing: .5px; }
 .prediction-text { color: var(--text-secondary); }
 
 /* ── Embedded live score strip (mdc-live) ── */
@@ -1788,9 +1789,10 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 2px solid var(--border-light);
+  border: 2px solid rgba(99, 210, 151, .35);
   flex-shrink: 0;
   background: var(--surface3);
+  box-shadow: 0 0 8px rgba(99, 210, 151, .15), 0 0 0 1px rgba(255,255,255,.06);
 }
 .headshot-sm {
   width: 28px;
