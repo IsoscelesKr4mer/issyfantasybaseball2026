@@ -1428,8 +1428,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .matchup-detail-team-block .headshot {
   width: 72px;
   height: 72px;
-  border-width: 2px;
-  border-color: var(--border-light);
+  border-width: 2.5px;
 }
 
 .matchup-detail-team { font-size: 1.05rem; font-weight: 800; }
