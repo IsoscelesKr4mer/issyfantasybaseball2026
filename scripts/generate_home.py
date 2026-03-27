@@ -555,84 +555,15 @@ def _ordered_matchups_for_week(week_html: str, api_matchups: list) -> list:
 
 
 def render_matchup_live_score(matchup: dict, updated_at: str) -> str:
-    """Compact two-row score strip for one matchup card."""
+    """Render the mc-score-banner + mc-cats block for the week page.
+
+    Uses the same mc-score-banner / mc-cats format as the existing week page
+    design so only data values are updated, never the surrounding layout.
+    """
     if matchup is None:
         return ''
-    if not _cats_have_data(matchup):
-        t0, t1 = matchup['teams'][0], matchup['teams'][1]
-        def blank_row(cats):
-            cells = ''.join(
-                f'<span class="mdc-cell">'
-                f'<span class="mdc-cat">{c}</span>'
-                f'<span class="mdc-val">&mdash;</span>'
-                f'<span class="mdc-sep">/</span>'
-                f'<span class="mdc-val">&mdash;</span>'
-                f'</span>'
-                for c in cats
-            )
-            return f'<div class="mdc-cat-row">{cells}</div>'
-        return (
-            '<div class="mdc-live">'
-            '<div class="mdc-live-header">'
-            '<span class="mdc-live-status status-upcoming">Pre-Game</span>'
-            '<span class="mdc-score-block">'
-            f'<span class="mdc-score-name">{t0["name"]}</span>'
-            '<span class="mdc-score-num">0</span>'
-            '<span class="mdc-score-dash">&mdash;</span>'
-            '<span class="mdc-score-num">0</span>'
-            f'<span class="mdc-score-name">{t1["name"]}</span>'
-            '</span>'
-            '</div>'
-            f'{blank_row(BATTING_CATS)}'
-            f'{blank_row(PITCHING_CATS)}'
-            '</div>'
-        )
-
-    t0, t1 = matchup['teams'][0], matchup['teams'][1]
-    cat_winners = matchup.get('cat_winners', {})
-    cat_wins    = matchup.get('cat_wins', [0, 0])
-    status      = matchup.get('status', 'midevent')
-
-    status_text = 'Final' if status == 'postevent' else 'Live'
-    status_cls  = 'status-final' if status == 'postevent' else 'status-live'
-    w0_cls = ' score-lead' if cat_wins[0] > cat_wins[1] else ''
-    w1_cls = ' score-lead' if cat_wins[1] > cat_wins[0] else ''
-
-    def cat_row_html(cats):
-        cells = []
-        for cat in cats:
-            v0 = t0['cats'].get(cat, '—') or '—'
-            v1 = t1['cats'].get(cat, '—') or '—'
-            w  = cat_winners.get(cat)
-            c0 = ' mdc-lead' if w == 0 else ''
-            c1 = ' mdc-lead' if w == 1 else ''
-            cells.append(
-                f'<span class="mdc-cell">'
-                f'<span class="mdc-cat">{cat}</span>'
-                f'<span class="mdc-val{c0}">{v0}</span>'
-                f'<span class="mdc-sep">/</span>'
-                f'<span class="mdc-val{c1}">{v1}</span>'
-                f'</span>'
-            )
-        return f'<div class="mdc-cat-row">{"".join(cells)}</div>'
-
-    return (
-        f'<div class="mdc-live">'
-        f'<div class="mdc-live-header">'
-        f'<span class="mdc-live-status {status_cls}">{status_text}</span>'
-        f'<span class="mdc-score-block">'
-        f'<span class="mdc-score-name">{t0["name"]}</span>'
-        f'<span class="mdc-score-num{w0_cls}">{cat_wins[0]}</span>'
-        f'<span class="mdc-score-dash">&mdash;</span>'
-        f'<span class="mdc-score-num{w1_cls}">{cat_wins[1]}</span>'
-        f'<span class="mdc-score-name">{t1["name"]}</span>'
-        f'</span>'
-        f'<span class="mdc-updated">{updated_at}</span>'
-        f'</div>'
-        f'{cat_row_html(BATTING_CATS)}'
-        f'{cat_row_html(PITCHING_CATS)}'
-        f'</div>'
-    )
+    # Delegate to _render_cat_table which already produces the correct format
+    return _render_cat_table(matchup)
 
 # ── Render transactions HTML ──────────────────────────────────────────────────
 def render_transactions(transactions: list) -> str:
