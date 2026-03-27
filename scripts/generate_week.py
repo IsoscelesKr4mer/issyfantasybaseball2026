@@ -661,8 +661,19 @@ def git_push(week: int, action: str):
             print('  ℹ️  Nothing to commit')
             return
 
-        subprocess.run(['git', 'push', 'origin', 'main'],
-                       cwd=BASE_DIR, check=True, capture_output=True)
+        try:
+            subprocess.run(['git', 'push', 'origin', 'main'],
+                           cwd=BASE_DIR, check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            # Remote is ahead — fetch + merge (never rebase; rebase leaves
+            # lock files the sandbox cannot clean up), then push again.
+            print('  ↩️  Remote ahead — fetching and merging...')
+            subprocess.run(['git', 'fetch', 'origin'],
+                           cwd=BASE_DIR, check=True, capture_output=True)
+            subprocess.run(['git', 'merge', '--no-edit', 'origin/main'],
+                           cwd=BASE_DIR, check=True, capture_output=True)
+            subprocess.run(['git', 'push', 'origin', 'main'],
+                           cwd=BASE_DIR, check=True, capture_output=True)
         print(f'  ✅  Pushed: {commit_msg}')
     except subprocess.CalledProcessError as e:
         print(f'  ❌  Git push failed: {e}')
