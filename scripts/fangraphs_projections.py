@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-fangraphs_projections.py -- FanGraphs Steamer projection fetcher and weekly scaler.
+fangraphs_projections.py -- FanGraphs projection fetcher and weekly scaler.
 
-Fetches full-season Steamer projections from FanGraphs and scales them to
-per-week projections based on the MLB schedule for that week. Intended as a
-drop-in replacement for Yahoo's projected_week stats, which return actual
-current-week stats instead of forward projections.
+Fetches Steamer rest-of-season (steamerr) projections from FanGraphs and
+scales them to per-week projections based on the MLB schedule for that week.
 
-Primary use: supply projected_stats to monte_carlo.py.
+steamerr is used instead of steamer because it updates throughout the season
+with actual performance data -- a player having a career year or nursing a
+nagging injury will see their projections drift accordingly, rather than being
+permanently anchored to pre-season expectations.
+
+Yahoo's projected_week endpoint returns current-week actuals during the week,
+not forward projections. This module replaces it as the Monte Carlo data source.
 
 Usage:
     python3 scripts/fangraphs_projections.py [week_number]
@@ -26,14 +30,17 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-DATA_DIR   = Path(__file__).parent.parent / 'data'
-BAT_CACHE  = DATA_DIR / 'steamer_bat.json'
-PIT_CACHE  = DATA_DIR / 'steamer_pit.json'
+DATA_DIR    = Path(__file__).parent.parent / 'data'
 WEEKS_CACHE = DATA_DIR / 'yahoo_game_weeks.json'
 
-CACHE_MAX_HOURS     = 24   # FanGraphs projections refresh daily
-SCHEDULE_CACHE_HOURS = 48  # MLB schedule refresh every 2 days
-WEEKS_CACHE_HOURS   = 168  # Yahoo week dates barely change; refresh weekly
+# Projection type: 'steamerr' (rest-of-season, updates with actuals) is the
+# default. 'steamer' is the full-season pre-season projection. steamerr is
+# preferred because it responds to career years, injuries, and role changes.
+DEFAULT_PROJ_TYPE = 'steamerr'
+
+CACHE_MAX_HOURS      = 24   # FanGraphs projections: refresh daily
+SCHEDULE_CACHE_HOURS = 48   # MLB schedule: refresh every 2 days
+WEEKS_CACHE_HOURS    = 168  # Yahoo week dates: refresh weekly (they never change)
 
 FG_HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
@@ -115,28 +122,38 @@ def fetch_yahoo_week_dates(api, force: bool = False) -> dict:
 # FanGraphs Steamer fetch
 # ---------------------------------------------------------------------------
 
-def fetch_steamer(force: bool = False) -> tuple:
-    """Return (bat_rows, pit_rows). Uses disk cache; refreshes if stale."""
-    DATA_DIR.mkdir(exist_ok=True)
+def fetch_steamer(force: bool = False, proj_type: str = DEFAULT_PROJ_TYPE) -> tuple:
+    """Return (bat_rows, pit_rows) for the given projection type.
 
-    if not force and _fresh(BAT_CACHE, CACHE_MAX_HOURS) and _fresh(PIT_CACHE, CACHE_MAX_HOURS):
-        bat = json.loads(BAT_CACHE.read_text())
-        pit = json.loads(PIT_CACHE.read_text())
-        print(f'[fg] Using cached projections ({len(bat)} batters, {len(pit)} pitchers)')
+    proj_type options:
+      'steamerr' -- Steamer rest-of-season (default). Updates with actual
+                    performance throughout the season. Best for in-season use.
+      'steamer'  -- Full-season Steamer. Pure pre-season expectations.
+
+    Results are cached per projection type to avoid redundant fetches.
+    """
+    DATA_DIR.mkdir(exist_ok=True)
+    bat_cache = DATA_DIR / f'{proj_type}_bat.json'
+    pit_cache = DATA_DIR / f'{proj_type}_pit.json'
+
+    if not force and _fresh(bat_cache, CACHE_MAX_HOURS) and _fresh(pit_cache, CACHE_MAX_HOURS):
+        bat = json.loads(bat_cache.read_text())
+        pit = json.loads(pit_cache.read_text())
+        print(f'[fg] Using cached {proj_type} ({len(bat)} batters, {len(pit)} pitchers)')
         return bat, pit
 
-    print('[fg] Fetching Steamer projections from FanGraphs...')
-    bat_url = ('https://www.fangraphs.com/api/projections'
-               '?type=steamer&stats=bat&pos=all&team=0&players=0&lg=all')
-    pit_url = ('https://www.fangraphs.com/api/projections'
-               '?type=steamer&stats=pit&pos=all&team=0&players=0&lg=all')
+    print(f'[fg] Fetching {proj_type} projections from FanGraphs...')
+    bat_url = (f'https://www.fangraphs.com/api/projections'
+               f'?type={proj_type}&stats=bat&pos=all&team=0&players=0&lg=all')
+    pit_url = (f'https://www.fangraphs.com/api/projections'
+               f'?type={proj_type}&stats=pit&pos=all&team=0&players=0&lg=all')
 
     bat = json.loads(_get_url(bat_url, FG_HEADERS))
     pit = json.loads(_get_url(pit_url, FG_HEADERS))
 
-    BAT_CACHE.write_text(json.dumps(bat))
-    PIT_CACHE.write_text(json.dumps(pit))
-    print(f'[fg] Fetched and cached {len(bat)} batters, {len(pit)} pitchers')
+    bat_cache.write_text(json.dumps(bat))
+    pit_cache.write_text(json.dumps(pit))
+    print(f'[fg] Fetched and cached {len(bat)} batters, {len(pit)} pitchers ({proj_type})')
     return bat, pit
 
 
@@ -322,7 +339,7 @@ def get_player_weekly_projections(
 
 
 # ---------------------------------------------------------------------------
-# Public entry point (used by generate_week.py and monte_carlo.py)
+# Public entry points (used by generate_week.py and monte_carlo.py)
 # ---------------------------------------------------------------------------
 
 def get_projections_for_roster(
@@ -330,23 +347,70 @@ def get_projections_for_roster(
     week: int,
     api,
     force: bool = False,
+    proj_type: str = DEFAULT_PROJ_TYPE,
 ) -> dict:
-    """One-call convenience wrapper.
+    """Return weekly projections for a single roster.
 
     Args:
-        roster:  list of player dicts from api.get_team_roster()
-        week:    fantasy week number
-        api:     YahooFantasyAPI instance (used to fetch week dates)
-        force:   if True, bypass all caches
+        roster:    list of player dicts from api.get_team_roster()
+        week:      fantasy week number
+        api:       YahooFantasyAPI instance (used to fetch week dates)
+        force:     if True, bypass all caches
+        proj_type: 'steamerr' (default) or 'steamer'
 
     Returns:
         {player_key: {cat: weekly_value}}
     """
-    bat, pit    = fetch_steamer(force=force)
+    bat, pit         = fetch_steamer(force=force, proj_type=proj_type)
     bat_lup, pit_lup = build_lookups(bat, pit)
-    week_dates  = fetch_yahoo_week_dates(api, force=force)
-    game_counts = fetch_team_game_counts(week, week_dates, force=force)
+    week_dates       = fetch_yahoo_week_dates(api, force=force)
+    game_counts      = fetch_team_game_counts(week, week_dates, force=force)
     return get_player_weekly_projections(roster, week, bat_lup, pit_lup, game_counts)
+
+
+def get_projections_for_all_matchups(
+    matchups_data: list,
+    week: int,
+    api,
+    force: bool = False,
+    proj_type: str = DEFAULT_PROJ_TYPE,
+) -> dict:
+    """Return weekly projections for every active player across all matchups.
+
+    This is the primary entry point for generate_week.py. It fetches projections
+    once and returns a single {player_key: {cat: value}} dict covering all teams.
+
+    Args:
+        matchups_data: list of matchup dicts with '_raw_roster' on t0/t1
+        week:          fantasy week number (the PREVIEW week, i.e. next week)
+        api:           YahooFantasyAPI instance
+        force:         bypass all caches
+        proj_type:     'steamerr' (default) or 'steamer'
+
+    Returns:
+        {player_key: {cat: weekly_value}} -- empty dict for unmatched players
+    """
+    print(f'[fg] Building {proj_type} projections for week {week}...')
+    bat, pit         = fetch_steamer(force=force, proj_type=proj_type)
+    bat_lup, pit_lup = build_lookups(bat, pit)
+    week_dates       = fetch_yahoo_week_dates(api, force=force)
+    game_counts      = fetch_team_game_counts(week, week_dates, force=force)
+
+    projected_stats = {}
+    for m in matchups_data:
+        for tk in ('t0', 't1'):
+            roster = m[tk].get('_raw_roster', [])
+            active = [p for p in roster
+                      if p.get('starting') not in ('BN', 'IL', 'IL+', 'NA')]
+            proj = get_player_weekly_projections(
+                active, week, bat_lup, pit_lup, game_counts
+            )
+            projected_stats.update(proj)
+
+    matched = sum(1 for v in projected_stats.values() if v)
+    total   = len(projected_stats)
+    print(f'[fg] Projections: {matched}/{total} players matched ({100*matched//max(total,1)}%)')
+    return projected_stats
 
 
 # ---------------------------------------------------------------------------
@@ -357,17 +421,18 @@ if __name__ == '__main__':
     sys.path.insert(0, str(Path(__file__).parent))
     from yahoo_api import YahooFantasyAPI
 
-    force = 'refresh' in sys.argv
-    week  = next((int(a) for a in sys.argv[1:] if a.isdigit()), None)
+    force     = 'refresh' in sys.argv
+    week      = next((int(a) for a in sys.argv[1:] if a.isdigit()), None)
+    proj_type = next((a for a in sys.argv[1:] if a in ('steamer', 'steamerr')), DEFAULT_PROJ_TYPE)
 
     api = YahooFantasyAPI()
     if week is None:
         week = api.get_league_week()
 
-    print(f'\nFanGraphs Steamer weekly projection test -- week {week}')
+    print(f'\nFanGraphs {proj_type} weekly projection test -- week {week}')
     print('=' * 60)
 
-    bat, pit         = fetch_steamer(force=force)
+    bat, pit         = fetch_steamer(force=force, proj_type=proj_type)
     bat_lup, pit_lup = build_lookups(bat, pit)
     week_dates       = fetch_yahoo_week_dates(api, force=force)
     game_counts      = fetch_team_game_counts(week, week_dates, force=force)
