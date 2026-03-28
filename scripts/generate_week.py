@@ -23,6 +23,7 @@ from datetime import datetime, date
 sys.path.insert(0, str(Path(__file__).parent))
 from yahoo_api import YahooFantasyAPI
 import monte_carlo
+import fangraphs_projections as fg
 
 BASE_DIR = Path(__file__).parent.parent
 
@@ -311,22 +312,25 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
                     all_player_keys.append(pk)
                     seen_keys.add(pk)
 
-    # Primary: Yahoo projected-week stats
+    # Primary: FanGraphs steamerr (rest-of-season) projections scaled to this week.
+    # steamerr updates throughout the season with actual performance, so it
+    # responds to career years, role changes, and nagging injuries automatically.
+    # Yahoo's projected_week endpoint returns current-week actuals during the week,
+    # not forward projections, so it is no longer used as the primary source.
     projected_stats = {}
-    if all_player_keys:
-        try:
-            projected_stats = api.get_player_projected_stats(all_player_keys, week)
-            n_proj = sum(1 for v in projected_stats.values() if v)
-            print(f'    Projections: {n_proj}/{len(all_player_keys)} players covered')
-        except Exception as e:
-            print(f'    ⚠️  Projected stats fetch failed: {e}')
+    try:
+        projected_stats = fg.get_projections_for_all_matchups(
+            matchups_data, week, api, force=False
+        )
+    except Exception as e:
+        print(f'    ⚠️  FanGraphs projection fetch failed: {e}')
 
-    # Fallback: season stats for players without projected-week data
-    missing_keys = [k for k in all_player_keys
-                    if not projected_stats.get(k)]
+    # Fallback: Yahoo season stats (scaled to one week) for any player FanGraphs missed.
+    # FanGraphs covers ~98% of active players; this catches rookies and call-ups
+    # not yet in Steamer.
+    missing_keys = [k for k in all_player_keys if not projected_stats.get(k)]
     if missing_keys:
-        print(f'    Falling back to season stats for {len(missing_keys)} players...')
-        # Build a player-key → player-dict lookup for position detection
+        print(f'    Falling back to Yahoo season stats for {len(missing_keys)} unmatched players...')
         player_lookup = {}
         for m in matchups_data:
             for tk in ('t0', 't1'):
@@ -339,7 +343,7 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
                     is_p = monte_carlo._is_pitcher(player_lookup.get(pk, {}))
                     projected_stats[pk] = monte_carlo._scale_to_week(stats, is_p)
         except Exception as e:
-            print(f'    ⚠️  Season stats fallback failed: {e}')
+            print(f'    ⚠️  Yahoo season stats fallback failed: {e}')
 
     # ── Player news ───────────────────────────────────────────────────────────
     print(f'  Fetching player news...')
