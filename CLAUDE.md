@@ -178,6 +178,43 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 ---
 
+## Recent Results Data
+
+`fetch_week_data()` fetches the last 2 completed weeks of scoreboard results for every team and stores them in the data JSON under `recent_results`. Structure:
+
+```json
+{
+  "469.l.61583.t.10": {
+    "team_name": "The Buckner Boots",
+    "recent_weeks": [
+      {
+        "week": 1,
+        "status": "postevent",
+        "result": "W",
+        "score": "6-4",
+        "cats_won":  ["R", "HR", "RBI", "OBP", "K", "QS"],
+        "cats_lost": ["SB", "SV", "ERA", "WHIP"],
+        "cats_tied": [],
+        "opponent": "One Ball Two Strikes",
+        "stats": {"R": 20, "HR": 7, "RBI": 20, "SB": 3, "OBP": ".373", "SV": 0, "K": 39, "ERA": "2.84", "WHIP": "1.37", "QS": 4}
+      }
+    ]
+  }
+}
+```
+
+**How to use recent results when writing analysis:**
+- Read `recent_results` for both teams in every matchup BEFORE writing analysis, just like `player_news`.
+- Use it to identify real form: a team that went 8-2 last week with dominant pitching is on a different trajectory than one that scraped a 6-4 win on the backs of one good closer.
+- Call out specific category trends: if a team has lost ERA two weeks running, that is a real weakness to highlight, not a projection artifact.
+- Surface hot individual performers: if a team's actual HR total last week was 12, that is concrete evidence beyond what Steamer projects.
+- Flag recurring weaknesses: a team that has lost SV every week has a closer problem, not a variance problem.
+- Use opponent context: "Jace beat a weak schedule last two weeks" vs. "Michael went 7-3 against the two strongest rosters in the league."
+- For in-progress weeks (status = "in_progress"), treat the stats as partial and flag accordingly.
+- Do not manufacture drama from small samples. One bad ERA week is variance. Two bad ERA weeks is a pattern. Three is a fire.
+
+---
+
 ## Player News Data
 
 `fetch_week_data()` also calls `api.get_player_news()` for every rostered player and stores the results in the data JSON under `matchups[i]['t0']['player_news']` and `matchups[i]['t1']['player_news']`. Structure:
