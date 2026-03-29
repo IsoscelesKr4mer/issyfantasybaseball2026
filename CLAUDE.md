@@ -301,6 +301,7 @@ Order: R, HR, RBI, SB, OBP, K, QS, ERA, WHIP, SV
 **Prediction format:**
 Use `expected_score` as the score and `win_pct` to calibrate confidence.
 - Round `expected_score` to integers that sum to 10.
+- Scores can include ties in individual categories: 7-2-1, 6-3-1, 5-4-1, etc. (W-L-T, must sum to 10). Use tied category format when one or more categories project as genuinely even (prob ~0.50) and both teams are competitive across the board.
 - When `expected_score` rounds to 5-5 but `win_pct` >= 0.53, round in favor of the winner and call it 6-4. The category table and the score must tell the same story — a team with 7 category edges should not have a 5-5 predicted score.
 - Predict 5-5 only when the category table is genuinely balanced and `win_pct` is close to 0.50.
 - `win_pct ≥ 0.65`: bold call, no hedging
