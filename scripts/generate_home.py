@@ -683,8 +683,6 @@ def main():
     # Update each section
     html = replace_section(html, 'STANDINGS',
         render_standings(teams))
-    html = replace_section(html, 'STANDINGS_UPDATED',
-        f'        <span class="muted">Updated {updated_at} Pacific</span>')
     html = replace_section(html, 'MATCHUPS_UPDATED',
         f'    <span style="font-size:.78rem; color:var(--muted); display:block; margin-top:.5rem;">Updated {updated_at} Pacific</span>')
     html = replace_section(html, 'MATCHUPS',
