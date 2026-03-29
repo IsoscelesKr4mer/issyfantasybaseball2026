@@ -253,6 +253,98 @@ def _render_cat_edges(cat_edges: list) -> str:
         )
     return '\n'.join(rows)
 
+def fetch_recent_results(api: YahooFantasyAPI, current_week: int, n_weeks: int = 2) -> dict:
+    """Fetch the last n completed weeks of results for every team.
+
+    Returns a dict keyed by team_key:
+    {
+        "469.l.61583.t.10": {
+            "team_name": "The Buckner Boots",
+            "recent_weeks": [
+                {
+                    "week": 1,
+                    "result": "W",          # W / L / T
+                    "score": "6-4",         # categories won by each side
+                    "cats_won":  ["R", "HR", "OBP", ...],
+                    "cats_lost": ["SB", "SV", ...],
+                    "cats_tied": [],
+                    "opponent":  "One Ball Two Strikes",
+                    "stats": {"R": 20, "HR": 7, ...}  # team's actual week totals
+                }
+            ]
+        }
+    }
+
+    Weeks still in progress (status != 'postevent') are included with a
+    status flag so Claude can treat them as partial context.
+    """
+    results = {}
+
+    for w in range(max(1, current_week - n_weeks), current_week):
+        try:
+            scoreboard = api.get_scoreboard(w)
+        except Exception as e:
+            print(f'  ⚠️  Could not fetch scoreboard for week {w}: {e}')
+            continue
+
+        for matchup in scoreboard:
+            status    = matchup.get('status', '')
+            teams     = matchup.get('teams', [])
+            cat_winners = matchup.get('cat_winners', {})
+            cat_wins  = matchup.get('cat_wins', [0, 0])
+            if len(teams) != 2:
+                continue
+
+            for idx in range(2):
+                opp_idx = 1 - idx
+                team    = teams[idx]
+                opp     = teams[opp_idx]
+                tk      = team.get('team_key', '')
+                my_cats = cat_wins[idx]
+                opp_cats = cat_wins[opp_idx]
+
+                # Determine W/L/T
+                if status != 'postevent':
+                    result = 'in_progress'
+                elif my_cats > opp_cats:
+                    result = 'W'
+                elif my_cats < opp_cats:
+                    result = 'L'
+                else:
+                    result = 'T'
+
+                # Which categories did this team win/lose/tie?
+                cats_won, cats_lost, cats_tied = [], [], []
+                for cat, winner in cat_winners.items():
+                    if winner == idx:
+                        cats_won.append(cat)
+                    elif winner == (1 - idx):
+                        cats_lost.append(cat)
+                    else:
+                        cats_tied.append(cat)
+
+                entry = {
+                    'week':      w,
+                    'status':    status,
+                    'result':    result,
+                    'score':     f'{my_cats}-{opp_cats}',
+                    'cats_won':  cats_won,
+                    'cats_lost': cats_lost,
+                    'cats_tied': cats_tied,
+                    'opponent':  opp.get('name', '?'),
+                    'stats':     team.get('cats', {}),
+                }
+
+                if tk not in results:
+                    results[tk] = {
+                        'team_name':    team.get('name', '?'),
+                        'recent_weeks': []
+                    }
+                results[tk]['recent_weeks'].append(entry)
+
+    return results
+
+
 def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     """Fetch all matchup + roster data for a week, run Monte Carlo simulations,
     and save to JSON.
@@ -383,7 +475,23 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
             print(f'    ⚠️  Simulation failed for matchup: {e}')
             m['simulation'] = None
 
-    data = {'week': week, 'matchups': matchups_data, 'standings': standings}
+    # ── Recent results (last 2 completed weeks) ───────────────────────────────
+    # Gives Claude context on form, category trends, and hot/cold streaks
+    # when writing matchup analysis and storylines.
+    print(f'  Fetching recent results (last 2 weeks)...')
+    recent_results = {}
+    try:
+        recent_results = fetch_recent_results(api, week, n_weeks=2)
+        print(f'    Loaded results for {len(recent_results)} teams')
+    except Exception as e:
+        print(f'    ⚠️  Recent results fetch failed: {e}')
+
+    data = {
+        'week':           week,
+        'matchups':       matchups_data,
+        'standings':      standings,
+        'recent_results': recent_results,
+    }
 
     # Save JSON so the Cowork scheduled task (Claude) can read it
     out_path = BASE_DIR / 'data' / f'week-{week:02d}-preview-data.json'
