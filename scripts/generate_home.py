@@ -11,6 +11,7 @@ import sys
 import re
 from pathlib import Path
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # Add parent dir to path so we can import yahoo_api
 sys.path.insert(0, str(Path(__file__).parent))
@@ -673,7 +674,7 @@ def main():
     matchups    = api.get_scoreboard(current_week)
     transactions = api.get_transactions(25)
 
-    updated_at = datetime.now().strftime('%b %d at %-I:%M %p')
+    updated_at = datetime.now(ZoneInfo('America/Los_Angeles')).strftime('%b %d at %-I:%M %p')
 
     # Read current index.html
     index_path = BASE_DIR / 'index.html'
@@ -684,6 +685,8 @@ def main():
         render_standings(teams))
     html = replace_section(html, 'STANDINGS_UPDATED',
         f'        <span class="muted">Updated {updated_at} Pacific</span>')
+    html = replace_section(html, 'MATCHUPS_UPDATED',
+        f'    <span class="muted">Updated {updated_at} Pacific</span>')
     html = replace_section(html, 'MATCHUPS',
         render_matchups(matchups, current_week))
     html = replace_section(html, 'MATCHUP_TITLE',
