@@ -287,19 +287,25 @@ Claude should treat them as ground truth inputs and write analysis that reflects
 ### How Claude uses simulation data when writing analysis
 
 **Category edges (`cat_edges`):**
-Use `cat_probs` to determine edge direction and label. Rule of thumb:
-- `prob ≥ 0.60` → edge: 0 (team0). Label: "Team0 edge (XX%)"
-- `prob ≤ 0.40` → edge: 1 (team1). Label: "Team1 edge (XX%)"
-- `0.40 < prob < 0.60` → edge: -1 (even). Label: "Toss-up (XX%/XX%)"
+Use `cat_probs` to determine edge direction and label. Every category should name a winner — never leave all close categories as toss-ups. A 51% edge is still an edge, just a soft one.
+
+- `prob ≥ 0.65` → edge: 0 (team0). Label: "TeamName edge (XX%)"
+- `prob 0.55–0.64` → edge: 0. Label: "TeamName lean (XX%)"
+- `prob 0.51–0.54` → edge: 0. Label: "TeamName slight edge (XX%)"
+- `prob = 0.50` → edge: -1. Label: "Even"
+- Mirror for team1 when prob < 0.50
 
 Show all 10 categories individually. Do not group them. Each category gets its own row.
 Order: R, HR, RBI, SB, OBP, K, QS, ERA, WHIP, SV
 
 **Prediction format:**
 Use `expected_score` as the score and `win_pct` to calibrate confidence.
-- "TeamName 6.3–3.7. One punchy sentence." when `win_pct ≥ 0.65`
-- "TeamName 5.8–4.2. Close matchup, lean TeamName because [specific reason]." when `win_pct` is 0.55–0.65
-- Still round X+Y to 10.0 in the prediction text.
+- Round `expected_score` to integers that sum to 10.
+- When `expected_score` rounds to 5-5 but `win_pct` >= 0.53, round in favor of the winner and call it 6-4. The category table and the score must tell the same story — a team with 7 category edges should not have a 5-5 predicted score.
+- Predict 5-5 only when the category table is genuinely balanced and `win_pct` is close to 0.50.
+- `win_pct ≥ 0.65`: bold call, no hedging
+- `win_pct 0.53–0.65`: lean with a specific reason
+- `win_pct ~0.50` and balanced categories: call the tie
 
 **Example:** `expected_score: [6.3, 3.7], win_pct: 0.71` → "One Ball Two Strikes 6–4. Their bullpen is a fire hydrant and the other team's closers are all named 'TBD.'"
 
