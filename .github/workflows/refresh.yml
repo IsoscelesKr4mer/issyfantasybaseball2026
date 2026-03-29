@@ -1,0 +1,41 @@
+cat > .github/workflows/refresh.yml << 'EOF'
+name: Refresh Scores
+
+on:
+  repository_dispatch:
+    types: [refresh-scores]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Write credentials
+        run: |
+          printf 'YAHOO_CLIENT_ID=%s\nYAHOO_CLIENT_SECRET=%s\nYAHOO_REFRESH_TOKEN=%s\nYAHOO_LEAGUE_ID=%s\nGITHUB_TOKEN=%s\nGITHUB_REPO=%s\n' \
+            '${{ secrets.YAHOO_CLIENT_ID }}' \
+            '${{ secrets.YAHOO_CLIENT_SECRET }}' \
+            '${{ secrets.YAHOO_REFRESH_TOKEN }}' \
+            '${{ secrets.YAHOO_LEAGUE_ID }}' \
+            '${{ secrets.GITHUB_TOKEN }}' \
+            '${{ github.repository }}' > .env
+          echo '{}' > tokens.json
+      - name: Refresh scores
+        run: python3 scripts/generate_home.py
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html week-*.html teams/ || true
+          git diff --staged --quiet || git commit -m "auto: refresh scores — $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+EOF
