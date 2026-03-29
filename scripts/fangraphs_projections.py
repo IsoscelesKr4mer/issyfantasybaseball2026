@@ -70,7 +70,14 @@ MLB_ID_TO_ABBR = {
 # ---------------------------------------------------------------------------
 
 def _normalize(name: str) -> str:
-    """Lowercase, strip accents/combining chars, collapse whitespace."""
+    """Lowercase, strip accents/combining chars, collapse whitespace.
+
+    Also strips Yahoo two-way player suffixes like " (Pitcher)" and " (Batter)"
+    so that "Shohei Ohtani (Pitcher)" matches FanGraphs' "Shohei Ohtani".
+    """
+    import re
+    # Strip parenthetical position suffixes Yahoo adds for two-way players
+    name = re.sub(r'\s*\([^)]*\)\s*$', '', name).strip()
     nfkd = unicodedata.normalize('NFKD', name)
     ascii_str = ''.join(c for c in nfkd if not unicodedata.combining(c))
     return ' '.join(ascii_str.lower().split())
