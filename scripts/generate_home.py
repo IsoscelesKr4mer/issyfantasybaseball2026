@@ -686,7 +686,7 @@ def main():
     html = replace_section(html, 'STANDINGS_UPDATED',
         f'        <span class="muted">Updated {updated_at} Pacific</span>')
     html = replace_section(html, 'MATCHUPS_UPDATED',
-        f'        <span class="muted">Updated {updated_at} Pacific</span>')
+        f'    <span style="font-size:.78rem; color:var(--muted); display:block; margin-top:.5rem;">Updated {updated_at} Pacific</span>')
     html = replace_section(html, 'MATCHUPS',
         render_matchups(matchups, current_week))
     html = replace_section(html, 'MATCHUP_TITLE',
