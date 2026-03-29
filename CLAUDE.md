@@ -310,6 +310,8 @@ Use `expected_score` as the score and `win_pct` to calibrate confidence.
 
 **Example:** `expected_score: [6.3, 3.7], win_pct: 0.71` → "One Ball Two Strikes 6–4. Their bullpen is a fire hydrant and the other team's closers are all named 'TBD.'"
 
+**Reconciling category edges vs. predicted score:** If a team has edges in 8/10 categories but the predicted score is 6-4, that's not a contradiction — it means several of those edges are thin (51-54%) and the team loses them in many simulations, pulling the expected average down. When the edge count and score diverge noticeably (e.g., 7+ category edges but a 6-4 or lower prediction), briefly acknowledge it in the prediction prose. Something like: "Ragans 6-4. They have the edge almost everywhere but half those advantages are paper-thin — this is a 6-4 win, not a beatdown." Don't skip this explanation; without it the numbers look inconsistent on paper.
+
 **Don't:** mechanically paste probability numbers into the prose. Use them to anchor confidence and pick the right winners. The jokes and voice are yours; the math just tells you who to pick.
 
 ### Standalone testing
