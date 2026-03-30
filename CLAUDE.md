@@ -174,7 +174,9 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 3. **Cross-reference with live data.** Use the API response to verify starting rotation spots, injury status, and roster ownership before writing waiver/sleeper content.
 4. **If API data is unavailable**, omit the player-specific section entirely rather than guessing. It's better to have no sleeper pick than a wrong one.
 
-**Why this rule exists:** In Week 1 content, Emerson Hancock was incorrectly described as an "Opening Day starter with strikeout stuff" and Parker Messick was incorrectly described as being in the Opening Day rotation the prior year. Both were wrong. All insights must be grounded in verified data.
+**Why this rule exists:** In Week 1 content, Emerson Hancock was incorrectly described as an "Opening Day starter with strikeout stuff" and Parker Messick was incorrectly described as being in the Opening Day rotation the prior year. Both were wrong. Shohei Ohtani was described as having "a confirmed Opening Day start" when he had not pitched at all yet in 2026. All insights must be grounded in verified data.
+
+**NO FABRICATION — hard rule:** Never state that a specific game, start, appearance, or stat has occurred unless it is present in the API data. Projections are projections — label them as such. If you don't have data confirming something happened, don't say it happened. When in doubt, cut the claim entirely rather than hedge it into something that sounds like fact.
 
 ---
 
