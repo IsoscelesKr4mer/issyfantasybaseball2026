@@ -253,6 +253,74 @@ def _render_cat_edges(cat_edges: list) -> str:
         )
     return '\n'.join(rows)
 
+def compute_all_play(matchups: list) -> dict:
+    """Compute all-play record for every team in a single week's matchups.
+
+    For each team, simulate its category stats against every OTHER team's stats.
+    Returns {team_name: {w, l, t, cat_w, cat_l}} sorted by all-play wins.
+
+    This is the correct basis for weekly power rankings — it measures how strong
+    a team's week actually was, independent of the luck of the H2H draw.
+
+    A team that goes 7-2 all-play but loses its H2H matchup had a great week and
+    drew a tough opponent. A team that wins H2H but goes 2-7 all-play got lucky.
+    """
+    CATS        = ['R', 'HR', 'RBI', 'SB', 'OBP', 'SV', 'K', 'ERA', 'WHIP', 'QS']
+    LOW_IS_GOOD = {'ERA', 'WHIP'}
+
+    # Build {team_name: cats_dict} for all teams in these matchups
+    team_cats = {}
+    for m in matchups:
+        for tk in ('t0', 't1'):
+            t    = m[tk]
+            name = t.get('name', '')
+            cats = t.get('cats', {})
+            if name and name not in team_cats:
+                team_cats[name] = cats
+
+    all_play = {name: {'w': 0, 'l': 0, 't': 0, 'cat_w': 0, 'cat_l': 0}
+                for name in team_cats}
+
+    names = list(team_cats.keys())
+    for i, t0 in enumerate(names):
+        for j, t1 in enumerate(names):
+            if i == j:
+                continue
+            c0, c1 = team_cats[t0], team_cats[t1]
+            w = l = tie = 0
+            for cat in CATS:
+                v0, v1 = c0.get(cat), c1.get(cat)
+                if v0 is None or v1 is None:
+                    continue
+                try:
+                    f0, f1 = float(v0), float(v1)
+                except (TypeError, ValueError):
+                    continue
+                if cat in LOW_IS_GOOD:
+                    if f0 < f1:   w   += 1
+                    elif f0 > f1: l   += 1
+                    else:          tie += 1
+                else:
+                    if f0 > f1:   w   += 1
+                    elif f0 < f1: l   += 1
+                    else:          tie += 1
+            if w > l:
+                all_play[t0]['w'] += 1
+            elif l > w:
+                all_play[t0]['l'] += 1
+            else:
+                all_play[t0]['t'] += 1
+            all_play[t0]['cat_w'] += w
+            all_play[t0]['cat_l'] += l
+
+    # Return sorted by all-play wins desc, cat_w as tiebreaker
+    return dict(
+        sorted(all_play.items(),
+               key=lambda x: (x[1]['w'], x[1]['cat_w']),
+               reverse=True)
+    )
+
+
 def fetch_recent_results(api: YahooFantasyAPI, current_week: int, n_weeks: int = 2) -> dict:
     """Fetch the last n completed weeks of results for every team.
 
@@ -598,12 +666,19 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     except Exception as e:
         print(f'    ⚠️  Player week stats fetch failed: {e}')
 
+    # ── All-play power rankings ───────────────────────────────────────────────
+    # Compare every team's category stats against every other team's stats.
+    # This normalizes for H2H luck: a team that goes 7-2 all-play but lost
+    # their actual matchup had a great week and drew a tough opponent.
+    all_play = compute_all_play(matchups_data)
+
     data = {
         'week':              week,
         'matchups':          matchups_data,
         'standings':         standings,
         'recent_results':    recent_results,
         'player_week_stats': player_week_stats,
+        'all_play':          all_play,
     }
 
     # Save JSON so the Cowork scheduled task (Claude) can read it
