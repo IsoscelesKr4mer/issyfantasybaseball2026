@@ -99,29 +99,55 @@ def reinject_live_scores(html: str, scores: dict) -> str:
         html = replace_section(html, f'LIVE_SCORE_{n}', content.strip())
     return html
 
-def render_week_links(current_week: int) -> str:
-    links = []
+def render_week_links(current_week: int, recap_week: int = 0) -> str:
+    """Desktop dropdown: grouped week label + Preview / Recap sub-links.
+
+    recap_week: the last week that has a completed recap (0 = none yet).
+    Weeks <= recap_week get both sub-links; current_week gets Preview only.
+    """
+    groups = []
     for w in range(1, current_week + 1):
-        dates = WEEK_DATES.get(w, ('', ''))
-        start = fmt_date(dates[0]) if dates[0] else ''
-        end   = fmt_date(dates[1]) if dates[1] else ''
+        dates    = WEEK_DATES.get(w, ('', ''))
+        start    = fmt_date(dates[0]) if dates[0] else ''
+        end      = fmt_date(dates[1]) if dates[1] else ''
         date_str = f'{start}&ndash;{end}' if start else ''
-        active = ' class="active"' if w == current_week else ''
-        links.append(f'        <a href="week-{w:02d}.html"{active}>Week {w} &mdash; {date_str}</a>')
-    return '\n'.join(links)
+        label_active = ' active' if w == current_week else ''
+        has_recap    = w < current_week  # completed weeks have recaps
+        recap_link   = (f'<a href="week-{w:02d}.html#recap"'
+                        + (' class="active"' if False else '') + '>Recap</a>') if has_recap else ''
+        preview_active = ' class="active"' if w == current_week else ''
+        groups.append(
+            f'        <div class="week-nav-group">'
+            f'<span class="week-nav-label{label_active}">Week {w} &mdash; {date_str}</span>'
+            f'<div class="week-nav-sub">'
+            f'<a href="week-{w:02d}.html#preview"{preview_active}>Preview</a>'
+            + (f'<a href="week-{w:02d}.html#recap">Recap</a>' if has_recap else '')
+            + f'</div></div>'
+        )
+    return '\n'.join(groups)
 
 
 def render_weeks_sheet_items(current_week: int) -> str:
-    """Mobile bottom-sheet week list — mirrors render_week_links for the sheet panel."""
-    items = []
+    """Mobile bottom-sheet: grouped week header + Preview / Recap pill buttons."""
+    groups = []
     for w in range(1, current_week + 1):
-        dates = WEEK_DATES.get(w, ('', ''))
-        start = fmt_date(dates[0]) if dates[0] else ''
-        end   = fmt_date(dates[1]) if dates[1] else ''
+        dates    = WEEK_DATES.get(w, ('', ''))
+        start    = fmt_date(dates[0]) if dates[0] else ''
+        end      = fmt_date(dates[1]) if dates[1] else ''
         date_str = f'{start}&ndash;{end}' if start else ''
-        active = ' active' if w == current_week else ''
-        items.append(f'      <a href="week-{w:02d}.html" class="teams-sheet-item{active}">Week {w} &mdash; {date_str}</a>')
-    return '\n'.join(items)
+        header_active = ' active' if w == current_week else ''
+        has_recap     = w < current_week
+        recap_html    = (f'<a href="week-{w:02d}.html#recap" class="week-sheet-sub-link">Recap</a>'
+                         if has_recap else '')
+        groups.append(
+            f'      <div class="week-sheet-group">'
+            f'<div class="week-sheet-header{header_active}">Week {w} &mdash; {date_str}</div>'
+            f'<div class="week-sheet-sub">'
+            f'<a href="week-{w:02d}.html#preview" class="week-sheet-sub-link{"  active" if w == current_week else ""}">Preview</a>'
+            + recap_html
+            + f'</div></div>'
+        )
+    return '\n'.join(groups)
 
 # ── RECAP GENERATOR ───────────────────────────────────────────────────────────
 def generate_recap(api: YahooFantasyAPI, week: int) -> str:
@@ -794,7 +820,7 @@ def generate_preview(api: YahooFantasyAPI, week: int, analysis: dict = None) -> 
         storylines_html = '<p><em>Preview analysis pending — Claude will fill this in as part of the scheduled task.</em></p>'
 
     generated_at = datetime.now().strftime('%b %d at %-I:%M %p')
-    return f'''  <section class="section">
+    return f'''  <section class="section" id="preview">
     <h2 class="section-title">
       <span class="section-icon">&#128270;</span> Week {week} Preview &mdash; {date_str}
     </h2>
