@@ -81,6 +81,24 @@ def replace_section(html: str, tag: str, new_content: str) -> str:
         print(f'  ⚠️  Tag AUTO:{tag} not found')
     return result
 
+def extract_live_scores(html: str) -> dict:
+    """Extract existing LIVE_SCORE content from HTML before a PREVIEW replacement wipes it."""
+    scores = {}
+    for n in range(1, 6):
+        pattern = rf'<!-- AUTO:LIVE_SCORE_{n}_START -->(.*?)<!-- AUTO:LIVE_SCORE_{n}_END -->'
+        m = re.search(pattern, html, re.DOTALL)
+        if m:
+            scores[n] = m.group(1)
+    return scores
+
+def reinject_live_scores(html: str, scores: dict) -> str:
+    """Re-inject saved LIVE_SCORE content after PREVIEW was replaced with empty tags."""
+    for n, content in scores.items():
+        if not content.strip():
+            continue  # nothing to restore
+        html = replace_section(html, f'LIVE_SCORE_{n}', content.strip())
+    return html
+
 def render_week_links(current_week: int) -> str:
     from generate_home import WEEK_DATES as WD
     links = []
@@ -1018,8 +1036,10 @@ def main():
             create_week_page(preview_week)
             page_path = BASE_DIR / f'week-{preview_week:02d}.html'
             html = page_path.read_text()
+            saved_scores = extract_live_scores(html)
             preview_html = generate_preview(api, preview_week)
             html = replace_section(html, 'PREVIEW', preview_html)
+            html = reinject_live_scores(html, saved_scores)
             html = replace_section(html, 'WEEK_LINKS', render_week_links(preview_week))
             page_path.write_text(html)
             print(f'  ✅  week-{preview_week:02d}.html preview updated')
