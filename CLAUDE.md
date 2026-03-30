@@ -382,6 +382,7 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 ### Recap (generated Sunday night, after week ends)
 - [ ] Read `player_week_stats` from the data JSON BEFORE writing any recap content
 - [ ] Final scores for all 5 matchups
+- [ ] **Prediction Results table** — read `data/week-NN-analysis.json` for the original predictions (each matchup's `prediction` field). Compare predicted winner/score to actual. Show: matchup, predicted, actual, result (✓ Exact / ✓ Right team / ✗ Missed / ✗ Badly missed). Close with a 1–2 sentence summary of the overall record and name the worst miss. Never reconstruct predictions from memory — always read the analysis JSON.
 - [ ] "Biggest Win" callout — name the specific players who drove it (top HR, RBI, K leaders)
 - [ ] "Choke of the Week" — name who specifically failed (0-for-week batters, blown ERA, etc.)
 - [ ] Category leaders — call out the individual player behind the stat, not just the team (e.g. "DeLauter's 4 HRs single-handedly won that category for Busch Latte")
