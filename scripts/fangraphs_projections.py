@@ -407,8 +407,11 @@ def get_projections_for_all_matchups(
     for m in matchups_data:
         for tk in ('t0', 't1'):
             roster = m[tk].get('_raw_roster', [])
+            # Exclude only IL/NA — bench (BN) players are included because bench
+            # SPs rotate in on their start days and optimal batter selection may
+            # pull from bench. monte_carlo.py does the actual roster filtering.
             active = [p for p in roster
-                      if p.get('starting') not in ('BN', 'IL', 'IL+', 'NA')]
+                      if p.get('starting') not in ('IL', 'IL+', 'NA')]
             proj = get_player_weekly_projections(
                 active, week, bat_lup, pit_lup, game_counts
             )
@@ -454,7 +457,7 @@ if __name__ == '__main__':
     for team_num in range(1, 11):
         team_key = f'mlb.l.61583.t.{team_num}'
         roster   = api.get_team_roster(team_key, week)
-        active   = [p for p in roster if p.get('starting') not in ('BN', 'IL', 'IL+', 'NA')]
+        active   = [p for p in roster if p.get('starting') not in ('IL', 'IL+', 'NA')]
 
         proj = get_player_weekly_projections(active, week, bat_lup, pit_lup, game_counts)
         matched = sum(1 for v in proj.values() if v)
@@ -468,7 +471,7 @@ if __name__ == '__main__':
     # Show a sample -- team 1 batters
     print('\n--- Sample: Team 1 batters ---')
     roster = api.get_team_roster('mlb.l.61583.t.1', week)
-    active = [p for p in roster if p.get('starting') not in ('BN', 'IL', 'IL+', 'NA')]
+    active = [p for p in roster if p.get('starting') not in ('IL', 'IL+', 'NA')]
     proj   = get_player_weekly_projections(active, week, bat_lup, pit_lup, game_counts)
 
     for p in active:
