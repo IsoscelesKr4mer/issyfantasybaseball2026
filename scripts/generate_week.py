@@ -308,7 +308,7 @@ def compute_all_play(matchups: list) -> dict:
             if name and name not in team_cats:
                 team_cats[name] = cats
 
-    all_play = {name: {'w': 0, 'l': 0, 't': 0, 'cat_w': 0, 'cat_l': 0}
+    all_play = {name: {'w': 0, 'l': 0, 't': 0, 'cat_w': 0, 'cat_l': 0, 'cat_t': 0}
                 for name in team_cats}
 
     names = list(team_cats.keys())
@@ -342,6 +342,7 @@ def compute_all_play(matchups: list) -> dict:
                 all_play[t0]['t'] += 1
             all_play[t0]['cat_w'] += w
             all_play[t0]['cat_l'] += l
+            all_play[t0]['cat_t'] += tie
 
     # Return sorted by all-play wins desc, cat_w as tiebreaker
     return dict(
