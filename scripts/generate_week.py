@@ -100,10 +100,9 @@ def reinject_live_scores(html: str, scores: dict) -> str:
     return html
 
 def render_week_links(current_week: int) -> str:
-    from generate_home import WEEK_DATES as WD
     links = []
     for w in range(1, current_week + 1):
-        dates = WD.get(w, ('', ''))
+        dates = WEEK_DATES.get(w, ('', ''))
         start = fmt_date(dates[0]) if dates[0] else ''
         end   = fmt_date(dates[1]) if dates[1] else ''
         date_str = f'{start}&ndash;{end}' if start else ''

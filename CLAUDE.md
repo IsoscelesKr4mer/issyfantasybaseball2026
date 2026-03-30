@@ -163,6 +163,12 @@ git push
 ```
 GitHub Pages deploys automatically within ~60 seconds of push.
 
+**Cowork git rules (CRITICAL — do not violate):**
+- **Never push standalone commits from Cowork** (e.g. empty "trigger redeploy" commits, or fix commits that only change files). These diverge the user's local branch and force them into painful merge conflicts every time they push from their terminal.
+- If a file edit is needed (HTML fix, script fix, etc.), write the file change but tell the user to commit and push it themselves from their terminal.
+- The only commits Cowork should ever push are from the automated scripts (`generate_week.py`, `generate_home.py`) as part of the scheduled Sunday task. All other git operations belong to the user.
+- If the remote is ahead when the scripts push, use `git fetch` + `git merge --no-edit` + `git push`. Never use `git pull --rebase` — it leaves lock files the sandbox cannot clean up.
+
 ---
 
 ## Content Accuracy Rules

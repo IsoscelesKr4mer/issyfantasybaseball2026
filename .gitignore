@@ -19,3 +19,5 @@ Thumbs.db
 
 # API data files (not committed)
 data/
+.vercel
+.env*.local
