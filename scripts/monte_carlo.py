@@ -37,7 +37,7 @@ from pathlib import Path
 N_SIMS      = 10_000
 CATS        = ['R', 'HR', 'RBI', 'SB', 'OBP', 'SV', 'K', 'ERA', 'WHIP', 'QS']
 LOWER_BETTER = {'ERA', 'WHIP'}
-ACTIVE_BENCH = {'BN', 'IL', 'IL+', 'NA'}
+ACTIVE_BENCH = {'IL', 'IL+', 'NA'}  # BN removed — bench pitchers rotate in on start days
 
 # Effective sample size for Beta distribution on OBP.
 # Higher = tighter distribution (less game-to-game variance).
@@ -83,20 +83,74 @@ def _safe(val, default: float = 0.0) -> float:
 
 # ── Roster helpers ─────────────────────────────────────────────────────────────
 
-def _active_players(roster: list) -> list:
-    """Return only players occupying an active (non-bench/IL) roster slot."""
-    out = []
-    for p in roster:
-        slot = p.get('starting', p.get('selected_position', ''))
-        if slot and slot not in ACTIVE_BENCH:
-            out.append(p)
-    return out
-
-
 def _is_pitcher(player: dict) -> bool:
     """True if the player's display_position includes SP, RP, or bare P."""
     pos = player.get('pos', player.get('display_position', ''))
     return 'SP' in pos or 'RP' in pos or pos.strip() == 'P'
+
+
+def _active_pitchers(roster: list) -> list:
+    """Return all pitchers not on IL/NA.
+
+    Includes bench (BN) pitchers — in Yahoo Fantasy, managers keep SPs on
+    bench and activate them only on start days, so ALL non-IL/NA pitchers
+    contribute innings over the course of the week.
+    """
+    return [
+        p for p in roster
+        if _is_pitcher(p)
+        and p.get('starting', p.get('selected_position', '')) not in ACTIVE_BENCH
+    ]
+
+
+def _optimal_batters(roster: list, projected_stats: dict) -> list:
+    """Return the optimal batter lineup for simulation.
+
+    Selects the best N non-IL/NA batters by projected weekly value, where N is
+    the number of active (non-BN) batter slots — i.e. how many batters the
+    roster config allows to score each week.  This lets bench batters compete
+    with active batters so the sim reflects what a smart manager would actually
+    start.
+    """
+    # Count active batter slots (filled C/1B/2B/3B/SS/OF/Util spots) to get the cap.
+    n_slots = sum(
+        1 for p in roster
+        if not _is_pitcher(p)
+        and p.get('starting', p.get('selected_position', '')) not in ACTIVE_BENCH
+        and p.get('starting', p.get('selected_position', '')) != 'BN'
+    )
+    if n_slots == 0:
+        n_slots = 9  # fallback if roster data is missing
+
+    # Collect all available batters: active slots + bench, excluding IL/NA.
+    available = [
+        p for p in roster
+        if not _is_pitcher(p)
+        and p.get('starting', p.get('selected_position', '')) not in ACTIVE_BENCH
+    ]
+
+    # Sort by projected counting-stat value so the best available batters start.
+    def _batter_score(p: dict) -> float:
+        pk = p.get('player_key', '')
+        s  = projected_stats.get(pk, {})
+        return (
+            _safe(s.get('R',   0))
+            + _safe(s.get('HR',  0)) * 3.0  # weight HR more heavily
+            + _safe(s.get('RBI', 0))
+            + _safe(s.get('SB',  0))
+        )
+
+    available.sort(key=_batter_score, reverse=True)
+    return available[:n_slots]
+
+
+# Keep _active_players as a legacy shim so any external callers don't break.
+def _active_players(roster: list) -> list:
+    """Legacy shim — prefer _active_pitchers() + _optimal_batters() for new code."""
+    return [
+        p for p in roster
+        if p.get('starting', p.get('selected_position', '')) not in ACTIVE_BENCH
+    ]
 
 # ── Season-total → weekly projection scaler ───────────────────────────────────
 
@@ -272,12 +326,17 @@ def simulate_matchup(
     if seed is not None:
         random.seed(seed)
 
-    t0_active = _active_players(t0_roster)
-    t1_active = _active_players(t1_roster)
+    t0_active = _active_pitchers(t0_roster) + _optimal_batters(t0_roster, projected_stats)
+    t1_active = _active_pitchers(t1_roster) + _optimal_batters(t1_roster, projected_stats)
 
     if verbose:
+        t0_p = len(_active_pitchers(t0_roster))
+        t1_p = len(_active_pitchers(t1_roster))
+        t0_b = len(t0_active) - t0_p
+        t1_b = len(t1_active) - t1_p
         print(f'  📊  Simulation: {n_sims:,} runs | '
-              f't0 active={len(t0_active)}  t1 active={len(t1_active)}')
+              f't0 {len(t0_active)} players ({t0_p}P/{t0_b}B)  '
+              f't1 {len(t1_active)} players ({t1_p}P/{t1_b}B)')
 
     # Counters
     cat_wins_t0     = {cat: 0 for cat in CATS}

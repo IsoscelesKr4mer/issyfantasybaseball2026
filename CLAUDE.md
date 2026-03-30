@@ -184,6 +184,8 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 **NO FABRICATION — hard rule:** Never state that a specific game, start, appearance, or stat has occurred unless it is present in the API data. Projections are projections — label them as such. If you don't have data confirming something happened, don't say it happened. When in doubt, cut the claim entirely rather than hedge it into something that sounds like fact.
 
+**Bench pitchers are NOT inactive pitchers.** In Yahoo Fantasy, managers routinely keep starting pitchers on the bench and activate them only on days they pitch. A `roster_summary` showing `starters: []` with SPs on bench just means the data was pulled on a non-start day or before activations were made. Never interpret empty active SP slots as a roster problem or call it out as a weakness. A team with 4 SPs on bench has 4 SPs. Always assume managers will make their starts — never assume a missed start unless there is explicit IL, DTD, or NA status on the player.
+
 ---
 
 ## Recent Results Data
