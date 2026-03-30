@@ -649,13 +649,21 @@ def render_week_archive(current_week: int) -> str:
 
 # ── Render week nav dropdown links ────────────────────────────────────────────
 def render_week_links(current_week: int) -> str:
-    links = []
+    groups = []
     for w in range(1, current_week + 1):
         dates = WEEK_DATES.get(w, ('', ''))
         date_str = f'{dates[0]}&ndash;{dates[1]}' if dates[0] else ''
-        active = ' class="active"' if w == current_week else ''
-        links.append(f'        <a href="week-{w:02d}.html"{active}>Week {w} &mdash; {date_str}</a>')
-    return '\n'.join(links)
+        label_active = ' active' if w == current_week else ''
+        has_recap = w < current_week
+        groups.append(
+            f'        <div class="week-nav-group">'
+            f'<span class="week-nav-label{label_active}">Week {w} &mdash; {date_str}</span>'
+            f'<div class="week-nav-sub">'
+            f'<a href="week-{w:02d}.html#preview">Preview</a>'
+            + (f'<a href="week-{w:02d}.html#recap">Recap</a>' if has_recap else '')
+            + f'</div></div>'
+        )
+    return '\n'.join(groups)
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
