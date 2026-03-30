@@ -2028,17 +2028,176 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   .sb-score-center { padding: 0 .6rem; }
   .sb-team-owner { display: none; }
 }
+/* ═══════════════════════════════════════════
+   CALLOUT CARDS — Biggest Win / Choke
+   ═══════════════════════════════════════════ */
 .callout-card {
   border-radius: var(--radius-md);
-  padding: 1rem 1.2rem;
+  padding: 1.1rem 1.25rem;
   margin-bottom: 1rem;
-  font-size: .88rem;
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  position: relative;
+  overflow: hidden;
 }
-.callout-win { background: var(--green-dim); border-left: 3px solid var(--green); }
-.callout-choke { background: var(--red-dim); border-left: 3px solid var(--red); }
-.callout-label { font-weight: 800; margin-bottom: .3rem; font-size: .78rem; letter-spacing: .5px; text-transform: uppercase; }
+.callout-card strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.callout-win {
+  background: linear-gradient(135deg, rgba(62, 207, 142, .08), rgba(62, 207, 142, .03));
+  border: 1px solid rgba(62, 207, 142, .15);
+  border-left: 3px solid var(--green);
+}
+.callout-choke {
+  background: linear-gradient(135deg, rgba(255, 68, 68, .08), rgba(255, 68, 68, .03));
+  border: 1px solid rgba(255, 68, 68, .12);
+  border-left: 3px solid var(--red);
+}
+.callout-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  margin-bottom: .5rem;
+  font-size: .72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
 .callout-win .callout-label { color: var(--green); }
 .callout-choke .callout-label { color: var(--red); }
+
+/* ═══════════════════════════════════════════
+   CATEGORY LEADERS — Grid Layout
+   ═══════════════════════════════════════════ */
+.cat-leaders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+}
+.cat-leader-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .6rem .75rem;
+  transition: border-color var(--transition-fast);
+}
+.cat-leader-item:hover {
+  border-color: var(--border-light);
+}
+.cat-leader-cat {
+  font-family: var(--font-display);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.cat-leader-team {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.cat-leader-detail {
+  font-size: .75rem;
+  color: var(--text-secondary);
+  margin-top: .2rem;
+  line-height: 1.4;
+}
+/* Batting cats get blue accent, pitching get green */
+.cat-leader-item[data-type="bat"] .cat-leader-cat { color: var(--accent); }
+.cat-leader-item[data-type="pitch"] .cat-leader-cat { color: var(--green); }
+
+@media (max-width: 600px) {
+  .cat-leaders-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   OVER/UNDER PERFORMERS — Split Cards
+   ═══════════════════════════════════════════ */
+.performer-section {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.performer-group-label {
+  font-family: var(--font-display);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: .4rem 0 .2rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.performer-group-label.over { color: var(--green); }
+.performer-group-label.under { color: var(--red); }
+.performer-group-label .perf-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.performer-group-label.over .perf-dot { background: var(--green); box-shadow: 0 0 6px rgba(62, 207, 142, .4); }
+.performer-group-label.under .perf-dot { background: var(--red); box-shadow: 0 0 6px rgba(255, 68, 68, .4); }
+
+.performer-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 .75rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .6rem .75rem;
+  transition: border-color var(--transition-fast);
+}
+.performer-card:hover {
+  border-color: var(--border-light);
+}
+.performer-name {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.performer-team {
+  font-size: .68rem;
+  color: var(--muted);
+  grid-column: 1;
+}
+.performer-detail {
+  font-size: .78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  grid-column: 1 / -1;
+  margin-top: .25rem;
+}
+.performer-stat {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .1rem .4rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  align-self: center;
+  justify-self: end;
+}
+.performer-stat.good {
+  color: var(--green);
+  background: var(--green-dim);
+}
+.performer-stat.bad {
+  color: var(--red);
+  background: var(--red-dim);
+}
 
 /* ── Reveal animation (shared) ── */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
