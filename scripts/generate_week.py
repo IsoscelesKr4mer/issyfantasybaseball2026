@@ -110,6 +110,19 @@ def render_week_links(current_week: int) -> str:
         links.append(f'        <a href="week-{w:02d}.html"{active}>Week {w} &mdash; {date_str}</a>')
     return '\n'.join(links)
 
+
+def render_weeks_sheet_items(current_week: int) -> str:
+    """Mobile bottom-sheet week list — mirrors render_week_links for the sheet panel."""
+    items = []
+    for w in range(1, current_week + 1):
+        dates = WEEK_DATES.get(w, ('', ''))
+        start = fmt_date(dates[0]) if dates[0] else ''
+        end   = fmt_date(dates[1]) if dates[1] else ''
+        date_str = f'{start}&ndash;{end}' if start else ''
+        active = ' active' if w == current_week else ''
+        items.append(f'      <a href="week-{w:02d}.html" class="teams-sheet-item{active}">Week {w} &mdash; {date_str}</a>')
+    return '\n'.join(items)
+
 # ── RECAP GENERATOR ───────────────────────────────────────────────────────────
 def generate_recap(api: YahooFantasyAPI, week: int) -> str:
     """Fetch final scores and generate recap HTML for the given week."""
@@ -859,7 +872,7 @@ def create_week_page(week: int):
     <a href="index.html">Home</a>
     <a href="draft.html">Draft</a>
     <div class="nav-dropdown">
-      <a href="week-{week:02d}.html" class="nav-dropdown-toggle active">Week {week} &#9662;</a>
+      <a href="#" class="nav-dropdown-toggle active">Weeks &#9662;</a>
       <div class="nav-dropdown-menu" id="weekDropdown">
         <!-- AUTO:WEEK_LINKS_START -->
         <a href="week-{week:02d}.html" class="active">Week {week} &mdash; {date_str}</a>
@@ -906,18 +919,86 @@ def create_week_page(week: int):
   <p>Issaquah Swingers Fantasy Baseball &middot; 2026 Season</p>
 </footer>
 
+<script src="nav.js"></script>
 <script>
-document.querySelector('.nav-toggle').addEventListener('click', function() {{
-  document.querySelector('.nav-links').classList.toggle('nav-open');
-}});
-const dt = document.querySelector('.nav-dropdown-toggle');
-if (dt) {{
-  dt.addEventListener('click', function(e) {{ e.preventDefault(); this.closest('.nav-dropdown').classList.toggle('open'); }});
-  document.addEventListener('click', function(e) {{ if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open')); }});
-}}
 const obs = new IntersectionObserver(entries => entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }}), {{threshold:.06}});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#" class="bottom-nav-item active" id="weeks-nav-btn">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Weeks</span>
+    </a>
+    <a href="draft.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Draft</span>
+    </a>
+    <a href="#" class="bottom-nav-item" id="teams-nav-btn">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Teams</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Teams bottom sheet (mobile) -->
+<div class="teams-sheet" id="teamsSheet">
+  <div class="teams-sheet-backdrop" id="teamsSheetBackdrop"></div>
+  <div class="teams-sheet-panel">
+    <div class="teams-sheet-handle"></div>
+    <div class="teams-sheet-title">Teams</div>
+    <div class="teams-sheet-list">
+      <a href="teams/busch-latte.html" class="teams-sheet-item"><img src="img/headshots/busch-latte.jpg" class="headshot headshot-sm" alt="" /> Busch Latte</a>
+      <a href="teams/skenes.html" class="teams-sheet-item"><img src="img/headshots/skenes.jpeg" class="headshot headshot-sm" alt="" /> Skenes&rsquo;n on deez Hoerners</a>
+      <a href="teams/ete-crow.html" class="teams-sheet-item"><img src="img/headshots/ete-crow.jpeg" class="headshot headshot-sm" alt="" /> Ete Crow</a>
+      <a href="teams/ragans.html" class="teams-sheet-item"><img src="img/headshots/ragans.jpeg" class="headshot headshot-sm" alt="" /> The Ragans Administration</a>
+      <a href="teams/keanu.html" class="teams-sheet-item"><img src="img/headshots/keanu.jpeg" class="headshot headshot-sm" alt="" /> Keanu Reeves</a>
+      <a href="teams/good-vibes.html" class="teams-sheet-item"><img src="img/headshots/good-vibes.jpeg" class="headshot headshot-sm" alt="" /> Good Vibes Only</a>
+      <a href="teams/rain-city.html" class="teams-sheet-item"><img src="img/headshots/rain-city.jpeg" class="headshot headshot-sm" alt="" /> Rain City Bombers</a>
+      <a href="teams/buckner.html" class="teams-sheet-item"><img src="img/headshots/buckner.jpeg" class="headshot headshot-sm" alt="" /> The Buckner Boots</a>
+      <a href="teams/decoy.html" class="teams-sheet-item"><img src="img/headshots/decoy.jpeg" class="headshot headshot-sm" alt="" /> Ray Donovan</a>
+      <a href="teams/one-ball.html" class="teams-sheet-item"><img src="img/headshots/one-ball.png" class="headshot headshot-sm" alt="" /> One Ball Two Strikes</a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {{
+  var btn = document.getElementById('teams-nav-btn');
+  var sheet = document.getElementById('teamsSheet');
+  var backdrop = document.getElementById('teamsSheetBackdrop');
+  function toggle(e) {{ if (e) e.preventDefault(); sheet.classList.toggle('open'); }}
+  if (btn && sheet && backdrop) {{ btn.addEventListener('click', toggle); backdrop.addEventListener('click', toggle); }}
+}})();
+</script>
+
+<!-- Weeks bottom sheet (mobile) -->
+<div class="teams-sheet" id="weeksSheet">
+  <div class="teams-sheet-backdrop" id="weeksSheetBackdrop"></div>
+  <div class="teams-sheet-panel">
+    <div class="teams-sheet-handle"></div>
+    <div class="teams-sheet-title">Weeks</div>
+    <div class="teams-sheet-list">
+      <!-- AUTO:WEEKS_SHEET_START -->
+      <a href="week-{week:02d}.html" class="teams-sheet-item active">Week {week} &mdash; {date_str}</a>
+      <!-- AUTO:WEEKS_SHEET_END -->
+    </div>
+  </div>
+</div>
+<script>
+(function() {{
+  var btn = document.getElementById('weeks-nav-btn');
+  var sheet = document.getElementById('weeksSheet');
+  var backdrop = document.getElementById('weeksSheetBackdrop');
+  function toggle(e) {{ if (e) e.preventDefault(); sheet.classList.toggle('open'); }}
+  if (btn && sheet && backdrop) {{ btn.addEventListener('click', toggle); backdrop.addEventListener('click', toggle); }}
+}})();
+</script>
+
 </body>
 </html>'''
     page_path.write_text(template)
@@ -1024,6 +1105,7 @@ def main():
         recap_html = generate_recap(api, recap_week)
         html = replace_section(html, 'RECAP', recap_html)
         html = replace_section(html, 'WEEK_LINKS', render_week_links(recap_week))
+        html = replace_section(html, 'WEEKS_SHEET', render_weeks_sheet_items(recap_week))
         page_path.write_text(html)
         print(f'  ✅  week-{recap_week:02d}.html recap updated')
 
@@ -1042,6 +1124,7 @@ def main():
             html = replace_section(html, 'PREVIEW', preview_html)
             html = reinject_live_scores(html, saved_scores)
             html = replace_section(html, 'WEEK_LINKS', render_week_links(preview_week))
+            html = replace_section(html, 'WEEKS_SHEET', render_weeks_sheet_items(preview_week))
             page_path.write_text(html)
             print(f'  ✅  week-{preview_week:02d}.html preview updated')
 
