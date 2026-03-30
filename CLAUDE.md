@@ -372,10 +372,36 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 - [ ] "Waiver Wire Moves to Make" section — players must be confirmed unowned via API
 
 ### Recap (generated Sunday night, after week ends)
+- [ ] Read `player_week_stats` from the data JSON BEFORE writing any recap content
 - [ ] Final scores for all 5 matchups
-- [ ] "Biggest Win" callout
-- [ ] "Choke of the Week" for the most embarrassing loss
-- [ ] Category leaders (who won HR, SV, ERA, etc.)
+- [ ] "Biggest Win" callout — name the specific players who drove it (top HR, RBI, K leaders)
+- [ ] "Choke of the Week" — name who specifically failed (0-for-week batters, blown ERA, etc.)
+- [ ] Category leaders — call out the individual player behind the stat, not just the team (e.g. "DeLauter's 4 HRs single-handedly won that category for Busch Latte")
+- [ ] Over/under-performers — compare `player_week_stats` vs Steamer projections to flag who outran their projection and who faceplanted
 - [ ] "Move of the Week" — best transaction
 - [ ] Updated standings table
 - [ ] Running power rankings blurb
+
+**How to use `player_week_stats`:**
+
+The data JSON includes `player_week_stats` with individual stat lines for every active player. Structure:
+
+```json
+{
+  "469.p.12345": {
+    "name": "Chase DeLauter",
+    "pos": "OF",
+    "team_key": "mlb.l.61583.t.1",
+    "stats": {"R": 5.0, "HR": 4.0, "RBI": 5.0, "SB": 0.0, "OBP": 0.357}
+  }
+}
+```
+
+Pitchers only include `K` and `SV`. ERA/WHIP/QS are only available at team level from the scoreboard matchup `cats` field — use those for team-level pitching callouts.
+
+**Rules for using this data:**
+- Sort batters by HR, RBI, R to find the week's offensive stars and call them out by name
+- Flag any player with 0 in all counting stats (R=0, HR=0, RBI=0, SB=0) as a dud — if they're a top-drafted player that's a storyline
+- Compare pitcher K totals to identify who was dominant vs who was a liability
+- Cross-reference with `player_news` — if a player underperformed AND has an injury note, that explains it; if there's no injury note, call it out as a cold stretch
+- Team_key maps to team name via the matchup data: `mlb.l.61583.t.1` = Busch Latte, `.t.2` = Skenes, `.t.3` = Ragans, `.t.4` = Ete Crow, `.t.5` = Keanu, `.t.6` = GVO, `.t.7` = Rain City, `.t.8` = Buckner, `.t.9` = Ray Donovan, `.t.10` = One Ball
