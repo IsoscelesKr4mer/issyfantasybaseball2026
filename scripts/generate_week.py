@@ -345,6 +345,106 @@ def fetch_recent_results(api: YahooFantasyAPI, current_week: int, n_weeks: int =
     return results
 
 
+def fetch_player_week_stats(api: YahooFantasyAPI, week: int) -> dict:
+    """Fetch individual player stats for a completed week across all 10 teams.
+
+    Returns {player_key: {name, team_name, pos, stats}} where stats contains
+    the categories we score:
+      Batters:  R, HR, RBI, SB, OBP
+      Pitchers: SV, K  (ERA/WHIP/QS are only reliable at team level from scoreboard)
+
+    Stat IDs confirmed via Yahoo API:
+      Batters:  R=7, HR=12, RBI=13, SB=16, OBP=4
+      Pitchers: SV=32, K=35
+
+    Note: pitcher K (stat_id 35) and SV (stat_id 32) are the most reliable
+    individual pitcher stats available per-player. ERA/WHIP/QS are best read
+    from team-level scoreboard totals, not summed from individual player stats.
+    """
+    # Stat IDs → category name
+    BATTER_IDS  = {'7': 'R', '12': 'HR', '13': 'RBI', '16': 'SB', '4': 'OBP'}
+    PITCHER_IDS = {'32': 'SV', '35': 'K'}
+    ALL_IDS     = {**BATTER_IDS, **PITCHER_IDS}
+
+    # Collect all players across all 10 teams
+    all_players = []
+    team_names  = {}
+    for t_num in range(1, 11):
+        team_key = f'mlb.l.{api.league_id}.t.{t_num}'
+        try:
+            roster = api.get_team_roster(team_key, week)
+        except Exception:
+            continue
+        for p in roster:
+            if p.get('starting') not in ('BN', 'IL', 'IL+', 'NA'):
+                p['_team_key'] = team_key
+                all_players.append(p)
+
+    # Fetch team names from standings for attribution
+    try:
+        for s in api.get_standings():
+            team_names[s.get('team_key', '')] = s.get('name', '')
+    except Exception:
+        pass
+
+    result = {}
+    batch_size = 25
+    for i in range(0, len(all_players), batch_size):
+        batch = all_players[i:i + batch_size]
+        keys  = ','.join(p['player_key'] for p in batch)
+        # Build key → player meta lookup for this batch
+        meta = {p['player_key']: p for p in batch}
+        try:
+            r  = api._get(f'players;player_keys={keys};out=stats;type=week;week={week}')
+            pb = r.get('fantasy_content', {}).get('players', {})
+        except Exception:
+            continue
+
+        j = 0
+        while str(j) in pb:
+            items = pb[str(j)].get('player', [])
+            pkey, pname, ppos = None, None, None
+            pstats = {}
+            for item in items:
+                if isinstance(item, list):
+                    for sub in item:
+                        if isinstance(sub, dict):
+                            if 'player_key' in sub:
+                                pkey = sub['player_key']
+                            if 'name' in sub:
+                                pname = sub['name'].get('full')
+                            if 'display_position' in sub:
+                                ppos = sub['display_position']
+                elif isinstance(item, dict) and 'player_stats' in item:
+                    for s in item['player_stats'].get('stats', []):
+                        st  = s.get('stat', {})
+                        sid = str(st.get('stat_id', ''))
+                        if sid in ALL_IDS:
+                            try:
+                                pstats[ALL_IDS[sid]] = float(st.get('value', 0) or 0)
+                            except (TypeError, ValueError):
+                                pass
+            if pkey:
+                pm = meta.get(pkey, {})
+                is_pitcher = any(x in (ppos or '') for x in ('SP', 'RP', 'P'))
+                # Only store the relevant stat group
+                if is_pitcher:
+                    filtered = {k: v for k, v in pstats.items() if k in ('SV', 'K')}
+                else:
+                    filtered = {k: v for k, v in pstats.items() if k in ('R', 'HR', 'RBI', 'SB', 'OBP')}
+                result[pkey] = {
+                    'name':      pname,
+                    'pos':       ppos,
+                    'team_key':  pm.get('_team_key', ''),
+                    'stats':     filtered,
+                }
+            j += 1
+
+    matched = sum(1 for v in result.values() if v['stats'])
+    print(f'    Player week stats: {matched}/{len(result)} players with data')
+    return result
+
+
 def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     """Fetch all matchup + roster data for a week, run Monte Carlo simulations,
     and save to JSON.
@@ -486,11 +586,24 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     except Exception as e:
         print(f'    ⚠️  Recent results fetch failed: {e}')
 
+    # ── Player week stats (for recap: individual HR, RBI, K, SV leaders) ─────────
+    # Fetched for the CURRENT week so when the Sunday night task runs after the
+    # week ends, Claude has per-player stat lines to call out in the recap.
+    # Batter stats (R, HR, RBI, SB, OBP) and pitcher K/SV are reliable.
+    # ERA/WHIP/QS are only available at team level from the scoreboard.
+    print(f'  Fetching player week stats (for recap analysis)...')
+    player_week_stats = {}
+    try:
+        player_week_stats = fetch_player_week_stats(api, week)
+    except Exception as e:
+        print(f'    ⚠️  Player week stats fetch failed: {e}')
+
     data = {
-        'week':           week,
-        'matchups':       matchups_data,
-        'standings':      standings,
-        'recent_results': recent_results,
+        'week':              week,
+        'matchups':          matchups_data,
+        'standings':         standings,
+        'recent_results':    recent_results,
+        'player_week_stats': player_week_stats,
     }
 
     # Save JSON so the Cowork scheduled task (Claude) can read it
@@ -536,8 +649,6 @@ def generate_preview(api: YahooFantasyAPI, week: int, analysis: dict = None) -> 
         t1_hs  = f'<img src="img/headshots/{t1_img}" class="headshot" alt="{t1["name"]}" />' if t1_img else ''
 
         matchup_cards.append(f'''    <div class="matchup-detail-card reveal" id="matchup-{i+1}">
-      <!-- AUTO:LIVE_SCORE_{i+1}_START -->
-      <!-- AUTO:LIVE_SCORE_{i+1}_END -->
       <div class="matchup-detail-header">
         <div class="matchup-detail-teams">
           <div class="matchup-detail-team-block">
@@ -552,6 +663,8 @@ def generate_preview(api: YahooFantasyAPI, week: int, analysis: dict = None) -> 
         </div>
         <div class="matchup-detail-meta">Week {week} &bull; {date_str}</div>
       </div>
+      <!-- AUTO:LIVE_SCORE_{i+1}_START -->
+      <!-- AUTO:LIVE_SCORE_{i+1}_END -->
       <div class="matchup-detail-body">
         <div class="matchup-detail-analysis">
           <p>{t0_analysis}</p>
