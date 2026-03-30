@@ -380,7 +380,7 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 - [ ] Over/under-performers — compare `player_week_stats` vs Steamer projections to flag who outran their projection and who faceplanted
 - [ ] "Move of the Week" — best transaction
 - [ ] Updated standings table
-- [ ] Power rankings: a numbered 1-10 list. One punchy line per team. **Primary sort: all-play record** from `all_play` in the data JSON — this shows how a team would have done against every other team that week, removing H2H luck from the equation. Use cat_w/cat_l as tiebreaker. Call out mismatches between all-play rank and actual H2H result when they're interesting (e.g. "went 7-2 all-play but drew the one team that beat them"). One sentence per team, no more.
+- [ ] Power rankings: open with one sentence explaining what all-play means (e.g. "Rankings based on all-play record: how each team would have done against all 9 other teams this week, not just their one actual opponent."). Then a numbered 1-10 list. **Primary sort: all-play record** from `all_play` in the data JSON. Use cat_w/cat_l as tiebreaker. Show each team's all-play record in parentheses (e.g. "9-0 all-play") so it's clear the number is not their season record. Call out mismatches between all-play rank and actual H2H result when they're interesting (e.g. "went 7-2 all-play but drew the one team that beat them"). One sentence per team, no more.
 
 **How to use `player_week_stats`:**
 
