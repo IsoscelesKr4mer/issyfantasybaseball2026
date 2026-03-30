@@ -113,14 +113,11 @@ def render_week_links(current_week: int, recap_week: int = 0) -> str:
         date_str = f'{start}&ndash;{end}' if start else ''
         label_active = ' active' if w == current_week else ''
         has_recap    = w < current_week  # completed weeks have recaps
-        recap_link   = (f'<a href="week-{w:02d}.html#recap"'
-                        + (' class="active"' if False else '') + '>Recap</a>') if has_recap else ''
-        preview_active = ' class="active"' if w == current_week else ''
         groups.append(
             f'        <div class="week-nav-group">'
             f'<span class="week-nav-label{label_active}">Week {w} &mdash; {date_str}</span>'
             f'<div class="week-nav-sub">'
-            f'<a href="week-{w:02d}.html#preview"{preview_active}>Preview</a>'
+            f'<a href="week-{w:02d}.html#preview">Preview</a>'
             + (f'<a href="week-{w:02d}.html#recap">Recap</a>' if has_recap else '')
             + f'</div></div>'
         )
@@ -143,7 +140,7 @@ def render_weeks_sheet_items(current_week: int) -> str:
             f'      <div class="week-sheet-group">'
             f'<div class="week-sheet-header{header_active}">Week {w} &mdash; {date_str}</div>'
             f'<div class="week-sheet-sub">'
-            f'<a href="week-{w:02d}.html#preview" class="week-sheet-sub-link{"  active" if w == current_week else ""}">Preview</a>'
+            f'<a href="week-{w:02d}.html#preview" class="week-sheet-sub-link">Preview</a>'
             + recap_html
             + f'</div></div>'
         )
