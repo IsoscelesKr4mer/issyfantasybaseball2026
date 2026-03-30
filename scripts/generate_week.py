@@ -1036,7 +1036,9 @@ def main():
             page_path = BASE_DIR / f'week-{preview_week:02d}.html'
             html = page_path.read_text()
             saved_scores = extract_live_scores(html)
-            preview_html = generate_preview(api, preview_week)
+            analysis_path = BASE_DIR / 'data' / f'week-{preview_week:02d}-analysis.json'
+            analysis = json.loads(analysis_path.read_text()) if analysis_path.exists() else None
+            preview_html = generate_preview(api, preview_week, analysis)
             html = replace_section(html, 'PREVIEW', preview_html)
             html = reinject_live_scores(html, saved_scores)
             html = replace_section(html, 'WEEK_LINKS', render_week_links(preview_week))
