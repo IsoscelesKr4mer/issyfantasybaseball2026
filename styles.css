@@ -3852,6 +3852,17 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .pr-h2h-result.win { color: var(--green); }
 .pr-h2h-result.loss { color: var(--red); }
 .pr-h2h-result.tie { color: var(--muted); }
+.pr-cats-badge {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .15rem .45rem;
+  white-space: nowrap;
+}
 
 /* All-play win rate bar */
 .pr-bar-container {
@@ -3891,20 +3902,35 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   color: var(--text-secondary);
 }
 
+/* ── Power Rankings Description ── */
+.pr-description {
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  padding: .5rem .7rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--accent);
+}
+
 /* ── #1 Crown Treatment ── */
 .pr-row[data-rank="1"] {
   background: linear-gradient(135deg, rgba(247, 201, 72, .06) 0%, rgba(247, 201, 72, .02) 100%);
   border: 1px solid rgba(247, 201, 72, .12);
   border-radius: var(--radius-md);
-  padding: 1rem .85rem;
-  margin-bottom: .25rem;
+  padding: .85rem 0;
+  margin: 0 -.5rem .25rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 .pr-row[data-rank="1"] .pr-rank {
   font-size: 2.2rem;
   text-shadow: 0 0 16px rgba(247, 201, 72, .3);
 }
 .pr-row[data-rank="1"] .pr-team-name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   background: linear-gradient(135deg, var(--accent2), #ffe066);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -3946,7 +3972,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   }
   .pr-rank { font-size: 1.4rem; }
   .pr-row[data-rank="1"] .pr-rank { font-size: 1.6rem; }
-  .pr-row[data-rank="1"] { padding: .75rem .6rem; }
+  .pr-row[data-rank="1"] { padding: .75rem 0; margin: 0 -.35rem; padding-left: .35rem; padding-right: .35rem; }
   .pr-team-name { font-size: .95rem; }
   .pr-header { gap: .4rem; }
 }
