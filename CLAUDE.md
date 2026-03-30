@@ -186,6 +186,8 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 **Bench pitchers are NOT inactive pitchers.** In Yahoo Fantasy, managers routinely keep starting pitchers on the bench and activate them only on days they pitch. A `roster_summary` showing `starters: []` with SPs on bench just means the data was pulled on a non-start day or before activations were made. Never interpret empty active SP slots as a roster problem or call it out as a weakness. A team with 4 SPs on bench has 4 SPs. Always assume managers will make their starts — never assume a missed start unless there is explicit IL, DTD, or NA status on the player.
 
+**Do not write about bench SP counts as a storyline.** The fact that a team has SPs on the bench is not a story, a gamble, a risk, or anything worth calling out. It is standard roster management. Never write a storyline or analysis framing bench SPs as uncertainty, variance, or a potential problem. If you want to write about a team's pitching, write about their actual rotation quality, their IL situation, or their matchup context — not about where players are slotted on a given day.
+
 ---
 
 ## Recent Results Data
@@ -391,7 +393,7 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 - [ ] Over/under-performers — compare `player_week_stats` vs Steamer projections to flag who outran their projection and who faceplanted
 - [ ] "Move of the Week" — best transaction
 - [ ] Updated standings table
-- [ ] Power rankings: open with one sentence explaining what all-play means (e.g. "Rankings based on all-play record: how each team would have done against all 9 other teams this week, not just their one actual opponent."). Then a numbered 1-10 list. **Primary sort: all-play record** from `all_play` in the data JSON. Use cat_w/cat_l as tiebreaker. Show each team's all-play record in parentheses (e.g. "9-0 all-play") so it's clear the number is not their season record. Call out mismatches between all-play rank and actual H2H result when they're interesting (e.g. "went 7-2 all-play but drew the one team that beat them"). One sentence per team, no more.
+- [ ] Power rankings: open with one sentence explaining what all-play means (e.g. "Rankings based on all-play record: how each team would have done against all 9 other teams this week, not just their one actual opponent."). Then a numbered 1-10 list. **Primary sort: all-play record** from `all_play` in the data JSON. Use cat_w/cat_l as tiebreaker. Show each team's **both** their all-play record AND their category record in W-L-T format — e.g. "9-0 all-play, 75-9-6 cats" — so readers can see not just whether they would have won each matchup but how dominant or close those wins were. The three cat numbers always sum to 90 (9 opponents × 10 categories). `cat_t` is available from `compute_all_play()` for this. Call out mismatches between all-play rank and actual H2H result when they're interesting (e.g. "went 7-2 all-play but drew the one team that beat them"). One sentence per team, no more. In the recap analysis JSON, include both `"all_play"` (e.g. `"9-0"`) and `"cat_record"` (e.g. `"75-9-6"`) fields for each ranking entry. In the HTML, render both as separate badges: `pr-record-badge` for all-play, `pr-cats-badge` for cat record.
 
 **How to use `player_week_stats`:**
 
