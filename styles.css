@@ -3852,6 +3852,17 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 .pr-h2h-result.win { color: var(--green); }
 .pr-h2h-result.loss { color: var(--red); }
 .pr-h2h-result.tie { color: var(--muted); }
+.pr-cats-badge {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .15rem .45rem;
+  white-space: nowrap;
+}
 
 /* All-play win rate bar */
 .pr-bar-container {
