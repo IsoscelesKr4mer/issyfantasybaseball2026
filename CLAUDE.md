@@ -380,7 +380,7 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 - [ ] Over/under-performers — compare `player_week_stats` vs Steamer projections to flag who outran their projection and who faceplanted
 - [ ] "Move of the Week" — best transaction
 - [ ] Updated standings table
-- [ ] Running power rankings blurb
+- [ ] Power rankings: a numbered 1-10 list. One punchy line per team. Factor in: win/loss margin this week, roster quality, strength of opponent beaten/lost to, and trajectory. Not just standings order — a team that went 4-6 against the strongest roster in the league ranks higher than one that scraped a 6-4 against a dumpster fire. Each team gets exactly one sentence, no more.
 
 **How to use `player_week_stats`:**
 
