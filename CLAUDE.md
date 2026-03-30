@@ -186,6 +186,8 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 **Bench pitchers are NOT inactive pitchers.** In Yahoo Fantasy, managers routinely keep starting pitchers on the bench and activate them only on days they pitch. A `roster_summary` showing `starters: []` with SPs on bench just means the data was pulled on a non-start day or before activations were made. Never interpret empty active SP slots as a roster problem or call it out as a weakness. A team with 4 SPs on bench has 4 SPs. Always assume managers will make their starts — never assume a missed start unless there is explicit IL, DTD, or NA status on the player.
 
+**Do not write about bench SP counts as a storyline.** The fact that a team has SPs on the bench is not a story, a gamble, a risk, or anything worth calling out. It is standard roster management. Never write a storyline or analysis framing bench SPs as uncertainty, variance, or a potential problem. If you want to write about a team's pitching, write about their actual rotation quality, their IL situation, or their matchup context — not about where players are slotted on a given day.
+
 ---
 
 ## Recent Results Data
