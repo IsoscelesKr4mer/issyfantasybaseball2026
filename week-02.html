@@ -381,6 +381,17 @@ this.nextElementSibling.classList.toggle('mc-open')">Category Breakdown <span cl
 </nav>
 
 <script>
+// Highlight Preview/Recap nav sub-links based on URL hash
+(function() {
+  var page = window.location.pathname.split('/').pop() || '';
+  var hash = window.location.hash || '#preview';
+  var target = page + hash;
+  document.querySelectorAll('.week-nav-sub a, .week-sheet-sub-link').forEach(function(a) {
+    var href = (a.getAttribute('href') || '').replace(/^\.\//, '');
+    if (href === target) a.classList.add('active');
+  });
+})();
+
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
