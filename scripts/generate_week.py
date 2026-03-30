@@ -945,6 +945,17 @@ def create_week_page(week: int):
 
 <script src="nav.js"></script>
 <script>
+// Highlight Preview/Recap nav sub-links based on URL hash
+(function() {{
+  var page = window.location.pathname.split('/').pop() || '';
+  var hash = window.location.hash || '#preview';
+  var target = page + hash;
+  document.querySelectorAll('.week-nav-sub a, .week-sheet-sub-link').forEach(function(a) {{
+    var href = (a.getAttribute('href') || '').replace(/^\.\//, '');
+    if (href === target) a.classList.add('active');
+  }});
+}})();
+
 const obs = new IntersectionObserver(entries => entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }}), {{threshold:.06}});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
