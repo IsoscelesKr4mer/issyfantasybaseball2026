@@ -252,7 +252,7 @@ def generate_recap(api: YahooFantasyAPI, week: int) -> str:
 # ── TEAM METADATA ─────────────────────────────────────────────────────────────
 TEAM_META = {
     'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.jpg'},
-    'Skenes\u2019n on deez Hoerners':    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.jpeg'},
+    'Allahu Alvarez':    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.jpeg'},
     'The Ragans Administration':    {'2025_rank': 3,  'draft_slot': 3,  'img': 'ragans.jpeg'},
     'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.jpeg'},
     'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.jpeg'},
@@ -989,7 +989,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     <div class="teams-sheet-title">Teams</div>
     <div class="teams-sheet-list">
       <a href="teams/busch-latte.html" class="teams-sheet-item"><img src="img/headshots/busch-latte.jpg" class="headshot headshot-sm" alt="" /> Busch Latte</a>
-      <a href="teams/skenes.html" class="teams-sheet-item"><img src="img/headshots/skenes.jpeg" class="headshot headshot-sm" alt="" /> Skenes&rsquo;n on deez Hoerners</a>
+      <a href="teams/skenes.html" class="teams-sheet-item"><img src="img/headshots/skenes.jpeg" class="headshot headshot-sm" alt="" /> Allahu Alvarez</a>
       <a href="teams/ete-crow.html" class="teams-sheet-item"><img src="img/headshots/ete-crow.jpeg" class="headshot headshot-sm" alt="" /> Ete Crow</a>
       <a href="teams/ragans.html" class="teams-sheet-item"><img src="img/headshots/ragans.jpeg" class="headshot headshot-sm" alt="" /> The Ragans Administration</a>
       <a href="teams/keanu.html" class="teams-sheet-item"><img src="img/headshots/keanu.jpeg" class="headshot headshot-sm" alt="" /> Keanu Reeves</a>

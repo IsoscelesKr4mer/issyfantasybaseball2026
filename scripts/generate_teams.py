@@ -25,7 +25,7 @@ TEAMS_DIR = BASE_DIR / 'teams'
 # slug matches the html filename and headshot filename convention
 TEAM_CONFIG = [
     {'id': 'senga',   'slug': 'busch-latte',  'name': 'Busch Latte',                'headshot': '../img/headshots/busch-latte.jpg'},
-    {'id': 'skenes',  'slug': 'skenes',        'name': 'Skenes\u2019n on deez Hoerners',  'headshot': '../img/headshots/skenes.jpeg'},
+    {'id': 'skenes',  'slug': 'skenes',        'name': 'Allahu Alvarez',  'headshot': '../img/headshots/skenes.jpeg'},
     {'id': 'glas',    'slug': 'ragans',        'name': 'The Ragans Administration',  'headshot': '../img/headshots/ragans.jpeg'},
     {'id': 'lets',    'slug': 'ete-crow',      'name': 'Ete Crow',                   'headshot': '../img/headshots/ete-crow.jpeg'},
     {'id': 'keanu',   'slug': 'keanu',         'name': 'Keanu Reeves',               'headshot': '../img/headshots/keanu.jpeg'},

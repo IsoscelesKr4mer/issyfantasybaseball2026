@@ -20,7 +20,7 @@ Deploy to GitHub Pages:
 | ID | Team Name |
 |----|-----------|
 | senga | Busch Latte (fka Senga man watchu smokin?) |
-| skenes | Skenes'n on deez Hoerners |
+| skenes | Allahu Alvarez |
 | glas | The Ragans Administration (fka 877-Glas-Now) |
 | lets | Ete Crow (fka LetsPlayMajorLeagueBaseball) |
 | keanu | Keanu Reeves |

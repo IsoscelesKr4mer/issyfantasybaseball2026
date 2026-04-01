@@ -15,7 +15,7 @@ var TEAM_LINKS = {
   'Good Vibes Only':             '/teams/good-vibes.html',
   'Busch Latte':                 '/teams/busch-latte.html',
   'Keanu Reeves':                '/teams/keanu.html',
-  "Skenes'n on deez Hoerners":   '/teams/skenes.html',
+  "Allahu Alvarez":              '/teams/skenes.html',
 };
 
 function teamLink(name) {

@@ -39,7 +39,7 @@ matchup previews, weekly recaps, and running commentary.
 | ID       | Team Name                      | Owner        | 2025 Rank | Draft Slot |
 |----------|-------------------------------|--------------|-----------|------------|
 | senga    | Busch Latte                   | Rose         | 7th       | 1          |
-| skenes   | Skenes'n on deez Hoerners     | TylerR       | 10th      | 2          |
+| skenes   | Allahu Alvarez                | TylerR       | 10th      | 2          |
 | glas     | The Ragans Administration     | TylerV       | 3rd       | 3          |
 | lets     | Ete Crow                      | Jace Allison | 1st 🏆    | 4          |
 | keanu    | Keanu Reeves                  | Duke Joe     | 6th       | 5          |
@@ -417,4 +417,4 @@ Pitchers only include `K` and `SV`. ERA/WHIP/QS are only available at team level
 - Flag any player with 0 in all counting stats (R=0, HR=0, RBI=0, SB=0) as a dud — if they're a top-drafted player that's a storyline
 - Compare pitcher K totals to identify who was dominant vs who was a liability
 - Cross-reference with `player_news` — if a player underperformed AND has an injury note, that explains it; if there's no injury note, call it out as a cold stretch
-- Team_key maps to team name via the matchup data. Always derive this mapping from `standings` in the data JSON (each entry has `team_key` and `name`) — do not hardcode. The 2026 mapping (confirmed from Yahoo API) is: `mlb.l.61583.t.1` = One Ball Two Strikes, `.t.2` = The Ragans Administration, `.t.3` = Ray Donovan, `.t.4` = Good Vibes Only, `.t.5` = Keanu Reeves, `.t.6` = Ete Crow, `.t.7` = Rain City Bombers, `.t.8` = Busch Latte, `.t.9` = Skenes'n on deez Hoerners, `.t.10` = The Buckner Boots
+- Team_key maps to team name via the matchup data. Always derive this mapping from `standings` in the data JSON (each entry has `team_key` and `name`) — do not hardcode. The 2026 mapping (confirmed from Yahoo API) is: `mlb.l.61583.t.1` = One Ball Two Strikes, `.t.2` = The Ragans Administration, `.t.3` = Ray Donovan, `.t.4` = Good Vibes Only, `.t.5` = Keanu Reeves, `.t.6` = Ete Crow, `.t.7` = Rain City Bombers, `.t.8` = Busch Latte, `.t.9` = Allahu Alvarez, `.t.10` = The Buckner Boots

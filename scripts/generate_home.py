@@ -30,7 +30,7 @@ TEAM_HEADSHOTS = {
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',
     'Rain City Bombers':          'img/headshots/rain-city.jpeg',
     'Busch Latte':                'img/headshots/busch-latte.jpg',
-    'Skenes\u2019n on deez Hoerners':  'img/headshots/skenes.jpeg',
+    'Allahu Alvarez':  'img/headshots/skenes.jpeg',
     'The Buckner Boots':          'img/headshots/buckner.jpeg',
 }
 
@@ -50,7 +50,7 @@ SHORT_NAMES = {
     'Keanu Reeves': 'Keanu',
     'Ete Crow': 'Ete Crow',
     'Ray Donovan': 'Donovan',
-    'Skenes\u2019n on deez Hoerners': 'Skenes',
+    'Allahu Alvarez': 'Alvarez',
 }
 
 def _short(name: str) -> str:

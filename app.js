@@ -378,8 +378,8 @@ function renderNotableMovement() {
   const notables = [
     { player: 'Shohei Ohtani (Batter)', from: 'Ray Donovan (R1)', to: 'Senga (R1)', note: 'Still goes #1 overall, new owner' },
     { player: 'Elly De La Cruz', from: 'One Ball (R1)', to: 'Ete Crow (R1)', note: 'Champion stole the runner-up\'s R1 pick' },
-    { player: 'Bobby Witt Jr.', from: 'Ragans (R1)', to: "Skenes'n (R1)", note: 'New home, same round' },
-    { player: 'Kyle Tucker', from: "Skenes'n (R2)", to: 'Buckner Boots (R1)', note: 'Our new cornerstone' },
+    { player: 'Bobby Witt Jr.', from: 'Ragans (R1)', to: "Alvarez (R1)", note: 'New home, same round' },
+    { player: 'Kyle Tucker', from: "Alvarez (R2)", to: 'Buckner Boots (R1)', note: 'Our new cornerstone' },
     { player: 'Corbin Burnes', from: 'Vibes (R4)', to: 'Vibes (R23)', note: 'Same team, 19 rounds later!' },
     { player: 'Will Smith', from: 'Rain City (R13)', to: 'Rain City (R13)', note: 'Exact same round, same team' },
     { player: 'Cristopher S\u00e1nchez', from: 'Keanu (R14)', to: 'Keanu (R3)', note: 'Biggest promotion: +11 rounds' },

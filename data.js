@@ -4,7 +4,7 @@
 
 const TEAMS = [
   { id: 'senga',   name: 'Busch Latte',                 pick: 1, manager: '' },
-  { id: 'skenes',  name: "Skenes'n on deez Hoerners",  pick: 2, manager: '' },
+  { id: 'skenes',  name: "Allahu Alvarez",              pick: 2, manager: '' },
   { id: 'glas',    name: 'The Ragans Administration',   pick: 3, manager: 'TylerV' },        // fka 877-Glas-Now
   { id: 'lets',    name: 'Ete Crow',                     pick: 4, manager: 'Jace Allison' }, // fka LetsPlayMajorLeagueBaseball
   { id: 'keanu',   name: 'Keanu Reeves',                pick: 5, manager: '' },
