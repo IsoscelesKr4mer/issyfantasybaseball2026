@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WBC Effect: 2026 Actual vs. ZiPS Projections</title>
+<style>
+  :root {
+    --bg:#0f1117; --surface:#1a1d27; --surface2:#21253a; --border:#2e3250;
+    --text:#e8eaf0; --muted:#8b90a8; --accent:#5b7fff;
+    --neg:#ff4d4d; --neg2:#ff7a45; --neg3:#ffa94d; --pos:#40c057;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;padding:32px 28px;line-height:1.5}
+  .container{max-width:1100px;margin:0 auto}
+  h1{font-size:1.9rem;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+  h1 span{color:var(--accent)}
+  .subtitle{color:var(--muted);font-size:.95rem;margin-bottom:8px}
+  .meta{font-size:.8rem;color:var(--muted);background:var(--surface2);display:inline-block;padding:3px 12px;border-radius:20px;border:1px solid var(--border);margin-bottom:28px}
+  .caveat{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:13px 16px;margin-bottom:24px;font-size:.83rem;color:var(--muted)}
+  .caveat strong{color:#ffa94d}
+  .context-box{background:#111d35;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:28px;font-size:.85rem;color:var(--muted)}
+  .context-box strong{color:var(--text)}
+
+  /* Summary */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+  .box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+  .box .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px}
+  .box .val{font-size:2rem;font-weight:800}
+  .box .sub{font-size:.81rem;color:var(--muted);margin-top:4px}
+  .neg-txt{color:var(--neg)} .pos-txt{color:var(--pos)} .warn-txt{color:var(--neg2)}
+
+  /* Bar chart */
+  .chart{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:28px}
+  .chart h2{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+  .chart-sub{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+  .bar-row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .bar-lbl{width:150px;font-size:.88rem;font-weight:600;flex-shrink:0}
+  .bar-wrap{flex:1;display:flex;align-items:center;gap:10px}
+  .bar-track{flex:1;background:#2a2d3e;border-radius:6px;height:30px}
+  .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:.84rem;font-weight:700;color:#fff;min-width:90px}
+  .bar-aside{width:100px;font-size:.82rem;font-weight:600;text-align:right;flex-shrink:0;white-space:nowrap}
+  .chart-note{font-size:.79rem;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+
+  /* Callouts */
+  .callouts{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:28px}
+  .col-hdr{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+  .cards{display:flex;gap:8px;flex-wrap:wrap}
+  .card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px 14px;flex:1;min-width:115px}
+  .card.neg{border-color:#5a2020;background:#1f1515}
+  .card.pos{border-color:#1a4a25;background:#121f15}
+  .cn{font-weight:700;font-size:.87rem;margin-bottom:1px}
+  .cc{font-size:.68rem;color:var(--muted);margin-bottom:8px}
+  .cv{font-size:1.55rem;font-weight:800}
+  .cl{font-size:.67rem;color:var(--muted);margin-bottom:3px}
+  .cz{font-size:.75rem;color:var(--muted);margin-bottom:4px}
+  .cd{font-size:.95rem;font-weight:700}
+  .cp{font-size:.67rem;color:var(--muted);margin-top:3px}
+
+  /* Table */
+  .tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px}
+  .tbl-head{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+  .tbl-head h2{font-size:1.05rem;font-weight:700}
+  .tbl-head p{font-size:.8rem;color:var(--muted);margin-top:3px}
+  table{width:100%;border-collapse:collapse;font-size:.87rem}
+  thead th{background:var(--surface2);padding:9px 14px;text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);border-bottom:1px solid var(--border)}
+  thead th.r{text-align:right}
+  tbody tr{border-bottom:1px solid var(--border)}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:hover{background:var(--surface2)}
+  td{padding:9px 14px;vertical-align:middle}
+  td.pname{font-weight:500}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  td.bold{font-weight:700}
+  td.dim{color:var(--muted);font-size:.82rem;text-align:right}
+  td.diff{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+  .diff.pos-strong{color:#40c057} .diff.pos-mild{color:#69db7c}
+  .diff.neutral{color:var(--muted)} .diff.neg-mild{color:#ffa94d}
+  .diff.neg-mod{color:#ff7a45} .diff.neg-strong{color:#ff4d4d}
+  .badge{font-size:.66rem;padding:2px 7px;border-radius:10px;font-weight:700;white-space:nowrap}
+  .footer{text-align:center;color:var(--muted);font-size:.77rem;padding-top:14px;border-top:1px solid var(--border)}
+  .back-link{margin-bottom:20px}
+  .back-link a{color:var(--accent);font-size:.85rem;text-decoration:none}
+  .back-link a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="back-link"><a href="/wbc_analysis.html">&#8592; Back to original report (vs. 2025 baseline)</a></div>
+
+  <h1>Did the <span>WBC</span> Wreck Early-Season Numbers?</h1>
+  <p class="subtitle">2026 Actual wRC+ vs. ZiPS 2026 Projections &mdash; controlling for regression to the mean</p>
+  <span class="meta">Data: FanGraphs ZiPS &middot; pybaseball &middot; April 2, 2026 &middot; Min 15 PA &middot; n=53 WBC batters</span>
+
+  <div class="caveat">
+    <strong>Why ZiPS instead of 2025 stats?</strong> A fair critique of the original report: WBC selects elite players who may have overperformed in 2025 and were due to regress regardless. ZiPS projections are built from a player's full career history and already price in that regression. Underperforming your ZiPS number is a cleaner signal of something actually wrong.
+  </div>
+
+  <div class="context-box">
+    <strong>The original finding held.</strong> WBC players are down <strong style="color:var(--neg)">22.2 pts</strong> vs their ZiPS projections on average. Non-WBC players are down only <strong style="color:var(--neg2)">2.7 pts</strong>. The 19.5-point gap is nearly identical to the original 20.4-pt gap vs 2025 actuals. Regression to the mean does not explain this away.
+  </div>
+
+  <div class="grid3">
+    <div class="box">
+      <div class="lbl">WBC Players &mdash; Actual vs. ZiPS</div>
+      <div class="val neg-txt">-22.2</div>
+      <div class="sub">ZiPS proj. 114 &rarr; 2026 actual 91 &middot; n=53</div>
+    </div>
+    <div class="box">
+      <div class="lbl">Non-WBC Players &mdash; Actual vs. ZiPS</div>
+      <div class="val warn-txt">-2.7</div>
+      <div class="sub">ZiPS proj. 105 &rarr; 2026 actual 103 &middot; n=210</div>
+    </div>
+    <div class="box">
+      <div class="lbl">WBC Extra Gap vs. Non-WBC</div>
+      <div class="val neg-txt">-19.5 pts</div>
+      <div class="sub">After controlling for regression, WBC players still trail by 19.5 pts more than non-WBC peers</div>
+    </div>
+  </div>
+
+  <div class="chart">
+    <h2>Actual vs. ZiPS Projection: Group Gap</h2>
+    <p class="chart-sub">Bars = underperformance vs ZiPS, scaled to 25 pts max. ZiPS already prices in regression to the mean.</p>
+    <div class="bar-row">
+      <div class="bar-lbl">WBC Players</div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:89%;background:#ff4d4d">&minus;22.2 pts</div></div>
+        <span class="bar-aside" style="color:#ff4d4d">proj 114 &rarr; 91</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-lbl">Non-WBC Players</div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:11%;background:#ff9944">&minus;2.7 pts</div></div>
+        <span class="bar-aside" style="color:#ff9944">proj 105 &rarr; 103</span>
+      </div>
+    </div>
+    <p class="chart-note">Non-WBC players are basically on pace with ZiPS (&minus;2.7 pts is within early-season noise). WBC players trailing by 22.2 pts is not.</p>
+  </div>
+
+  <div class="callouts">
+    <div>
+      <div class="col-hdr" style="color:var(--neg)">Most Below ZiPS Projection</div>
+      <div class="cards"><div class="card neg">
+      <div class="cn">Josh Naylor</div><div class="cc">Canada</div>
+      <div class="cv neg-txt">-49</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 124</div>
+      <div class="cd neg-txt">▼ 173 pts vs proj</div>
+      <div class="cp">30 PA</div>
+    </div><div class="card neg">
+      <div class="cn">Julio Rodríguez</div><div class="cc">Dominican Republic</div>
+      <div class="cv neg-txt">2</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 129</div>
+      <div class="cd neg-txt">▼ 127 pts vs proj</div>
+      <div class="cp">30 PA</div>
+    </div><div class="card neg">
+      <div class="cn">Aaron Judge</div><div class="cc">USA</div>
+      <div class="cv neg-txt">52</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 178</div>
+      <div class="cd neg-txt">▼ 126 pts vs proj</div>
+      <div class="cp">25 PA</div>
+    </div><div class="card neg">
+      <div class="cn">Spencer Horwitz</div><div class="cc">Israel</div>
+      <div class="cv neg-txt">-4</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 117</div>
+      <div class="cd neg-txt">▼ 121 pts vs proj</div>
+      <div class="cp">16 PA</div>
+    </div><div class="card neg">
+      <div class="cn">Nolan Arenado</div><div class="cc">Puerto Rico</div>
+      <div class="cv neg-txt">-13</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 95</div>
+      <div class="cd neg-txt">▼ 108 pts vs proj</div>
+      <div class="cp">19 PA</div>
+    </div></div>
+    </div>
+    <div>
+      <div class="col-hdr" style="color:var(--pos)">Most Above ZiPS Projection</div>
+      <div class="cards"><div class="card pos">
+      <div class="cn">Jonathan Aranda</div><div class="cc">Mexico</div>
+      <div class="cv pos-txt">188</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 119</div>
+      <div class="cd pos-txt">▲ 69 pts vs proj</div>
+      <div class="cp">29 PA</div>
+    </div><div class="card pos">
+      <div class="cn">Oneil Cruz</div><div class="cc">Dominican Republic</div>
+      <div class="cv pos-txt">187</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 114</div>
+      <div class="cd pos-txt">▲ 73 pts vs proj</div>
+      <div class="cp">24 PA</div>
+    </div><div class="card pos">
+      <div class="cn">Andrés Giménez</div><div class="cc">Venezuela</div>
+      <div class="cv pos-txt">193</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 96</div>
+      <div class="cd pos-txt">▲ 97 pts vs proj</div>
+      <div class="cp">24 PA</div>
+    </div><div class="card pos">
+      <div class="cn">Brice Turang</div><div class="cc">USA</div>
+      <div class="cv pos-txt">244</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 104</div>
+      <div class="cd pos-txt">▲ 140 pts vs proj</div>
+      <div class="cp">27 PA</div>
+    </div><div class="card pos">
+      <div class="cn">Wilyer Abreu</div><div class="cc">Venezuela</div>
+      <div class="cv pos-txt">281</div>
+      <div class="cl">2026 wRC+</div>
+      <div class="cz">ZiPS: 110</div>
+      <div class="cd pos-txt">▲ 171 pts vs proj</div>
+      <div class="cp">24 PA</div>
+    </div></div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-head">
+      <h2>All WBC Batters: ZiPS Projection vs. 2026 Actual wRC+</h2>
+      <p>Sorted most below projection to most above. Min 15 PA. Pitchers excluded. Corbin Carroll excluded (did not play WBC due to injury).</p>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Player</th><th>Country</th>
+        <th class="r">ZiPS Proj</th><th class="r">2026 Actual</th>
+        <th class="r">vs. ZiPS</th><th class="r">PA</th>
+      </tr></thead>
+      <tbody><tr>
+      <td class="pname">Josh Naylor</td>
+      <td><span class="badge" style="background:#D80000;color:#fff">Canada</span></td>
+      <td class="num">124</td>
+      <td class="num bold">-49</td>
+      <td class="diff neg-strong">▼&nbsp;173</td>
+      <td class="num dim">30</td>
+    </tr><tr>
+      <td class="pname">Julio Rodríguez</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">129</td>
+      <td class="num bold">2</td>
+      <td class="diff neg-strong">▼&nbsp;127</td>
+      <td class="num dim">30</td>
+    </tr><tr>
+      <td class="pname">Aaron Judge</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">178</td>
+      <td class="num bold">52</td>
+      <td class="diff neg-strong">▼&nbsp;126</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Spencer Horwitz</td>
+      <td><span class="badge" style="background:#0038B8;color:#fff">Israel</span></td>
+      <td class="num">117</td>
+      <td class="num bold">-4</td>
+      <td class="diff neg-strong">▼&nbsp;121</td>
+      <td class="num dim">16</td>
+    </tr><tr>
+      <td class="pname">Nolan Arenado</td>
+      <td><span class="badge" style="background:#CC0000;color:#fff">Puerto Rico</span></td>
+      <td class="num">95</td>
+      <td class="num bold">-13</td>
+      <td class="diff neg-strong">▼&nbsp;108</td>
+      <td class="num dim">19</td>
+    </tr><tr>
+      <td class="pname">Bryce Harper</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">131</td>
+      <td class="num bold">23</td>
+      <td class="diff neg-strong">▼&nbsp;108</td>
+      <td class="num dim">27</td>
+    </tr><tr>
+      <td class="pname">Jazz Chisholm Jr.</td>
+      <td><span class="badge" style="background:#012169;color:#fff">Great Britain</span></td>
+      <td class="num">115</td>
+      <td class="num bold">15</td>
+      <td class="diff neg-strong">▼&nbsp;100</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">Ronald Acuña Jr.</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">157</td>
+      <td class="num bold">62</td>
+      <td class="diff neg-strong">▼&nbsp;95</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Jeremy Peña</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">106</td>
+      <td class="num bold">14</td>
+      <td class="diff neg-strong">▼&nbsp;92</td>
+      <td class="num dim">15</td>
+    </tr><tr>
+      <td class="pname">Bo Naylor</td>
+      <td><span class="badge" style="background:#D80000;color:#fff">Canada</span></td>
+      <td class="num">99</td>
+      <td class="num bold">8</td>
+      <td class="diff neg-strong">▼&nbsp;91</td>
+      <td class="num dim">20</td>
+    </tr><tr>
+      <td class="pname">Willi Castro</td>
+      <td><span class="badge" style="background:#CC0000;color:#fff">Puerto Rico</span></td>
+      <td class="num">97</td>
+      <td class="num bold">10</td>
+      <td class="diff neg-strong">▼&nbsp;87</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Cal Raleigh</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">131</td>
+      <td class="num bold">46</td>
+      <td class="diff neg-strong">▼&nbsp;85</td>
+      <td class="num dim">28</td>
+    </tr><tr>
+      <td class="pname">Xander Bogaerts</td>
+      <td><span class="badge" style="background:#E65000;color:#fff">Netherlands</span></td>
+      <td class="num">105</td>
+      <td class="num bold">22</td>
+      <td class="diff neg-strong">▼&nbsp;83</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Austin Wells</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">104</td>
+      <td class="num bold">28</td>
+      <td class="diff neg-mod">▼&nbsp;76</td>
+      <td class="num dim">17</td>
+    </tr><tr>
+      <td class="pname">Heliot Ramos</td>
+      <td><span class="badge" style="background:#CC0000;color:#fff">Puerto Rico</span></td>
+      <td class="num">112</td>
+      <td class="num bold">45</td>
+      <td class="diff neg-mod">▼&nbsp;67</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">José Caballero</td>
+      <td><span class="badge" style="background:#C00000;color:#fff">Panama</span></td>
+      <td class="num">88</td>
+      <td class="num bold">25</td>
+      <td class="diff neg-mod">▼&nbsp;63</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Shohei Ohtani</td>
+      <td><span class="badge" style="background:#BC002D;color:#fff">Japan</span></td>
+      <td class="num">165</td>
+      <td class="num bold">107</td>
+      <td class="diff neg-mod">▼&nbsp;58</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Byron Buxton</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">125</td>
+      <td class="num bold">67</td>
+      <td class="diff neg-mod">▼&nbsp;58</td>
+      <td class="num dim">21</td>
+    </tr><tr>
+      <td class="pname">Willson Contreras</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">120</td>
+      <td class="num bold">69</td>
+      <td class="diff neg-mod">▼&nbsp;51</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Gunnar Henderson</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">133</td>
+      <td class="num bold">100</td>
+      <td class="diff neg-mild">▼&nbsp;33</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Harrison Bader</td>
+      <td><span class="badge" style="background:#0038B8;color:#fff">Israel</span></td>
+      <td class="num">98</td>
+      <td class="num bold">67</td>
+      <td class="diff neg-mild">▼&nbsp;31</td>
+      <td class="num dim">23</td>
+    </tr><tr>
+      <td class="pname">Yoán Moncada</td>
+      <td><span class="badge" style="background:#002A8F;color:#fff">Cuba</span></td>
+      <td class="num">105</td>
+      <td class="num bold">75</td>
+      <td class="diff neg-mild">▼&nbsp;30</td>
+      <td class="num dim">18</td>
+    </tr><tr>
+      <td class="pname">Vinnie Pasquantino</td>
+      <td><span class="badge" style="background:#007A33;color:#fff">Italy</span></td>
+      <td class="num">115</td>
+      <td class="num bold">90</td>
+      <td class="diff neg-mild">▼&nbsp;25</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Roman Anthony</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">122</td>
+      <td class="num bold">99</td>
+      <td class="diff neg-mild">▼&nbsp;23</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Pete Crow-Armstrong</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">111</td>
+      <td class="num bold">88</td>
+      <td class="diff neg-mild">▼&nbsp;23</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Tyler O'Neill</td>
+      <td><span class="badge" style="background:#D80000;color:#fff">Canada</span></td>
+      <td class="num">118</td>
+      <td class="num bold">99</td>
+      <td class="diff neg-mild">▼&nbsp;19</td>
+      <td class="num dim">17</td>
+    </tr><tr>
+      <td class="pname">Jarren Duran</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">113</td>
+      <td class="num bold">95</td>
+      <td class="diff neg-mild">▼&nbsp;18</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Ceddanne Rafaela</td>
+      <td><span class="badge" style="background:#E65000;color:#fff">Netherlands</span></td>
+      <td class="num">98</td>
+      <td class="num bold">80</td>
+      <td class="diff neg-mild">▼&nbsp;18</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Fernando Tatis Jr.</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">137</td>
+      <td class="num bold">122</td>
+      <td class="diff neg-mild">▼&nbsp;15</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Kyle Schwarber</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">127</td>
+      <td class="num bold">118</td>
+      <td class="diff neutral">▼&nbsp;9</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Salvador Perez</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">99</td>
+      <td class="num bold">90</td>
+      <td class="diff neutral">▼&nbsp;9</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">William Contreras</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">122</td>
+      <td class="num bold">120</td>
+      <td class="diff neutral">▼&nbsp;2</td>
+      <td class="num dim">20</td>
+    </tr><tr>
+      <td class="pname">Miguel Amaya</td>
+      <td><span class="badge" style="background:#C00000;color:#fff">Panama</span></td>
+      <td class="num">95</td>
+      <td class="num bold">95</td>
+      <td class="diff neutral">▼&nbsp;0</td>
+      <td class="num dim">22</td>
+    </tr><tr>
+      <td class="pname">Alek Thomas</td>
+      <td><span class="badge" style="background:#006847;color:#fff">Mexico</span></td>
+      <td class="num">87</td>
+      <td class="num bold">88</td>
+      <td class="diff neutral">▲&nbsp;1</td>
+      <td class="num dim">20</td>
+    </tr><tr>
+      <td class="pname">Alex Bregman</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">112</td>
+      <td class="num bold">115</td>
+      <td class="diff neutral">▲&nbsp;3</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">Jung Hoo Lee</td>
+      <td><span class="badge" style="background:#003478;color:#fff">Korea</span></td>
+      <td class="num">108</td>
+      <td class="num bold">115</td>
+      <td class="diff pos-mild">▲&nbsp;7</td>
+      <td class="num dim">26</td>
+    </tr><tr>
+      <td class="pname">Juan Soto</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">162</td>
+      <td class="num bold">170</td>
+      <td class="diff pos-mild">▲&nbsp;8</td>
+      <td class="num dim">29</td>
+    </tr><tr>
+      <td class="pname">Ozzie Albies</td>
+      <td><span class="badge" style="background:#E65000;color:#fff">Netherlands</span></td>
+      <td class="num">98</td>
+      <td class="num bold">108</td>
+      <td class="diff pos-mild">▲&nbsp;10</td>
+      <td class="num dim">23</td>
+    </tr><tr>
+      <td class="pname">Ezequiel Tovar</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">92</td>
+      <td class="num bold">107</td>
+      <td class="diff pos-mild">▲&nbsp;15</td>
+      <td class="num dim">27</td>
+    </tr><tr>
+      <td class="pname">Luis Arraez</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">113</td>
+      <td class="num bold">130</td>
+      <td class="diff pos-mild">▲&nbsp;17</td>
+      <td class="num dim">27</td>
+    </tr><tr>
+      <td class="pname">Nick Gonzales</td>
+      <td><span class="badge" style="background:#006847;color:#fff">Mexico</span></td>
+      <td class="num">99</td>
+      <td class="num bold">119</td>
+      <td class="diff pos-strong">▲&nbsp;20</td>
+      <td class="num dim">28</td>
+    </tr><tr>
+      <td class="pname">Joey Ortiz</td>
+      <td><span class="badge" style="background:#006847;color:#fff">Mexico</span></td>
+      <td class="num">98</td>
+      <td class="num bold">120</td>
+      <td class="diff pos-strong">▲&nbsp;22</td>
+      <td class="num dim">20</td>
+    </tr><tr>
+      <td class="pname">Jake Gelof</td>
+      <td><span class="badge" style="background:#0038B8;color:#fff">Israel</span></td>
+      <td class="num">56</td>
+      <td class="num bold">78</td>
+      <td class="diff pos-strong">▲&nbsp;22</td>
+      <td class="num dim">19</td>
+    </tr><tr>
+      <td class="pname">Gleyber Torres</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">110</td>
+      <td class="num bold">133</td>
+      <td class="diff pos-strong">▲&nbsp;23</td>
+      <td class="num dim">25</td>
+    </tr><tr>
+      <td class="pname">Manny Machado</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">116</td>
+      <td class="num bold">140</td>
+      <td class="diff pos-strong">▲&nbsp;24</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">Randy Arozarena</td>
+      <td><span class="badge" style="background:#006847;color:#fff">Mexico</span></td>
+      <td class="num">116</td>
+      <td class="num bold">144</td>
+      <td class="diff pos-strong">▲&nbsp;28</td>
+      <td class="num dim">30</td>
+    </tr><tr>
+      <td class="pname">Maikel Garcia</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">100</td>
+      <td class="num bold">138</td>
+      <td class="diff pos-strong">▲&nbsp;38</td>
+      <td class="num dim">21</td>
+    </tr><tr>
+      <td class="pname">Jac Caglianone</td>
+      <td><span class="badge" style="background:#007A33;color:#fff">Italy</span></td>
+      <td class="num">117</td>
+      <td class="num bold">175</td>
+      <td class="diff pos-strong">▲&nbsp;58</td>
+      <td class="num dim">16</td>
+    </tr><tr>
+      <td class="pname">Jonathan Aranda</td>
+      <td><span class="badge" style="background:#006847;color:#fff">Mexico</span></td>
+      <td class="num">119</td>
+      <td class="num bold">188</td>
+      <td class="diff pos-strong">▲&nbsp;69</td>
+      <td class="num dim">29</td>
+    </tr><tr>
+      <td class="pname">Oneil Cruz</td>
+      <td><span class="badge" style="background:#002D62;color:#fff">Dominican Republic</span></td>
+      <td class="num">114</td>
+      <td class="num bold">187</td>
+      <td class="diff pos-strong">▲&nbsp;73</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">Andrés Giménez</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">96</td>
+      <td class="num bold">193</td>
+      <td class="diff pos-strong">▲&nbsp;97</td>
+      <td class="num dim">24</td>
+    </tr><tr>
+      <td class="pname">Brice Turang</td>
+      <td><span class="badge" style="background:#002868;color:#fff">USA</span></td>
+      <td class="num">104</td>
+      <td class="num bold">244</td>
+      <td class="diff pos-strong">▲&nbsp;140</td>
+      <td class="num dim">27</td>
+    </tr><tr>
+      <td class="pname">Wilyer Abreu</td>
+      <td><span class="badge" style="background:#CF142B;color:#fff">Venezuela</span></td>
+      <td class="num">110</td>
+      <td class="num bold">281</td>
+      <td class="diff pos-strong">▲&nbsp;171</td>
+      <td class="num dim">24</td>
+    </tr></tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    ZiPS projections via FanGraphs &middot; 2026 actual stats via pybaseball &middot; WBC rosters via MLB.com &middot; April 2, 2026<br>
+    wRC+ = 100 is league average, park and league adjusted. ZiPS = Dan Szymborski's projection system.
+  </div>
+
+</div>
+</body>
+</html>
