@@ -1,5 +1,5 @@
 {
-  "last_updated_week": 2,
+  "last_updated_week": 3,
   "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current \u2014 history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
   "weekly_snapshots": [
     {
@@ -583,7 +583,7 @@
       "cumulative_ap": {
         "w": 15,
         "l": 3,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 127,
@@ -618,9 +618,23 @@
             "l": 33,
             "t": 5
           }
+        },
+        {
+          "week": 3,
+          "rank": 1,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 123.25,
+      "weighted_score": 117.09,
       "analysis": "Two weeks in and already running away from the field. 75 cat wins in Week 1 was historically dominant. Week 2 cooled to a normal-person 52 cat wins, which still ranked fourth in the league. Duke Joe has built the most balanced roster in this league and there is no evidence yet that anyone can challenge it."
     },
     {
@@ -632,7 +646,7 @@
       "cumulative_ap": {
         "w": 13,
         "l": 5,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 105,
@@ -667,21 +681,35 @@
             "l": 36,
             "t": 7
           }
+        },
+        {
+          "week": 3,
+          "rank": 2,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 102.1,
-      "analysis": "Locked into #2 through two weeks. The Week 2 pitching performance was the best in the league: 1.64 ERA, 0.92 WHIP, 8 quality starts. Week 1 had them at 8-1 in all-play. Week 2 dropped to 5-4 in all-play but the actual matchup win was a blowout. Michael built a rotation that quietly dominates while the rest of the league panics about theirs."
+      "weighted_score": 97.0,
+      "analysis": "Locked into #2 through two weeks. The Week 2 rotation posted 1.64 ERA, 0.92 WHIP, and 8 quality starts \u2014 elite numbers that carried a matchup blowout even as the all-play slipped to 5-4. Michael built a rotation that quietly dominates while the rest of the league panics about theirs."
     },
     {
       "rank": 3,
-      "prev_rank": 5,
-      "delta": 2,
+      "prev_rank": 3,
+      "delta": 0,
       "tier": "contender",
       "name": "Ray Donovan",
       "cumulative_ap": {
         "w": 13,
         "l": 5,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 99,
@@ -716,9 +744,23 @@
             "l": 31,
             "t": 2
           }
+        },
+        {
+          "week": 3,
+          "rank": 3,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 96.9,
+      "weighted_score": 92.06,
       "analysis": "The biggest mover through two weeks. Week 1 was middling, then Glasnow locked in and the entire rotation went 74 K, 2.10 ERA in Week 2, the best pitching week in the league. Mario has the deepest closer trio in the game and the offense has Acuna Jr. waking up. The only question is whether a three-starter rotation holds up longer than a few weeks."
     },
     {
@@ -730,7 +772,7 @@
       "cumulative_ap": {
         "w": 12,
         "l": 5,
-        "t": 1
+        "t": 10
       },
       "cumulative_cats": {
         "w": 96,
@@ -765,21 +807,35 @@
             "l": 28,
             "t": 8
           }
+        },
+        {
+          "week": 3,
+          "rank": 4,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 93.9,
+      "weighted_score": 89.2,
       "analysis": "Consistent is the right word. Rose has been right at the bubble between tier 2 and tier 3 for two straight weeks, which is exactly where a team with a depleted rotation should be. Shohei, Carroll, and Chisholm keep the offense humming. The rotation losing Brown, Miller, and Strider to IL is the cloud hanging over everything. If those three come back healthy, this ranking goes up. If they don't, it goes down."
     },
     {
       "rank": 5,
-      "prev_rank": 3,
-      "delta": -2,
+      "prev_rank": 5,
+      "delta": 0,
       "tier": "contender",
       "name": "One Ball Two Strikes",
       "cumulative_ap": {
         "w": 9,
         "l": 9,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 90,
@@ -814,21 +870,35 @@
             "l": 47,
             "t": 8
           }
+        },
+        {
+          "week": 3,
+          "rank": 5,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 87.25,
+      "weighted_score": 82.89,
       "analysis": "Week 1 had Garth looking like a top-three team. Week 2 had him looking like a replacement-level roster. The talent is real: Yamamoto and Skubal is one of the better SP duos in this league, and the offense has pop. The variance between weeks is the concern. A 55 cat win week followed by a 35 cat win week means either something broke or the lineup is streakier than the draft board suggested. Watch Week 3 carefully."
     },
     {
       "rank": 6,
-      "prev_rank": 7,
-      "delta": 1,
+      "prev_rank": 6,
+      "delta": 0,
       "tier": "mid",
       "name": "Allahu Alvarez",
       "cumulative_ap": {
         "w": 9,
         "l": 8,
-        "t": 1
+        "t": 10
       },
       "cumulative_cats": {
         "w": 87,
@@ -863,21 +933,35 @@
             "l": 29,
             "t": 6
           }
+        },
+        {
+          "week": 3,
+          "rank": 6,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 85.4,
+      "weighted_score": 81.13,
       "analysis": "The most interesting team in this league right now. Week 1 was a 32-cat disaster. Week 2 was a 55-cat performance that was second-best in the entire league. TylerR has a legitimately elite lineup: Freeman, Witt Jr., Yordan, Cruz, Devers. The ceiling is obvious. The season record sits at 7-11-2 because the schedule has been a mugging. This ranking will keep climbing as long as the lineup stays healthy."
     },
     {
       "rank": 7,
-      "prev_rank": 10,
-      "delta": 3,
+      "prev_rank": 7,
+      "delta": 0,
       "tier": "mid",
       "name": "Good Vibes Only",
       "cumulative_ap": {
         "w": 5,
         "l": 13,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 67,
@@ -912,21 +996,35 @@
             "l": 36,
             "t": 7
           }
+        },
+        {
+          "week": 3,
+          "rank": 7,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 66.0,
+      "weighted_score": 62.7,
       "analysis": "The biggest two-week climb in the league. Week 1 was 0-9 all-play with 20 cat wins, the worst in the league by a distance. Week 2 was 5-4 all-play with 47 cat wins, genuinely middle of the pack. Crochet is elite, the lineup has Harper and Julio Rodriguez, and Michael is managing around the Burnes and Greene IL situations. The floor was exposed in Week 1. Week 2 showed the ceiling. The real team is probably somewhere in between."
     },
     {
       "rank": 8,
-      "prev_rank": 9,
-      "delta": 1,
+      "prev_rank": 8,
+      "delta": 0,
       "tier": "mid",
       "name": "The Ragans Administration",
       "cumulative_ap": {
         "w": 6,
         "l": 12,
-        "t": 0
+        "t": 9
       },
       "cumulative_cats": {
         "w": 65,
@@ -961,21 +1059,35 @@
             "l": 43,
             "t": 5
           }
+        },
+        {
+          "week": 3,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 63.85,
+      "weighted_score": 60.66,
       "analysis": "The trajectory is pointing in the right direction and it still isn't enough. Week 1 was a disaster (23 cat wins, 2-7 all-play). Week 2 was better (42 cat wins, 4-5 all-play). The improvement is real but the cumulative hole from Week 1 keeps TylerV pinned in the bottom third. Shohei on the mound and a deep rotation mean the pitching is the best part of this team. The offense needs to wake up or this ranking stays here."
     },
     {
       "rank": 9,
-      "prev_rank": 6,
-      "delta": -3,
+      "prev_rank": 9,
+      "delta": 0,
       "tier": "cellar",
       "name": "Ete Crow",
       "cumulative_ap": {
         "w": 3,
         "l": 13,
-        "t": 2
+        "t": 11
       },
       "cumulative_cats": {
         "w": 54,
@@ -1010,21 +1122,35 @@
             "l": 67,
             "t": 5
           }
+        },
+        {
+          "week": 3,
+          "rank": 9,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 52.2,
+      "weighted_score": 49.59,
       "analysis": "The biggest fall. Week 1 was respectable (3-5 all-play, 36 cat wins). Week 2 was historically bad: 0-8-1 all-play, 18 category wins out of 90. The 2025 champion is in ninth place with 54 cumulative cat wins. Ete has speed (De La Cruz) and K upside (Luzardo and the rotation), but zero saves and a lineup that cannot hit for power or get on base have made both of those upsides irrelevant. Something needs to change."
     },
     {
       "rank": 10,
-      "prev_rank": 8,
-      "delta": -2,
+      "prev_rank": 10,
+      "delta": 0,
       "tier": "cellar",
       "name": "Rain City Bombers",
       "cumulative_ap": {
         "w": 2,
         "l": 14,
-        "t": 2
+        "t": 11
       },
       "cumulative_cats": {
         "w": 42,
@@ -1059,9 +1185,23 @@
             "l": 72,
             "t": 3
           }
+        },
+        {
+          "week": 3,
+          "rank": 10,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
         }
       ],
-      "weighted_score": 40.65,
+      "weighted_score": 38.62,
       "analysis": "The worst cumulative cat total in the league: 42 wins out of 180 total category decisions. Week 2 had Skenes, deGrom, Flaherty, Lugo, and Imanaga post zero quality starts with a 4.80 ERA. A rotation like that should not be doing what Rain City's rotation is doing right now. Whether it's pitch count management, early-season rust, or something actually broken, Week 3 is the verdict. Taylor needs answers before this gets away from him completely."
     }
   ]
