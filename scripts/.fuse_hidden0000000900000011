@@ -1281,7 +1281,7 @@ def create_week_page(week: int):
       </div>
     </div>
     <div class="nav-sep"></div>
-    <a href="power.html" class="nav-pr-link">Power Rankings</a>
+    <!-- HIDDEN: <a href="power.html" class="nav-pr-link">Power Rankings</a> -->
     <div class="nav-sep"></div>
     <div class="nav-dropdown">
       <a href="draft.html" class="nav-dropdown-toggle">Draft &#9662;</a>
