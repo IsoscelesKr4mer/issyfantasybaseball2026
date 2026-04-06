@@ -188,6 +188,8 @@ GitHub Pages deploys automatically within ~60 seconds of push.
 
 **Do not write about bench SP counts as a storyline.** The fact that a team has SPs on the bench is not a story, a gamble, a risk, or anything worth calling out. It is standard roster management. Never write a storyline or analysis framing bench SPs as uncertainty, variance, or a potential problem. If you want to write about a team's pitching, write about their actual rotation quality, their IL situation, or their matchup context — not about where players are slotted on a given day.
 
+**When writing rotation analysis, count ALL healthy SPs — active AND bench.** A team's rotation is every SP not on IL/NA. Never describe a team's rotation as "X and Y" when they have additional non-IL SPs on the bench — you will understate their depth and your prose will contradict the simulation (which correctly includes those arms). The right workflow: before writing any rotation analysis, look at `roster_summary.bench` and identify every SP without an `[IL` or `[NA]` tag. Those are all available starters. Example of what NOT to write: "Kirby and Harrison are the active starters, with Brown, Miller, and Strider all on IL" — if Bubic, Bello, Misiorowski, Imai, and Soriano are also on the roster without IL/NA tags, the team has seven healthy SPs and that sentence misrepresents the roster. The correct framing: name the active starters, then acknowledge the bench depth, then use IL to explain who is missing.
+
 ---
 
 ## Recent Results Data
