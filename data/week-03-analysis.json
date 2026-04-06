@@ -1,0 +1,97 @@
+{
+  "week": 3,
+  "storylines": [
+    "<p><strong>Rain City's Rotation Gets a Redemption Shot.</strong> Week 2 was an embarrassment: Skenes, deGrom, Flaherty, Lugo, and Imanaga combined for 0 quality starts and a 4.80 ERA. Week 3 draws One Ball, who runs Yamamoto, Skubal, and then a cliff off a cliff. Rain City still has the talent. The sim gives them the edge in R, HR, SB, and QS. If those SPs actually go deep for once, Taylor wins. If Week 2 wasn't bad luck, it's a pattern. Either way, this is the verdict matchup.</p>",
+    "<p><strong>Allahu Alvarez Smells the Blood in the Water.</strong> TylerR just had his best week of the season (7-2 all-play, 55 cat wins) and now draws a Ray Donovan rotation that lists Gerrit Cole, Blake Snell, and Zach Eflin as starters, all of whom are on IL. Mario is running Glasnow, Ryan Weathers, and Keider Montero. Against a lineup with Yordan Alvarez, Bobby Witt Jr., Oneil Cruz, and Andres Munoz closing games, that is not a fight Ray can win. Allahu wins 82% of simulations. This is not close.</p>",
+    "<p><strong>GVO Sends Its Wounded Rotation Into Keanu.</strong> Burnes, Hunter Greene, Bieber, and Pepiot are all on IL. Michael is running Crochet, Bradish, Cease, and Vasquez, which is genuinely workable, but Keanu just swept 9 of 10 categories against Rain City and comes in with a six-deep rotation. The sim has Keanu at 86% in K and 80% in QS. GVO can steal ERA, WHIP, RBI, and SV. Whether that's enough to make it competitive is the storyline, not the winner.</p>",
+    "<p><strong>Busch vs Buckner: Two Rosters Heading in Opposite Directions.</strong> Busch dropped a 5-4 decision to Ray Donovan while Buckner put up a 1.64 ERA and 8 QS in a blowout of Ete Crow. Buckner has Logan Webb, Framber Valdez, and Chris Sale available. Rose is running Kirby and Harrison with Brown, Miller, and Strider all on IL. Busch wins SB at 72.5% thanks to Chisholm, Arozarena, and Wetherholt. Everything else points toward Buckner. The sim calls it 68-32.</p>",
+    "<p><strong>Ragans vs Ete Crow: The Only True Coin Flip of the Week.</strong> The sim says 49.5% for Ragans. Ete wins SB at 88% with De La Cruz, Crow-Armstrong, and Caballero. Ete wins K with Luzardo and the rotation depth. Ragans wins OBP (75%), R (68%), and HR (63%). The six categories Ragans leads are real but thin, averaging 58% apiece. Ete\u2019s advantages are smaller in count but bigger in margin. The two teams that split a 5-5 prediction will split five actual categories and argue about it for days. Both managers deserve better scheduling.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_analysis": "Garth comes in 4-6 and desperate for a bounce-back. Yamamoto and Skubal anchor the rotation and those are two legitimate aces, but Rodón and Yesavage are both IL-15, which drops the depth to Mize, Lauer, and whatever Connelly Early is. The offense has DeLauter, Langeliers, and Olson who all had massive weeks in Week 2, five HRs apiece for the top two. The SV category is where Garth can take a bite: Jansen and Bednar give him two quality closers and a 71.7% edge.",
+      "team1_analysis": "Rain City had zero quality starts last week with five legitimate aces. Week 3 gives those same arms another shot, and the sim does give Rain City the edge in R, HR, SB, and QS. The SB advantage is real: Lindor, Tatis Jr., Harris, and Yelich against a One Ball lineup without a single speed threat. Cleavinger is on IL-15, leaving Cade Smith and Santana to handle the saves, which is why Garth wins SV 71% of the time. Rain City wins if the starters finally go deep. The answer to that question is currently unknown.",
+      "cat_edges": [
+        {"cats": "R", "edge": 1, "label": "Rain City lean (56%)"},
+        {"cats": "HR", "edge": 1, "label": "Rain City lean (63%)"},
+        {"cats": "RBI", "edge": -1, "label": "Even"},
+        {"cats": "SB", "edge": 1, "label": "Rain City edge (80%)"},
+        {"cats": "OBP", "edge": 0, "label": "One Ball lean (55%)"},
+        {"cats": "K", "edge": 0, "label": "One Ball edge (67%)"},
+        {"cats": "QS", "edge": 1, "label": "Rain City lean (54%)"},
+        {"cats": "ERA", "edge": 0, "label": "One Ball lean (59%)"},
+        {"cats": "WHIP", "edge": 0, "label": "One Ball lean (58%)"},
+        {"cats": "SV", "edge": 0, "label": "One Ball edge (72%)"}
+      ],
+      "prediction": "One Ball Two Strikes 6-4. The sim says 53%, expected score 5.1-4.9, and that\u2019s the definition of a lean not a lock. One Ball controls the mound categories, Rain City controls the basepaths. Whichever staff shows up as advertised probably wins."
+    },
+    {
+      "team0_analysis": "TylerV has the best pitching staff in the matchup and it isn\u2019t close: Ohtani on the mound, Cole Ragans, King, McClanahan, Woodruff, and Schlittler. Ragans wins OBP at 75% and R at 68%, which is where this offense produces. Trout is day-to-day but still rostered active. The trap is Ete\u2019s stolen base corps, which is genuinely elite. Ragans has no answer for De La Cruz, Crow-Armstrong, and Caballero. Ete wins SB 88% of simulations, which cancels out one of Ragans\u2019 expected wins.",
+      "team1_analysis": "Jace is 3-5 and owns the 2025 championship. He has a deep rotation: Ryan, Boyd, McLean, Luzardo, McCullers, and SWR active. Hader and Estevez are both on IL-15, leaving Iglesias and Gregory Soto to handle saves, which is the leak. The K edge is real: Luzardo, McCullers, and Boyd are three legitimate strikeout arms. The QS edge is also real. If Ete wins K, QS, and SB plus steals a thin cat from Ragans, this is a matchup win.",
+      "cat_edges": [
+        {"cats": "R", "edge": 0, "label": "Ragans edge (68%)"},
+        {"cats": "HR", "edge": 0, "label": "Ragans lean (63%)"},
+        {"cats": "RBI", "edge": 0, "label": "Ragans lean (53%)"},
+        {"cats": "SB", "edge": 1, "label": "Ete Crow edge (88%)"},
+        {"cats": "OBP", "edge": 0, "label": "Ragans edge (75%)"},
+        {"cats": "K", "edge": 1, "label": "Ete Crow edge (70%)"},
+        {"cats": "QS", "edge": 1, "label": "Ete Crow lean (64%)"},
+        {"cats": "ERA", "edge": 0, "label": "Ragans lean (56%)"},
+        {"cats": "WHIP", "edge": 0, "label": "Ragans lean (53%)"},
+        {"cats": "SV", "edge": -1, "label": "Even"}
+      ],
+      "prediction": "5-5. Ragans leads six categories and still only wins half. Their edges are all 53-75% while Ete\u2019s SB (88%) and K (70%) are dominant enough to flip the math. This one goes down to the wire."
+    },
+    {
+      "team0_analysis": "Mario wins the closer battle by a wide margin: Helsley, Romano, and Miller is the best trio in the league, and the sim reflects it. Glasnow is the anchor of the rotation and that is legitimate. The problem is everything after Glasnow. Ryan Weathers and Keider Montero are the co-starters, with Cole, Snell, and Eflin all on IL. Against TylerR\u2019s lineup, that rotation loses K 81% of the time. Ray wins saves, wins OBP if Brendan Donovan stays healthy, and hopes Glasnow has a monster week.",
+      "team1_analysis": "TylerR just found his footing. Week 2 was 7-2 all-play and 55 cat wins, the second-best week in the league. The lineup is the best in this matchup by a distance: Yordan Alvarez, Bobby Witt Jr., Oneil Cruz, Freddie Freeman, Ceddanne Rafaela, and Xavier Edwards. Bibee, Gilbert, and Pivetta are all healthy active starters. Munoz, Pagan, and Abreu give TylerR three arms in the bullpen, which should lock up K and SV. Westburg and Holliday are still injured and that hurts RBI, but the rest of this roster is ready.",
+      "cat_edges": [
+        {"cats": "R", "edge": 1, "label": "Allahu lean (59%)"},
+        {"cats": "HR", "edge": 1, "label": "Allahu slight edge (51%)"},
+        {"cats": "RBI", "edge": 1, "label": "Allahu lean (59%)"},
+        {"cats": "SB", "edge": 1, "label": "Allahu lean (52%)"},
+        {"cats": "OBP", "edge": 1, "label": "Allahu edge (74%)"},
+        {"cats": "K", "edge": 1, "label": "Allahu edge (81%)"},
+        {"cats": "QS", "edge": 1, "label": "Allahu lean (65%)"},
+        {"cats": "ERA", "edge": 1, "label": "Allahu lean (57%)"},
+        {"cats": "WHIP", "edge": 1, "label": "Allahu lean (57%)"},
+        {"cats": "SV", "edge": 0, "label": "Ray Donovan edge (80%)"}
+      ],
+      "prediction": "Allahu Alvarez 6-4. Ray wins saves and that\u2019s it. TylerR\u2019s lineup runs nine categories against a rotation that is effectively Glasnow and then two question marks."
+    },
+    {
+      "team0_analysis": "Michael has the pitching rate stats in this matchup: Crochet, Bradish, Cease, and Vasquez give GVO a legitimate chance in ERA and WHIP, and the sim has GVO winning those two plus SV and OBP. Mookie Betts going to IL-10 hurts, but the lineup still has Harper, Altuve, Julio Rodriguez, Ben Rice, and Pete Alonso. The RBI projection is slightly in GVO\u2019s favor at 51.5%. The problem is Keanu\u2019s advantages are massive in the categories that move the needle.",
+      "team1_analysis": "Duke Joe runs six starters: Baz, Cabrera, Abbott, Williams, Cameron, and Fried, all healthy and active. The K advantage is 86%, the QS advantage is 80%, and the SB advantage is 85% from Hoerner, Baldwin, and Neto. Soto is day-to-day but expected to play. Keanu is the number one cumulative team in the league and has been dominant in two straight weeks. GVO can steal five categories. Winning the matchup requires winning six. The math does not favor Michael.",
+      "cat_edges": [
+        {"cats": "R", "edge": 1, "label": "Keanu lean (62%)"},
+        {"cats": "HR", "edge": 1, "label": "Keanu lean (55%)"},
+        {"cats": "RBI", "edge": 0, "label": "GVO slight edge (52%)"},
+        {"cats": "SB", "edge": 1, "label": "Keanu edge (85%)"},
+        {"cats": "OBP", "edge": 0, "label": "GVO lean (53%)"},
+        {"cats": "K", "edge": 1, "label": "Keanu edge (86%)"},
+        {"cats": "QS", "edge": 1, "label": "Keanu edge (80%)"},
+        {"cats": "ERA", "edge": 0, "label": "GVO lean (54%)"},
+        {"cats": "WHIP", "edge": 0, "label": "GVO lean (57%)"},
+        {"cats": "SV", "edge": 0, "label": "GVO lean (58%)"}
+      ],
+      "prediction": "Keanu Reeves 6-4. GVO holds five categories and still loses. Keanu\u2019s edges in SB, K, and QS run 80-86% and cancel out everything GVO does well. This is what a well-built roster does to a depleted one."
+    },
+    {
+      "team0_analysis": "Rose is 7-2-1 cumulative but coming off a loss to Ray Donovan. The rotation problem is real: Kirby and Harrison are active, Bello and Misiorowski are bench depth, but Brown, Miller, and Strider are all IL-15. Diaz and Sewald anchor the saves, but the sim has Buckner winning SV at 66.5%. The SB edge is the one category where Busch clearly wins: Chisholm with 4 last week, Arozarena, Wetherholt, and Carroll give Rose a stolen base corps that wins at 72.5%. That is one category.",
+      "team1_analysis": "Michael (Buckner) runs Logan Webb, Framber Valdez, Chris Sale, and Emerson Hancock with Devin Williams closing. Week 2 was the best pitching performance in the entire league: 1.64 ERA, 0.92 WHIP, 8 QS. The rotation is deep, healthy, and consistent. Murakami, Seager, Gunnar Henderson, and Yandy Diaz give the lineup legitimate power. Cade Horton is IL-15 but the depth behind him is fine. Buckner won 8-1 last week and draws a Busch roster that has lost its three best starters to injury.",
+      "cat_edges": [
+        {"cats": "R", "edge": 1, "label": "Buckner lean (55%)"},
+        {"cats": "HR", "edge": 1, "label": "Buckner lean (55%)"},
+        {"cats": "RBI", "edge": 1, "label": "Buckner slight edge (51%)"},
+        {"cats": "SB", "edge": 0, "label": "Busch Latte edge (73%)"},
+        {"cats": "OBP", "edge": 1, "label": "Buckner lean (61%)"},
+        {"cats": "K", "edge": 1, "label": "Buckner edge (77%)"},
+        {"cats": "QS", "edge": 1, "label": "Buckner lean (68%)"},
+        {"cats": "ERA", "edge": 1, "label": "Buckner lean (56%)"},
+        {"cats": "WHIP", "edge": 1, "label": "Buckner lean (56%)"},
+        {"cats": "SV", "edge": 1, "label": "Buckner lean (67%)"}
+      ],
+      "prediction": "The Buckner Boots 6-4. Rose wins stolen bases by a lot and then loses everything else. Busch has the offense to make this interesting, but Buckner\u2019s rotation is operating on a different level right now."
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Draft Recap — Issaquah Swingers</title>
+
+  <!-- Open Graph / Link Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Issaquah Swingers — 2026 Draft Report" />
+  <meta property="og:description" content="Post-draft grades, projected standings, Monte Carlo season predictions, and year-over-year insights for all 10 teams." />
+  <meta property="og:image" content="https://issaquahswingers.com/preview.png" />
+  <meta property="og:url" content="https://issaquahswingers.com/draft.html" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Issaquah Swingers — 2026 Draft Report" />
+  <meta name="twitter:description" content="Draft grades, projected standings & season predictions for all 10 teams." />
+  <meta name="twitter:image" content="https://issaquahswingers.com/preview.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍍</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="Post-draft grades, projected standings, Monte Carlo season predictions, and year-over-year insights for all 10 Issaquah Swingers fantasy baseball teams. 2026 snake draft recap." />
+  <link rel="canonical" href="https://issaquahswingers.com/draft.html" />
+  <meta property="og:site_name" content="Issaquah Swingers Fantasy Baseball" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Issaquah Swingers 2026 Fantasy Baseball Draft Report",
+    "description": "Post-draft grades, projected standings, Monte Carlo season predictions, and year-over-year insights for all 10 Issaquah Swingers fantasy baseball teams.",
+    "url": "https://issaquahswingers.com/draft.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Issaquah Swingers Fantasy Baseball"
+    },
+    "datePublished": "2026-03-22"
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html" class="nav-logo">&#9918; Issaquah <span>Swingers</span></a>
+  <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    
+    <div class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Teams &#9662;</a>
+            <div class="nav-dropdown-menu">
+        <a href="teams/busch-latte.html">Busch Latte</a>
+        <a href="teams/skenes.html">Allahu Alvarez</a>
+        <a href="teams/ete-crow.html">Ete Crow</a>
+        <a href="teams/ragans.html">The Ragans Administration</a>
+        <a href="teams/keanu.html">Keanu Reeves</a>
+        <a href="teams/good-vibes.html">Good Vibes Only</a>
+        <a href="teams/rain-city.html">Rain City Bombers</a>
+        <a href="teams/buckner.html">The Buckner Boots</a>
+        <a href="teams/decoy.html">Ray Donovan</a>
+        <a href="teams/one-ball.html">One Ball Two Strikes</a>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <a href="week-01.html" class="nav-dropdown-toggle">Weeks &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="week-01.html">Week 1 &mdash; Mar 25&ndash;29</a>
+      </div>
+    </div>
+    <div class="nav-sep"></div>
+    <a href="power.html" class="nav-pr-link">Power Rankings</a>
+    <div class="nav-sep"></div>
+    <div class="nav-dropdown">
+      <a href="draft.html" class="nav-dropdown-toggle active">Draft &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="draft.html" id="nav-top-link">Full Draft Report</a>
+        <a href="#grades">Draft Grades</a>
+        <a href="#predictions">Predictions</a>
+        <a href="#insights">Insights</a>
+        <a href="#standings">2025 Recap</a>
+      </div>
+    </div>
+  </div>
+  <div class="nav-badge">2026 Draft</div>
+</nav>
+<script src="nav.js"></script>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Post-Draft Analysis</div>
+    <h1>Issaquah Swingers<br/><span>2026 Draft Report</span></h1>
+    <p class="hero-sub">
+      Head-to-Head Categories
+      <span class="sep"></span>
+      10 Teams
+      <span class="sep"></span>
+      23 Rounds
+      <span class="sep"></span>
+      Sun Mar 22, 2026
+    </p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- TEAM GRADES -->
+  <section id="grades" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#127942;</span> Team Grades
+    </h2>
+    <div class="teams-grid stagger-children" id="teamsGrid"></div>
+  </section>
+
+  <!-- SEASON PREDICTIONS -->
+  <section id="predictions" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128302;</span> 2026 Season Predictions
+    </h2>
+
+    <!-- Methodology -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#128200;</span> Methodology
+      </div>
+      <p class="methodology-text">
+        500 Monte Carlo simulations using category-by-category matchup modeling. Each team rated across all 10 scoring categories (R, HR, RBI, SB, OBP, SV, K, ERA, WHIP, QS) based on actual 18-starter lineups (10 batters + 8 pitchers including 4 generic P slots) with full Yahoo position eligibility. Pitching ratings reflect realistic weekly usage &mdash; each SP gets 1&ndash;2 starts per week regardless of lineup slots, so depth provides consistency rather than linear production gains. Weekly variance accounts for injuries, slumps, and waiver moves. Streaming is not modeled (this is a draft-day snapshot). 22 regular season weeks + 3 playoff weeks simulated.
+      </p>
+    </div>
+
+    <!-- Projected Standings -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">Projected Regular Season Standings</div>
+      <div class="table-wrapper">
+        <table class="standings-table" id="projectedStandings">
+          <thead>
+            <tr>
+              <th>Seed</th>
+              <th>Team</th>
+              <th>Proj. Record</th>
+              <th>Pct</th>
+              <th>Playoff%</th>
+              <th>Champ%</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Playoff Bracket -->
+    <div class="card reveal" style="margin-bottom:1.5rem;">
+      <div class="card-title">
+        <span class="card-icon">&#127942;</span> Predicted Playoff Bracket (Weeks 23-25)
+      </div>
+      <div id="playoffBracket"></div>
+    </div>
+
+    <!-- Season Storylines -->
+    <div class="card reveal">
+      <div class="card-title">Season Storylines to Watch</div>
+      <div class="storyline">
+        <p><strong>The 5-6-7-8 seed race will be chaos.</strong> Ray Donovan (58%), The Ragans Administration (49%), Keanu (47%), and Allahu Alvarez (42%) are all clustered within 2 projected wins of each other. One hot streak or cold stretch decides who makes the playoffs and who watches. Ray Donovan's health risk (Acu&ntilde;a, Glasnow, Cole) makes them the most volatile team in the league.</p>
+        <p><strong>8 pitching slots change everything.</strong> With 2 SP + 2 RP + 4 P starters, pitching depth matters more than ever. But each SP only gets 1&ndash;2 starts per week, so filling all 8 slots with quality arms is about consistency, not volume. Vibes (10+ SP), Ete Crow (Ohtani/Ragans/Castillo/Woodruff), and One Ball (Skubal/Yamamoto/Eovaldi/Alcantara/Burns) load every slot with real production. Busch Latte can't &mdash; and it shows.</p>
+        <p><strong>Ete Crow's title defense faces a real test.</strong> The defending champs (fka LetsPlayMajorLeagueBaseball &mdash; yes, someone finally admitted that name was unsustainable) ran back the SB + SV formula, but their SP depth drops off fast after Ryan/Luzardo. With 8 pitching slots to fill and each SP realistically getting 1&ndash;2 starts per week, McLean/Gray/Eury P&eacute;rez need to step up or ERA/WHIP/QS become weekly liabilities.</p>
+        <p><strong>Watch the waiver wire.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The draft is just the opening hand &mdash; the teams that work the wire hardest will rise. With 5 max acquisitions per week, there's no excuse not to be active.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YEAR-OVER-YEAR INSIGHTS -->
+  <section id="insights" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128269;</span> Year-Over-Year Insights
+    </h2>
+
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128257;</span> Loyalty Picks &mdash; Same Player, Same Team
+        </div>
+        <div id="loyaltyPicks"></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128200;</span> Biggest Round Movers (Repeat Drafters)
+        </div>
+        <div id="adpMovers"></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#128260;</span> Roster Turnover
+        </div>
+        <div id="turnoverInsights"></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">
+          <span class="card-icon">&#127775;</span> Notable Player Movement
+        </div>
+        <div id="notableMovement"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAGUE NARRATIVES -->
+  <section id="narratives" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128218;</span> League Narratives
+    </h2>
+    <div class="card reveal">
+      <div class="narrative-text" id="narratives-text">
+        <p><strong>The Waiver Wire Wins Championships.</strong> In 2025, the top 4 finishers averaged 85 moves. The bottom 4 averaged 52. The Ragans Administration won with 81 moves; Rain City finished 9th with just 17. Good Vibes Only made the most moves (101) and finished 4th despite the 6th-best draft. The lesson is clear: ~30% of your Opening Day roster will be gone by June. Draft for flexibility, not perfection.</p>
+        <p><strong>The Champion's Blueprint.</strong> The Ragans Administration won 2025 by pairing Elly De La Cruz's SB dominance with 3 closers and aggressive waiver activity. In 2026, they doubled down &mdash; drafting Elly again at pick 4, loading up on 3 closers (Iglesias, Est&eacute;vez, Hader), and adding the same Joe Ryan and Luzardo they rode in 2025. This is a team that knows its identity.</p>
+        <p><strong>One Ball's Model Season.</strong> Picked 8th in 2025 (same slot as Buckner Boots in 2026). Took Elly De La Cruz, paired with Mookie Betts and Devers, and rode waiver activity (63 moves) to 2nd place at 117-76-17. The 2026 Buckner Boots studied this blueprint &mdash; elite batter at #8 (Tucker), OBP depth, and pitching volume over aces.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2025 FINAL STANDINGS -->
+  <section id="standings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#128202;</span> 2025 Final Standings
+    </h2>
+    <div class="card reveal">
+      <div class="table-wrapper">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Record</th>
+              <th>Pct</th>
+              <th>Moves</th>
+              <th>2026 Grade</th>
+            </tr>
+          </thead>
+          <tbody id="standingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAGUE SETTINGS -->
+  <section id="settings" class="section">
+    <h2 class="section-title">
+      <span class="section-icon">&#9881;&#65039;</span> League Settings
+    </h2>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-title">Format</div>
+        <table class="settings-table">
+          <tr><td>Scoring</td><td>Head-to-Head Categories</td></tr>
+          <tr><td>Teams</td><td>10</td></tr>
+          <tr><td>Draft Type</td><td>Live Snake Draft</td></tr>
+          <tr><td>Rounds</td><td>23</td></tr>
+          <tr><td>Roster</td><td>C,1B,2B,3B,SS,OF&times;3,Util&times;2,SP&times;2,RP&times;2,P&times;4,BN&times;5,IL&times;3,NA</td></tr>
+          <tr><td>Playoffs</td><td>6 Teams, Wks 23-25 (ends Sep 20)</td></tr>
+          <tr><td>Max Adds/Wk</td><td>5</td></tr>
+          <tr><td>Min IP/Wk</td><td>30</td></tr>
+        </table>
+      </div>
+      <div class="card reveal">
+        <div class="card-title">Scoring Categories</div>
+        <table class="settings-table">
+          <tr><td style="color:var(--accent2);font-weight:700">Batting</td><td>R, HR, RBI, SB, OBP</td></tr>
+          <tr><td style="color:var(--accent);font-weight:700">Pitching</td><td>SV, K, ERA, WHIP, QS</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Issaquah Swingers Fantasy Baseball &middot; League ID 61583 &middot; 2026 Season</p>
+  <p>Generated by Claude &middot; Post-Draft Analysis</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<script>
+// Scrollspy: highlight the correct Draft sub-nav link based on scroll position
+(function () {
+  var SECTIONS = ['grades', 'predictions', 'insights', 'standings'];
+  var OFFSET = 80; // sticky nav height + buffer
+
+  function getLink(href) {
+    return document.querySelector('.nav-dropdown-menu a[href="' + href + '"]');
+  }
+
+  var topLink    = document.getElementById('nav-top-link');
+  var sectionMap = SECTIONS.map(function (id) {
+    return { id: id, el: document.getElementById(id), link: getLink('#' + id) };
+  }).filter(function (s) { return s.el && s.link; });
+
+  function update() {
+    var scrollY = window.scrollY + OFFSET;
+    var active  = null;
+    sectionMap.forEach(function (s) {
+      if (s.el.offsetTop <= scrollY) active = s;
+    });
+
+    // Clear all
+    if (topLink) topLink.classList.remove('active');
+    sectionMap.forEach(function (s) { s.link.classList.remove('active'); });
+
+    // Set active
+    if (active) {
+      active.link.classList.add('active');
+    } else if (topLink) {
+      topLink.classList.add('active');
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update(); // run once on load
+})();
+</script>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="week-01.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Weeks</span>
+    </a>
+    <a href="draft.html" class="bottom-nav-item active">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Draft</span>
+    </a>
+    <a href="#" class="bottom-nav-item" id="teams-nav-btn">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Teams</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Teams bottom sheet (mobile) -->
+<div class="teams-sheet" id="teamsSheet">
+  <div class="teams-sheet-backdrop" id="teamsSheetBackdrop"></div>
+  <div class="teams-sheet-panel">
+    <div class="teams-sheet-handle"></div>
+    <div class="teams-sheet-title">Teams</div>
+    <div class="teams-sheet-list">
+      <a href="teams/busch-latte.html" class="teams-sheet-item"><img src="img/headshots/busch-latte.jpg" class="headshot headshot-sm" alt="" /> Busch Latte</a>
+      <a href="teams/skenes.html" class="teams-sheet-item"><img src="img/headshots/skenes.jpeg" class="headshot headshot-sm" alt="" /> Allahu Alvarez</a>
+      <a href="teams/ete-crow.html" class="teams-sheet-item"><img src="img/headshots/ete-crow.jpeg" class="headshot headshot-sm" alt="" /> Ete Crow</a>
+      <a href="teams/ragans.html" class="teams-sheet-item"><img src="img/headshots/ragans.jpeg" class="headshot headshot-sm" alt="" /> The Ragans Administration</a>
+      <a href="teams/keanu.html" class="teams-sheet-item"><img src="img/headshots/keanu.jpeg" class="headshot headshot-sm" alt="" /> Keanu Reeves</a>
+      <a href="teams/good-vibes.html" class="teams-sheet-item"><img src="img/headshots/good-vibes.jpeg" class="headshot headshot-sm" alt="" /> Good Vibes Only</a>
+      <a href="teams/rain-city.html" class="teams-sheet-item"><img src="img/headshots/rain-city.jpeg" class="headshot headshot-sm" alt="" /> Rain City Bombers</a>
+      <a href="teams/buckner.html" class="teams-sheet-item"><img src="img/headshots/buckner.jpeg" class="headshot headshot-sm" alt="" /> The Buckner Boots</a>
+      <a href="teams/decoy.html" class="teams-sheet-item"><img src="img/headshots/decoy.jpeg" class="headshot headshot-sm" alt="" /> Ray Donovan</a>
+      <a href="teams/one-ball.html" class="teams-sheet-item"><img src="img/headshots/one-ball.png" class="headshot headshot-sm" alt="" /> One Ball Two Strikes</a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var btn = document.getElementById('teams-nav-btn');
+  var sheet = document.getElementById('teamsSheet');
+  var backdrop = document.getElementById('teamsSheetBackdrop');
+  function toggle(e) { if (e) e.preventDefault(); sheet.classList.toggle('open'); }
+  if (btn && sheet && backdrop) { btn.addEventListener('click', toggle); backdrop.addEventListener('click', toggle); }
+})();
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

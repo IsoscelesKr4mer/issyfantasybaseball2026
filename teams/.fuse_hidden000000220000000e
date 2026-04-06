@@ -182,11 +182,7 @@
     <!-- AUTO:ROSTER_END -->
     <div class="table-footer">
       <!-- AUTO:UPDATED_AT_START -->
-<<<<<<< HEAD
 <span class="muted">Updated Apr 06 at 12:19 AM Pacific</span>
-=======
-<span class="muted">Updated Apr 06 at 12:03 AM Pacific</span>
->>>>>>> 731c5bdad5226fd6cd476f9e6e7f9c09f877e0d6
     <!-- AUTO:UPDATED_AT_END -->
     </div>
   </section>
