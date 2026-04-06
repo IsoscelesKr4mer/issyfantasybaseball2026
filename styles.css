@@ -3525,7 +3525,7 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
 }
 .bottom-nav-inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   height: 60px;
 }
 .bottom-nav-item {
