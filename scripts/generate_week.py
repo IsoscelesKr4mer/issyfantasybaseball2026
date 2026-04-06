@@ -375,6 +375,354 @@ def compute_all_play(matchups: list) -> dict:
     )
 
 
+# ── CUMULATIVE POWER RANKINGS ─────────────────────────────────────────────────
+
+def update_power_rankings(week: int, all_play: dict) -> dict:
+    """Merge this week's all-play data into the cumulative power-rankings.json.
+
+    Loads data/power-rankings.json (or seeds it fresh), appends this week's
+    all-play record to each team's history, re-sorts by cumulative cat_w,
+    computes rank deltas, assigns tiers, and saves back to disk.
+
+    Idempotent: if last_updated_week >= week, returns existing data unchanged.
+
+    Returns the updated rankings dict (same shape as power-rankings.json).
+    """
+    TIERS = {1: 'elite', 2: 'elite', 3: 'contender', 4: 'contender',
+             5: 'contender', 6: 'mid', 7: 'mid', 8: 'mid',
+             9: 'cellar', 10: 'cellar'}
+
+    pr_path = BASE_DIR / 'data' / 'power-rankings.json'
+
+    if pr_path.exists():
+        pr = json.loads(pr_path.read_text())
+    else:
+        pr = {'last_updated_week': 0, 'methodology': '', 'rankings': []}
+
+    if pr.get('last_updated_week', 0) >= week:
+        print(f'  ℹ️  Power rankings already updated through Week {week} — skipping')
+        return pr
+
+    # Build a lookup keyed by team name from existing rankings
+    by_name = {r['name']: r for r in pr.get('rankings', [])}
+
+    # Merge this week's all-play into each team's record
+    for name, ap in all_play.items():
+        if name not in by_name:
+            # First time we've seen this team (fresh file or new team)
+            by_name[name] = {
+                'name': name,
+                'rank': 0, 'prev_rank': 0, 'delta': 0, 'tier': 'mid',
+                'cumulative_ap':   {'w': 0, 'l': 0, 't': 0},
+                'cumulative_cats': {'w': 0, 'l': 0, 't': 0},
+                'history': [],
+                'analysis': '',
+            }
+        entry = by_name[name]
+
+        # Snapshot prev rank before we re-sort
+        entry['prev_rank'] = entry.get('rank', 0)
+
+        # Accumulate
+        entry['cumulative_ap']['w']   += ap['w']
+        entry['cumulative_ap']['l']   += ap['l']
+        entry['cumulative_ap']['t']   += ap.get('t', 0)
+        entry['cumulative_cats']['w'] += ap['cat_w']
+        entry['cumulative_cats']['l'] += ap['cat_l']
+        entry['cumulative_cats']['t'] += ap.get('cat_t', 0)
+
+        # Append weekly snapshot
+        entry['history'].append({
+            'week': week,
+            'rank': 0,  # filled in after re-sort below
+            'ap':   {'w': ap['w'], 'l': ap['l'], 't': ap.get('t', 0)},
+            'cats': {'w': ap['cat_w'], 'l': ap['cat_l'], 't': ap.get('cat_t', 0)},
+        })
+
+    # Compute recency-weighted score for each team.
+    # Decay factor 0.95 per week back: most recent week = 1.0x, one week ago = 0.95x,
+    # two weeks ago = 0.90x, etc.  At a full 25-week season week 1 still counts ~29%
+    # as much as the current week — enough history still matters, enough to reward
+    # teams that are actually improving right now.
+    DECAY = 0.95
+    for entry in by_name.values():
+        score = 0.0
+        for i, h in enumerate(reversed(entry['history'])):
+            score += h['cats']['w'] * (DECAY ** i)
+        entry['weighted_score'] = round(score, 2)
+
+    # Sort by weighted_score desc; cumulative AP wins as tiebreaker
+    ranked = sorted(by_name.values(),
+                    key=lambda x: (x['weighted_score'], x['cumulative_ap']['w']),
+                    reverse=True)
+
+    # Assign ranks, deltas, tiers, and fill in this week's rank in history
+    for i, entry in enumerate(ranked):
+        new_rank = i + 1
+        entry['rank']  = new_rank
+        entry['delta'] = entry['prev_rank'] - new_rank  # positive = moved up
+        entry['tier']  = TIERS.get(new_rank, 'mid')
+        # Backfill the rank into the week snapshot we just appended
+        if entry['history']:
+            entry['history'][-1]['rank'] = new_rank
+
+    # Save a weekly snapshot so power.html can show historical views.
+    # Snapshot stores cumulative totals as of this week PLUS the week's
+    # individual contribution (week_ap / week_cats), so the JS renderer
+    # can display both "how they stand overall" and "what they did this week".
+    pr.setdefault('weekly_snapshots', [])
+    if not any(s['week'] == week for s in pr['weekly_snapshots']):
+        snap_entries = []
+        for e in ranked:
+            last_h = e['history'][-1] if e['history'] else {}
+            snap_entries.append({
+                'rank':            e['rank'],
+                'prev_rank':       e['prev_rank'],
+                'delta':           e['delta'],
+                'tier':            e['tier'],
+                'name':            e['name'],
+                'cumulative_ap':   dict(e['cumulative_ap']),
+                'cumulative_cats': dict(e['cumulative_cats']),
+                'week_ap':         dict(last_h.get('ap',   {'w':0,'l':0,'t':0})),
+                'week_cats':       dict(last_h.get('cats', {'w':0,'l':0,'t':0})),
+                'analysis':        e.get('analysis', ''),
+            })
+        pr['weekly_snapshots'].append({'week': week, 'rankings': snap_entries})
+
+    pr['last_updated_week'] = week
+    pr['methodology'] = (
+        'Ranked by recency-weighted category wins (decay=0.95/week). '
+        'Most recent week counts full value; each prior week counts 5% less. '
+        'At 25 weeks, week 1 still counts ~29% of current — history matters, '
+        'but teams playing well right now get the edge. '
+        'Cumulative AP wins used as tiebreaker.'
+    )
+    pr['rankings'] = ranked
+    pr_path.write_text(json.dumps(pr, indent=2))
+    print(f'  📊  Power rankings updated through Week {week} → {pr_path.name}')
+    return pr
+
+
+def generate_power_rankings_page(pr: dict):
+    """Regenerate power.html from the current power-rankings.json data.
+
+    Rewrites the AUTO-delimited sections in power.html so the page stays
+    in sync with the JSON without a full rebuild each time.
+
+    Sections updated:
+      AUTO:PR_UPDATED_START / END  — "Updated through Week N" badge
+      AUTO:PR_STRIP_START / END    — Season snapshot stat strip
+      AUTO:PR_RANKINGS_START / END — The full ranked list HTML
+      AUTO:PR_WEEK_LINKS_START / END — Bottom weekly breakdown links
+    """
+    power_path = BASE_DIR / 'power.html'
+    if not power_path.exists():
+        print('  ⚠️  power.html not found — skipping page regeneration')
+        return
+
+    last_week = pr.get('last_updated_week', 0)
+    rankings  = pr.get('rankings', [])
+
+    # ── Updated-through badge ──────────────────────────────────────────────
+    updated_html = f'    <div class="pr-updated-badge">Updated through Week {last_week}</div>\n    '
+
+    # ── Season stat strip ──────────────────────────────────────────────────
+    leader    = rankings[0]['name'] if rankings else 'TBD'
+    leader_cats = rankings[0]['cumulative_cats'] if rankings else {'w': 0, 'l': 0, 't': 0}
+    leader_str  = f"{leader_cats['w']}&ndash;{leader_cats['l']}&ndash;{leader_cats['t']}"
+    # Biggest riser and faller (by delta, excluding teams with prev_rank=0)
+    movers = [r for r in rankings if r.get('prev_rank', 0) > 0]
+    riser  = max(movers, key=lambda x: x.get('delta', 0), default=None) if movers else None
+    faller = min(movers, key=lambda x: x.get('delta', 0), default=None) if movers else None
+    strip_html = f'''  <div class="pr-season-strip">
+    <div class="pr-season-cell">
+      <div class="pr-season-val gold">{leader}</div>
+      <div class="pr-season-lbl">#1 overall</div>
+    </div>
+    <div class="pr-season-cell">
+      <div class="pr-season-val">{leader_str}</div>
+      <div class="pr-season-lbl">Leader season cats</div>
+    </div>
+    <div class="pr-season-cell">
+      <div class="pr-season-val green">{riser['name'] if riser and riser.get('delta',0) > 0 else '&mdash;'}</div>
+      <div class="pr-season-lbl">Biggest riser ({'+' + str(riser['delta']) if riser and riser.get('delta',0) > 0 else '&mdash;'})</div>
+    </div>
+    <div class="pr-season-cell">
+      <div class="pr-season-val red">{faller['name'] if faller and faller.get('delta',0) < 0 else '&mdash;'}</div>
+      <div class="pr-season-lbl">Biggest faller ({str(faller['delta']) if faller and faller.get('delta',0) < 0 else '&mdash;'})</div>
+    </div>
+  </div>'''
+
+    # ── Rankings rows ──────────────────────────────────────────────────────
+    TIER_LABELS = {
+        'elite':     '<div class="pr-tier-label pr-tier-elite reveal"><span class="pr-tier-dot"></span> Elite Tier</div>',
+        'contender': '<div class="pr-tier-label pr-tier-contender reveal"><span class="pr-tier-dot"></span> Contenders</div>',
+        'mid':       '<div class="pr-tier-label pr-tier-mid reveal"><span class="pr-tier-dot"></span> Middle of the Pack</div>',
+        'cellar':    '<div class="pr-tier-label pr-tier-cellar reveal"><span class="pr-tier-dot"></span> Cellar Dwellers</div>',
+    }
+    BAR_WIDTHS = {1:100,2:82,3:77,4:75,5:70,6:68,7:52,8:51,9:42,10:33}
+    DELAYS     = {1:.05,2:.1,3:.15,4:.2,5:.25,6:.3,7:.35,8:.4,9:.45,10:.5}
+
+    rows_html  = ['    <div class="power-rankings-container">']
+    prev_tier  = None
+    for entry in rankings:
+        rank      = entry['rank']
+        tier      = entry['tier']
+        name      = entry.get('name', '')
+        delta     = entry.get('delta', 0)
+        prev_rank = entry.get('prev_rank', 0)
+        cum_ap    = entry['cumulative_ap']
+        cum_cats  = entry['cumulative_cats']
+        analysis  = entry.get('analysis', '')
+        history   = entry.get('history', [])
+
+        if tier != prev_tier:
+            rows_html.append('')
+            rows_html.append(f'      {TIER_LABELS.get(tier, "")}')
+            prev_tier = tier
+
+        # Delta badge
+        if delta > 0:
+            delta_html = f'<span class="pr-delta up">&#8593;{delta}</span>'
+        elif delta < 0:
+            delta_html = f'<span class="pr-delta down">&#8595;{abs(delta)}</span>'
+        elif prev_rank == 0:
+            delta_html = '<span class="pr-delta new">NEW</span>'
+        else:
+            delta_html = '<span class="pr-delta even">&mdash;</span>'
+
+        # Movement line item — explicit rank change sentence
+        held_weeks = sum(1 for h in history if h.get('rank') == rank)
+        if prev_rank == 0:
+            move_cls  = 'new'
+            move_text = 'First week in the books'
+        elif delta > 0:
+            move_cls  = 'up'
+            move_text = f'&#8593;{delta} &mdash; climbed from #{prev_rank} last week'
+        elif delta < 0:
+            move_cls  = 'down'
+            move_text = f'&#8595;{abs(delta)} &mdash; dropped from #{prev_rank} last week'
+        elif held_weeks > 1:
+            move_cls  = 'hold'
+            move_text = f'Held at #{rank} for {held_weeks} straight weeks'
+        else:
+            move_cls  = 'hold'
+            move_text = f'Held at #{rank}'
+        movement_html = f'          <div class="pr-movement {move_cls}">{move_text}</div>'
+
+        # Week history pills
+        history_parts = []
+        for i, hw in enumerate(history):
+            wk_rank = hw.get('rank', 0)
+            wk_num  = hw.get('week', i + 1)
+            history_parts.append(
+                f'            <div class="pr-history-week">'
+                f'<span class="pr-hw-label">Wk {wk_num}</span>'
+                f'<span class="pr-hw-rank" data-rank="{wk_rank}">#{wk_rank}</span>'
+                f'</div>'
+            )
+            if i < len(history) - 1:
+                history_parts.append('            <span class="pr-history-arrow">&#8594;</span>')
+        history_html = '\n'.join(history_parts)
+
+        ap_str   = f"{cum_ap['w']}&ndash;{cum_ap['l']}&ndash;{cum_ap['t']}"
+        cats_str = f"{cum_cats['w']}&ndash;{cum_cats['l']}&ndash;{cum_cats['t']}"
+        bar_w    = BAR_WIDTHS.get(rank, 30)
+        delay    = DELAYS.get(rank, .5)
+
+        row = f'''
+      <div class="pr-row reveal" data-rank="{rank}" data-tier="{tier}" style="transition-delay:{delay}s;--bar-w:{bar_w}%">
+        <div class="pr-rank">{rank}</div>
+        <div class="pr-content">
+          <div class="pr-header">
+            <span class="pr-team-name">{name}</span>
+            <span class="pr-record-badge">{cats_str} cats</span>
+            <span class="pr-cats-badge">{ap_str} AP</span>
+            {delta_html}
+          </div>
+{movement_html}
+          <div class="pr-history">
+{history_html}
+          </div>
+          <div class="pr-bar-container"><div class="pr-bar-fill"></div></div>
+          <div class="pr-analysis">{analysis}</div>
+        </div>
+      </div>'''
+        rows_html.append(row)
+
+    rows_html.append('')
+    rows_html.append('    </div>')
+    rankings_html = '\n'.join(rows_html)
+
+    # ── Week links ─────────────────────────────────────────────────────────
+    week_link_parts = []
+    for wk in range(1, last_week + 1):
+        dates = WEEK_DATES.get(wk, ('', ''))
+        start = fmt_date(dates[0]) if dates[0] else f'Week {wk}'
+        end   = fmt_date(dates[1]) if dates[1] else ''
+        label = f'{start}&ndash;{end}' if end else start
+        week_link_parts.append(
+            f'      <a href="week-{wk:02d}.html#recap" style="display:inline-flex;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.55rem 1rem;font-size:.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;">\n'
+            f'        <span style="color:var(--muted);font-size:.72rem;">Wk {wk}</span>\n'
+            f'        <span>{label}</span>\n'
+            f'        <span style="color:var(--accent);font-size:.72rem;">View &#8594;</span>\n'
+            f'      </a>'
+        )
+    week_links_html = '\n'.join(week_link_parts)
+
+    # ── Update week-dropdown in nav (mirror of other pages) ───────────────
+    # Build week nav group entries matching the site's existing format
+    week_nav_items = []
+    for wk in range(1, last_week + 1):
+        dates  = WEEK_DATES.get(wk, ('', ''))
+        start  = fmt_date(dates[0]) if dates[0] else ''
+        end    = fmt_date(dates[1]) if dates[1] else ''
+        label  = f'{start}&ndash;{end}'
+        has_recap = (wk < last_week) or True  # recap exists for completed weeks
+        sub_links = f'<a href="week-{wk:02d}.html#preview">Preview</a>'
+        if has_recap and wk <= last_week:
+            sub_links += f'<a href="week-{wk:02d}.html#recap">Recap</a>'
+        week_nav_items.append(
+            f'        <div class="week-nav-group"><span class="week-nav-label">Week {wk} &mdash; {label}</span>'
+            f'<div class="week-nav-sub">{sub_links}</div></div>'
+        )
+
+    # ── Inject all sections using AUTO markers ─────────────────────────────
+    html = power_path.read_text()
+
+    def _replace(content, start_marker, end_marker, new_inner):
+        pattern = re.compile(
+            r'(<!--\s*' + re.escape(start_marker) + r'\s*-->).*?(<!--\s*' + re.escape(end_marker) + r'\s*-->)',
+            re.DOTALL
+        )
+        return pattern.sub(r'\1\n' + new_inner + '\n    \2', content)
+
+    # ── Week selector buttons ──────────────────────────────────────────────
+    btn_parts = ['      <button class="pr-week-btn active" data-week="-1" onclick="prSwitchView(-1)">Season</button>']
+    for s in pr.get('weekly_snapshots', []):
+        wk = s['week']
+        btn_parts.append(f'      <button class="pr-week-btn" data-week="{wk}" onclick="prSwitchView({wk})">Wk {wk}</button>')
+    selector_html = '\n'.join(btn_parts)
+
+    # ── Snapshots JSON for JS renderer ────────────────────────────────────
+    import json as _json
+    snapshots_js_html = (
+        f'<script id="pr-snapshots-data" type="application/json">'
+        f'{_json.dumps(pr.get("weekly_snapshots", []))}'
+        f'</script>'
+    )
+
+    html = _replace(html, 'AUTO:PR_UPDATED_START', 'AUTO:PR_UPDATED_END', f'    {updated_html}')
+    html = _replace(html, 'AUTO:PR_STRIP_START', 'AUTO:PR_STRIP_END', strip_html)
+    html = _replace(html, 'AUTO:PR_WEEK_SELECTOR_START', 'AUTO:PR_WEEK_SELECTOR_END', selector_html)
+    html = _replace(html, 'AUTO:PR_RANKINGS_START', 'AUTO:PR_RANKINGS_END', rankings_html)
+    html = _replace(html, 'AUTO:PR_WEEK_LINKS_START', 'AUTO:PR_WEEK_LINKS_END', week_links_html)
+    html = _replace(html, 'AUTO:PR_SNAPSHOTS_START', 'AUTO:PR_SNAPSHOTS_END', snapshots_js_html)
+
+    power_path.write_text(html)
+    print(f'  ✅  power.html regenerated → Week {last_week}')
+
+
 def fetch_recent_results(api: YahooFantasyAPI, current_week: int, n_weeks: int = 2) -> dict:
     """Fetch the last n completed weeks of results for every team.
 
@@ -726,6 +1074,21 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     # their actual matchup had a great week and drew a tough opponent.
     all_play = compute_all_play(matchups_data)
 
+    # ── Cumulative power rankings (season-to-date) ────────────────────────────
+    # Only update if this week's data represents a completed/final scoreboard.
+    # The scoreboard status from Yahoo signals whether scores are finalized.
+    # We update on every dump so that mid-week partial data is also captured;
+    # the update_power_rankings() function is idempotent per week.
+    try:
+        pr_data = update_power_rankings(week, all_play)
+        # Regenerate power.html but note: analysis blurbs are written by Claude.
+        # The page generator uses whatever analysis text is already in the JSON.
+        # Claude must write/update the analysis field in power-rankings.json
+        # before calling generate_power_rankings_page() for prose to appear.
+        generate_power_rankings_page(pr_data)
+    except Exception as e:
+        print(f'    ⚠️  Power rankings update failed: {e}')
+
     data = {
         'week':              week,
         'matchups':          matchups_data,
@@ -894,19 +1257,46 @@ def create_week_page(week: int):
   <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="draft.html">Draft</a>
     <div class="nav-dropdown">
-      <a href="#" class="nav-dropdown-toggle active">Weeks &#9662;</a>
+      <a href="#" class="nav-dropdown-toggle">Teams &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="teams/busch-latte.html">Busch Latte</a>
+        <a href="teams/skenes.html">Allahu Alvarez</a>
+        <a href="teams/ete-crow.html">Ete Crow</a>
+        <a href="teams/ragans.html">The Ragans Administration</a>
+        <a href="teams/keanu.html">Keanu Reeves</a>
+        <a href="teams/good-vibes.html">Good Vibes Only</a>
+        <a href="teams/rain-city.html">Rain City Bombers</a>
+        <a href="teams/buckner.html">The Buckner Boots</a>
+        <a href="teams/decoy.html">Ray Donovan</a>
+        <a href="teams/one-ball.html">One Ball Two Strikes</a>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <a href="week-{week:02d}.html" class="nav-dropdown-toggle active">Weeks &#9662;</a>
       <div class="nav-dropdown-menu" id="weekDropdown">
         <!-- AUTO:WEEK_LINKS_START -->
-        <a href="week-{week:02d}.html" class="active">Week {week} &mdash; {date_str}</a>
+        <div class="week-nav-group"><span class="week-nav-label active">Week {week} &mdash; {date_str}</span><div class="week-nav-sub"><a href="week-{week:02d}.html#preview">Preview</a></div></div>
         <!-- AUTO:WEEK_LINKS_END -->
       </div>
     </div>
-    <a href="season.html" class="muted">Season</a>
+    <div class="nav-sep"></div>
+    <a href="power.html" class="nav-pr-link">Power Rankings</a>
+    <div class="nav-sep"></div>
+    <div class="nav-dropdown">
+      <a href="draft.html" class="nav-dropdown-toggle">Draft &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="draft.html">Full Draft Report</a>
+        <a href="draft.html#grades">Draft Grades</a>
+        <a href="draft.html#predictions">Predictions</a>
+        <a href="draft.html#insights">Insights</a>
+        <a href="draft.html#standings">2025 Recap</a>
+      </div>
+    </div>
   </div>
   <div class="nav-badge week-badge">Week {week}</div>
 </nav>
+<script src="nav.js"></script>
 
 <header class="hero hero-week">
   <div class="hero-content">

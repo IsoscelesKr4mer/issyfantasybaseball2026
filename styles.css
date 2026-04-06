@@ -4204,3 +4204,307 @@ a.week-tile:hover { border-color: var(--accent); color: var(--accent); transform
   .pr-team-name { font-size: .95rem; }
   .pr-header { gap: .4rem; }
 }
+
+/* ═══════════════════════════════════════════
+   POWER RANKINGS — CUMULATIVE / SEASON PAGE
+   ═══════════════════════════════════════════ */
+
+/* ── Rank movement delta badge ── */
+.pr-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: .15rem .45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pr-delta.up {
+  color: var(--green);
+  background: var(--green-dim);
+  border: 1px solid rgba(62, 207, 142, .2);
+}
+.pr-delta.down {
+  color: var(--red);
+  background: var(--red-dim);
+  border: 1px solid rgba(255, 68, 68, .2);
+}
+.pr-delta.even {
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.pr-delta.new {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(79, 142, 247, .2);
+}
+
+/* ── Week-by-week rank history strip ── */
+.pr-history {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  flex-wrap: wrap;
+  margin: .5rem 0 .4rem;
+}
+.pr-history-week {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+}
+.pr-hw-label {
+  font-size: .58rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.pr-hw-rank {
+  font-family: var(--font-display);
+  font-size: .85rem;
+  font-weight: 800;
+  padding: .1rem .4rem;
+  border-radius: 4px;
+  min-width: 2rem;
+  text-align: center;
+}
+/* Rank pill color by position */
+.pr-hw-rank[data-rank="1"],.pr-hw-rank[data-rank="2"] {
+  color: var(--accent2);
+  background: var(--accent2-dim);
+  border: 1px solid rgba(247, 201, 72, .2);
+}
+.pr-hw-rank[data-rank="3"],.pr-hw-rank[data-rank="4"],.pr-hw-rank[data-rank="5"] {
+  color: var(--green);
+  background: var(--green-dim);
+  border: 1px solid rgba(62, 207, 142, .15);
+}
+.pr-hw-rank[data-rank="6"],.pr-hw-rank[data-rank="7"],.pr-hw-rank[data-rank="8"] {
+  color: var(--text-secondary);
+  background: var(--surface3);
+  border: 1px solid var(--border);
+}
+.pr-hw-rank[data-rank="9"],.pr-hw-rank[data-rank="10"] {
+  color: var(--red);
+  background: var(--red-dim);
+  border: 1px solid rgba(255, 68, 68, .15);
+}
+.pr-history-arrow {
+  color: var(--border-light);
+  font-size: .8rem;
+  flex-shrink: 0;
+  line-height: 1;
+  padding-top: 1rem; /* align with rank pill, not label */
+}
+
+/* ── Recap section linkout to power rankings ── */
+.recap-pr-linkout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .6rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.recap-pr-linkout-text {
+  font-size: .78rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.recap-pr-linkout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(79, 142, 247, .25);
+  border-radius: 6px;
+  padding: .4rem .9rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  white-space: nowrap;
+}
+.recap-pr-linkout-btn:hover {
+  background: rgba(79, 142, 247, .2);
+  border-color: rgba(79, 142, 247, .4);
+}
+.recap-pr-linkout-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Power Rankings hero variant ── */
+.hero-power {
+  background: linear-gradient(160deg, #0a0c12 0%, #0e0f1a 40%, #0a0c12 100%);
+}
+.hero-power::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(247, 201, 72, .08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 100%, rgba(62, 207, 142, .04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 100%, rgba(79, 142, 247, .04) 0%, transparent 60%),
+    repeating-linear-gradient(
+      45deg, transparent, transparent 29px,
+      rgba(255,255,255,.02) 29px, rgba(255,255,255,.035) 30.5px,
+      rgba(255,255,255,.02) 32px, transparent 32px
+    ),
+    repeating-linear-gradient(
+      -45deg, transparent, transparent 29px,
+      rgba(255,255,255,.02) 29px, rgba(255,255,255,.035) 30.5px,
+      rgba(255,255,255,.02) 32px, transparent 32px
+    );
+}
+
+/* ── Season stats strip for power.html ── */
+.pr-season-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.pr-season-cell {
+  background: var(--surface);
+  padding: 1.1rem 1rem;
+  text-align: center;
+}
+.pr-season-val {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -.5px;
+  line-height: 1;
+}
+.pr-season-val.gold { color: var(--accent2); }
+.pr-season-val.green { color: var(--green); }
+.pr-season-val.red { color: var(--red); }
+.pr-season-lbl {
+  font-size: .65rem;
+  color: var(--muted);
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+}
+
+/* ── Methodology note on power.html ── */
+.pr-methodology {
+  font-size: .76rem;
+  line-height: 1.55;
+  color: var(--muted);
+  padding: .65rem .85rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent2);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Updated-through badge on power.html ── */
+.pr-updated-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--accent2-dim);
+  color: var(--accent2);
+  border: 1px solid rgba(247, 201, 72, .2);
+  border-radius: 30px;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  margin-bottom: 1.5rem;
+}
+.pr-updated-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+}
+
+/* ── Nav Power Rankings link (active state for power.html) ── */
+.nav-pr-link.active {
+  color: var(--text);
+}
+.nav-pr-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Week selector pill strip ── */
+.pr-week-selector {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.pr-week-btn {
+  padding: .35rem .9rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-secondary);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+  line-height: 1;
+}
+.pr-week-btn:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+.pr-week-btn.active {
+  background: var(--accent2-dim);
+  border-color: rgba(247, 201, 72, .4);
+  color: var(--accent2);
+}
+
+/* ── Movement line item in each team row ── */
+.pr-movement {
+  font-size: .74rem;
+  font-weight: 600;
+  line-height: 1;
+  margin: .35rem 0 .5rem;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.pr-movement.up   { color: var(--green); }
+.pr-movement.down { color: var(--red); }
+.pr-movement.hold { color: var(--muted); }
+.pr-movement.new  { color: var(--accent); }
+
+/* ── Responsive adjustments ── */
+@media (max-width: 600px) {
+  .pr-season-strip { grid-template-columns: repeat(2, 1fr); }
+  .pr-history { gap: .2rem; }
+  .pr-hw-rank { font-size: .78rem; padding: .1rem .3rem; min-width: 1.6rem; }
+  .pr-hw-label { font-size: .55rem; }
+  .recap-pr-linkout { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .pr-week-selector { gap: .3rem; }
+  .pr-week-btn { font-size: .7rem; padding: .3rem .7rem; }
+}

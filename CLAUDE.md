@@ -393,7 +393,8 @@ See the **Monte Carlo Simulation Layer** section above for exactly how to transl
 - [ ] Over/under-performers — compare `player_week_stats` vs Steamer projections to flag who outran their projection and who faceplanted
 - [ ] "Move of the Week" — best transaction
 - [ ] Updated standings table
-- [ ] Power rankings: open with one sentence explaining what all-play means (e.g. "Rankings based on all-play record: how each team would have done against all 9 other teams this week, not just their one actual opponent."). Then a numbered 1-10 list. **Primary sort: all-play record** from `all_play` in the data JSON. Use cat_w/cat_l as tiebreaker. Show each team's **both** their all-play record AND their category record in W-L-T format — e.g. "9-0 all-play, 75-9-6 cats" — so readers can see not just whether they would have won each matchup but how dominant or close those wins were. The three cat numbers always sum to 90 (9 opponents × 10 categories). `cat_t` is available from `compute_all_play()` for this. Call out mismatches between all-play rank and actual H2H result when they're interesting (e.g. "went 7-2 all-play but drew the one team that beat them"). One sentence per team, no more. In the recap analysis JSON, include both `"all_play"` (e.g. `"9-0"`) and `"cat_record"` (e.g. `"75-9-6"`) fields for each ranking entry. In the HTML, render both as separate badges: `pr-record-badge` for all-play, `pr-cats-badge` for cat record.
+- [ ] **This week's all-play section** (weekly only): open with one sentence explaining what all-play means. Then a numbered 1-10 list sorted by this week's all-play record. Show each team's all-play record AND category record for this week only. Call out mismatches between all-play rank and actual H2H result. In the recap analysis JSON, include `"all_play"` (e.g. `"9-0"`) and `"cat_record"` (e.g. `"75-9-6"`) fields for each entry. Render with `pr-record-badge` and `pr-cats-badge` classes. **At the bottom of this section, include the `recap-pr-linkout` component linking to `power.html` — see Cumulative Power Rankings section below.**
+- [ ] **Update cumulative power rankings** (see Cumulative Power Rankings section below) — `update_power_rankings()` runs automatically but Claude must write/update the `analysis` blurb for each team after the cumulative data is refreshed.
 
 **How to use `player_week_stats`:**
 
@@ -418,3 +419,96 @@ Pitchers only include `K` and `SV`. ERA/WHIP/QS are only available at team level
 - Compare pitcher K totals to identify who was dominant vs who was a liability
 - Cross-reference with `player_news` — if a player underperformed AND has an injury note, that explains it; if there's no injury note, call it out as a cold stretch
 - Team_key maps to team name via the matchup data. Always derive this mapping from `standings` in the data JSON (each entry has `team_key` and `name`) — do not hardcode. The 2026 mapping (confirmed from Yahoo API) is: `mlb.l.61583.t.1` = One Ball Two Strikes, `.t.2` = The Ragans Administration, `.t.3` = Ray Donovan, `.t.4` = Good Vibes Only, `.t.5` = Keanu Reeves, `.t.6` = Ete Crow, `.t.7` = Rain City Bombers, `.t.8` = Busch Latte, `.t.9` = Allahu Alvarez, `.t.10` = The Buckner Boots
+
+---
+
+## Cumulative Power Rankings
+
+**File:** `data/power-rankings.json`
+**Page:** `power.html` (dedicated tab, linked from all site nav bars)
+**Updated by:** `update_power_rankings(week, all_play)` in `generate_week.py` — runs automatically as part of the Sunday scheduled task after `compute_all_play()`.
+
+### What it is
+
+The weekly all-play section in each recap shows how teams performed *that week only*. That's useful context but it's not a power ranking — it's just whoever had the best week. The cumulative power rankings aggregate all-play category wins/losses across all weeks played to date, giving the most honest read on true team strength while neutralizing schedule luck.
+
+**Sort order:** recency-weighted `cat_w` descending (decay = 0.95 per week back), cumulative AP wins as tiebreaker. Most recent week = 1.0x; each prior week = 0.95x of the one after it. At 25 weeks, week 1 counts ~29% of the current week. Raw cumulative totals are still displayed on the page — the weighting only affects rank order.
+
+### Data schema
+
+```json
+{
+  "last_updated_week": 2,
+  "methodology": "Ranked by cumulative season-to-date category wins across all-play simulations...",
+  "rankings": [
+    {
+      "rank": 1,
+      "prev_rank": 1,
+      "delta": 0,
+      "tier": "elite",
+      "name": "Keanu Reeves",
+      "cumulative_ap": {"w": 15, "l": 3, "t": 0},
+      "cumulative_cats": {"w": 127, "l": 42, "t": 11},
+      "history": [
+        {"week": 1, "rank": 1, "ap": {"w": 9, "l": 0, "t": 0}, "cats": {"w": 75, "l": 9, "t": 6}},
+        {"week": 2, "rank": 1, "ap": {"w": 6, "l": 3, "t": 0}, "cats": {"w": 52, "l": 33, "t": 5}}
+      ],
+      "analysis": "Two weeks in and running away from the field..."
+    }
+  ]
+}
+```
+
+**Tiers** (assigned automatically by `update_power_rankings()`):
+- `elite`: top 2 teams
+- `contender`: ranks 3-5
+- `mid`: ranks 6-8
+- `cellar`: ranks 9-10
+
+### Claude's responsibility: writing analysis blurbs
+
+`update_power_rankings()` handles the math automatically — it merges the week's all_play data, re-sorts, assigns ranks/deltas/tiers, and saves the JSON. **Claude must then write/update the `analysis` field for each team in `power-rankings.json` before `generate_power_rankings_page()` rebuilds the HTML.**
+
+**When to update analysis:**
+- After every weekly recap run, read the updated `data/power-rankings.json`
+- Rewrite any team's `analysis` where: rank changed by 2+, cumulative picture materially changed, or the existing blurb is stale (references the previous week's numbers without incorporating this week)
+- Keep teams that barely moved (delta 0 or ±1 with no major storyline shift) to minimize churn — a one-sentence update is fine if the story hasn't changed
+
+**Analysis blurb guidelines (same voice as rest of site):**
+- 2-4 sentences max. No hedging. Ground every claim in the cumulative numbers.
+- Reference the cumulative cat record, not just the weekly. "127 cumulative cat wins" is more meaningful than "won this week."
+- Name specific players, specific weaknesses. Generic analysis is useless.
+- If a team rose significantly: what drove it? If fell: what broke?
+- Note tier changes when they happen (e.g., "dropped from contender to mid").
+
+**Example of good analysis:**
+> "Two weeks in and already running away from the field. 75 cat wins in Week 1 was historically dominant. Week 2 cooled to 52 cat wins, which still ranked fourth in the league. Duke Joe has built the most balanced roster in this league and there is no evidence yet that anyone can challenge it."
+
+**Example of bad analysis (do not write this):**
+> "Keanu Reeves had a good week and is performing well. Their roster looks strong overall."
+
+### The recap linkout component
+
+At the bottom of each recap's weekly all-play section, include this HTML block to link readers to the cumulative power rankings page. The class is `recap-pr-linkout`. It should appear after the weekly all-play table but before the next section.
+
+```html
+<div class="recap-pr-linkout">
+  <span>See how this week moved the needle:</span>
+  <a href="power.html" class="recap-pr-linkout-btn">Cumulative Power Rankings &rarr;</a>
+</div>
+```
+
+`generate_week.py`'s recap HTML generation includes this automatically for all future weeks. For week-01.html, it needs to be inserted manually at the bottom of the all-play card.
+
+### AUTO markers in power.html
+
+`generate_power_rankings_page()` uses these comment delimiters to replace sections of `power.html` on every run:
+
+| Marker | Content |
+|--------|---------|
+| `AUTO:PR_UPDATED_START` / `END` | "Updated through Week N" badge |
+| `AUTO:PR_STRIP_START` / `END` | 4-column season stat strip (teams ranked, avg AP, cumulative cat W-L-T) |
+| `AUTO:PR_RANKINGS_START` / `END` | Full ranked list (10 `.pr-row` blocks) |
+| `AUTO:PR_WEEK_LINKS_START` / `END` | Links to each week's recap anchor |
+
+Never manually edit content inside these AUTO-delimited sections — it will be overwritten on the next run.
