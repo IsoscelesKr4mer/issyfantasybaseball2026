@@ -698,7 +698,7 @@ def generate_power_rankings_page(pr: dict):
         return pattern.sub(r'\1\n' + new_inner + '\n    \2', content)
 
     # ── Week selector buttons ──────────────────────────────────────────────
-    btn_parts = ['      <button class="pr-week-btn active" data-week="-1" onclick="prSwitchView(-1)">Season</button>']
+    btn_parts = ['      <button class="pr-week-btn active" data-week="-1" onclick="prSwitchView(-1)">Current</button>']
     for s in pr.get('weekly_snapshots', []):
         wk = s['week']
         btn_parts.append(f'      <button class="pr-week-btn" data-week="{wk}" onclick="prSwitchView({wk})">Wk {wk}</button>')
