@@ -74,9 +74,11 @@ def fmt_date(iso: str) -> str:
     return d.strftime('%b %-d')
 
 def replace_section(html: str, tag: str, new_content: str) -> str:
-    pattern = rf'(<!-- AUTO:{tag}_START -->).*?(<!-- AUTO:{tag}_END -->)'
-    replacement = rf'\1\n{new_content}\n    \2'
-    result = re.sub(pattern, replacement, html, flags=re.DOTALL)
+    pattern = re.compile(rf'(<!-- AUTO:{tag}_START -->).*?(<!-- AUTO:{tag}_END -->)', re.DOTALL)
+    # Use a callable so backslashes in new_content are never misread as backreferences
+    def _sub(m):
+        return m.group(1) + '\n' + new_content + '\n    ' + m.group(2)
+    result = pattern.sub(_sub, html)
     if result == html:
         print(f'  ⚠️  Tag AUTO:{tag} not found')
     return result
@@ -695,7 +697,10 @@ def generate_power_rankings_page(pr: dict):
             r'(<!--\s*' + re.escape(start_marker) + r'\s*-->).*?(<!--\s*' + re.escape(end_marker) + r'\s*-->)',
             re.DOTALL
         )
-        return pattern.sub(r'\1\n' + new_inner + '\n    \2', content)
+        # Use a callable to avoid re.sub misinterpreting \2 or backslashes in new_inner
+        def _sub(m):
+            return m.group(1) + '\n' + new_inner + '\n    ' + m.group(2)
+        return pattern.sub(_sub, content)
 
     # ── Week selector buttons ──────────────────────────────────────────────
     btn_parts = ['      <button class="pr-week-btn active" data-week="-1" onclick="prSwitchView(-1)">Current</button>']
