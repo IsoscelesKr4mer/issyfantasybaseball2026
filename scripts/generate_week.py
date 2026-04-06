@@ -377,7 +377,7 @@ def compute_all_play(matchups: list) -> dict:
 
 # ── CUMULATIVE POWER RANKINGS ─────────────────────────────────────────────────
 
-def update_power_rankings(week: int, all_play: dict) -> dict:
+def update_power_rankings(week: int, all_play: dict, save_snapshot: bool = True) -> dict:
     """Merge this week's all-play data into the cumulative power-rankings.json.
 
     Loads data/power-rankings.json (or seeds it fresh), appends this week's
@@ -467,11 +467,11 @@ def update_power_rankings(week: int, all_play: dict) -> dict:
             entry['history'][-1]['rank'] = new_rank
 
     # Save a weekly snapshot so power.html can show historical views.
-    # Snapshot stores cumulative totals as of this week PLUS the week's
-    # individual contribution (week_ap / week_cats), so the JS renderer
-    # can display both "how they stand overall" and "what they did this week".
+    # Only saved when save_snapshot=True (i.e. the scoreboard is postevent).
+    # Preview-week dumps skip snapshot creation so partial data never appears
+    # as a historical tab.
     pr.setdefault('weekly_snapshots', [])
-    if not any(s['week'] == week for s in pr['weekly_snapshots']):
+    if save_snapshot and not any(s['week'] == week for s in pr['weekly_snapshots']):
         snap_entries = []
         for e in ranked:
             last_h = e['history'][-1] if e['history'] else {}
@@ -1075,17 +1075,18 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     all_play = compute_all_play(matchups_data)
 
     # ── Cumulative power rankings (season-to-date) ────────────────────────────
-    # Only update if this week's data represents a completed/final scoreboard.
-    # The scoreboard status from Yahoo signals whether scores are finalized.
-    # We update on every dump so that mid-week partial data is also captured;
-    # the update_power_rankings() function is idempotent per week.
+    # Only update (and save a snapshot) when the week's scoreboard is fully
+    # finalized. Yahoo signals this via matchup status = 'postevent'.
+    # If any matchup is still in-progress or pre-event (e.g. this is a preview
+    # dump for next week), we skip the snapshot entirely so partial data never
+    # appears as a historical week tab on power.html.
     try:
-        pr_data = update_power_rankings(week, all_play)
-        # Regenerate power.html but note: analysis blurbs are written by Claude.
-        # The page generator uses whatever analysis text is already in the JSON.
-        # Claude must write/update the analysis field in power-rankings.json
-        # before calling generate_power_rankings_page() for prose to appear.
+        statuses  = [m.get('status', '') for m in matchups_data]
+        is_final  = statuses and all(s == 'postevent' for s in statuses)
+        pr_data   = update_power_rankings(week, all_play, save_snapshot=is_final)
         generate_power_rankings_page(pr_data)
+        if not is_final:
+            print(f'  ℹ️  Week {week} scoreboard not final — power rankings updated but no snapshot saved')
     except Exception as e:
         print(f'    ⚠️  Power rankings update failed: {e}')
 
