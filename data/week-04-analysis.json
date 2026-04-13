@@ -1,0 +1,297 @@
+{
+  "week": 4,
+  "storylines": [
+    "<p><strong>One Ball Two Strikes vs Keanu Reeves: Garth Finally Gets the Boss Fight.</strong> Garth just had his best all-play week of the season (8-1) and immediately draws the 17-3 Keanu Reeves. Duke Joe's rotation is absurd: Wacha, Peralta, Cameron, Cabrera, Abbott, Rasmussen, S&aacute;nchez, Fried, Williams, and Baz. That is ten starting pitchers. Juan Soto is on the IL-10 with a calf injury, which is the first real crack in Keanu's armor all season. One Ball has the OBP edge (.658 win probability) and sneaky pitching advantages in ERA and WHIP. If Soto misses time and the K gap closes even slightly, Garth has a path. It is a narrow path. But it exists.</p>",
+    "<p><strong>Ragans vs Busch Latte: Two 11-7-2 Teams, One Healthy Roster.</strong> Rose's injury report reads like a MASH unit: Springer (IL-10), Reynaldo L&oacute;pez (suspended), Harrison (DTD), Brown (IL-15), Miller (IL-15), Strider (IL-15). That's six pitchers either down or compromised. TylerV rolls in with Ragans, Ohtani, Schlittler, McClanahan, Gallen, Woodruff, King, Castillo, Keller, and Sheehan. The K category is 88% Ragans. Rose's only path is SB (73% edge) and saves. If Busch's depleted rotation can somehow hold ERA and WHIP, this gets interesting. If not, TylerV pulls ahead in the standings for the first time.</p>",
+    "<p><strong>Good Vibes Only: The Most Injured Roster in the League Gets a Winnable Matchup.</strong> Rooker (IL-10), Stowers (IL-10), Betts (IL-10), Pepiot (IL-15). Michael just got blown out 2-8 by Keanu and now draws Nick-fil-A, whose rotation is Glasnow plus question marks. The sim gives GVO a 77% win probability. Crochet, Cease, and the remaining arms carry a 90% K edge. If Michael can't win this one, the season is functionally over at 5-16-3. This is the must-win of the week.</p>",
+    "<p><strong>Ete Crow vs Rain City: Two Struggling Rosters, One Interesting Pitching Matchup.</strong> Rain City just proved the rotation works (1.69 ERA in Week 3). Ete Crow has Joe Ryan, Eury P&eacute;rez, Nola, and Sonny Gray. The sim splits it: Ete wins SB (85%) and K (86%) on pure talent. Rain City wins R, HR, and OBP. The interesting wrinkle is that both teams have IL problems: Chourio, Boyd, and Hader are out for Jace. Wheeler, Kelly, and Lodolo are out for Taylor. The team that gets healthier first wins not just this matchup but the entire second month.</p>",
+    "<p><strong>Allahu Alvarez's Roster is Falling Apart at the Seams.</strong> Westburg (IL-60), Holliday (IL-10), Pivetta (DTD), Steele (IL-60), Henderson (NA). TylerR just lost to the biggest underdog of the season in Nick-fil-A and now draws the Buckner Boots, who are 14-5-1 and hungry after settling for a tie against Busch. Yordan put up 6 HR and .515 OBP last week and it didn't matter. The sim gives Buckner a 69% win probability. If Allahu loses again, TylerR drops to 7-15-2 and the playoff conversation is over before May.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_analysis": "Garth is coming off an 8-1 all-play week powered by Jordan Walker (6 HR) and Chase DeLauter (5 HR). The rotation runs Skubal, Yamamoto, Alcantara, Sasaki, and Civale, which is elite on paper but Rod&oacute;n and Yesavage are both on IL-15. The pitching depth is thinner than it looks. One Ball owns OBP (.395 last week, league best) and has sneaky edges in ERA and WHIP. The saves situation with Bednar is solid. The problem is everything on the other side of the matchup.",
+      "team1_analysis": "Duke Joe is 17-3 and running a ten-deep rotation: Wacha, Peralta, Cameron, Cabrera, Abbott, Rasmussen, S&aacute;nchez, Fried, Williams, and Baz. The K edge is 86% and QS is 74%. The Soto IL-10 (calf) dents the offense but Drake Baldwin (14 R, 5 HR, 16 RBI last week), Zach Neto (14 R, 5 HR), and Kyle Schwarber (4 HR) cover for it. This roster just won 8 of 10 categories against GVO and the pitching staff has not shown a single weakness in three weeks.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Keanu Reeves lean (56%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Keanu Reeves edge (65%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Keanu Reeves lean (59%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Keanu Reeves edge (78%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "One Ball Two Strikes edge (65%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Keanu Reeves edge (85%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Keanu Reeves edge (74%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "One Ball Two Strikes slight edge (54%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (59%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (55%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 6-4. Even without Soto, Duke Joe has too much pitching. Garth can steal OBP, ERA, WHIP, and maybe SV, but the K and QS gaps are canyons. Keanu sweeps the pitching categories and takes enough offense to close it out."
+    },
+    {
+      "team0_analysis": "TylerV has the deepest rotation in the league: Ragans, Ohtani (pitcher), Schlittler, McClanahan, Gallen, Woodruff, King, Castillo, Keller, and Sheehan. That is ten healthy arms. The K edge is 88%, the most lopsided single-category advantage of the week. Andy Pages (17 RBI, .482 OBP in Week 3) continues to anchor an offense that does just enough. The only weakness is SB, where Ragans has no speed whatsoever.",
+      "team1_analysis": "Rose's injury report is catastrophic. Springer (IL-10), Reynaldo L&oacute;pez (suspended), Harrison (DTD), Brown (IL-15), Miller (IL-15), Strider (IL-15). Six pitchers compromised. Kirby, Liberatore, Soriano, Bubic, Imai (DTD), and Misiorowski are what remains. The offense has Ohtani (batter), Sal Stewart (.469 OBP last week), and Jazz Chisholm (6 SB), which gives Busch the SB edge at 73%. But when your opponent has Ohtani throwing and you're running Kris Bubic, the math is ugly.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Busch Latte slight edge (49%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 0,
+          "label": "The Ragans Administration slight edge (53%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "The Ragans Administration slight edge (53%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Busch Latte edge (73%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Busch Latte slight edge (51%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "The Ragans Administration edge (87%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 0,
+          "label": "The Ragans Administration lean (59%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "The Ragans Administration slight edge (53%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "The Ragans Administration lean (59%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Busch Latte lean (62%)"
+        }
+      ],
+      "prediction": "The Ragans Administration 6-4. TylerV's pitching armada buries Busch in K, QS, and probably ERA. Rose steals SB and SV and might snag OBP. Everything else tilts Ragans. If Harrison or Imai can't go, this could get worse than 6-4."
+    },
+    {
+      "team0_analysis": "Mario just pulled off the biggest upset of the season, beating Allahu at 16% win probability. The rotation is Glasnow, Chandler, Povich, Houser, Martin, Sugano, Woo, and Ray, but Cole (IL-15), Snell (IL-15), and Eflin (IL-60) are all out. The offense has James Wood (12 R, 4 HR, 13 RBI last week), Brice Turang (5 SB), and Stanton on the bench. The R edge (55%) is real but thin, and that is literally the only category where Mario is favored.",
+      "team1_analysis": "Michael is 5-12-3 and just took an 8-2 beating from Keanu. The IL list is brutal: Rooker (IL-10), Stowers (IL-10), Betts (IL-10), Pepiot (IL-15). But the remaining pitching staff is actually strong: Crochet, Cease, Scherzer, Littell, Gore, Bradish, V&aacute;squez, Freeland (DTD), and Grant Holmes. The K edge is 90%, the most dominant single-category number in any matchup this week. Ben Rice (.500 OBP, 4 HR last week) is carrying the offense. If the bats show up, this should be comfortable.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "Nick-fil-A lean (55%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Good Vibes Only lean (58%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Good Vibes Only lean (63%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Good Vibes Only slight edge (49%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Good Vibes Only slight edge (50%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Good Vibes Only edge (90%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Good Vibes Only edge (69%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Good Vibes Only lean (56%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Good Vibes Only lean (56%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Good Vibes Only edge (72%)"
+        }
+      ],
+      "prediction": "Good Vibes Only 6-4. Michael's pitching depth is overwhelming despite the offensive injuries. K at 90%, QS at 70%, and SV at 72% lock up the mound categories. Mario can take R and maybe SB, but that's not enough. GVO needs this win and the roster, despite the IL list, is built to deliver it."
+    },
+    {
+      "team0_analysis": "Jace owns two categories and two categories only: SB (85%) and K (86%). De La Cruz, Marsee, and Caballero run the bases. Ryan, P&eacute;rez, Nola, Gray, Taillon, and Patrick throw strikes. Chourio (IL-10, hand) and Hader (IL-15) are out, which hurts the offense and eliminates the closer. The .292 OBP from Week 3 was the worst in the league. Jace needs his lineup to get on base before the speedsters can run.",
+      "team1_analysis": "Taylor's rotation just posted a 1.69 ERA and 1.02 WHIP in Week 3, proving the Week 2 disaster was an outlier. Skenes, deGrom, Imanaga, and Flaherty are legitimate. Wheeler (IL-15), Kelly (IL-15), and Lodolo (IL-15) are all out, which caps the upside. The offense (Soler, Hicks, Bell, Tatis on bench) hits for power but doesn't run. Rain City has the R (58%), HR (62%), and OBP (66%) edges. If the pitching holds anywhere near Week 3 levels, Taylor wins.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Rain City Bombers lean (58%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Rain City Bombers lean (62%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "Ete Crow edge (84%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Rain City Bombers edge (65%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "Ete Crow edge (85%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 0,
+          "label": "Ete Crow lean (55%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Rain City Bombers lean (63%)"
+        }
+      ],
+      "prediction": "Ete Crow 6-4. Jace's SB and K advantages are so dominant (85%, 86%) that they anchor the matchup even when the lineup can't hit. Ete also has the QS lean. Rain City takes R, HR, and OBP but the remaining categories are close enough that Ete's two blowout categories tip the scale. This one is closer than it looks."
+    },
+    {
+      "team0_analysis": "TylerR's roster is crumbling. Westburg (IL-60), Holliday (IL-10), Steele (IL-60), Henderson (NA), and Pivetta (DTD) are all out or compromised. The remaining rotation is Gilbert, Bibee, Senga, Gausman, Cavalli, Su&aacute;rez, and Springs, which is serviceable but not dominant. Yordan Alvarez (6 HR, .515 OBP last week) and Oneil Cruz (4 HR, 5 SB) are still elite, but Bobby Witt Jr. scored 1 run in Week 3 despite stealing 8 bases. The RBI edge (53%) is the only category where Allahu is favored.",
+      "team1_analysis": "The Buckner Boots are 14-5-1 and just settled for a 4-4 tie against Busch Latte because the bullpen produced zero saves. The pitching staff runs Sale, Bradley, Webb, Valdez, Leiter, Messick, Hancock, Cantillo, and Rogers. Rutschman (IL-10, ankle) is out, but Gunnar Henderson (6 HR, 12 RBI last week) and CJ Abrams (15 RBI, 4 SB) are terrorizing the league. Michael needs saves this week or the offense is wasted again.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "The Buckner Boots edge (65%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "The Buckner Boots lean (55%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "Allahu Alvarez slight edge (52%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "The Buckner Boots edge (67%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "The Buckner Boots lean (61%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "The Buckner Boots lean (58%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "The Buckner Boots lean (59%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "The Buckner Boots slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "Allahu Alvarez slight edge (54%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "The Buckner Boots edge (64%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6-4. Henderson and Abrams provide the offensive floor. The rotation depth (Sale, Bradley, Webb, Valdez) covers K, QS, and ERA. TylerR has Yordan and Cruz but the IL list is too long. Buckner takes 6, Allahu steals RBI and maybe WHIP, and the Boots keep rolling."
+    }
+  ]
+}
