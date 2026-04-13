@@ -32,7 +32,7 @@ TEAM_CONFIG = [
     {'id': 'vibes',   'slug': 'good-vibes',    'name': 'Good Vibes Only',            'headshot': '../img/headshots/good-vibes.jpeg'},
     {'id': 'rain',    'slug': 'rain-city',     'name': 'Rain City Bombers',          'headshot': '../img/headshots/rain-city.jpeg'},
     {'id': 'buckner', 'slug': 'buckner',       'name': 'The Buckner Boots',          'headshot': '../img/headshots/buckner.jpeg'},
-    {'id': 'decoy',   'slug': 'decoy',         'name': 'Ray Donovan',                      'headshot': '../img/headshots/decoy.jpeg'},
+    {'id': 'decoy',   'slug': 'decoy',         'name': 'Nick-fil-A',                      'headshot': '../img/headshots/decoy.jpeg'},
     {'id': 'oneball', 'slug': 'one-ball',      'name': 'One Ball Two Strikes',       'headshot': '../img/headshots/one-ball.png'},
 ]
 
