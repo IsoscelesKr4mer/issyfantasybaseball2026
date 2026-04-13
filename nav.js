@@ -10,7 +10,7 @@ var TEAM_LINKS = {
   'The Buckner Boots':           '/teams/buckner.html',
   'The Ragans Administration':   '/teams/ragans.html',
   'Rain City Bombers':           '/teams/rain-city.html',
-  'Ray Donovan':                       '/teams/decoy.html',
+  'Nick-fil-A':                       '/teams/decoy.html',
   'Ete Crow':                    '/teams/ete-crow.html',
   'Good Vibes Only':             '/teams/good-vibes.html',
   'Busch Latte':                 '/teams/busch-latte.html',
