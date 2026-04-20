@@ -1,6 +1,6 @@
 {
-  "last_updated_week": 3,
-  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current — history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
+  "last_updated_week": 4,
+  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current \u2014 history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
   "weekly_snapshots": [
     {
       "week": 1,
@@ -581,14 +581,14 @@
       "tier": "elite",
       "name": "Keanu Reeves",
       "cumulative_ap": {
-        "w": 21,
-        "l": 4,
+        "w": 25,
+        "l": 9,
         "t": 2
       },
       "cumulative_cats": {
-        "w": 180,
-        "l": 74,
-        "t": 16
+        "w": 219,
+        "l": 118,
+        "t": 23
       },
       "history": [
         {
@@ -632,10 +632,24 @@
             "l": 32,
             "t": 5
           }
+        },
+        {
+          "week": 4,
+          "rank": 1,
+          "ap": {
+            "w": 4,
+            "l": 5,
+            "t": 0
+          },
+          "cats": {
+            "w": 39,
+            "l": 44,
+            "t": 7
+          }
         }
       ],
-      "weighted_score": 170.0875,
-      "analysis": "Three weeks, 180 cumulative cat wins, 21-4-2 in all-play. Duke Joe has the most complete roster in the league and it is not close. Week 1 was 75 cat wins (historically dominant), Week 2 cooled to 52, Week 3 rebounded to 53. The rotation is ten deep and Drake Baldwin is producing like a first-round pick from the catcher position. Soto hitting the IL-10 is the first real vulnerability. Until further notice, this is the team to beat."
+      "weighted_score": 200.58,
+      "analysis": "Still #1 cumulative, but the cushion is thinner than it has been all season. 219 cat wins through 4 weeks. Week 4 was Duke Joe&#x2019;s worst all-play (4&ndash;5, 39 cat wins) and the rotation gave up a 4.73 ERA. Juan Soto just hit IL-10. The lead is real money short, and Nick-fil-A is the next opponent."
     },
     {
       "rank": 2,
@@ -644,14 +658,14 @@
       "tier": "elite",
       "name": "The Buckner Boots",
       "cumulative_ap": {
-        "w": 17,
-        "l": 6,
-        "t": 4
+        "w": 22,
+        "l": 8,
+        "t": 6
       },
       "cumulative_cats": {
-        "w": 145,
-        "l": 101,
-        "t": 24
+        "w": 194,
+        "l": 139,
+        "t": 27
       },
       "history": [
         {
@@ -695,89 +709,40 @@
             "l": 39,
             "t": 11
           }
+        },
+        {
+          "week": 4,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 2,
+            "t": 2
+          },
+          "cats": {
+            "w": 49,
+            "l": 38,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 136.995,
-      "analysis": "Steady at #2 with 145 cumulative cat wins. Henderson (6 HR in Week 3) and Abrams (15 RBI) are the most productive middle infield in the league. The Week 3 tie against Busch Latte exposed the bullpen: zero saves. The rotation (Sale, Bradley, Webb, Valdez) is elite when it performs. Michael needs saves or this offense keeps getting wasted in matchups where the pitching categories split evenly."
+      "weighted_score": 179.15,
+      "analysis": "194 cumulative cat wins, 22&ndash;8&ndash;6 all-play. Won 6&ndash;4 over Allahu in Week 4 with 14 HR and 7 QS. The rotation depth (Sale, Webb, Bradley, Valdez, Rogers) is overwhelming and now Adley Rutschman&#x2019;s IL-10 is one of the few problems on this roster. Holding firm at #2."
     },
     {
       "rank": 3,
       "prev_rank": 4,
       "delta": 1,
       "tier": "contender",
-      "name": "Busch Latte",
-      "cumulative_ap": {
-        "w": 16,
-        "l": 6,
-        "t": 5
-      },
-      "cumulative_cats": {
-        "w": 142,
-        "l": 103,
-        "t": 25
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 4,
-          "ap": {
-            "w": 5,
-            "l": 3,
-            "t": 1
-          },
-          "cats": {
-            "w": 42,
-            "l": 40,
-            "t": 8
-          }
-        },
-        {
-          "week": 2,
-          "rank": 4,
-          "ap": {
-            "w": 7,
-            "l": 2,
-            "t": 0
-          },
-          "cats": {
-            "w": 54,
-            "l": 28,
-            "t": 8
-          }
-        },
-        {
-          "week": 3,
-          "rank": 0,
-          "ap": {
-            "w": 4,
-            "l": 1,
-            "t": 4
-          },
-          "cats": {
-            "w": 46,
-            "l": 35,
-            "t": 9
-          }
-        }
-      ],
-      "weighted_score": 135.20499999999998,
-      "analysis": "Rose climbs one spot to #3 on the strength of 46 cat wins in Week 3. The pitching (3.45 ERA, 1.17 WHIP) was the best it has been all season. The problem: six arms are hurt or suspended (Springer, L&oacute;pez, Harrison, Brown, Miller, Strider). Kirby is carrying the load. If even two of those pitchers come back, Busch becomes a legitimate title contender. Until then, the injury list is capping the ceiling."
-    },
-    {
-      "rank": 4,
-      "prev_rank": 3,
-      "delta": -1,
-      "tier": "contender",
       "name": "Nick-fil-A",
       "cumulative_ap": {
-        "w": 15,
-        "l": 10,
-        "t": 2
+        "w": 21,
+        "l": 12,
+        "t": 3
       },
       "cumulative_cats": {
-        "w": 136,
-        "l": 115,
-        "t": 19
+        "w": 187,
+        "l": 152,
+        "t": 21
       },
       "history": [
         {
@@ -821,26 +786,40 @@
             "l": 43,
             "t": 10
           }
+        },
+        {
+          "week": 4,
+          "rank": 3,
+          "ap": {
+            "w": 6,
+            "l": 2,
+            "t": 1
+          },
+          "cats": {
+            "w": 51,
+            "l": 37,
+            "t": 2
+          }
         }
       ],
-      "weighted_score": 129.055,
-      "analysis": "Drops from #3 to #4 after a 37 cat-win Week 3, down from 57 in Week 2. Mario pulled off the upset of the season beating Allahu at 16% win probability, but the all-play record (2-5-2) says that was matchup luck, not roster strength. Cole (IL-15), Snell (IL-15), and Eflin (IL-60) remain out. When those arms were healthy, this was an 8-1 all-play team. Without them, it is a coin flip at best."
+      "weighted_score": 173.6,
+      "analysis": "Up one spot to #3 after an 8&ndash;2 demolition of Good Vibes Only. 51 cat wins this week, 187 cumulative. Mason Miller (3 SV) and Ryan Helsley (2 SV) anchored the bullpen and James Wood (3 HR, 3 SB) provided the offense. Mario looks like a real contender now, not a lucky winner."
     },
     {
-      "rank": 5,
+      "rank": 4,
       "prev_rank": 5,
-      "delta": 0,
+      "delta": 1,
       "tier": "contender",
       "name": "One Ball Two Strikes",
       "cumulative_ap": {
-        "w": 17,
-        "l": 10,
-        "t": 0
+        "w": 22,
+        "l": 11,
+        "t": 3
       },
       "cumulative_cats": {
-        "w": 136,
-        "l": 111,
-        "t": 23
+        "w": 187,
+        "l": 146,
+        "t": 27
       },
       "history": [
         {
@@ -884,89 +863,40 @@
             "l": 34,
             "t": 10
           }
-        }
-      ],
-      "weighted_score": 128.8875,
-      "analysis": "Garth holds at #5 with 136 cumulative cat wins and a 17-10 all-play record. Week 3 was an 8-1 all-play explosion: Walker (6 HR), DeLauter (5 HR), Langeliers (5 HR) powered the best offensive week of anyone in the league. The rotation (Skubal, Yamamoto, Alcantara, Sasaki) is legitimately elite when healthy. Rod&oacute;n and Yesavage on IL-15 dent the depth. If the offense keeps hitting like Week 3, Garth is a top-3 team."
-    },
-    {
-      "rank": 6,
-      "prev_rank": 6,
-      "delta": 0,
-      "tier": "mid",
-      "name": "Allahu Alvarez",
-      "cumulative_ap": {
-        "w": 9,
-        "l": 16,
-        "t": 2
-      },
-      "cumulative_cats": {
-        "w": 119,
-        "l": 133,
-        "t": 18
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 7,
-          "ap": {
-            "w": 2,
-            "l": 6,
-            "t": 1
-          },
-          "cats": {
-            "w": 32,
-            "l": 50,
-            "t": 8
-          }
         },
         {
-          "week": 2,
-          "rank": 6,
+          "week": 4,
+          "rank": 4,
           "ap": {
-            "w": 7,
-            "l": 2,
-            "t": 0
+            "w": 5,
+            "l": 1,
+            "t": 3
           },
           "cats": {
-            "w": 55,
-            "l": 29,
-            "t": 6
-          }
-        },
-        {
-          "week": 3,
-          "rank": 0,
-          "ap": {
-            "w": 0,
-            "l": 8,
-            "t": 1
-          },
-          "cats": {
-            "w": 32,
-            "l": 54,
+            "w": 51,
+            "l": 35,
             "t": 4
           }
         }
       ],
-      "weighted_score": 113.13,
-      "analysis": "TylerR stays at #6 but the trajectory is alarming. Week 3 was 0-8-1 in all-play, the worst performance in the league. Yordan went nuclear (6 HR, .515 OBP) and it did not matter because the pitching staff (4.61 ERA, 1.45 WHIP) gave everything back. Westburg (IL-60), Holliday (IL-10), and Steele (IL-60) are all out. The offense has elite talent. The pitching is sinking the season."
+      "weighted_score": 173.44,
+      "analysis": "Up one spot to #4 after upsetting Keanu 6&ndash;3 at 24% sim probability. 51 cat wins, 187 cumulative. Garth&#x2019;s rotation posted a 2.67 ERA and Jos&eacute; Ram&iacute;rez stole 6 bases. Two straight strong all-play weeks (8&ndash;1 in Week 3, 5&ndash;1&ndash;3 in Week 4). The roster is finally clicking."
     },
     {
-      "rank": 7,
-      "prev_rank": 8,
-      "delta": 1,
-      "tier": "mid",
+      "rank": 5,
+      "prev_rank": 7,
+      "delta": 2,
+      "tier": "contender",
       "name": "The Ragans Administration",
       "cumulative_ap": {
-        "w": 11,
+        "w": 20,
         "l": 14,
         "t": 2
       },
       "cumulative_cats": {
-        "w": 112,
-        "l": 137,
-        "t": 21
+        "w": 179,
+        "l": 153,
+        "t": 28
       },
       "history": [
         {
@@ -1010,26 +940,194 @@
             "l": 37,
             "t": 6
           }
+        },
+        {
+          "week": 4,
+          "rank": 5,
+          "ap": {
+            "w": 9,
+            "l": 0,
+            "t": 0
+          },
+          "cats": {
+            "w": 67,
+            "l": 16,
+            "t": 7
+          }
         }
       ],
-      "weighted_score": 107.6575,
-      "analysis": "TylerV rises one spot to #7 after a 47 cat-win Week 3, the best single-week performance in the team&rsquo;s season. The pitching rotation (Ragans, Ohtani, Gallen, McClanahan, Woodruff, King, Castillo, Keller) is absurdly deep. The 88% K edge in Week 4 proves it. Andy Pages (17 RBI, .482 OBP) is carrying the offense. The issue: 65 cumulative cat wins through two weeks was mediocre. Week 3 proves the ceiling. The question is whether it is the floor too."
+      "weighted_score": 169.27,
+      "analysis": "Up two spots to #5 after the most dominant single week of the season: 9&ndash;0 all-play, 67 cat wins, 8&ndash;1 H2H beatdown of Busch. Aaron Judge and Mike Trout both went 5 HR. The rotation has Cole Ragans, Ohtani, King, Schlittler, Woodruff, and Mitch Keller fronting it. TylerV is climbing fast and a few more weeks like this puts him in the top tier."
+    },
+    {
+      "rank": 6,
+      "prev_rank": 3,
+      "delta": -3,
+      "tier": "mid",
+      "name": "Busch Latte",
+      "cumulative_ap": {
+        "w": 17,
+        "l": 13,
+        "t": 6
+      },
+      "cumulative_cats": {
+        "w": 171,
+        "l": 159,
+        "t": 30
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 4,
+          "ap": {
+            "w": 5,
+            "l": 3,
+            "t": 1
+          },
+          "cats": {
+            "w": 42,
+            "l": 40,
+            "t": 8
+          }
+        },
+        {
+          "week": 2,
+          "rank": 4,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 54,
+            "l": 28,
+            "t": 8
+          }
+        },
+        {
+          "week": 3,
+          "rank": 0,
+          "ap": {
+            "w": 4,
+            "l": 1,
+            "t": 4
+          },
+          "cats": {
+            "w": 46,
+            "l": 35,
+            "t": 9
+          }
+        },
+        {
+          "week": 4,
+          "rank": 6,
+          "ap": {
+            "w": 1,
+            "l": 7,
+            "t": 1
+          },
+          "cats": {
+            "w": 29,
+            "l": 56,
+            "t": 5
+          }
+        }
+      ],
+      "weighted_score": 157.44,
+      "analysis": "Down three spots to #6 after a 1&ndash;7&ndash;1 all-play disaster (29 cat wins). The pitching IL list (Strider, Brown, Miller, Imai) finally caught up to Rose at the worst possible time. Got Ragans-ed 8&ndash;1. Sal Stewart and JJ Wetherholt are still hitting but the staff is in shambles. 171 cumulative cat wins keeps Busch in the top half but the trajectory is wrong."
+    },
+    {
+      "rank": 7,
+      "prev_rank": 6,
+      "delta": -1,
+      "tier": "mid",
+      "name": "Allahu Alvarez",
+      "cumulative_ap": {
+        "w": 13,
+        "l": 21,
+        "t": 2
+      },
+      "cumulative_cats": {
+        "w": 164,
+        "l": 172,
+        "t": 24
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 7,
+          "ap": {
+            "w": 2,
+            "l": 6,
+            "t": 1
+          },
+          "cats": {
+            "w": 32,
+            "l": 50,
+            "t": 8
+          }
+        },
+        {
+          "week": 2,
+          "rank": 6,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 55,
+            "l": 29,
+            "t": 6
+          }
+        },
+        {
+          "week": 3,
+          "rank": 0,
+          "ap": {
+            "w": 0,
+            "l": 8,
+            "t": 1
+          },
+          "cats": {
+            "w": 32,
+            "l": 54,
+            "t": 4
+          }
+        },
+        {
+          "week": 4,
+          "rank": 7,
+          "ap": {
+            "w": 4,
+            "l": 5,
+            "t": 0
+          },
+          "cats": {
+            "w": 45,
+            "l": 39,
+            "t": 6
+          }
+        }
+      ],
+      "weighted_score": 152.47,
+      "analysis": "Down one spot to #7. 4&ndash;5 all-play in Week 4, 13&ndash;21&ndash;2 cumulative. Yordan Alvarez (3 HR, 6 RBI) and Oneil Cruz (2 HR, 4 SB) put up real offensive numbers but the staff posted a 5.18 ERA in a 4&ndash;6 loss to Buckner. Now Freddie Freeman is on the NA list and the rotation is missing Pivetta, Steele, and Henderson. TylerR&#x2019;s roster is leaking value at every position."
     },
     {
       "rank": 8,
-      "prev_rank": 7,
-      "delta": -1,
+      "prev_rank": 8,
+      "delta": 0,
       "tier": "mid",
       "name": "Good Vibes Only",
       "cumulative_ap": {
         "w": 7,
-        "l": 19,
+        "l": 28,
         "t": 1
       },
       "cumulative_cats": {
-        "w": 105,
-        "l": 146,
-        "t": 19
+        "w": 126,
+        "l": 212,
+        "t": 22
       },
       "history": [
         {
@@ -1073,10 +1171,24 @@
             "l": 48,
             "t": 4
           }
+        },
+        {
+          "week": 4,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 21,
+            "l": 66,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 100.7,
-      "analysis": "Michael drops to #8 after a 2-8 loss to Keanu. The IL list (Rooker, Stowers, Betts, Pepiot) is brutal. Ben Rice (.500 OBP) and Crochet are the two players keeping this team afloat. 38 cat wins in Week 3 was actually an improvement over the 20 in Week 1. The season is not over, but at 5-12-3 in the standings, every matchup from here is a must-win."
+      "weighted_score": 116.66,
+      "analysis": "Holding at #8 only because Ete Crow and Rain City are worse, not because Michael deserves the spot. 0&ndash;9 all-play this week. Zero. 21 cat wins. 6.72 ERA. Zero saves. Mookie Betts, Brent Rooker, and Ryan Pepiot all on the IL. There is no offense, no rotation, and no closer. The season is in free fall."
     },
     {
       "rank": 9,
@@ -1085,14 +1197,14 @@
       "tier": "cellar",
       "name": "Ete Crow",
       "cumulative_ap": {
-        "w": 5,
-        "l": 19,
+        "w": 10,
+        "l": 23,
         "t": 3
       },
       "cumulative_cats": {
-        "w": 85,
-        "l": 158,
-        "t": 27
+        "w": 125,
+        "l": 202,
+        "t": 33
       },
       "history": [
         {
@@ -1136,10 +1248,24 @@
             "l": 48,
             "t": 11
           }
+        },
+        {
+          "week": 4,
+          "rank": 9,
+          "ap": {
+            "w": 5,
+            "l": 4,
+            "t": 0
+          },
+          "cats": {
+            "w": 40,
+            "l": 44,
+            "t": 6
+          }
         }
       ],
-      "weighted_score": 80.59,
-      "analysis": "The defending champion is in ninth. 85 cumulative cat wins, 5-19-3 in all-play. Jace owns SB and K (led the league in both Week 3) and struggles everywhere else. The .292 OBP in Week 3 was the worst in the league. Chourio (IL-10) and Hader (IL-15) being out guts the offense and closer depth. De La Cruz, Marsee, and Caballero run fast. Nobody else does anything."
+      "weighted_score": 116.56,
+      "analysis": "Holding at #9 despite a 5&ndash;4 all-play in Week 4 (40 cat wins). Won the H2H 6&ndash;3 over Rain City on the strength of 42 RBI (league best) and 9 HR. The 8&ndash;19&ndash;3 standings record is bad, but Jace has won or tied three of the last four weeks. The roster the league thought was done finishing 1st in 2025 is starting to look like it again."
     },
     {
       "rank": 10,
@@ -1148,14 +1274,14 @@
       "tier": "cellar",
       "name": "Rain City Bombers",
       "cumulative_ap": {
-        "w": 4,
-        "l": 18,
-        "t": 5
+        "w": 5,
+        "l": 23,
+        "t": 8
       },
       "cumulative_cats": {
-        "w": 83,
-        "l": 165,
-        "t": 22
+        "w": 118,
+        "l": 217,
+        "t": 25
       },
       "history": [
         {
@@ -1199,10 +1325,24 @@
             "l": 41,
             "t": 8
           }
+        },
+        {
+          "week": 4,
+          "rank": 10,
+          "ap": {
+            "w": 1,
+            "l": 5,
+            "t": 3
+          },
+          "cats": {
+            "w": 35,
+            "l": 52,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 79.6175,
-      "analysis": "Taylor is last but Week 3 showed life. 41 cat wins, up from 15 in Week 2. The rotation posted a 1.69 ERA and 1.02 WHIP, the best pitching performance in the league. The offense (5 HR, 27 RBI) remains the problem. Wheeler (IL-15), Kelly (IL-15), and Lodolo (IL-15) cap the pitching depth further. When the rotation and the offense both perform in the same week, Rain City beats anyone. That has not happened yet."
+      "weighted_score": 110.64,
+      "analysis": "Locked in at #10. 1&ndash;5&ndash;3 all-play, 35 cat wins. The rotation posted a 2.14 ERA and 1.10 WHIP, both league-best for the second straight week. The lineup put up 30 R, 5 HR, 28 RBI. Skenes and deGrom are doing their jobs. The hitters are not. Two weeks of elite pitching wasted on the worst offense in the league."
     }
   ]
 }
