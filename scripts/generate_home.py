@@ -25,6 +25,7 @@ TEAM_HEADSHOTS = {
     'One Ball Two Strikes':       'img/headshots/one-ball.png',
     'The Ragans Administration':  'img/headshots/ragans.jpeg',
     'Ray Donovan':                      'img/headshots/decoy.jpeg',
+    'Nick-fil-A':                       'img/headshots/decoy.jpeg',
     'Good Vibes Only':            'img/headshots/good-vibes.jpeg',
     'Keanu Reeves':               'img/headshots/keanu.jpeg',
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',

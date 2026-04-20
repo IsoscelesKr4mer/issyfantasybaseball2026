@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roto Standings &mdash; Issaquah Swingers 2026</title>
+  <meta name="description" content="Hypothetical rotisserie standings for the Issaquah Swingers fantasy baseball league. What the 2026 standings would look like if the league was a roto league instead of head-to-head categories. Purely for fun." />
+  <link rel="canonical" href="https://issaquahswingers.com/roto.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Roto Standings &mdash; Issaquah Swingers 2026" />
+  <meta property="og:description" content="Rotisserie standings if the Issaquah Swingers played a roto format instead of H2H. Updated weekly. Entirely hypothetical." />
+  <meta property="og:image" content="https://issaquahswingers.com/preview.png" />
+  <meta property="og:url" content="https://issaquahswingers.com/roto.html" />
+  <meta property="og:site_name" content="Issaquah Swingers Fantasy Baseball" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roto Standings &mdash; Issaquah Swingers 2026" />
+  <meta name="twitter:description" content="Rotisserie standings if the league was roto. For fun only." />
+  <meta name="twitter:image" content="https://issaquahswingers.com/preview.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍍</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html" class="nav-logo">&#9918; Issaquah <span>Swingers</span></a>
+  <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+
+    <div class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Teams &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="teams/busch-latte.html">Busch Latte</a>
+        <a href="teams/skenes.html">Allahu Alvarez</a>
+        <a href="teams/ete-crow.html">Ete Crow</a>
+        <a href="teams/ragans.html">The Ragans Administration</a>
+        <a href="teams/keanu.html">Keanu Reeves</a>
+        <a href="teams/good-vibes.html">Good Vibes Only</a>
+        <a href="teams/rain-city.html">Rain City Bombers</a>
+        <a href="teams/buckner.html">The Buckner Boots</a>
+        <a href="teams/decoy.html">Nick-fil-A</a>
+        <a href="teams/one-ball.html">One Ball Two Strikes</a>
+      </div>
+    </div>
+
+    <div class="nav-dropdown">
+      <a href="week-05.html" class="nav-dropdown-toggle">Weeks &#9662;</a>
+      <div class="nav-dropdown-menu" id="weekDropdown">
+        <!-- AUTO:WEEK_LINKS_START -->
+        <div class="week-nav-group"><span class="week-nav-label">Week 1 &mdash; Mar 25&ndash;Mar 29</span><div class="week-nav-sub"><a href="week-01.html#preview">Preview</a><a href="week-01.html#recap">Recap</a></div></div>
+        <div class="week-nav-group"><span class="week-nav-label">Week 2 &mdash; Mar 30&ndash;Apr 5</span><div class="week-nav-sub"><a href="week-02.html#preview">Preview</a><a href="week-02.html#recap">Recap</a></div></div>
+        <div class="week-nav-group"><span class="week-nav-label">Week 3 &mdash; Apr 6&ndash;Apr 12</span><div class="week-nav-sub"><a href="week-03.html#preview">Preview</a><a href="week-03.html#recap">Recap</a></div></div>
+        <div class="week-nav-group"><span class="week-nav-label">Week 4 &mdash; Apr 13&ndash;Apr 19</span><div class="week-nav-sub"><a href="week-04.html#preview">Preview</a><a href="week-04.html#recap">Recap</a></div></div>
+    <!-- AUTO:WEEK_LINKS_END -->
+      </div>
+    </div>
+
+    <a href="power.html" class="nav-pr-link">Power Rankings</a>
+    <a href="roto.html" class="nav-pr-link active">Roto</a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-dropdown">
+      <a href="draft.html" class="nav-dropdown-toggle">Draft &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="draft.html">Full Draft Report</a>
+        <a href="draft.html#grades">Draft Grades</a>
+        <a href="draft.html#predictions">Predictions</a>
+        <a href="draft.html#insights">Insights</a>
+        <a href="draft.html#standings">2025 Recap</a>
+      </div>
+    </div>
+  </div>
+  <!-- AUTO:NAV_BADGE_START -->
+  <div class="nav-badge">Week 4</div>
+    <!-- AUTO:NAV_BADGE_END -->
+</nav>
+<script src="nav.js"></script>
+
+<!-- HERO -->
+<header class="hero hero-roto">
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <!-- AUTO:ROTO_UPDATED_START -->
+    <div class="roto-updated-badge">Updated through Week 4</div>
+    <!-- AUTO:ROTO_UPDATED_END -->
+
+    <h1>Roto<br/><span>Standings</span></h1>
+    <p class="hero-sub">
+      A fantasy of a fantasy
+      <span class="sep"></span>
+      Updated weekly
+      <span class="sep"></span>
+      Means absolutely nothing
+    </p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Disclaimer -->
+  <div class="roto-disclaimer">
+    <strong>Heads up:</strong> the Issaquah Swingers is an H2H categories league. This page is purely hypothetical. It ranks every team as if we played rotisserie instead, using the actual weekly stats from your Yahoo matchups. Nobody wins a prize based on this. It is for bragging rights, screenshots, and retroactively bitching about the schedule.
+  </div>
+
+  <!-- Season snapshot strip -->
+  <!-- AUTO:ROTO_STRIP_START -->
+  <div class="roto-season-strip">
+    <div class="roto-season-cell">
+      <div class="roto-season-val gold">Keanu Reeves</div>
+      <div class="roto-season-lbl">Hypothetical #1 &middot; 77.5 pts</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val">4</div>
+      <div class="roto-season-lbl">Weeks counted</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val green">The Ragans Administration</div>
+      <div class="roto-season-lbl">Biggest riser (+2)</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val red">Rain City Bombers</div>
+      <div class="roto-season-lbl">Hypothetical last &middot; 27.0 pts</div>
+    </div>
+  </div>
+    <!-- AUTO:ROTO_STRIP_END -->
+
+  <!-- Standings card -->
+  <div class="card reveal">
+
+    <p class="roto-methodology">
+      Standard 10-category rotisserie scoring. Each category is ranked 1 to 10 across the league: best in category gets 10 points, worst gets 1, ties share the average of their tied positions. ERA and WHIP are inverted (lower is better). Counting stats (R, HR, RBI, SB, K, QS, SV) are summed across every completed week. Rate stats (OBP, ERA, WHIP) use the unweighted average of each team's weekly rate values. Max possible season score: 100.
+    </p>
+
+    <div class="roto-table-wrap">
+      <table class="roto-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="roto-team-head">Team</th>
+            <th class="roto-total-head">Total</th>
+            <th>&Delta;</th>
+            <th>R</th>
+            <th>HR</th>
+            <th>RBI</th>
+            <th>SB</th>
+            <th>OBP</th>
+            <th>K</th>
+            <th>QS</th>
+            <th>SV</th>
+            <th>ERA</th>
+            <th>WHIP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- AUTO:ROTO_TABLE_START -->
+      <tr class="roto-row reveal" data-rank="1">
+        <td class="roto-rank-cell">1</td>
+        <td class="roto-team-cell"><span class="team-label">Keanu Reeves</span></td>
+        <td class="roto-total-cell"><strong>77.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta even">&mdash;</span></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">134</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">37</div><div class="roto-cat-pts">8.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">127</div><div class="roto-cat-pts">9.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">16</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">.345</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">265</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">17</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">6</div><div class="roto-cat-pts">3</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">3.26</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">1.14</div><div class="roto-cat-pts">9</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="2">
+        <td class="roto-rank-cell">2</td>
+        <td class="roto-team-cell"><span class="team-label">The Buckner Boots</span></td>
+        <td class="roto-total-cell"><strong>67.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta even">&mdash;</span></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">120</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">41</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">127</div><div class="roto-cat-pts">9.5</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">14</div><div class="roto-cat-pts">1</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">.348</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">244</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">23</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">5</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">3.31</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">1.22</div><div class="roto-cat-pts">8</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="3">
+        <td class="roto-rank-cell">3</td>
+        <td class="roto-team-cell"><span class="team-label">One Ball Two Strikes</span></td>
+        <td class="roto-total-cell"><strong>65.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta up">&#8593;1</span></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">135</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">37</div><div class="roto-cat-pts">8.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">116</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">25</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">.334</div><div class="roto-cat-pts">4</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">207</div><div class="roto-cat-pts">2</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">16</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">13</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">3.49</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">1.25</div><div class="roto-cat-pts">5</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="4">
+        <td class="roto-rank-cell">4</td>
+        <td class="roto-team-cell"><span class="team-label">Nick-fil-A</span></td>
+        <td class="roto-total-cell"><strong>62.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta up">&#8593;1</span></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">120</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">31</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">97</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">21</div><div class="roto-cat-pts">6.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">.343</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">228</div><div class="roto-cat-pts">4</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">17</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">17</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">3.38</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">1.14</div><div class="roto-cat-pts">10</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="5">
+        <td class="roto-rank-cell">5</td>
+        <td class="roto-team-cell"><span class="team-label">The Ragans Administration</span></td>
+        <td class="roto-total-cell"><strong>61</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta up">&#8593;2</span></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">127</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">30</div><div class="roto-cat-pts">4.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">108</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">21</div><div class="roto-cat-pts">6.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">.346</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">226</div><div class="roto-cat-pts">3</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">17</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">11</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">3.62</div><div class="roto-cat-pts">4</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">1.23</div><div class="roto-cat-pts">7</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="6">
+        <td class="roto-rank-cell">6</td>
+        <td class="roto-team-cell"><span class="team-label">Busch Latte</span></td>
+        <td class="roto-total-cell"><strong>58.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta down">&#8595;3</span></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">129</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">27</div><div class="roto-cat-pts">3</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">101</div><div class="roto-cat-pts">4</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">21</div><div class="roto-cat-pts">6.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">.330</div><div class="roto-cat-pts">2.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">252</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">12</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">11</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">3.30</div><div class="roto-cat-pts">9</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">1.23</div><div class="roto-cat-pts">6</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="7">
+        <td class="roto-rank-cell">7</td>
+        <td class="roto-team-cell"><span class="team-label">Allahu Alvarez</span></td>
+        <td class="roto-total-cell"><strong>58</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta down">&#8595;1</span></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">122</div><div class="roto-cat-pts">5.5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">35</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">117</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">21</div><div class="roto-cat-pts">6.5</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">.359</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">239</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">13</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">11</div><div class="roto-cat-pts">7</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">5.21</div><div class="roto-cat-pts">1</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">1.36</div><div class="roto-cat-pts">2</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="8">
+        <td class="roto-rank-cell">8</td>
+        <td class="roto-team-cell"><span class="team-label">Good Vibes Only</span></td>
+        <td class="roto-total-cell"><strong>36.5</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta even">&mdash;</span></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">122</div><div class="roto-cat-pts">5.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">30</div><div class="roto-cat-pts">4.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">103</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">15</div><div class="roto-cat-pts">2</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">.339</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">233</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">9</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">8</div><div class="roto-cat-pts">5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">4.96</div><div class="roto-cat-pts">2</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">1.42</div><div class="roto-cat-pts">1</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="9">
+        <td class="roto-rank-cell">9</td>
+        <td class="roto-team-cell"><span class="team-label">Ete Crow</span></td>
+        <td class="roto-total-cell"><strong>36</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta even">&mdash;</span></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">112</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">26</div><div class="roto-cat-pts">2</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">97</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-best"><div class="roto-cat-val">27</div><div class="roto-cat-pts">10</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">.324</div><div class="roto-cat-pts">1</div></td>
+        <td class="roto-cat-cell roto-cell-good"><div class="roto-cat-val">246</div><div class="roto-cat-pts">8</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">12</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">5</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">4.78</div><div class="roto-cat-pts">3</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">1.28</div><div class="roto-cat-pts">4</div></td>
+      </tr>
+      <tr class="roto-row reveal" data-rank="10">
+        <td class="roto-rank-cell">10</td>
+        <td class="roto-team-cell"><span class="team-label">Rain City Bombers</span></td>
+        <td class="roto-total-cell"><strong>27</strong></td>
+        <td class="roto-delta-cell"><span class="roto-delta even">&mdash;</span></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">112</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">17</div><div class="roto-cat-pts">1</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">98</div><div class="roto-cat-pts">3</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">16</div><div class="roto-cat-pts">3.5</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">.330</div><div class="roto-cat-pts">2.5</div></td>
+        <td class="roto-cat-cell roto-cell-worst"><div class="roto-cat-val">200</div><div class="roto-cat-pts">1</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">9</div><div class="roto-cat-pts">1.5</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">7</div><div class="roto-cat-pts">4</div></td>
+        <td class="roto-cat-cell roto-cell-mid"><div class="roto-cat-val">3.46</div><div class="roto-cat-pts">6</div></td>
+        <td class="roto-cat-cell roto-cell-bad"><div class="roto-cat-val">1.30</div><div class="roto-cat-pts">3</div></td>
+      </tr>
+    <!-- AUTO:ROTO_TABLE_END -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Per-team blurbs -->
+  <div class="section" style="margin-top:2rem;">
+    <h2 class="section-title"><span class="section-icon">&#128221;</span> What the Roto League Would Say About Each Team</h2>
+    <p style="font-size:.82rem;color:var(--text-secondary);margin-bottom:1.1rem;">Short takes on how roto scoring flatters or punishes each roster compared to how they look in H2H. None of this counts. All of it is fun.</p>
+    <div class="roto-blurbs">
+      <!-- AUTO:ROTO_BLURBS_START -->
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#1</span>
+          <span class="roto-blurb-team team-label">Keanu Reeves</span>
+          <span class="roto-blurb-pts">77.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">First place in pretend roto, first place in actual H2H. 10 points in K, 10 in ERA, 9.5 in RBI, 9 in WHIP. Duke Joe scores in the top three of seven out of ten categories. The only weakness is SV (3.0 points) and that is a bullpen depth issue, not a real one. None of this matters because you play H2H. He is still beating you.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#2</span>
+          <span class="roto-blurb-team team-label">The Buckner Boots</span>
+          <span class="roto-blurb-pts">67.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">Perfect 10 in HR (41) and QS (23), both best in the league by a margin. 10s and 9s across four of the pitching cats. The leaks are SB (14, worst 1.0 points) and SV (5, 1.5 points). If roto were the rules Michael would still be 2nd. Same place, different math.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#3</span>
+          <span class="roto-blurb-team team-label">One Ball Two Strikes</span>
+          <span class="roto-blurb-pts">65.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">Roto flatters Garth more than any other team. He jumps one spot over Nick-fil-A here because this format rewards the balanced counting-stat roster he built: 10 in R, 9 in SB, 9 in SV, 8.5 in HR. The ratio cats hold him back (5 in ERA, 5 in WHIP, 2 in K). In a league that doesn't exist, he is a contender.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#4</span>
+          <span class="roto-blurb-team team-label">Nick-fil-A</span>
+          <span class="roto-blurb-pts">62.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">Drops one spot vs H2H because roto exposes what H2H doesn't. Perfect 10 in SV and WHIP. But 1.5 in RBI and 3.5 in R are the kind of counting-stat holes that get weekly matchups but lose 25-week accumulations. Mario's team wins close H2H games. It would lose a long roto race to the power hitters.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#5</span>
+          <span class="roto-blurb-team team-label">The Ragans Administration</span>
+          <span class="roto-blurb-pts">61 pts</span>
+        </div>
+        <div class="roto-blurb-body">Middle of the roto table, middle of the actual table. 8s in OBP and QS, 7s in R and WHIP, not much higher anywhere. TylerV has a good rotation and a decent lineup and nothing that screams category leader. If you are looking for the 'most typical' team in either format, this is it.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#6</span>
+          <span class="roto-blurb-team team-label">Busch Latte</span>
+          <span class="roto-blurb-pts">58.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">9 in K. 9 in ERA. That is Shohei Ohtani and whoever else is still throwing. Everywhere the injury list reaches: 3 in HR, 2.5 in OBP, 4 in RBI. If Brown, Strider, and Miller ever come off IL this number jumps. Rose is posting #6 roto points with a phantom rotation.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#7</span>
+          <span class="roto-blurb-team team-label">Allahu Alvarez</span>
+          <span class="roto-blurb-pts">58 pts</span>
+        </div>
+        <div class="roto-blurb-body">League leader in OBP (.359, a clean 10 points). Also: 1 point in ERA, 2 in WHIP. The lineup is real. The pitching staff is a gas station parking lot. TylerR is exactly the kind of roster where you want to trade bats for arms and you never actually do it.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#8</span>
+          <span class="roto-blurb-team team-label">Good Vibes Only</span>
+          <span class="roto-blurb-pts">36.5 pts</span>
+        </div>
+        <div class="roto-blurb-body">The cliff. 22 points behind #7. 1 point in QS, 1 in WHIP, 2 in SB, 2 in ERA. There is not a single category where Michael is competitive. Mookie Betts and Brent Rooker on the IL list all month sure helped. Good Vibes would finish last in any scoring format except the one where losing is the point.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#9</span>
+          <span class="roto-blurb-team team-label">Ete Crow</span>
+          <span class="roto-blurb-pts">36 pts</span>
+        </div>
+        <div class="roto-blurb-body">10 points in SB (27 stolen bases, best in the league by 6). 8 in K. And then the roster falls off a building: 1.5 in R, 1.5 in RBI, 1.5 in SV, 1 in OBP. Elly De La Cruz is carrying this roster by himself. The 2025 champion is bad at both the real format and the fake one.</div>
+      </div>
+      <div class="roto-blurb reveal">
+        <div class="roto-blurb-head">
+          <span class="roto-blurb-rank">#10</span>
+          <span class="roto-blurb-team team-label">Rain City Bombers</span>
+          <span class="roto-blurb-pts">27 pts</span>
+        </div>
+        <div class="roto-blurb-body">27 roto points. In ten categories. Dead last in R, HR, and K with 1-point finishes. The pitching ratios are actually fine (6 ERA, 3 WHIP) because Skenes and deGrom are pitching like aces. The problem is everything else. Taylor is losing in H2H, losing in roto, and presumably losing at cribbage.</div>
+      </div>
+    <!-- AUTO:ROTO_BLURBS_END -->
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Issaquah Swingers Fantasy Baseball &middot; 2026 Season</p>
+</footer>
+
+<script>
+/* Reveal on scroll */
+const obs = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('visible');
+}), { threshold: .06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+<!-- Teams bottom sheet (mobile) -->
+<div class="teams-sheet" id="teamsSheet">
+  <div class="teams-sheet-backdrop" id="teamsSheetBackdrop"></div>
+  <div class="teams-sheet-panel">
+    <div class="teams-sheet-handle"></div>
+    <div class="teams-sheet-title">Teams</div>
+    <div class="teams-sheet-list">
+      <a href="teams/busch-latte.html" class="teams-sheet-item"><img src="img/headshots/busch-latte.jpg" class="headshot headshot-sm" alt="" /> Busch Latte</a>
+      <a href="teams/skenes.html" class="teams-sheet-item"><img src="img/headshots/skenes.jpeg" class="headshot headshot-sm" alt="" /> Allahu Alvarez</a>
+      <a href="teams/ete-crow.html" class="teams-sheet-item"><img src="img/headshots/ete-crow.jpeg" class="headshot headshot-sm" alt="" /> Ete Crow</a>
+      <a href="teams/ragans.html" class="teams-sheet-item"><img src="img/headshots/ragans.jpeg" class="headshot headshot-sm" alt="" /> The Ragans Administration</a>
+      <a href="teams/keanu.html" class="teams-sheet-item"><img src="img/headshots/keanu.jpeg" class="headshot headshot-sm" alt="" /> Keanu Reeves</a>
+      <a href="teams/good-vibes.html" class="teams-sheet-item"><img src="img/headshots/good-vibes.jpeg" class="headshot headshot-sm" alt="" /> Good Vibes Only</a>
+      <a href="teams/rain-city.html" class="teams-sheet-item"><img src="img/headshots/rain-city.jpeg" class="headshot headshot-sm" alt="" /> Rain City Bombers</a>
+      <a href="teams/buckner.html" class="teams-sheet-item"><img src="img/headshots/buckner.jpeg" class="headshot headshot-sm" alt="" /> The Buckner Boots</a>
+      <a href="teams/decoy.html" class="teams-sheet-item"><img src="img/headshots/decoy.jpeg" class="headshot headshot-sm" alt="" /> Ray Donovan</a>
+      <a href="teams/one-ball.html" class="teams-sheet-item"><img src="img/headshots/one-ball.png" class="headshot headshot-sm" alt="" /> One Ball Two Strikes</a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var btn = document.getElementById('teams-nav-btn');
+  var sheet = document.getElementById('teamsSheet');
+  var backdrop = document.getElementById('teamsSheetBackdrop');
+  function toggle(e) {
+    if (e) e.preventDefault();
+    sheet.classList.toggle('open');
+  }
+  if (btn) btn.addEventListener('click', toggle);
+  if (backdrop) backdrop.addEventListener('click', toggle);
+})();
+</script>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="week-01.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Weeks</span>
+    </a>
+    <a href="draft.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Draft</span>
+    </a>
+    <a href="#" class="bottom-nav-item" id="teams-nav-btn">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Teams</span>
+    </a>
+    <a href="power.html" class="bottom-nav-item">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Rank</span>
+    </a>
+    <a href="roto.html" class="bottom-nav-item active">
+      <svg class="bottom-nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+      <span>Roto</span>
+    </a>
+  </div>
+</nav>
+
+</body>
+</html>

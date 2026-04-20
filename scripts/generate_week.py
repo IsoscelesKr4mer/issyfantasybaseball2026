@@ -261,6 +261,7 @@ TEAM_META = {
     'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.jpeg'},
     'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8,  'img': 'buckner.jpeg'},
     'Ray Donovan':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
+    'Nick-fil-A':                         {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
     'One Ball Two Strikes':         {'2025_rank': 2,  'draft_slot': 10, 'img': 'one-ball.png'},
     'Ete Crow':                     {'2025_rank': 1,  'draft_slot': 4,  'img': 'ete-crow.jpeg'},
 }
@@ -728,6 +729,384 @@ def generate_power_rankings_page(pr: dict):
     print(f'  ✅  power.html regenerated → Week {last_week}')
 
 
+# ── ROTO STANDINGS (fantasy-of-a-fantasy roto view) ──────────────────────────
+
+ROTO_CATS        = ['R', 'HR', 'RBI', 'SB', 'OBP', 'K', 'QS', 'SV', 'ERA', 'WHIP']
+ROTO_COUNTING    = {'R', 'HR', 'RBI', 'SB', 'K', 'QS', 'SV'}
+ROTO_RATE        = {'OBP', 'ERA', 'WHIP'}
+ROTO_LOW_IS_GOOD = {'ERA', 'WHIP'}
+
+
+def _roto_assign_points(pairs, low_is_good):
+    """Given [(team_key, value), ...], return {team_key: points} with
+    standard rotisserie scoring: best gets N points, worst gets 1,
+    ties share the average of their tied positions.
+    """
+    n = len(pairs)
+    # Sort so that "worst" is first and "best" is last.
+    # For high-is-good cats: ascending puts low (worst) first.
+    # For low-is-good cats:  descending puts high (worst) first.
+    pairs_sorted = sorted(pairs, key=lambda p: p[1], reverse=low_is_good)
+    out = {}
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and pairs_sorted[j + 1][1] == pairs_sorted[i][1]:
+            j += 1
+        # Positions i..j (0-indexed) map to point values (i+1)..(j+1)
+        group_points = list(range(i + 1, j + 2))
+        avg = sum(group_points) / len(group_points)
+        for k in range(i, j + 1):
+            out[pairs_sorted[k][0]] = avg
+        i = j + 1
+    return out
+
+
+def compute_roto_standings(history_by_team: dict, n_teams: int = 10) -> list:
+    """Given season-to-date weekly stat history, compute rotisserie standings.
+
+    history_by_team shape:
+      { team_key: { 'name': str,
+                    'weeks': [ {'week': n, 'cats': {R: 17, HR: 6, ...}}, ... ] } }
+
+    Counting cats (R, HR, RBI, SB, K, QS, SV) are summed across weeks.
+    Rate cats (OBP, ERA, WHIP) use the average of weekly values — we do not
+    have access to raw components (AB, IP, ER, H+BB) to weight by volume,
+    so this averages weekly rate performance.
+
+    Returns a list of standings entries, sorted by total roto points desc:
+      [{team_key, name, totals, roto_points, total_points, rank}, ...]
+    """
+    # Aggregate per-team totals
+    team_totals = {}
+    for tk, tdata in history_by_team.items():
+        tot_counting = {c: 0.0 for c in ROTO_COUNTING}
+        rate_samples = {c: [] for c in ROTO_RATE}
+        for wk in tdata.get('weeks', []):
+            cats = wk.get('cats', {})
+            for c in ROTO_COUNTING:
+                try:
+                    tot_counting[c] += float(cats.get(c, 0) or 0)
+                except (TypeError, ValueError):
+                    pass
+            for c in ROTO_RATE:
+                v = cats.get(c)
+                if v in (None, '-', ''):
+                    continue
+                try:
+                    tot_counting  # unused
+                    fv = float(v)
+                    rate_samples[c].append(fv)
+                except (TypeError, ValueError):
+                    pass
+        totals = {}
+        for c in ROTO_COUNTING:
+            totals[c] = round(tot_counting[c], 1)
+        for c in ROTO_RATE:
+            samples = rate_samples[c]
+            if samples:
+                totals[c] = round(sum(samples) / len(samples), 3)
+            else:
+                # No data: give them the "worst" placeholder so they rank last
+                totals[c] = 99.99 if c in ROTO_LOW_IS_GOOD else 0.0
+        team_totals[tk] = {'name': tdata.get('name', ''), 'totals': totals}
+
+    # Rank each category and assign roto points
+    roto_points = {tk: {} for tk in team_totals}
+    for cat in ROTO_CATS:
+        pairs = [(tk, team_totals[tk]['totals'].get(cat, 0.0)) for tk in team_totals]
+        pts = _roto_assign_points(pairs, low_is_good=(cat in ROTO_LOW_IS_GOOD))
+        for tk, p in pts.items():
+            roto_points[tk][cat] = round(p, 1)
+
+    # Build standings list
+    standings = []
+    for tk, data in team_totals.items():
+        pts = roto_points[tk]
+        total = sum(pts.values())
+        standings.append({
+            'team_key':      tk,
+            'name':          data['name'],
+            'totals':        data['totals'],
+            'roto_points':   pts,
+            'total_points':  round(total, 1),
+        })
+
+    # Sort by total_points desc; tiebreak: more #1 category finishes
+    def _tiebreak(entry):
+        max_pts = n_teams
+        firsts = sum(1 for p in entry['roto_points'].values() if p >= max_pts - 0.01)
+        return (entry['total_points'], firsts)
+
+    standings.sort(key=_tiebreak, reverse=True)
+    for i, s in enumerate(standings):
+        s['rank'] = i + 1
+    return standings
+
+
+def update_roto_standings(week: int, matchups: list, save_snapshot: bool = True) -> dict:
+    """Merge a week's scoreboard cats into data/roto-standings.json and re-rank.
+
+    Appends each team's weekly cat line to their history, recomputes
+    rotisserie points, saves prev_rank/delta, and writes the file.
+
+    Idempotent: if last_updated_week >= week, returns unchanged data.
+    """
+    roto_path = BASE_DIR / 'data' / 'roto-standings.json'
+
+    if roto_path.exists():
+        roto = json.loads(roto_path.read_text())
+    else:
+        roto = {
+            'last_updated_week': 0,
+            'weeks_played':      0,
+            'methodology':       '',
+            'history_by_team':   {},
+            'standings':         [],
+        }
+
+    if roto.get('last_updated_week', 0) >= week:
+        print(f'  ℹ️  Roto standings already updated through Week {week} — skipping')
+        return roto
+
+    history = roto.setdefault('history_by_team', {})
+
+    # Build prev_rank lookup before we re-sort
+    prev_ranks = {s['team_key']: s.get('rank', 0) for s in roto.get('standings', [])}
+
+    # Append this week's cats per team
+    for m in matchups:
+        for tk in ('t0', 't1'):
+            t        = m[tk]
+            team_key = t.get('team_key', '')
+            name     = t.get('name', '')
+            cats     = t.get('cats') or {}
+            if not team_key or not cats:
+                continue
+            entry = history.setdefault(team_key, {'name': name, 'weeks': []})
+            entry['name'] = name  # keep current name
+            # Skip if we already have this week
+            if any(w.get('week') == week for w in entry['weeks']):
+                continue
+            entry['weeks'].append({'week': week, 'cats': cats})
+
+    # Recompute standings
+    standings = compute_roto_standings(history)
+
+    # Preserve analysis blurbs that already exist, keyed by team_key
+    prev_analysis = {s['team_key']: s.get('analysis', '') for s in roto.get('standings', [])}
+    for s in standings:
+        s['prev_rank'] = prev_ranks.get(s['team_key'], 0)
+        s['delta']     = s['prev_rank'] - s['rank'] if s['prev_rank'] else 0
+        s['analysis']  = prev_analysis.get(s['team_key'], '')
+
+    # Save weekly snapshot
+    roto.setdefault('weekly_snapshots', [])
+    if save_snapshot and not any(snap['week'] == week for snap in roto['weekly_snapshots']):
+        roto['weekly_snapshots'].append({
+            'week':     week,
+            'rankings': [
+                {'rank': s['rank'], 'team_key': s['team_key'], 'name': s['name'],
+                 'total_points': s['total_points']}
+                for s in standings
+            ]
+        })
+
+    roto['last_updated_week'] = week
+    weeks_played = max((len(v.get('weeks', [])) for v in history.values()), default=0)
+    roto['weeks_played']      = weeks_played
+    roto['methodology']       = (
+        'Standard 10-category rotisserie scoring. Each category is ranked 1-10 '
+        'across the league — best in category gets 10 points, worst gets 1, ties '
+        'share the average of their tied positions. For ERA and WHIP the order '
+        'is inverted (lower is better). Counting stats (R, HR, RBI, SB, K, QS, SV) '
+        'are summed across every completed week. Rate stats (OBP, ERA, WHIP) are '
+        'the average of each team\'s weekly rate values. Not weighted by at-bats '
+        'or innings, because your league doesn\'t actually play roto. This whole '
+        'page is a hypothetical.'
+    )
+    roto['standings'] = standings
+
+    roto_path.write_text(json.dumps(roto, indent=2))
+    print(f'  📊  Roto standings updated through Week {week} → {roto_path.name}')
+    return roto
+
+
+def generate_roto_page(roto: dict):
+    """Regenerate roto.html from the current data/roto-standings.json.
+
+    Sections updated (all delimited by AUTO comments):
+      AUTO:ROTO_UPDATED  — "Updated through Week N" badge
+      AUTO:ROTO_STRIP    — Top/bottom/strongest-cat snapshot
+      AUTO:ROTO_TABLE    — The full standings table
+      AUTO:ROTO_BLURBS   — Per-team short blurbs
+      AUTO:WEEK_LINKS    — Shared week dropdown (mirrors other pages)
+      AUTO:NAV_BADGE     — Shared nav badge
+    """
+    roto_path = BASE_DIR / 'roto.html'
+    if not roto_path.exists():
+        print('  ⚠️  roto.html not found — skipping page regeneration')
+        return
+
+    last_week    = roto.get('last_updated_week', 0)
+    weeks_played = roto.get('weeks_played', 0)
+    standings    = roto.get('standings', [])
+
+    # ── Updated badge ─────────────────────────────────────────────────────
+    updated_html = f'    <div class="roto-updated-badge">Updated through Week {last_week}</div>'
+
+    # ── Snapshot strip ────────────────────────────────────────────────────
+    leader   = standings[0] if standings else {'name': 'TBD', 'total_points': 0}
+    cellar   = standings[-1] if standings else {'name': 'TBD', 'total_points': 0}
+    # Biggest riser / faller by delta
+    movers   = [s for s in standings if s.get('prev_rank', 0) > 0]
+    riser    = max(movers, key=lambda x: x.get('delta', 0), default=None) if movers else None
+    faller   = min(movers, key=lambda x: x.get('delta', 0), default=None) if movers else None
+    strip_html = f'''  <div class="roto-season-strip">
+    <div class="roto-season-cell">
+      <div class="roto-season-val gold">{leader['name']}</div>
+      <div class="roto-season-lbl">Hypothetical #1 &middot; {leader['total_points']} pts</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val">{weeks_played}</div>
+      <div class="roto-season-lbl">Weeks counted</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val green">{riser['name'] if riser and riser.get('delta',0) > 0 else '&mdash;'}</div>
+      <div class="roto-season-lbl">Biggest riser ({'+' + str(riser['delta']) if riser and riser.get('delta',0) > 0 else '&mdash;'})</div>
+    </div>
+    <div class="roto-season-cell">
+      <div class="roto-season-val red">{cellar['name']}</div>
+      <div class="roto-season-lbl">Hypothetical last &middot; {cellar['total_points']} pts</div>
+    </div>
+  </div>'''
+
+    # ── Standings table ──────────────────────────────────────────────────
+    def _fmt(val, cat):
+        if cat == 'OBP':
+            try: return f'{float(val):.3f}'.lstrip('0')
+            except Exception: return str(val)
+        if cat in ('ERA', 'WHIP'):
+            try: return f'{float(val):.2f}'
+            except Exception: return str(val)
+        try: return str(int(round(float(val))))
+        except Exception: return str(val)
+
+    def _fmt_pts(p):
+        # Show .5 for ties, otherwise integer
+        if abs(p - round(p)) < 0.01:
+            return str(int(round(p)))
+        return f'{p:.1f}'
+
+    table_rows = []
+    for s in standings:
+        rank  = s['rank']
+        name  = s['name']
+        total = s['total_points']
+        delta = s.get('delta', 0)
+        prev  = s.get('prev_rank', 0)
+
+        if prev == 0:
+            delta_cell = '<span class="roto-delta new">NEW</span>'
+        elif delta > 0:
+            delta_cell = f'<span class="roto-delta up">&#8593;{delta}</span>'
+        elif delta < 0:
+            delta_cell = f'<span class="roto-delta down">&#8595;{abs(delta)}</span>'
+        else:
+            delta_cell = '<span class="roto-delta even">&mdash;</span>'
+
+        cat_cells = []
+        for cat in ROTO_CATS:
+            val = s['totals'].get(cat, 0)
+            pts = s['roto_points'].get(cat, 0)
+            max_pts = len(standings) or 10
+            # Color: 1 = worst (red), N = best (green)
+            pct = (pts - 1) / max(max_pts - 1, 1)
+            if pts >= max_pts - 0.01:
+                cell_class = 'roto-cat-cell roto-cell-best'
+            elif pts <= 1.01:
+                cell_class = 'roto-cat-cell roto-cell-worst'
+            elif pct >= 0.66:
+                cell_class = 'roto-cat-cell roto-cell-good'
+            elif pct <= 0.33:
+                cell_class = 'roto-cat-cell roto-cell-bad'
+            else:
+                cell_class = 'roto-cat-cell roto-cell-mid'
+            cat_cells.append(
+                f'<td class="{cell_class}">'
+                f'<div class="roto-cat-val">{_fmt(val, cat)}</div>'
+                f'<div class="roto-cat-pts">{_fmt_pts(pts)}</div>'
+                f'</td>'
+            )
+
+        row = (
+            f'      <tr class="roto-row reveal" data-rank="{rank}">\n'
+            f'        <td class="roto-rank-cell">{rank}</td>\n'
+            f'        <td class="roto-team-cell"><span class="team-label">{name}</span></td>\n'
+            f'        <td class="roto-total-cell"><strong>{_fmt_pts(total)}</strong></td>\n'
+            f'        <td class="roto-delta-cell">{delta_cell}</td>\n'
+            + ''.join(f'        {c}\n' for c in cat_cells)
+            + f'      </tr>'
+        )
+        table_rows.append(row)
+
+    table_html = '\n'.join(table_rows)
+
+    # ── Team blurbs ──────────────────────────────────────────────────────
+    blurb_items = []
+    for s in standings:
+        blurb = s.get('analysis', '') or '<em class="muted">Blurb pending &mdash; Claude will write this on Sunday.</em>'
+        blurb_items.append(
+            f'      <div class="roto-blurb reveal">\n'
+            f'        <div class="roto-blurb-head">\n'
+            f'          <span class="roto-blurb-rank">#{s["rank"]}</span>\n'
+            f'          <span class="roto-blurb-team team-label">{s["name"]}</span>\n'
+            f'          <span class="roto-blurb-pts">{_fmt_pts(s["total_points"])} pts</span>\n'
+            f'        </div>\n'
+            f'        <div class="roto-blurb-body">{blurb}</div>\n'
+            f'      </div>'
+        )
+    blurbs_html = '\n'.join(blurb_items)
+
+    # ── Week dropdown + nav badge (shared with other pages) ─────────────
+    week_nav_items = []
+    for wk in range(1, last_week + 1):
+        dates = WEEK_DATES.get(wk, ('', ''))
+        start = fmt_date(dates[0]) if dates[0] else ''
+        end   = fmt_date(dates[1]) if dates[1] else ''
+        label = f'{start}&ndash;{end}'
+        sub   = f'<a href="week-{wk:02d}.html#preview">Preview</a><a href="week-{wk:02d}.html#recap">Recap</a>'
+        week_nav_items.append(
+            f'        <div class="week-nav-group"><span class="week-nav-label">Week {wk} &mdash; {label}</span>'
+            f'<div class="week-nav-sub">{sub}</div></div>'
+        )
+    week_links_html = '\n'.join(week_nav_items)
+
+    nav_badge_html = f'  <div class="nav-badge">Week {last_week}</div>'
+
+    # ── Inject all sections ──────────────────────────────────────────────
+    html = roto_path.read_text()
+
+    def _replace(content, start_marker, end_marker, new_inner):
+        pattern = re.compile(
+            r'(<!--\s*' + re.escape(start_marker) + r'\s*-->).*?(<!--\s*' + re.escape(end_marker) + r'\s*-->)',
+            re.DOTALL
+        )
+        def _sub(m):
+            return m.group(1) + '\n' + new_inner + '\n    ' + m.group(2)
+        return pattern.sub(_sub, content)
+
+    html = _replace(html, 'AUTO:ROTO_UPDATED_START', 'AUTO:ROTO_UPDATED_END', updated_html)
+    html = _replace(html, 'AUTO:ROTO_STRIP_START',   'AUTO:ROTO_STRIP_END',   strip_html)
+    html = _replace(html, 'AUTO:ROTO_TABLE_START',   'AUTO:ROTO_TABLE_END',   table_html)
+    html = _replace(html, 'AUTO:ROTO_BLURBS_START',  'AUTO:ROTO_BLURBS_END',  blurbs_html)
+    html = _replace(html, 'AUTO:WEEK_LINKS_START',   'AUTO:WEEK_LINKS_END',   week_links_html)
+    html = _replace(html, 'AUTO:NAV_BADGE_START',    'AUTO:NAV_BADGE_END',    nav_badge_html)
+
+    roto_path.write_text(html)
+    print(f'  ✅  roto.html regenerated → Week {last_week}')
+
+
 def fetch_recent_results(api: YahooFantasyAPI, current_week: int, n_weeks: int = 2) -> dict:
     """Fetch the last n completed weeks of results for every team.
 
@@ -1095,6 +1474,20 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
     except Exception as e:
         print(f'    ⚠️  Power rankings update failed: {e}')
 
+    # ── Rotisserie standings (fantasy-of-a-fantasy view) ──────────────────────
+    # Same gating as power rankings: only accumulate the week if the scoreboard
+    # is fully finalized. Writes data/roto-standings.json and rebuilds roto.html.
+    try:
+        statuses_r = [m.get('status', '') for m in matchups_data]
+        is_final_r = statuses_r and all(s == 'postevent' for s in statuses_r)
+        if is_final_r:
+            roto_data = update_roto_standings(week, matchups_data, save_snapshot=True)
+            generate_roto_page(roto_data)
+        else:
+            print(f'  ℹ️  Week {week} scoreboard not final — skipping roto standings update')
+    except Exception as e:
+        print(f'    ⚠️  Roto standings update failed: {e}')
+
     data = {
         'week':              week,
         'matchups':          matchups_data,
@@ -1392,7 +1785,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
       <a href="teams/good-vibes.html" class="teams-sheet-item"><img src="img/headshots/good-vibes.jpeg" class="headshot headshot-sm" alt="" /> Good Vibes Only</a>
       <a href="teams/rain-city.html" class="teams-sheet-item"><img src="img/headshots/rain-city.jpeg" class="headshot headshot-sm" alt="" /> Rain City Bombers</a>
       <a href="teams/buckner.html" class="teams-sheet-item"><img src="img/headshots/buckner.jpeg" class="headshot headshot-sm" alt="" /> The Buckner Boots</a>
-      <a href="teams/decoy.html" class="teams-sheet-item"><img src="img/headshots/decoy.jpeg" class="headshot headshot-sm" alt="" /> Ray Donovan</a>
+      <a href="teams/decoy.html" class="teams-sheet-item"><img src="img/headshots/decoy.jpeg" class="headshot headshot-sm" alt="" /> Nick-fil-A</a>
       <a href="teams/one-ball.html" class="teams-sheet-item"><img src="img/headshots/one-ball.png" class="headshot headshot-sm" alt="" /> One Ball Two Strikes</a>
     </div>
   </div>
