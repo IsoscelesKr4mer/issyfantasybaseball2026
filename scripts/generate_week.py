@@ -674,21 +674,29 @@ def generate_power_rankings_page(pr: dict):
     week_links_html = '\n'.join(week_link_parts)
 
     # ── Update week-dropdown in nav (mirror of other pages) ───────────────
-    # Build week nav group entries matching the site's existing format
+    # Build week nav group entries matching the site's existing format.
+    # Completed weeks (1..last_week) get Preview + Recap links.
+    # The active/current playing week is last_week + 1 — it gets Preview only.
+    # We only include the preview week if its HTML file exists on disk.
+    active_week = last_week + 1
+    active_week_exists = (BASE_DIR / f'week-{active_week:02d}.html').exists()
+    max_week = active_week if active_week_exists else last_week
     week_nav_items = []
-    for wk in range(1, last_week + 1):
+    for wk in range(1, max_week + 1):
         dates  = WEEK_DATES.get(wk, ('', ''))
         start  = fmt_date(dates[0]) if dates[0] else ''
         end    = fmt_date(dates[1]) if dates[1] else ''
         label  = f'{start}&ndash;{end}'
-        has_recap = (wk < last_week) or True  # recap exists for completed weeks
+        active_cls = ' active' if wk == active_week else ''
         sub_links = f'<a href="week-{wk:02d}.html#preview">Preview</a>'
-        if has_recap and wk <= last_week:
+        if wk <= last_week:
+            # Completed week — has a recap
             sub_links += f'<a href="week-{wk:02d}.html#recap">Recap</a>'
         week_nav_items.append(
-            f'        <div class="week-nav-group"><span class="week-nav-label">Week {wk} &mdash; {label}</span>'
+            f'        <div class="week-nav-group"><span class="week-nav-label{active_cls}">Week {wk} &mdash; {label}</span>'
             f'<div class="week-nav-sub">{sub_links}</div></div>'
         )
+    week_nav_html = '\n'.join(week_nav_items)
 
     # ── Inject all sections using AUTO markers ─────────────────────────────
     html = power_path.read_text()
@@ -724,6 +732,10 @@ def generate_power_rankings_page(pr: dict):
     html = _replace(html, 'AUTO:PR_RANKINGS_START', 'AUTO:PR_RANKINGS_END', rankings_html)
     html = _replace(html, 'AUTO:PR_WEEK_LINKS_START', 'AUTO:PR_WEEK_LINKS_END', week_links_html)
     html = _replace(html, 'AUTO:PR_SNAPSHOTS_START', 'AUTO:PR_SNAPSHOTS_END', snapshots_js_html)
+    # Top-of-page Weeks dropdown nav (mirror of every other page's nav).
+    # This was previously skipped, which is why power.html's Weeks menu
+    # never picked up new weeks until manually edited.
+    html = _replace(html, 'AUTO:WEEK_LINKS_START', 'AUTO:WEEK_LINKS_END', week_nav_html)
 
     power_path.write_text(html)
     print(f'  ✅  power.html regenerated → Week {last_week}')
