@@ -1,0 +1,67 @@
+{
+  "week": 5,
+  "biggest_win": {
+    "team": "The Ragans Administration",
+    "score": "7-2",
+    "opponent": "Allahu Alvarez",
+    "all_play": "9-0",
+    "cat_record": "69-18-3"
+  },
+  "choke_of_week": {
+    "team": "The Buckner Boots",
+    "score": "2-8",
+    "opponent": "Hey Holmes!",
+    "all_play": "0-9",
+    "cat_record": "15-71-4"
+  },
+  "prediction_results": [
+    {
+      "matchup": "OBT vs Ete Crow",
+      "predicted": "Ete Crow 6-4",
+      "actual": "OBT 6-4",
+      "result": "missed",
+      "result_label": "✗ Missed"
+    },
+    {
+      "matchup": "Ragans vs Allahu",
+      "predicted": "Ragans 6-4",
+      "actual": "Ragans 7-2",
+      "result": "right_team",
+      "result_label": "✓ Right team"
+    },
+    {
+      "matchup": "Nick-fil-A vs Keanu",
+      "predicted": "Keanu 6-4",
+      "actual": "Nick-fil-A 6-3",
+      "result": "missed",
+      "result_label": "✗ Missed"
+    },
+    {
+      "matchup": "Hey Holmes! vs Buckner",
+      "predicted": "Buckner 6-4",
+      "actual": "Hey Holmes! 8-2",
+      "result": "badly_missed",
+      "result_label": "✗ Badly missed"
+    },
+    {
+      "matchup": "Rain City vs Busch",
+      "predicted": "Busch 6-4",
+      "actual": "Rain City 7-3",
+      "result": "missed",
+      "result_label": "✗ Missed"
+    }
+  ],
+  "prediction_summary": "1-4 on the week with zero exact calls and the only correct team being Ragans. The worst miss was Hey Holmes! 8-2 over The Buckner Boots: the sim had Buckner at 66% and instead Michael's roster posted a 4.42 ERA, scored 29 runs total, and got run by the team that finished 0-9 all-play the previous week. Sim trusted the bigger names. The bigger names did not show up.",
+  "all_play_rankings": [
+    {"rank": 1, "name": "The Ragans Administration", "all_play": "9-0", "cat_record": "69-18-3", "h2h_result": "W 7-2"},
+    {"rank": 2, "name": "One Ball Two Strikes",     "all_play": "7-2", "cat_record": "51-29-10", "h2h_result": "W 6-4"},
+    {"rank": 3, "name": "Allahu Alvarez",           "all_play": "7-1-1", "cat_record": "51-32-7", "h2h_result": "L 2-7"},
+    {"rank": 4, "name": "Ete Crow",                 "all_play": "6-2-1", "cat_record": "47-37-6", "h2h_result": "L 4-6"},
+    {"rank": 5, "name": "Nick-fil-A",               "all_play": "4-4-1", "cat_record": "44-36-10", "h2h_result": "W 6-3"},
+    {"rank": 6, "name": "Rain City Bombers",        "all_play": "3-5-1", "cat_record": "39-43-8", "h2h_result": "W 7-3"},
+    {"rank": 7, "name": "Hey Holmes!",              "all_play": "3-5-1", "cat_record": "37-49-4", "h2h_result": "W 8-2"},
+    {"rank": 8, "name": "Keanu Reeves",             "all_play": "2-7", "cat_record": "33-51-6", "h2h_result": "L 3-6"},
+    {"rank": 9, "name": "Busch Latte",              "all_play": "1-7-1", "cat_record": "32-52-6", "h2h_result": "L 3-7"},
+    {"rank": 10, "name": "The Buckner Boots",       "all_play": "0-9", "cat_record": "15-71-4", "h2h_result": "L 2-8"}
+  ]
+}
