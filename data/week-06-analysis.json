@@ -1,0 +1,306 @@
+{
+  "week": 6,
+  "storylines": [
+    "<p><strong>The Ragans Administration's run continues</strong> TylerV is now atop the standings (32-14-4), atop the cumulative power rankings, and just posted back-to-back 9-0 all-play weeks with 67 and 69 cat wins. The roster has no holes. Cal Raleigh is hitting 4 HR weeks at catcher. Aaron Judge, Mike Trout, Nick Kurtz, Kevin McGonigle, and now Ceddanne Rafaela all hit. The rotation runs six deep before Landen Roupp on the bench. Hey Holmes! is the kind of opponent that sometimes catches a hot team flat. The sim has Ragans at 60%. We will see if anything cools this team off.</p>",
+    "<p><strong>Buckner has a chance to forget Week 5 ever happened</strong> The Buckner Boots went 0-9 all-play with 15 cat wins last week. The worst single-week performance any team has put up in 2026. Now they get Nick-fil-A. The sim still has Buckner at 75%, and the cat probabilities back it up. 9 of 10 categories lean Buckner. The roster (Tucker, Seager, Murakami, Marte, Bregman, Sale, Valdez, Webb) is still loaded. Mario can pile up SB and tries to close the HR gap, but Mason Miller and Helsley do not save you when the lineup is hitting .280 OBP and the rotation is below your opponent's.</p>",
+    "<p><strong>Keanu vs Ete Crow is the only real coin flip</strong> Sim says Keanu 53%. Expected score 5.0-5.0. Most categories are sitting at 0.47-0.59 either way. Duke Joe just had his worst pitching week of the season (5.37 ERA) and Ete Crow's Nolan McLean is coming off 17 K. Keanu's edge is the bullpen depth (Chapman, Fairbanks) and balanced power. Ete's edge is the SB game (PCA, Marsee) and a deep rotation that includes McLean, Luzardo, Tolle, and Eury Pérez. Whichever lineup gets healthy first wins this matchup. Juan Soto has been on Keanu's bench with no counting stats for two weeks running.</p>",
+    "<p><strong>The hidden-strength teams are still favored</strong> Allahu Alvarez is 17-29-4 in the standings but went 7-1-1 all-play last week with the most saves and a Christian Walker / Max Muncy power week. Busch Latte is 19-26-5 but led the league in SB and HR despite a 5.58 ERA. The sim has both teams favored this week. Allahu over Rain City at 69% on the strength of league-best closer depth (Muñoz, Domínguez, Varland, Pagán) facing a Rain City bullpen that has thrown for the wrong team for two months. Busch over OBT at 67%, with Rose's lineup grading out the strongest of any underperforming roster. Two teams whose true strength is not in their record.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_name": "One Ball Two Strikes",
+      "team1_name": "Busch Latte",
+      "team0_analysis": "Garth is coming off a sneaky 6-4 win over Ete Crow with Foster Griffin's waiver-add 7 IP shutout. The rotation depth (Skubal, Yamamoto, Sandy Alcantara, Eovaldi, Mize, Burns, Foster Griffin, Connelly Early) is still the deepest in the league with eight healthy SPs. Matt Olson and Riley Greene are the offensive engine. The sim sees the lineup as a notch below Busch's offensive ceiling, so OBT has to ride pitching ratios and bullpen here.",
+      "team1_analysis": "Rose has Spencer Strider, Hunter Brown, Bryce Miller, Tatsuya Imai, and Edwin Díaz all on the IL. Five rotation/bullpen pieces gone. The roster has filled in with Bubic, Misiorowski, Soriano, Ryan Weathers, and the Kyle Harrison waiver-add. Despite the IL, the sim has Busch at 67% on the strength of a top-3 offense in HR/R/SB and an OBP edge fueled by Seiya Suzuki, Jazz Chisholm, JJ Wetherholt, and Shohei Ohtani's bat side.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge": "team1",
+          "label": "Busch Latte lean (69%)"
+        },
+        {
+          "cat": "HR",
+          "edge": "team1",
+          "label": "Busch Latte edge (72%)"
+        },
+        {
+          "cat": "RBI",
+          "edge": "team1",
+          "label": "Busch Latte lean (60%)"
+        },
+        {
+          "cat": "SB",
+          "edge": "team1",
+          "label": "Busch Latte edge (80%)"
+        },
+        {
+          "cat": "OBP",
+          "edge": "team1",
+          "label": "Busch Latte lean (62%)"
+        },
+        {
+          "cat": "K",
+          "edge": "team0",
+          "label": "OBT slight edge (53%)"
+        },
+        {
+          "cat": "QS",
+          "edge": "even",
+          "label": "Even"
+        },
+        {
+          "cat": "ERA",
+          "edge": "team0",
+          "label": "OBT lean (56%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge": "team0",
+          "label": "OBT lean (60%)"
+        },
+        {
+          "cat": "SV",
+          "edge": "team0",
+          "label": "OBT lean (55%)"
+        }
+      ],
+      "prediction": "Busch Latte 6-4. Sim says 67%. Rose's offense is too much for OBT's lineup to keep up with, and even with Busch's IL list the bats outweigh the bullpen advantage Garth has."
+    },
+    {
+      "team0_name": "The Ragans Administration",
+      "team1_name": "Hey Holmes!",
+      "team0_analysis": "Ragans is the league's hottest team. Two straight 9-0 all-play weeks. The active rotation is six deep (Ragans, Ohtani, Schlittler, King, Keller, Castillo) with Roupp, McClanahan, and Woodruff on the bench as additional starting depth. Wyatt Langford on IL10 and Sonny Gray on IL15 are the only real injury hits. Cal Raleigh, Aaron Judge, Mike Trout, Nick Kurtz are putting up MVP-caliber lines together. There is no obvious weakness on this team right now.",
+      "team1_analysis": "Hey Holmes! just won 8-2 over Buckner but the all-play was 3-5-1, so the actual roster strength is still middle-tier. Mookie Betts (IL10), Eugenio Suárez (IL10), Ryan Pepiot (IL60) are all out. The active rotation has five healthy SPs (Vásquez, Cease, Warren, Gore, May) plus Garrett Crochet, Clay Holmes, Grant Holmes, and Kyle Bradish on the bench. SBs (Julio, Chandler Simpson) and the closer (Ryan Walker) are the cleanest edges Michael has against the Ragans juggernaut.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge": "team0",
+          "label": "Ragans lean (60%)"
+        },
+        {
+          "cat": "HR",
+          "edge": "team0",
+          "label": "Ragans lean (56%)"
+        },
+        {
+          "cat": "RBI",
+          "edge": "team1",
+          "label": "Hey Holmes! slight edge (52%)"
+        },
+        {
+          "cat": "SB",
+          "edge": "team1",
+          "label": "Hey Holmes! edge (66%)"
+        },
+        {
+          "cat": "OBP",
+          "edge": "team0",
+          "label": "Ragans lean (64%)"
+        },
+        {
+          "cat": "K",
+          "edge": "team0",
+          "label": "Ragans lean (63%)"
+        },
+        {
+          "cat": "QS",
+          "edge": "team0",
+          "label": "Ragans slight edge (52%)"
+        },
+        {
+          "cat": "ERA",
+          "edge": "team0",
+          "label": "Ragans slight edge (52%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge": "team0",
+          "label": "Ragans lean (57%)"
+        },
+        {
+          "cat": "SV",
+          "edge": "team1",
+          "label": "Hey Holmes! slight edge (57%)"
+        }
+      ],
+      "prediction": "The Ragans Administration 6-4. Sim has them at 60% and the categories back it up. SB and SV are clean Hey Holmes! edges and RBI is a coin flip. Everything else lean Ragans. The streak continues."
+    },
+    {
+      "team0_name": "Nick-fil-A",
+      "team1_name": "The Buckner Boots",
+      "team0_analysis": "Mario won 6-3 last week off a 14 HR week (Caminero, Wood, Caglianone, Goodman). The rotation has zero active starters on Sunday but 8 healthy SPs on the bench (McGreevy, Detmers, Wrobleski, Robbie Ray, Bubba Chandler, Brady Singer, Bryan Woo, Davis Martin, Tyler Glasnow). Snell and Cole are IL15. The bullpen (Mason Miller, Ryan Helsley, Gus Varland) is elite. SB is the one category Mario projects to dominate, on the strength of Konnor Griffin, Acuña, and Luke Raley.",
+      "team1_analysis": "Buckner is coming off the worst week any team has had in 2026: 0-9 all-play, 15 cat wins. The roster is still loaded, though: Kyle Tucker, Corey Seager, Munetaka Murakami, Ketel Marte, Brandon Nimmo, Alex Bregman, plus Steven Kwan and the Jasson Domínguez add. The rotation has 8 healthy SPs available (Sale, Schultz, Cantillo, Bradley, Valdez, Webb, Trevor Rogers, plus active Hancock and Messick), with Devin Williams as the closer. The sim sees a heavy bounce-back and projects Buckner to win 9 of 10 categories.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge": "team1",
+          "label": "Buckner edge (68%)"
+        },
+        {
+          "cat": "HR",
+          "edge": "team1",
+          "label": "Buckner lean (59%)"
+        },
+        {
+          "cat": "RBI",
+          "edge": "team1",
+          "label": "Buckner edge (65%)"
+        },
+        {
+          "cat": "SB",
+          "edge": "team0",
+          "label": "Nick-fil-A edge (66%)"
+        },
+        {
+          "cat": "OBP",
+          "edge": "team1",
+          "label": "Buckner edge (80%)"
+        },
+        {
+          "cat": "K",
+          "edge": "team1",
+          "label": "Buckner slight edge (55%)"
+        },
+        {
+          "cat": "QS",
+          "edge": "team1",
+          "label": "Buckner lean (60%)"
+        },
+        {
+          "cat": "ERA",
+          "edge": "team1",
+          "label": "Buckner lean (60%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge": "team1",
+          "label": "Buckner slight edge (54%)"
+        },
+        {
+          "cat": "SV",
+          "edge": "team1",
+          "label": "Buckner edge (70%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6-4. Sim has them at 75% and 9 of 10 cats lean their way. Last week was a black-swan dud, not a roster regression. Nick-fil-A's SB advantage is real but not enough."
+    },
+    {
+      "team0_name": "Keanu Reeves",
+      "team1_name": "Ete Crow",
+      "team0_analysis": "Duke Joe just had his worst pitching week of the season (5.37 ERA, 1.39 WHIP). The rotation has six active SPs (Abbott, Williams, Rasmussen, Sánchez, Peralta, Fried), and Max Fried's 12 K, 0.00 ERA was the bright spot. The rest of the staff was a fire. The bullpen (Chapman, Fairbanks) is still league-best. Drake Baldwin's 2 HR, 8 R week was a return to form. Juan Soto on the bench with zero counting stats two weeks running is an obvious problem.",
+      "team1_analysis": "Jace lost 4-6 to OBT but his roster is genuinely strong now. Five active SPs (Ober, McLean, Luzardo, Boyd, Tolle) with Eury Pérez, Joe Ryan, Tyler Mahle, and Chase Dollander on the bench. Nine healthy SPs total. McLean's 17 K week was the league-best K total. Elly De La Cruz (3 HR, 8 RBI) and Vladimir Guerrero (1 HR, 4 RBI, 6 R) are putting up real lines. Pete Crow-Armstrong and Jakob Marsee give Ete the SB edge in this matchup.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge": "team0",
+          "label": "Keanu slight edge (53%)"
+        },
+        {
+          "cat": "HR",
+          "edge": "team0",
+          "label": "Keanu lean (55%)"
+        },
+        {
+          "cat": "RBI",
+          "edge": "team1",
+          "label": "Ete Crow slight edge (55%)"
+        },
+        {
+          "cat": "SB",
+          "edge": "team1",
+          "label": "Ete Crow edge (67%)"
+        },
+        {
+          "cat": "OBP",
+          "edge": "team0",
+          "label": "Keanu lean (59%)"
+        },
+        {
+          "cat": "K",
+          "edge": "team1",
+          "label": "Ete Crow slight edge (53%)"
+        },
+        {
+          "cat": "QS",
+          "edge": "team1",
+          "label": "Ete Crow slight edge (51%)"
+        },
+        {
+          "cat": "ERA",
+          "edge": "team0",
+          "label": "Keanu slight edge (53%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge": "team1",
+          "label": "Ete Crow slight edge (52%)"
+        },
+        {
+          "cat": "SV",
+          "edge": "team0",
+          "label": "Keanu lean (63%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 6-4. Sim says 53% and expected score is 5.0-5.0, but Keanu's bullpen advantage and OBP edge tip the balance. Ete has SB and the K race to play with. This is the closest matchup of the week."
+    },
+    {
+      "team0_name": "Rain City Bombers",
+      "team1_name": "Allahu Alvarez",
+      "team0_analysis": "Taylor finally got the offense to match the rotation last week (40 RBI, Michael Harris II 11 RBI) and won 7-3. The active rotation is four-deep (Skenes, deGrom, Lugo, Imanaga) with Zack Wheeler, Bryce Elder, and the Nick Martinez waiver-add on the bench. Lindor (IL10) and Yelich (IL10) are out. The rotation will lap most teams in K and QS. The sim has Rain City at 72% in K and 58% in QS. The lineup is still the soft spot and the closer situation is shaky against a Muñoz/Domínguez/Varland trio.",
+      "team1_analysis": "Allahu was 7-1-1 all-play last week despite a 2-7 H2H loss to Ragans. The lineup hits hard. Christian Walker (3 HR, .440 OBP), Max Muncy (3 HR, .583 OBP), Yordan Alvarez, Bobby Witt Jr., Ian Happ. Active rotation is just two SPs (Arrighetti, Ranger Suarez) with five healthy options on the bench (Gausman, Bibee, Soroka, Gilbert, plus Pivetta on IL15 and Steele on IL60). The bullpen is elite (Muñoz, Domínguez, Varland, Pagán). League-best save total last week.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge": "team1",
+          "label": "Allahu Alvarez edge (65%)"
+        },
+        {
+          "cat": "HR",
+          "edge": "team1",
+          "label": "Allahu Alvarez edge (68%)"
+        },
+        {
+          "cat": "RBI",
+          "edge": "team1",
+          "label": "Allahu Alvarez edge (65%)"
+        },
+        {
+          "cat": "SB",
+          "edge": "team1",
+          "label": "Allahu Alvarez edge (68%)"
+        },
+        {
+          "cat": "OBP",
+          "edge": "team1",
+          "label": "Allahu Alvarez lean (59%)"
+        },
+        {
+          "cat": "K",
+          "edge": "team0",
+          "label": "Rain City edge (72%)"
+        },
+        {
+          "cat": "QS",
+          "edge": "team0",
+          "label": "Rain City lean (58%)"
+        },
+        {
+          "cat": "ERA",
+          "edge": "team0",
+          "label": "Rain City slight edge (51%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge": "team0",
+          "label": "Rain City slight edge (53%)"
+        },
+        {
+          "cat": "SV",
+          "edge": "team1",
+          "label": "Allahu Alvarez edge (80%)"
+        }
+      ],
+      "prediction": "Allahu Alvarez 6-4. Sim has them at 69%. Rain City wins K, QS, and ratio cats but Allahu's offense and bullpen take the other six. Skenes and deGrom can only do so much when Manny Machado is the only bat going."
+    }
+  ]
+}
