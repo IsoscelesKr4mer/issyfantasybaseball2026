@@ -1,0 +1,107 @@
+{
+  "week": 7,
+  "storylines": [
+    "<p><strong>Sonny vs Nick-fil-A is the matchup of the season so far.</strong> The new #1 in the standings against the team that has been parked in the contender tier all year. Sim gives Sonny an 88% nuke. The lineup that just went 6&ndash;3 on Hey Holmes! gets to feast on a Nick-fil-A roster that's missing Cole, Glasnow, and Helsley simultaneously. Mario&#x2019;s pitching depth was the calling card; now half of it is on the shelf. If Nick-fil-A loses this 6&ndash;4 or worse, the gap between #1 and the chasing pack opens for real.</p>",
+    "<p><strong>The sim doesn&#x2019;t believe in One Ball Two Strikes yet.</strong> Garth just delivered a 9&ndash;1 sweep of Busch with the highest single-week QS total of the year. Sim response: still a 19% dog against Allahu. Skubal IL stings, but OBT&#x2019;s rotation also runs Yamamoto, Alcantara, Rod&oacute;n, plus Burns, Yesavage, and Foster Griffin behind them. The model wants more evidence. Garth&#x2019;s job is to provide it. Two straight beatings of a sim favorite would make him impossible to argue with.</p>",
+    "<p><strong>Ete Crow gets the regression test.</strong> Jace just put up the most complete week of the season: 61 cat wins, 9&ndash;0 all-play, top of the league in five categories. Sim immediately downgrades him to a 34% underdog against Busch Latte, who went 0&ndash;9 all-play with the worst HR/SB output in the league. The model thinks Busch&#x2019;s roster is still the better one. Jace&#x2019;s job is to make the model look stupid. Hot lineups don&#x2019;t politely cool just because regression said so.</p>",
+    "<p><strong>Buckner&#x2019;s rotation runs into the buzzsaw.</strong> The Buckner Boots have Logan Webb on IL, Framber Valdez suspended, Taj Bradley on IL, and a Week 6 line that already showed 6 HR / 25 RBI from the lineup. They tied Nick-fil-A on the strength of a 2.11 ERA. Now they get Keanu Reeves, who has Sánchez, Abbott, Williams, plus Max Fried and Freddy Peralta lying in wait on bench. Sim gives Keanu the K cat at 100% and QS at 78%. If Michael loses K 8&ndash;2, the ratios won&#x2019;t save him this time.</p>",
+    "<p><strong>Hey Holmes! gets the schedule the standings deserved.</strong> Sitting last in the league at 23&ndash;43&ndash;4 and drawing Rain City, who is one tick above and finally has a lineup that doesn&#x2019;t quit when the rotation goes off. Rain City has injuries piling up (Lindor, Yelich, Roman Anthony, Correa), but the Skenes/deGrom/Imanaga rotation gives them a floor Hey Holmes! doesn&#x2019;t have. Sim says 23%. Closer to a 50% if Bryce Harper finds the swing.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_name": "One Ball Two Strikes",
+      "team1_name": "Allahu Alvarez",
+      "team0_analysis": "OBT comes in off a 9&ndash;1 beatdown of Busch with a league-tying 12 HR and 7 QS. Skubal is on the IL alongside Eovaldi (DTD) and Pe&ntilde;a, but the rotation still runs Yamamoto, Alcantara, and Rod&oacute;n, with Burns, Yesavage, and Griffin available on bench. The 1.20 WHIP and 61 K from last week were not flukes. Garth has built the league&#x2019;s deepest rotation and the sim doesn&#x2019;t trust it.",
+      "team1_analysis": "Allahu went 5&ndash;5 against Rain City with league-best WHIP (0.96) and 4 SV. The lineup put up 36 R and a .367 OBP behind Witt, Walker, Muncy, and Freeman. With Pivetta, Steele, and Pag&aacute;n all on IL, the rotation now leans hard on Gilbert, Henderson, and a Bibee/Suarez/Gausman rotation off the bench. Closer depth (Mu&ntilde;oz / Dom&iacute;nguez) is the calling card. Sim says they steamroll OBT 6&ndash;4. This will not be that.",
+      "cat_edges": [
+        {"cats": "R",    "edge": 1, "label": "Allahu edge (83%)"},
+        {"cats": "HR",   "edge": 1, "label": "Allahu edge (70%)"},
+        {"cats": "RBI",  "edge": 1, "label": "Allahu edge (78%)"},
+        {"cats": "SB",   "edge": 1, "label": "Allahu edge (77%)"},
+        {"cats": "OBP",  "edge": 1, "label": "Allahu lean (64%)"},
+        {"cats": "K",    "edge": 0, "label": "OBT edge (65%)"},
+        {"cats": "QS",   "edge": 0, "label": "OBT slight edge (55%)"},
+        {"cats": "ERA",  "edge": 1, "label": "Allahu slight edge (52%)"},
+        {"cats": "WHIP", "edge": 1, "label": "Allahu slight edge (51%)"},
+        {"cats": "SV",   "edge": 1, "label": "Allahu edge (71%)"}
+      ],
+      "prediction": "Allahu Alvarez 6-4. Sim says 81%, but OBT just punched a sim favorite in the mouth and Allahu&#x2019;s lineup edges narrow when the rotation runs four-deep. Worth a small upset hedge."
+    },
+    {
+      "team0_name": "It’s Always Sonny",
+      "team1_name": "Nick-fil-A",
+      "team0_analysis": "Sonny is the league&#x2019;s best team right now. 38&ndash;17&ndash;5 cumulative, top of the cumulative power rankings, three straight winning weeks. The lineup runs Judge, Trea Turner, Austin Riley, McGonigle, plus the Moniak pickup that delivered last week. Ohtani, Schlittler, King, Roupp, and Ashcraft headline the rotation with Castillo, Mitch Keller, Sheehan, and Sonny Gray on bench. Ragans and Woodruff are IL stashes. The roster has no holes.",
+      "team1_analysis": "Nick-fil-A is in trouble. Cole, Glasnow, and Helsley all hit the IL in the same window, gutting both the rotation and the closer depth at the same time. The 6 HR week was an anomaly for a power roster built on Caminero, Wood, and Caglianone. Bubba Chandler, Davis Martin, Wrobleski, and an Eduardo Rodriguez pickup hold the rotation together. Snell and Robbie Ray on bench. The 4 SV last week saved a tie that should have been a loss.",
+      "cat_edges": [
+        {"cats": "R",    "edge": 0, "label": "Sonny edge (89%)"},
+        {"cats": "HR",   "edge": 0, "label": "Sonny edge (74%)"},
+        {"cats": "RBI",  "edge": 0, "label": "Sonny edge (85%)"},
+        {"cats": "SB",   "edge": 0, "label": "Sonny lean (64%)"},
+        {"cats": "OBP",  "edge": 0, "label": "Sonny edge (66%)"},
+        {"cats": "K",    "edge": 1, "label": "Nick-fil-A lean (64%)"},
+        {"cats": "QS",   "edge": 1, "label": "Nick-fil-A lean (61%)"},
+        {"cats": "ERA",  "edge": 0, "label": "Sonny edge (66%)"},
+        {"cats": "WHIP", "edge": 0, "label": "Sonny lean (61%)"},
+        {"cats": "SV",   "edge": 0, "label": "Sonny edge (80%)"}
+      ],
+      "prediction": "It&#x2019;s Always Sonny 7-3. Sim says 88% and the categories back it. Nick-fil-A&#x2019;s only real edges are K and QS. TylerV runs everything else."
+    },
+    {
+      "team0_name": "Hey Holmes!",
+      "team1_name": "Rain City Bombers",
+      "team0_analysis": "Hey Holmes! lost 6&ndash;3 to Sonny on a 3.86 ERA and 1.25 WHIP. The pitching was fine; the bats weren&#x2019;t. Bryce Harper, Pete Alonso, Dansby Swanson, and Jose Altuve fill the lineup with Brent Rooker and Chandler Simpson at the corners. Crochet on IL hurts, but Taillon, Cameron, MacKenzie Gore, Clay Holmes, plus Dustin May and a Dylan Cease bench is real rotation depth. Lowest team in the standings; not the lowest-talent.",
+      "team1_analysis": "Rain City just tied Allahu on a league-best 2.07 ERA and a 7 QS week. Skenes, deGrom, Imanaga, and Nick Martinez are the rotation; Max Meyer, Lugo, Wheeler, and Lodolo are the bench. The catch: Lindor, Yelich, Roman Anthony, and Correa are all on the IL right now. The lineup that put up 22 R last week is missing four real bats. Sim still gives them a 77% win shot on rotation alone.",
+      "cat_edges": [
+        {"cats": "R",    "edge": 1, "label": "Rain City edge (74%)"},
+        {"cats": "HR",   "edge": 1, "label": "Rain City slight edge (56%)"},
+        {"cats": "RBI",  "edge": 1, "label": "Rain City lean (63%)"},
+        {"cats": "SB",   "edge": 1, "label": "Rain City lean (69%)"},
+        {"cats": "OBP",  "edge": 1, "label": "Rain City lean (61%)"},
+        {"cats": "K",    "edge": 0, "label": "Hey Holmes! slight edge (51%)"},
+        {"cats": "QS",   "edge": 1, "label": "Rain City lean (61%)"},
+        {"cats": "ERA",  "edge": 0, "label": "Hey Holmes! slight edge (55%)"},
+        {"cats": "WHIP", "edge": 1, "label": "Rain City lean (64%)"},
+        {"cats": "SV",   "edge": 1, "label": "Rain City lean (67%)"}
+      ],
+      "prediction": "Rain City Bombers 7-3. Sim says 77% on the rotation. With four Rain City bats on the IL, this could narrow, but Skenes / deGrom in the same week is too much for Hey&#x2019;s lineup to hang with."
+    },
+    {
+      "team0_name": "Keanu Reeves",
+      "team1_name": "The Buckner Boots",
+      "team0_analysis": "Keanu is coming off a 2&ndash;8 loss to Ete Crow that bumped him out of the cumulative #1 spot. The rotation runs Wacha, S&aacute;nchez, Abbott, Gavin Williams, and Luis Severino with Edward Cabrera, Max Fried, Freddy Peralta, and Drew Rasmussen on bench. That is eight startable arms even with Luis Robert Jr. on IL. The 7 SB was the only category they won last week. The pitching depth is real; the SP variance has been the problem.",
+      "team1_analysis": "Buckner tied Nick-fil-A 4&ndash;4 on the strength of a 2.11 ERA, 1.01 WHIP, and 72 K. Tucker, Bregman, CJ Abrams, and Jasson Dom&iacute;nguez lead the lineup. The rotation is in rough shape: Logan Webb on IL, Framber Valdez suspended, Taj Bradley on IL. Chris Sale, Parker Messick, Hancock, Schultz, and Trevor Rogers are what&#x2019;s left. Sim gives Keanu the K cat 100%. That tells you how thin the Buckner staff has gotten.",
+      "cat_edges": [
+        {"cats": "R",    "edge": -1, "label": "Even"},
+        {"cats": "HR",   "edge": -1, "label": "Even"},
+        {"cats": "RBI",  "edge": 1, "label": "Buckner slight edge (57%)"},
+        {"cats": "SB",   "edge": 0, "label": "Keanu lean (66%)"},
+        {"cats": "OBP",  "edge": 1, "label": "Buckner lean (63%)"},
+        {"cats": "K",    "edge": 0, "label": "Keanu edge (100%)"},
+        {"cats": "QS",   "edge": 0, "label": "Keanu edge (78%)"},
+        {"cats": "ERA",  "edge": 1, "label": "Buckner slight edge (57%)"},
+        {"cats": "WHIP", "edge": 1, "label": "Buckner slight edge (55%)"},
+        {"cats": "SV",   "edge": 1, "label": "Buckner edge (79%)"}
+      ],
+      "prediction": "Keanu Reeves 6-4. Sim has it 56% and 5.3-4.7. Duke Joe wins K and QS in landslides and Buckner&#x2019;s lineup edge isn&#x2019;t enough to bury him. Close, but Keanu has too many starts."
+    },
+    {
+      "team0_name": "Ete Crow",
+      "team1_name": "Busch Latte",
+      "team0_analysis": "Ete Crow just delivered the most complete week of the season: 9&ndash;0 all-play, 61 cat wins, league lead in R/HR/RBI/OBP/K. The Dollander pickup is paying off and Luzardo is anchoring the staff. Joe Ryan, Tyler Mahle, Dollander, Luzardo, and Payton Tolle headline the rotation; Nolan McLean, Bailey Ober, and Eury P&eacute;rez sit on bench. Boyd is IL, Hader is 60-day IL, the closer slot is thin (Tanner Scott&#x2019;s ramp-up is the only saving grace).",
+      "team1_analysis": "Busch went 0&ndash;9 all-play last week with the worst HR and SB outputs in the league. Sim still likes them: Suzuki, Bogaerts, Sal Stewart, Jazz Chisholm Jr., Luke Keaschall, and Michael Busch are a healthy lineup, and the rotation has Kirby, Soriano, Bubic, Kyle Harrison, Strider, and Misiorowski (with Imai, Brown, and Bryce Miller all on IL). That&#x2019;s a 6-deep starting staff Rose has not used all year. Closer depth (Sewald, De Los Santos) is the soft spot.",
+      "cat_edges": [
+        {"cats": "R",    "edge": 1, "label": "Busch lean (66%)"},
+        {"cats": "HR",   "edge": 1, "label": "Busch slight edge (57%)"},
+        {"cats": "RBI",  "edge": 0, "label": "Ete Crow slight edge (52%)"},
+        {"cats": "SB",   "edge": 1, "label": "Busch lean (69%)"},
+        {"cats": "OBP",  "edge": 1, "label": "Busch edge (70%)"},
+        {"cats": "K",    "edge": 0, "label": "Ete Crow slight edge (51%)"},
+        {"cats": "QS",   "edge": 1, "label": "Busch lean (59%)"},
+        {"cats": "ERA",  "edge": 1, "label": "Busch slight edge (51%)"},
+        {"cats": "WHIP", "edge": 0, "label": "Ete Crow slight edge (53%)"},
+        {"cats": "SV",   "edge": 1, "label": "Busch slight edge (57%)"}
+      ],
+      "prediction": "Busch Latte 6-4. Sim has it 66% Busch. Hot rosters don&#x2019;t regress on command, but Busch&#x2019;s talent is real and Ete Crow won&#x2019;t lead the league in five categories twice in a row."
+    }
+  ]
+}
