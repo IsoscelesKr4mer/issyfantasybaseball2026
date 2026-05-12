@@ -1,6 +1,6 @@
 {
   "last_updated_week": 7,
-  "weeks_played": 6,
+  "weeks_played": 7,
   "methodology": "Standard 10-category rotisserie scoring. Each category is ranked 1-10 across the league \u2014 best in category gets 10 points, worst gets 1, ties share the average of their tied positions. For ERA and WHIP the order is inverted (lower is better). Counting stats (R, HR, RBI, SB, K, QS, SV) are summed across every completed week. Rate stats (OBP, ERA, WHIP) are the average of each team's weekly rate values. Not weighted by at-bats or innings, because your league doesn't actually play roto. This whole page is a hypothetical.",
   "history_by_team": {
     "469.l.61583.t.1": {
@@ -93,6 +93,21 @@
             "K": "68",
             "ERA": "3.64",
             "WHIP": "1.12",
+            "QS": "5"
+          }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "44",
+            "HR": "9",
+            "RBI": "34",
+            "SB": "6",
+            "OBP": ".357",
+            "SV": "2",
+            "K": "57",
+            "ERA": "3.92",
+            "WHIP": "1.11",
             "QS": "5"
           }
         }
@@ -190,6 +205,21 @@
             "WHIP": "1.36",
             "QS": "2"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "29",
+            "HR": "8",
+            "RBI": "21",
+            "SB": "1",
+            "OBP": ".285",
+            "SV": "3",
+            "K": "50",
+            "ERA": "4.42",
+            "WHIP": "1.42",
+            "QS": "4"
+          }
         }
       ]
     },
@@ -285,6 +315,21 @@
             "WHIP": "1.03",
             "QS": "5"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "42",
+            "HR": "12",
+            "RBI": "28",
+            "SB": "11",
+            "OBP": ".364",
+            "SV": "1",
+            "K": "82",
+            "ERA": "2.60",
+            "WHIP": "0.97",
+            "QS": "6"
+          }
         }
       ]
     },
@@ -378,6 +423,21 @@
             "K": "81",
             "ERA": "3.23",
             "WHIP": "1.12",
+            "QS": "5"
+          }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "27",
+            "HR": "9",
+            "RBI": "40",
+            "SB": "2",
+            "OBP": ".344",
+            "SV": "2",
+            "K": "59",
+            "ERA": "4.33",
+            "WHIP": "1.26",
             "QS": "5"
           }
         }
@@ -475,6 +535,21 @@
             "WHIP": "1.15",
             "QS": "6"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "36",
+            "HR": "14",
+            "RBI": "34",
+            "SB": "6",
+            "OBP": ".342",
+            "SV": "2",
+            "K": "61",
+            "ERA": "4.35",
+            "WHIP": "1.29",
+            "QS": "5"
+          }
         }
       ]
     },
@@ -569,6 +644,21 @@
             "ERA": "4.68",
             "WHIP": "1.21",
             "QS": "3"
+          }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "37",
+            "HR": "8",
+            "RBI": "37",
+            "SB": "5",
+            "OBP": ".317",
+            "SV": "3",
+            "K": "66",
+            "ERA": "3.68",
+            "WHIP": "1.20",
+            "QS": "4"
           }
         }
       ]
@@ -665,6 +755,21 @@
             "WHIP": "1.36",
             "QS": "3"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "33",
+            "HR": "7",
+            "RBI": "29",
+            "SB": "4",
+            "OBP": ".280",
+            "SV": "4",
+            "K": "65",
+            "ERA": "3.66",
+            "WHIP": "1.36",
+            "QS": "5"
+          }
         }
       ]
     },
@@ -758,6 +863,21 @@
             "K": "54",
             "ERA": "4.34",
             "WHIP": "1.24",
+            "QS": "4"
+          }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "36",
+            "HR": "13",
+            "RBI": "39",
+            "SB": "11",
+            "OBP": ".326",
+            "SV": "1",
+            "K": "38",
+            "ERA": "5.58",
+            "WHIP": "1.51",
             "QS": "4"
           }
         }
@@ -855,6 +975,21 @@
             "WHIP": "1.26",
             "QS": "7"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "36",
+            "HR": "9",
+            "RBI": "25",
+            "SB": "8",
+            "OBP": ".350",
+            "SV": "4",
+            "K": "55",
+            "ERA": "5.37",
+            "WHIP": "1.39",
+            "QS": "3"
+          }
         }
       ]
     },
@@ -950,6 +1085,21 @@
             "WHIP": "1.15",
             "QS": "3"
           }
+        },
+        {
+          "week": 5,
+          "cats": {
+            "R": "37",
+            "HR": "12",
+            "RBI": "37",
+            "SB": "6",
+            "OBP": ".359",
+            "SV": "6",
+            "K": "46",
+            "ERA": "3.71",
+            "WHIP": "1.26",
+            "QS": "3"
+          }
         }
       ]
     }
@@ -959,331 +1109,331 @@
       "team_key": "469.l.61583.t.1",
       "name": "One Ball Two Strikes",
       "totals": {
-        "K": 336.0,
-        "QS": 28.0,
-        "HR": 58.0,
-        "R": 220.0,
-        "RBI": 177.0,
-        "SV": 17.0,
-        "SB": 39.0,
-        "ERA": 3.378,
-        "OBP": 0.351,
-        "WHIP": 1.217
+        "RBI": 211.0,
+        "HR": 67.0,
+        "SV": 19.0,
+        "QS": 33.0,
+        "K": 393.0,
+        "R": 264.0,
+        "SB": 45.0,
+        "ERA": 3.456,
+        "WHIP": 1.201,
+        "OBP": 0.352
       },
       "roto_points": {
         "R": 10.0,
         "HR": 9.0,
-        "RBI": 7.0,
-        "SB": 10.0,
-        "OBP": 10.0,
+        "RBI": 8.0,
+        "SB": 9.0,
+        "OBP": 9.5,
         "K": 3.0,
-        "QS": 8.5,
+        "QS": 9.0,
         "SV": 8.0,
-        "ERA": 7.0,
-        "WHIP": 6.0
+        "ERA": 8.0,
+        "WHIP": 8.0
       },
-      "total_points": 78.5,
+      "total_points": 81.5,
       "rank": 1,
       "prev_rank": 1,
       "delta": 0,
-      "analysis": "Roto flatters Garth more than any other team. He jumps one spot over Nick-fil-A here because this format rewards the balanced counting-stat roster he built: 10 in R, 9 in SB, 9 in SV, 8.5 in HR. The ratio cats hold him back (5 in ERA, 5 in WHIP, 2 in K). In a league that doesn't exist, he is a contender."
-    },
-    {
-      "team_key": "469.l.61583.t.5",
-      "name": "Keanu Reeves",
-      "totals": {
-        "K": 426.0,
-        "QS": 28.0,
-        "HR": 64.0,
-        "R": 195.0,
-        "RBI": 195.0,
-        "SV": 9.0,
-        "SB": 29.0,
-        "ERA": 3.323,
-        "OBP": 0.336,
-        "WHIP": 1.213
-      },
-      "roto_points": {
-        "R": 9.0,
-        "HR": 10.0,
-        "RBI": 10.0,
-        "SB": 4.0,
-        "OBP": 6.0,
-        "K": 10.0,
-        "QS": 8.5,
-        "SV": 1.0,
-        "ERA": 8.5,
-        "WHIP": 8.0
-      },
-      "total_points": 75.0,
-      "rank": 2,
-      "prev_rank": 2,
-      "delta": 0,
-      "analysis": "First place in pretend roto, first place in actual H2H. 10 points in K, 10 in ERA, 9.5 in RBI, 9 in WHIP. Duke Joe scores in the top three of seven out of ten categories. The only weakness is SV (3.0 points) and that is a bullpen depth issue, not a real one. None of this matters because you play H2H. He is still beating you."
+      "analysis": "Top of the roto standings, finally caught up to the H2H heat. League-best R (264) and 9 or better in eight of ten categories. Garth&#x2019;s only weakness is K (3.0 points, 393 cumulative \u2014 Skubal IL has cost him the rotation ceiling). The deepest counting-stat profile in the league. Three straight weeks of H2H wins puts the cumulative case beyond argument."
     },
     {
       "team_key": "469.l.61583.t.2",
       "name": "It\u2019s Always Sonny",
       "totals": {
-        "K": 372.0,
-        "QS": 26.0,
-        "HR": 49.0,
-        "R": 190.0,
-        "RBI": 169.0,
-        "SV": 16.0,
-        "SB": 35.0,
-        "ERA": 3.558,
-        "OBP": 0.341,
-        "WHIP": 1.215
+        "RBI": 197.0,
+        "HR": 61.0,
+        "SV": 17.0,
+        "QS": 32.0,
+        "K": 454.0,
+        "R": 232.0,
+        "SB": 46.0,
+        "ERA": 3.421,
+        "WHIP": 1.18,
+        "OBP": 0.344
       },
       "roto_points": {
-        "R": 6.0,
-        "HR": 5.5,
-        "RBI": 6.0,
-        "SB": 8.0,
+        "R": 9.0,
+        "HR": 7.0,
+        "RBI": 4.0,
+        "SB": 10.0,
         "OBP": 8.0,
-        "K": 8.0,
-        "QS": 6.0,
+        "K": 9.0,
+        "QS": 7.5,
         "SV": 7.0,
-        "ERA": 4.0,
-        "WHIP": 7.0
+        "ERA": 9.0,
+        "WHIP": 10.0
       },
-      "total_points": 65.5,
-      "rank": 3,
-      "prev_rank": 4,
+      "total_points": 80.5,
+      "rank": 2,
+      "prev_rank": 3,
       "delta": 1,
-      "analysis": "Middle of the roto table, middle of the actual table. 8s in OBP and QS, 7s in R and WHIP, not much higher anywhere. TylerV has a good rotation and a decent lineup and nothing that screams category leader. If you are looking for the 'most typical' team in either format, this is it."
+      "analysis": "Just behind OBT in the roto and tied with them at the top of the H2H. Sonny leads the league in WHIP (1.18) and SB (46), with 9s in R, K, and ERA. The Tatis Jr. trade adds another counting-stat bat. The pre-trade roster was already balanced; the new one is more balanced. 1-point gap to #1 is the closest race on the page."
+    },
+    {
+      "team_key": "469.l.61583.t.5",
+      "name": "Keanu Reeves",
+      "totals": {
+        "RBI": 220.0,
+        "HR": 73.0,
+        "SV": 13.0,
+        "QS": 31.0,
+        "K": 481.0,
+        "R": 231.0,
+        "SB": 37.0,
+        "ERA": 3.616,
+        "WHIP": 1.239,
+        "OBP": 0.338
+      },
+      "roto_points": {
+        "R": 8.0,
+        "HR": 10.0,
+        "RBI": 9.0,
+        "SB": 5.5,
+        "OBP": 6.5,
+        "K": 10.0,
+        "QS": 6.0,
+        "SV": 1.5,
+        "ERA": 7.0,
+        "WHIP": 5.5
+      },
+      "total_points": 69.0,
+      "rank": 3,
+      "prev_rank": 2,
+      "delta": -1,
+      "analysis": "League-best HR (73) and K (481). Duke Joe has the most pop and the most strikeouts. 9s in RBI and 7-7 in ERA / QS. The SV column (1.5 points, 13 cumulative) is the leak nobody else can match \u2014 Keanu has never invested in a true closer and roto exposes that. Strong rebound after the Week 6 swoon."
     },
     {
       "team_key": "469.l.61583.t.3",
       "name": "Nick-fil-A",
       "totals": {
-        "K": 369.0,
-        "QS": 27.0,
-        "HR": 46.0,
-        "R": 177.0,
-        "RBI": 148.0,
-        "SV": 24.0,
-        "SB": 30.0,
-        "ERA": 3.528,
-        "OBP": 0.337,
-        "WHIP": 1.163
+        "RBI": 182.0,
+        "HR": 60.0,
+        "SV": 26.0,
+        "QS": 32.0,
+        "K": 430.0,
+        "R": 213.0,
+        "SB": 36.0,
+        "ERA": 3.646,
+        "WHIP": 1.181,
+        "OBP": 0.338
       },
       "roto_points": {
         "R": 3.0,
-        "HR": 3.0,
-        "RBI": 2.0,
-        "SB": 5.0,
-        "OBP": 7.0,
+        "HR": 5.5,
+        "RBI": 1.0,
+        "SB": 4.0,
+        "OBP": 6.5,
         "K": 7.0,
-        "QS": 7.0,
+        "QS": 7.5,
         "SV": 10.0,
-        "ERA": 5.0,
-        "WHIP": 10.0
+        "ERA": 5.5,
+        "WHIP": 9.0
       },
       "total_points": 59.0,
       "rank": 4,
-      "prev_rank": 5,
-      "delta": 1,
-      "analysis": "Drops one spot vs H2H because roto exposes what H2H doesn't. Perfect 10 in SV and WHIP. But 1.5 in RBI and 3.5 in R are the kind of counting-stat holes that get weekly matchups but lose 25-week accumulations. Mario's team wins close H2H games. It would lose a long roto race to the power hitters."
-    },
-    {
-      "team_key": "469.l.61583.t.10",
-      "name": "The Buckner Boots",
-      "totals": {
-        "K": 359.0,
-        "QS": 31.0,
-        "HR": 52.0,
-        "R": 176.0,
-        "RBI": 181.0,
-        "SV": 13.0,
-        "SB": 17.0,
-        "ERA": 3.527,
-        "OBP": 0.334,
-        "WHIP": 1.208
-      },
-      "roto_points": {
-        "R": 2.0,
-        "HR": 7.5,
-        "RBI": 8.0,
-        "SB": 1.0,
-        "OBP": 3.5,
-        "K": 5.0,
-        "QS": 10.0,
-        "SV": 6.0,
-        "ERA": 6.0,
-        "WHIP": 9.0
-      },
-      "total_points": 58.0,
-      "rank": 5,
-      "prev_rank": 3,
-      "delta": -2,
-      "analysis": "Perfect 10 in HR (41) and QS (23), both best in the league by a margin. 10s and 9s across four of the pitching cats. The leaks are SB (14, worst 1.0 points) and SV (5, 1.5 points). If roto were the rules Michael would still be 2nd. Same place, different math."
+      "prev_rank": 4,
+      "delta": 0,
+      "analysis": "League-best SV (26) and 9 in WHIP (1.181). The pitching is in great shape \u2014 Cole, Glasnow, and Helsley all back from IL would push WHIP and ERA into the elite tier. The lineup ranking: 3 in R, 5.5 in HR, 1 in RBI. The counting bats are the gap to the top three."
     },
     {
       "team_key": "469.l.61583.t.9",
       "name": "Allahu Alvarez",
       "totals": {
-        "K": 324.0,
-        "QS": 17.0,
-        "HR": 52.0,
-        "R": 193.0,
-        "RBI": 166.0,
-        "SV": 18.0,
-        "SB": 31.0,
-        "ERA": 4.532,
-        "OBP": 0.35,
-        "WHIP": 1.257
+        "RBI": 203.0,
+        "HR": 64.0,
+        "SV": 24.0,
+        "QS": 20.0,
+        "K": 370.0,
+        "R": 230.0,
+        "SB": 37.0,
+        "ERA": 4.414,
+        "WHIP": 1.257,
+        "OBP": 0.352
       },
       "roto_points": {
-        "R": 7.5,
-        "HR": 7.5,
-        "RBI": 4.5,
-        "SB": 6.0,
-        "OBP": 9.0,
+        "R": 7.0,
+        "HR": 8.0,
+        "RBI": 7.0,
+        "SB": 5.5,
+        "OBP": 9.5,
         "K": 1.0,
-        "QS": 1.5,
+        "QS": 1.0,
         "SV": 9.0,
         "ERA": 3.0,
-        "WHIP": 3.0
+        "WHIP": 4.0
       },
-      "total_points": 52.0,
-      "rank": 6,
-      "prev_rank": 7,
+      "total_points": 55.0,
+      "rank": 5,
+      "prev_rank": 6,
       "delta": 1,
-      "analysis": "League leader in OBP (.359, a clean 10 points). Also: 1 point in ERA, 2 in WHIP. The lineup is real. The pitching staff is a gas station parking lot. TylerR is exactly the kind of roster where you want to trade bats for arms and you never actually do it."
+      "analysis": "9.5 in OBP (.352, tied with OBT for the league lead) and 9 in SV. The lineup hits with Walker, Yordan, Muncy, and Witt Jr. The rotation is a mess: 1 in K, 1 in QS, 3 in ERA, 4 in WHIP. With Pivetta, Steele, and Pag&aacute;n all on long-term IL, the staff is leaning on Gilbert and a thin bench. Big jump from #6 to #5 after week 5 was added back in."
     },
     {
       "team_key": "469.l.61583.t.6",
       "name": "Ete Crow",
       "totals": {
-        "K": 377.0,
-        "QS": 20.0,
-        "HR": 48.0,
-        "R": 189.0,
-        "RBI": 188.0,
-        "SV": 11.0,
-        "SB": 38.0,
-        "ERA": 4.63,
-        "OBP": 0.334,
-        "WHIP": 1.273
+        "RBI": 225.0,
+        "HR": 56.0,
+        "SV": 14.0,
+        "QS": 24.0,
+        "K": 443.0,
+        "R": 226.0,
+        "SB": 43.0,
+        "ERA": 4.494,
+        "WHIP": 1.263,
+        "OBP": 0.332
       },
       "roto_points": {
         "R": 5.0,
-        "HR": 4.0,
-        "RBI": 9.0,
-        "SB": 9.0,
-        "OBP": 3.5,
-        "K": 9.0,
+        "HR": 3.5,
+        "RBI": 10.0,
+        "SB": 7.0,
+        "OBP": 4.5,
+        "K": 8.0,
         "QS": 4.0,
-        "SV": 2.0,
+        "SV": 3.5,
         "ERA": 2.0,
-        "WHIP": 2.0
+        "WHIP": 3.0
       },
-      "total_points": 49.5,
+      "total_points": 50.5,
+      "rank": 6,
+      "prev_rank": 7,
+      "delta": 1,
+      "analysis": "League-best RBI (225) and 8 in K. Jace&#x2019;s lineup drives in runs at a rate no one else matches. The pitching is the problem: 2 in ERA, 3 in WHIP, 4 in QS, 3.5 in SV. Boyd IL and Hader 60-day pile up. The Dollander pickup is paying off in K but not yet in ratios. From #7 to #6 with the Week 5 inclusion."
+    },
+    {
+      "team_key": "469.l.61583.t.10",
+      "name": "The Buckner Boots",
+      "totals": {
+        "RBI": 202.0,
+        "HR": 60.0,
+        "SV": 16.0,
+        "QS": 35.0,
+        "K": 409.0,
+        "R": 205.0,
+        "SB": 18.0,
+        "ERA": 3.654,
+        "WHIP": 1.239,
+        "OBP": 0.327
+      },
+      "roto_points": {
+        "R": 2.0,
+        "HR": 5.5,
+        "RBI": 6.0,
+        "SB": 1.0,
+        "OBP": 1.5,
+        "K": 5.0,
+        "QS": 10.0,
+        "SV": 5.5,
+        "ERA": 4.0,
+        "WHIP": 5.5
+      },
+      "total_points": 46.0,
       "rank": 7,
-      "prev_rank": 6,
-      "delta": -1,
-      "analysis": "10 points in SB (27 stolen bases, best in the league by 6). 8 in K. And then the roster falls off a building: 1.5 in R, 1.5 in RBI, 1.5 in SV, 1 in OBP. Elly De La Cruz is carrying this roster by himself. The 2025 champion is bad at both the real format and the fake one."
+      "prev_rank": 5,
+      "delta": -2,
+      "analysis": "League-best QS (35) and decent ERA / WHIP at 4 / 5.5. The pitching is the foundation when it&#x2019;s healthy. Lineup ranking: 2 in R, 5.5 in HR, 6 in RBI, 1 in SB, 1.5 in OBP. Three straight weeks of bottom-tier H2H output (one tie, two 0&ndash;9 all-play weeks) dropped Buckner from #5 to #7 in the roto picture. The free fall is real."
     },
     {
       "team_key": "469.l.61583.t.8",
       "name": "Busch Latte",
       "totals": {
-        "K": 364.0,
-        "QS": 18.0,
-        "HR": 42.0,
-        "R": 193.0,
-        "RBI": 161.0,
-        "SV": 12.0,
-        "SB": 33.0,
-        "ERA": 3.323,
-        "OBP": 0.331,
-        "WHIP": 1.238
+        "RBI": 200.0,
+        "HR": 55.0,
+        "SV": 13.0,
+        "QS": 22.0,
+        "K": 402.0,
+        "R": 229.0,
+        "SB": 44.0,
+        "ERA": 3.646,
+        "WHIP": 1.277,
+        "OBP": 0.33
       },
       "roto_points": {
-        "R": 7.5,
+        "R": 6.0,
         "HR": 2.0,
-        "RBI": 3.0,
-        "SB": 7.0,
-        "OBP": 2.0,
-        "K": 6.0,
-        "QS": 3.0,
-        "SV": 4.0,
-        "ERA": 8.5,
-        "WHIP": 4.0
+        "RBI": 5.0,
+        "SB": 8.0,
+        "OBP": 3.0,
+        "K": 4.0,
+        "QS": 2.5,
+        "SV": 1.5,
+        "ERA": 5.5,
+        "WHIP": 2.0
       },
-      "total_points": 47.0,
+      "total_points": 39.5,
       "rank": 8,
       "prev_rank": 8,
       "delta": 0,
-      "analysis": "9 in K. 9 in ERA. That is Shohei Ohtani and whoever else is still throwing. Everywhere the injury list reaches: 3 in HR, 2.5 in OBP, 4 in RBI. If Brown, Strider, and Miller ever come off IL this number jumps. Rose is posting #6 roto points with a phantom rotation."
-    },
-    {
-      "team_key": "469.l.61583.t.4",
-      "name": "Hey Holmes!",
-      "totals": {
-        "K": 356.0,
-        "QS": 17.0,
-        "HR": 49.0,
-        "R": 184.0,
-        "RBI": 166.0,
-        "SV": 12.0,
-        "SB": 22.0,
-        "ERA": 4.698,
-        "OBP": 0.335,
-        "WHIP": 1.38
-      },
-      "roto_points": {
-        "R": 4.0,
-        "HR": 5.5,
-        "RBI": 4.5,
-        "SB": 2.5,
-        "OBP": 5.0,
-        "K": 4.0,
-        "QS": 1.5,
-        "SV": 4.0,
-        "ERA": 1.0,
-        "WHIP": 1.0
-      },
-      "total_points": 33.0,
-      "rank": 9,
-      "prev_rank": 9,
-      "delta": 0,
-      "analysis": "The cliff. 22 points behind #7. 1 point in QS, 1 in WHIP, 2 in SB, 2 in ERA. There is not a single category where Michael is competitive. Mookie Betts and Brent Rooker on the IL list all month sure helped. Good Vibes would finish last in any scoring format except the one where losing is the point."
+      "analysis": "Eighth in roto, tenth-and-rising in the H2H. League-best SB (44, tied with OBT) and 6 in R. The rotation is hollow because Strider, Hunter Brown, Bryce Miller, and Tatsuya Imai are all on the IL: 2.5 in QS, 1.5 in SV, 2 in WHIP, 5.5 in ERA. When the staff is healthy this number jumps a tier or two."
     },
     {
       "team_key": "469.l.61583.t.7",
       "name": "Rain City Bombers",
       "totals": {
-        "K": 333.0,
-        "QS": 21.0,
-        "HR": 35.0,
-        "R": 163.0,
-        "RBI": 147.0,
-        "SV": 12.0,
-        "SB": 22.0,
-        "ERA": 3.193,
-        "OBP": 0.33,
-        "WHIP": 1.22
+        "RBI": 187.0,
+        "HR": 44.0,
+        "SV": 14.0,
+        "QS": 26.0,
+        "K": 392.0,
+        "R": 190.0,
+        "SB": 24.0,
+        "ERA": 3.356,
+        "WHIP": 1.226,
+        "OBP": 0.332
       },
       "roto_points": {
         "R": 1.0,
         "HR": 1.0,
-        "RBI": 1.0,
-        "SB": 2.5,
-        "OBP": 1.0,
+        "RBI": 2.0,
+        "SB": 2.0,
+        "OBP": 4.5,
         "K": 2.0,
         "QS": 5.0,
-        "SV": 4.0,
+        "SV": 3.5,
         "ERA": 10.0,
-        "WHIP": 5.0
+        "WHIP": 7.0
       },
-      "total_points": 32.5,
-      "rank": 10,
+      "total_points": 38.0,
+      "rank": 9,
       "prev_rank": 10,
-      "delta": 0,
-      "analysis": "27 roto points. In ten categories. Dead last in R, HR, and K with 1-point finishes. The pitching ratios are actually fine (6 ERA, 3 WHIP) because Skenes and deGrom are pitching like aces. The problem is everything else. Taylor is losing in H2H, losing in roto, and presumably losing at cribbage."
+      "delta": 1,
+      "analysis": "League-best ERA (3.356, a clean 10 points) and 7 in WHIP behind the Skenes / deGrom / Imanaga / Wheeler rotation. The bats are the problem: 1 in R, 1 in HR, 2 in RBI. Lindor, Yelich, Roman Anthony, and Correa simultaneously on IL has gutted the lineup for a month. Trout from the trade helps. The pitching is contender-level."
+    },
+    {
+      "team_key": "469.l.61583.t.4",
+      "name": "Hey Holmes!",
+      "totals": {
+        "RBI": 195.0,
+        "HR": 56.0,
+        "SV": 16.0,
+        "QS": 22.0,
+        "K": 421.0,
+        "R": 217.0,
+        "SB": 26.0,
+        "ERA": 4.55,
+        "WHIP": 1.377,
+        "OBP": 0.327
+      },
+      "roto_points": {
+        "R": 4.0,
+        "HR": 3.5,
+        "RBI": 3.0,
+        "SB": 3.0,
+        "OBP": 1.5,
+        "K": 6.0,
+        "QS": 2.5,
+        "SV": 5.5,
+        "ERA": 1.0,
+        "WHIP": 1.0
+      },
+      "total_points": 31.0,
+      "rank": 10,
+      "prev_rank": 9,
+      "delta": -1,
+      "analysis": "31 roto points. Last by 7. 1 in ERA, 1 in WHIP, 1.5 in OBP, 1.5 in QS. The only categories at 5+ are K (6) and SV (5.5). Mookie Betts, Eugenio Su&aacute;rez, and Garrett Crochet IL stints all season have eaten the ceiling. Roto rewards full seasons of consistent production. Hey Holmes! has had neither."
     }
   ],
   "weekly_snapshots": [
@@ -1544,6 +1694,71 @@
           "team_key": "469.l.61583.t.7",
           "name": "Rain City Bombers",
           "total_points": 27.0
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "rankings": [
+        {
+          "rank": 1,
+          "team_key": "469.l.61583.t.2",
+          "name": "It\u2019s Always Sonny",
+          "total_points": 77.0
+        },
+        {
+          "rank": 2,
+          "team_key": "469.l.61583.t.5",
+          "name": "Keanu Reeves",
+          "total_points": 70.5
+        },
+        {
+          "rank": 3,
+          "team_key": "469.l.61583.t.1",
+          "name": "One Ball Two Strikes",
+          "total_points": 69.5
+        },
+        {
+          "rank": 4,
+          "team_key": "469.l.61583.t.3",
+          "name": "Nick-fil-A",
+          "total_points": 64.5
+        },
+        {
+          "rank": 5,
+          "team_key": "469.l.61583.t.9",
+          "name": "Allahu Alvarez",
+          "total_points": 59.5
+        },
+        {
+          "rank": 6,
+          "team_key": "469.l.61583.t.10",
+          "name": "The Buckner Boots",
+          "total_points": 58.0
+        },
+        {
+          "rank": 7,
+          "team_key": "469.l.61583.t.8",
+          "name": "Busch Latte",
+          "total_points": 52.0
+        },
+        {
+          "rank": 8,
+          "team_key": "469.l.61583.t.6",
+          "name": "Ete Crow",
+          "total_points": 40.0
+        },
+        {
+          "rank": 9,
+          "team_key": "469.l.61583.t.4",
+          "name": "Hey Holmes!",
+          "total_points": 31.5
+        },
+        {
+          "rank": 10,
+          "team_key": "469.l.61583.t.7",
+          "name": "Rain City Bombers",
+          "total_points": 27.5
         }
       ]
     },
