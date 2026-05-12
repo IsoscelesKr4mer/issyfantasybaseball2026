@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).parent.parent
 TEAM_HEADSHOTS = {
     'One Ball Two Strikes':       'img/headshots/one-ball.png',
     'The Ragans Administration':  'img/headshots/ragans.jpeg',
+    'It’s Always Sonny':     'img/headshots/ragans.jpeg',
     'Ray Donovan':                      'img/headshots/decoy.jpeg',
     'Nick-fil-A':                       'img/headshots/decoy.jpeg',
     'Good Vibes Only':            'img/headshots/good-vibes.jpeg',
+    'Hey Holmes!':                'img/headshots/good-vibes.jpeg',
     'Keanu Reeves':               'img/headshots/keanu.jpeg',
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',
     'Rain City Bombers':          'img/headshots/rain-city.jpeg',
@@ -44,13 +46,16 @@ def headshot_img(team_name: str, size_class: str = '') -> str:
 SHORT_NAMES = {
     'One Ball Two Strikes': 'One Ball',
     'The Ragans Administration': 'Ragans',
+    'It’s Always Sonny': 'Sonny',
     'The Buckner Boots': 'Buckner',
     'Good Vibes Only': 'GVO',
+    'Hey Holmes!': 'Hey',
     'Rain City Bombers': 'Rain City',
     'Busch Latte': 'Busch',
     'Keanu Reeves': 'Keanu',
     'Ete Crow': 'Ete Crow',
     'Ray Donovan': 'Donovan',
+    'Nick-fil-A': 'Nick',
     'Allahu Alvarez': 'Alvarez',
 }
 
