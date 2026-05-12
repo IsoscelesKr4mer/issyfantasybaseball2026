@@ -256,8 +256,10 @@ TEAM_META = {
     'Busch Latte':                  {'2025_rank': 7,  'draft_slot': 1,  'img': 'busch-latte.jpg'},
     'Allahu Alvarez':    {'2025_rank': 10, 'draft_slot': 2,  'img': 'skenes.jpeg'},
     'The Ragans Administration':    {'2025_rank': 3,  'draft_slot': 3,  'img': 'ragans.jpeg'},
+    'It’s Always Sonny':       {'2025_rank': 3,  'draft_slot': 3,  'img': 'ragans.jpeg'},
     'Keanu Reeves':                 {'2025_rank': 6,  'draft_slot': 5,  'img': 'keanu.jpeg'},
     'Good Vibes Only':              {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.jpeg'},
+    'Hey Holmes!':                  {'2025_rank': 4,  'draft_slot': 6,  'img': 'good-vibes.jpeg'},
     'Rain City Bombers':            {'2025_rank': 9,  'draft_slot': 7,  'img': 'rain-city.jpeg'},
     'The Buckner Boots':            {'2025_rank': 8,  'draft_slot': 8,  'img': 'buckner.jpeg'},
     'Ray Donovan':                        {'2025_rank': 5,  'draft_slot': 9,  'img': 'decoy.jpeg'},
@@ -1354,7 +1356,7 @@ def fetch_week_data(api: YahooFantasyAPI, week: int) -> dict:
             info['record'] = f"{s.get('wins',0)}-{s.get('losses',0)}-{s.get('ties',0)}"
             info['meta']   = TEAM_META.get(t['name'], {})
             return info
-        matchups_data.append({'t0': enrich(t0_raw), 't1': enrich(t1_raw)})
+        matchups_data.append({'t0': enrich(t0_raw), 't1': enrich(t1_raw), 'status': m.get('status', '')})
 
     # ── Monte Carlo simulation ─────────────────────────────────────────────────
     print(f'  Running Monte Carlo simulations ({monte_carlo.N_SIMS:,} runs/matchup)...')
