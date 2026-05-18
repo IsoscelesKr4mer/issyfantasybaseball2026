@@ -1,0 +1,339 @@
+{
+  "week": 8,
+  "matchup_results": [
+    {
+      "t0_name": "One Ball Two Strikes",
+      "t1_name": "Hey Holmes!",
+      "t0_cats": {
+        "R": 23,
+        "HR": 7,
+        "RBI": 28,
+        "SB": 8,
+        "OBP": ".322",
+        "SV": 1,
+        "K": 72,
+        "ERA": "4.71",
+        "WHIP": "1.17",
+        "QS": 5
+      },
+      "t1_cats": {
+        "R": 31,
+        "HR": 11,
+        "RBI": 32,
+        "SB": 6,
+        "OBP": ".324",
+        "SV": 1,
+        "K": 70,
+        "ERA": "2.36",
+        "WHIP": "1.04",
+        "QS": 7
+      },
+      "s0": 2,
+      "s1": 7,
+      "ties": 1,
+      "margin": 5.0
+    },
+    {
+      "t0_name": "It’s Always Sonny",
+      "t1_name": "The Buckner Boots",
+      "t0_cats": {
+        "R": 31,
+        "HR": 7,
+        "RBI": 29,
+        "SB": 4,
+        "OBP": ".327",
+        "SV": 4,
+        "K": 75,
+        "ERA": "3.38",
+        "WHIP": "0.93",
+        "QS": 5
+      },
+      "t1_cats": {
+        "R": 32,
+        "HR": 7,
+        "RBI": 23,
+        "SB": 2,
+        "OBP": ".324",
+        "SV": 4,
+        "K": 59,
+        "ERA": "2.75",
+        "WHIP": "1.22",
+        "QS": 5
+      },
+      "s0": 5,
+      "s1": 2,
+      "ties": 3,
+      "margin": 3.0
+    },
+    {
+      "t0_name": "Nick-fil-A",
+      "t1_name": "Rain City Bombers",
+      "t0_cats": {
+        "R": 29,
+        "HR": 6,
+        "RBI": 31,
+        "SB": 3,
+        "OBP": ".317",
+        "SV": 3,
+        "K": 62,
+        "ERA": "5.04",
+        "WHIP": "1.47",
+        "QS": 4
+      },
+      "t1_cats": {
+        "R": 24,
+        "HR": 3,
+        "RBI": 17,
+        "SB": 2,
+        "OBP": ".248",
+        "SV": 4,
+        "K": 73,
+        "ERA": "3.73",
+        "WHIP": "1.01",
+        "QS": 6
+      },
+      "s0": 5,
+      "s1": 5,
+      "ties": 0,
+      "margin": 0.0
+    },
+    {
+      "t0_name": "Keanu Reeves",
+      "t1_name": "Busch Latte",
+      "t0_cats": {
+        "R": 36,
+        "HR": 16,
+        "RBI": 34,
+        "SB": 9,
+        "OBP": ".327",
+        "SV": 3,
+        "K": 67,
+        "ERA": "4.60",
+        "WHIP": "1.37",
+        "QS": 5
+      },
+      "t1_cats": {
+        "R": 39,
+        "HR": 6,
+        "RBI": 27,
+        "SB": 12,
+        "OBP": ".399",
+        "SV": 2,
+        "K": 64,
+        "ERA": "6.00",
+        "WHIP": "1.42",
+        "QS": 2
+      },
+      "s0": 7,
+      "s1": 3,
+      "ties": 0,
+      "margin": 4.0
+    },
+    {
+      "t0_name": "Ete Crow",
+      "t1_name": "Allahu Alvarez",
+      "t0_cats": {
+        "R": 27,
+        "HR": 8,
+        "RBI": 21,
+        "SB": 6,
+        "OBP": ".275",
+        "SV": 3,
+        "K": 52,
+        "ERA": "3.00",
+        "WHIP": "1.00",
+        "QS": 6
+      },
+      "t1_cats": {
+        "R": 39,
+        "HR": 10,
+        "RBI": 23,
+        "SB": 6,
+        "OBP": ".372",
+        "SV": 2,
+        "K": 64,
+        "ERA": "4.04",
+        "WHIP": "1.28",
+        "QS": 3
+      },
+      "s0": 4,
+      "s1": 5,
+      "ties": 1,
+      "margin": 1.0
+    }
+  ],
+  "all_play_sorted": [
+    {
+      "name": "Hey Holmes!",
+      "w": 8,
+      "l": 1,
+      "t": 0,
+      "cat_w": 58,
+      "cat_l": 27,
+      "cat_t": 5
+    },
+    {
+      "name": "It’s Always Sonny",
+      "w": 7,
+      "l": 1,
+      "t": 1,
+      "cat_w": 56,
+      "cat_l": 25,
+      "cat_t": 9
+    },
+    {
+      "name": "Keanu Reeves",
+      "w": 7,
+      "l": 0,
+      "t": 2,
+      "cat_w": 56,
+      "cat_l": 28,
+      "cat_t": 6
+    },
+    {
+      "name": "Allahu Alvarez",
+      "w": 4,
+      "l": 3,
+      "t": 2,
+      "cat_w": 42,
+      "cat_l": 42,
+      "cat_t": 6
+    },
+    {
+      "name": "Ete Crow",
+      "w": 3,
+      "l": 5,
+      "t": 1,
+      "cat_w": 40,
+      "cat_l": 45,
+      "cat_t": 5
+    },
+    {
+      "name": "The Buckner Boots",
+      "w": 3,
+      "l": 4,
+      "t": 2,
+      "cat_w": 38,
+      "cat_l": 42,
+      "cat_t": 10
+    },
+    {
+      "name": "One Ball Two Strikes",
+      "w": 2,
+      "l": 5,
+      "t": 2,
+      "cat_w": 35,
+      "cat_l": 49,
+      "cat_t": 6
+    },
+    {
+      "name": "Busch Latte",
+      "w": 1,
+      "l": 5,
+      "t": 3,
+      "cat_w": 37,
+      "cat_l": 49,
+      "cat_t": 4
+    },
+    {
+      "name": "Rain City Bombers",
+      "w": 1,
+      "l": 4,
+      "t": 4,
+      "cat_w": 35,
+      "cat_l": 51,
+      "cat_t": 4
+    },
+    {
+      "name": "Nick-fil-A",
+      "w": 0,
+      "l": 8,
+      "t": 1,
+      "cat_w": 24,
+      "cat_l": 63,
+      "cat_t": 3
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "name": "It’s Always Sonny",
+      "owner": "TylerV",
+      "wins": 48,
+      "losses": 23,
+      "ties": 9
+    },
+    {
+      "rank": 2,
+      "name": "Keanu Reeves",
+      "owner": "Duke Joe",
+      "wins": 48,
+      "losses": 30,
+      "ties": 2
+    },
+    {
+      "rank": 3,
+      "name": "One Ball Two Strikes",
+      "owner": "Garth W",
+      "wins": 45,
+      "losses": 33,
+      "ties": 2
+    },
+    {
+      "rank": 4,
+      "name": "Nick-fil-A",
+      "owner": "Mario",
+      "wins": 42,
+      "losses": 30,
+      "ties": 8
+    },
+    {
+      "rank": 5,
+      "name": "The Buckner Boots",
+      "owner": "Michael",
+      "wins": 34,
+      "losses": 38,
+      "ties": 8
+    },
+    {
+      "rank": 6,
+      "name": "Rain City Bombers",
+      "owner": "Taylor",
+      "wins": 35,
+      "losses": 42,
+      "ties": 3
+    },
+    {
+      "rank": 7,
+      "name": "Ete Crow",
+      "owner": "Jace Allison",
+      "wins": 34,
+      "losses": 41,
+      "ties": 5
+    },
+    {
+      "rank": 8,
+      "name": "Hey Holmes!",
+      "owner": "Michael",
+      "wins": 30,
+      "losses": 45,
+      "ties": 5
+    },
+    {
+      "rank": 9,
+      "name": "Busch Latte",
+      "owner": "Rose",
+      "wins": 29,
+      "losses": 46,
+      "ties": 5
+    },
+    {
+      "rank": 10,
+      "name": "Allahu Alvarez",
+      "owner": "TylerR",
+      "wins": 29,
+      "losses": 46,
+      "ties": 5
+    }
+  ]
+}
