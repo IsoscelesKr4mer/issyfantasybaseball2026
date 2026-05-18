@@ -1,6 +1,6 @@
 {
-  "last_updated_week": 7,
-  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current \u2014 history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
+  "last_updated_week": 8,
+  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current — history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
   "weekly_snapshots": [
     {
       "week": 1,
@@ -1463,7 +1463,7 @@
           "prev_rank": 1,
           "delta": -1,
           "tier": "elite",
-          "name": "It\u2019s Always Sonny",
+          "name": "It’s Always Sonny",
           "cumulative_ap": {
             "w": 36,
             "l": 16,
@@ -1748,7 +1748,7 @@
           "prev_rank": 2,
           "delta": 0,
           "tier": "elite",
-          "name": "It\u2019s Always Sonny",
+          "name": "It’s Always Sonny",
           "cumulative_ap": {
             "w": 43,
             "l": 16,
@@ -2004,135 +2004,16 @@
       "prev_rank": 1,
       "delta": 0,
       "tier": "elite",
-      "name": "One Ball Two Strikes",
+      "name": "It’s Always Sonny",
       "cumulative_ap": {
-        "w": 43,
-        "l": 16,
-        "t": 4
+        "w": 50,
+        "l": 17,
+        "t": 14
       },
       "cumulative_cats": {
-        "w": 355,
-        "l": 225,
-        "t": 50
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 3,
-          "ap": {
-            "w": 7,
-            "l": 2,
-            "t": 0
-          },
-          "cats": {
-            "w": 55,
-            "l": 30,
-            "t": 5
-          }
-        },
-        {
-          "week": 2,
-          "rank": 5,
-          "ap": {
-            "w": 2,
-            "l": 7,
-            "t": 0
-          },
-          "cats": {
-            "w": 35,
-            "l": 47,
-            "t": 8
-          }
-        },
-        {
-          "week": 3,
-          "rank": 5,
-          "ap": {
-            "w": 8,
-            "l": 1,
-            "t": 0
-          },
-          "cats": {
-            "w": 46,
-            "l": 34,
-            "t": 10
-          }
-        },
-        {
-          "week": 4,
-          "rank": 4,
-          "ap": {
-            "w": 5,
-            "l": 1,
-            "t": 3
-          },
-          "cats": {
-            "w": 51,
-            "l": 35,
-            "t": 4
-          }
-        },
-        {
-          "week": 5,
-          "rank": 3,
-          "ap": {
-            "w": 7,
-            "l": 2,
-            "t": 0
-          },
-          "cats": {
-            "w": 51,
-            "l": 29,
-            "t": 10
-          }
-        },
-        {
-          "week": 6,
-          "rank": 1,
-          "ap": {
-            "w": 8,
-            "l": 1,
-            "t": 0
-          },
-          "cats": {
-            "w": 64,
-            "l": 23,
-            "t": 3
-          }
-        },
-        {
-          "week": 7,
-          "rank": 1,
-          "ap": {
-            "w": 6,
-            "l": 2,
-            "t": 1
-          },
-          "cats": {
-            "w": 53,
-            "l": 27,
-            "t": 10
-          }
-        }
-      ],
-      "weighted_score": 308.53,
-      "analysis": "Held at #1 cumulative after a third straight upset of a sim favorite (8&ndash;2 over Allahu). 355 cumulative cats, the league leader by 11. Garth led the league in R (41) and OBP (.381) this week, plus 5 QS and 68 K. Two 8&ndash;2-or-better H2H wins in a row. The model has stopped underestimating; the reality has caught up."
-    },
-    {
-      "rank": 2,
-      "prev_rank": 2,
-      "delta": 0,
-      "tier": "elite",
-      "name": "It\u2019s Always Sonny",
-      "cumulative_ap": {
-        "w": 43,
-        "l": 16,
-        "t": 4
-      },
-      "cumulative_cats": {
-        "w": 341,
-        "l": 239,
-        "t": 50
+        "w": 397,
+        "l": 264,
+        "t": 59
       },
       "history": [
         {
@@ -2232,26 +2113,40 @@
             "l": 31,
             "t": 11
           }
+        },
+        {
+          "week": 8,
+          "rank": 1,
+          "ap": {
+            "w": 7,
+            "l": 1,
+            "t": 1
+          },
+          "cats": {
+            "w": 56,
+            "l": 25,
+            "t": 9
+          }
         }
       ],
-      "weighted_score": 298.15,
-      "analysis": "Held at #2. 48 cat wins and a 7&ndash;0&ndash;2 all-play was the best week any team had in Week 7. League-best ERA (2.29) and WHIP (1.03). The Tatis Jr. + Ashcraft acquisition (for Trout and Uribe) immediately worked. 341 cumulative cats, still in the H2H title race with OBT. The 5&ndash;4 win over Nick-fil-A was the tightest game from the top tier."
+      "weighted_score": 322.28,
+      "analysis": "Held at #1 cumulative through 8 weeks: 397 cat wins, 50 AP wins. The second straight elite week (7&ndash;1&ndash;1 all-play, 56 cat wins) extended a real gap. Nick Kurtz (3 HR / 9 RBI) and Mickey Moniak (1 HR / 7 RBI) carried the lineup while Tatis Jr. settled in. Pitching ran a 0.93 WHIP and 75 K with Ragans and Woodruff still IL. The deepest roster in the league and now the deepest production."
     },
     {
-      "rank": 3,
-      "prev_rank": 3,
+      "rank": 2,
+      "prev_rank": 2,
       "delta": 0,
-      "tier": "contender",
+      "tier": "elite",
       "name": "Keanu Reeves",
       "cumulative_ap": {
-        "w": 35,
+        "w": 42,
         "l": 19,
-        "t": 9
+        "t": 20
       },
       "cumulative_cats": {
-        "w": 344,
-        "l": 246,
-        "t": 40
+        "w": 400,
+        "l": 274,
+        "t": 46
       },
       "history": [
         {
@@ -2351,10 +2246,157 @@
             "l": 33,
             "t": 6
           }
+        },
+        {
+          "week": 8,
+          "rank": 2,
+          "ap": {
+            "w": 7,
+            "l": 0,
+            "t": 2
+          },
+          "cats": {
+            "w": 56,
+            "l": 28,
+            "t": 6
+          }
         }
       ],
-      "weighted_score": 291.71,
-      "analysis": "Held at #3 after the rebound. 8&ndash;2 over Buckner with league-best K (97), HR (14), RBI (35), and QS (7). The rotation that imploded in Week 6 ran the cleanest week of the season. 344 cumulative cats, just 11 behind OBT. Duke Joe&#x2019;s back in the contender conversation."
+      "weighted_score": 316.47,
+      "analysis": "Held at #2 cumulative with the most cumulative cat wins in the league (400). Just dropped 16 HR / 34 RBI in a 7&ndash;3 win over Busch with Schwarber (4 HR / 9 RBI), Drake Baldwin (3 HR), Colson Montgomery (3 HR), and Juan Soto (2 HR / 2 SB) all firing. The closer trio (Chapman, Fairbanks, Soto) makes this team a SV problem for anyone. Now meets Sonny in the Week 9 top-2 game."
+    },
+    {
+      "rank": 3,
+      "prev_rank": 3,
+      "delta": 0,
+      "tier": "contender",
+      "name": "One Ball Two Strikes",
+      "cumulative_ap": {
+        "w": 45,
+        "l": 21,
+        "t": 15
+      },
+      "cumulative_cats": {
+        "w": 390,
+        "l": 274,
+        "t": 56
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 3,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 55,
+            "l": 30,
+            "t": 5
+          }
+        },
+        {
+          "week": 2,
+          "rank": 5,
+          "ap": {
+            "w": 2,
+            "l": 7,
+            "t": 0
+          },
+          "cats": {
+            "w": 35,
+            "l": 47,
+            "t": 8
+          }
+        },
+        {
+          "week": 3,
+          "rank": 5,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 46,
+            "l": 34,
+            "t": 10
+          }
+        },
+        {
+          "week": 4,
+          "rank": 4,
+          "ap": {
+            "w": 5,
+            "l": 1,
+            "t": 3
+          },
+          "cats": {
+            "w": 51,
+            "l": 35,
+            "t": 4
+          }
+        },
+        {
+          "week": 5,
+          "rank": 3,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 51,
+            "l": 29,
+            "t": 10
+          }
+        },
+        {
+          "week": 6,
+          "rank": 1,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 64,
+            "l": 23,
+            "t": 3
+          }
+        },
+        {
+          "week": 7,
+          "rank": 1,
+          "ap": {
+            "w": 6,
+            "l": 2,
+            "t": 1
+          },
+          "cats": {
+            "w": 53,
+            "l": 27,
+            "t": 10
+          }
+        },
+        {
+          "week": 8,
+          "rank": 3,
+          "ap": {
+            "w": 2,
+            "l": 5,
+            "t": 2
+          },
+          "cats": {
+            "w": 35,
+            "l": 49,
+            "t": 6
+          }
+        }
+      ],
+      "weighted_score": 311.7,
+      "analysis": "Held at #3 cumulative but the trajectory broke this week. 2&ndash;5&ndash;2 all-play, 35 cat wins, 2&ndash;7 H2H L to Hey Holmes! after three straight sim-upset wins. Matt Olson 0 HR. The rotation took a 4.71 ERA beating. Garth picked up Jack Flaherty for Foster Griffin on the last day. Still in the top 3 cumulatively, but the model finally beat him."
     },
     {
       "rank": 4,
@@ -2363,14 +2405,14 @@
       "tier": "contender",
       "name": "Allahu Alvarez",
       "cumulative_ap": {
-        "w": 26,
-        "l": 29,
-        "t": 8
+        "w": 30,
+        "l": 32,
+        "t": 19
       },
       "cumulative_cats": {
-        "w": 297,
-        "l": 289,
-        "t": 44
+        "w": 339,
+        "l": 331,
+        "t": 50
       },
       "history": [
         {
@@ -2470,10 +2512,24 @@
             "l": 43,
             "t": 9
           }
+        },
+        {
+          "week": 8,
+          "rank": 4,
+          "ap": {
+            "w": 4,
+            "l": 3,
+            "t": 2
+          },
+          "cats": {
+            "w": 42,
+            "l": 42,
+            "t": 6
+          }
         }
       ],
-      "weighted_score": 256.55,
-      "analysis": "Held at #4 cumulative despite a 2&ndash;8 H2H loss to OBT. The all-play (3&ndash;4&ndash;2) was respectable. 297 cumulative cats and 10 league-leading HR this week, plus 3 SV. The lineup is real; the rotation around Gilbert has thinned with Pivetta and Steele on long-term IL. Big gap from #4 to #5 is gone."
+      "weighted_score": 271.44,
+      "analysis": "Held at #4 cumulative. 4&ndash;3&ndash;2 all-play and a 5&ndash;4 H2H over Ete. Bobby Witt Jr. (2 HR / 4 RBI), Yordan (2 HR), and Max Muncy (7 R) all contributed. The Mu&ntilde;oz-led closer corps is a real cat win on the SV side. The rotation behind Gausman is thin on the active side but Bibee, Gilbert, Bryce Miller, and Ranger all wait on the bench. First good week TylerR has stacked since the Allahu run."
     },
     {
       "rank": 5,
@@ -2483,13 +2539,13 @@
       "name": "Nick-fil-A",
       "cumulative_ap": {
         "w": 32,
-        "l": 26,
-        "t": 5
+        "l": 34,
+        "t": 15
       },
       "cumulative_cats": {
-        "w": 300,
-        "l": 279,
-        "t": 51
+        "w": 324,
+        "l": 342,
+        "t": 54
       },
       "history": [
         {
@@ -2589,26 +2645,40 @@
             "l": 35,
             "t": 10
           }
+        },
+        {
+          "week": 8,
+          "rank": 5,
+          "ap": {
+            "w": 0,
+            "l": 8,
+            "t": 1
+          },
+          "cats": {
+            "w": 24,
+            "l": 63,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 256.35,
-      "analysis": "Held at #5. 45 cat wins and a 6&ndash;3 all-play in Week 7. Lost the 5&ndash;4 H2H to Sonny. Mario&#x2019;s rotation ran a league-best 93 K with Cole, Glasnow, and Helsley all IL. The 6 QS proved Davis Martin + Wrobleski + Eduardo Rodriguez can hold. Power lineup is healthy."
+      "weighted_score": 254.16,
+      "analysis": "Held at #5 cumulative but turned in the worst all-play line of the season: 0&ndash;8&ndash;1, 24 cat wins. Cole, Glasnow, Snell, Helsley, Acu&ntilde;a still IL. Mario dropped Chris Bassitt on Sunday night. Angel Mart&iacute;nez was a one-man army (3 HR / 5 RBI / 7 R / 3 SB). The rotation is now Latz / E-Rod / Wrobleski / Davis Martin / Burrows. From contender to crisis in one weekend. The cumulative buffer keeps the rank but the trend is real."
     },
     {
       "rank": 6,
-      "prev_rank": 7,
-      "delta": 1,
+      "prev_rank": 6,
+      "delta": 0,
       "tier": "mid",
       "name": "Ete Crow",
       "cumulative_ap": {
-        "w": 27,
-        "l": 31,
-        "t": 5
+        "w": 30,
+        "l": 36,
+        "t": 15
       },
       "cumulative_cats": {
-        "w": 269,
-        "l": 307,
-        "t": 54
+        "w": 309,
+        "l": 352,
+        "t": 59
       },
       "history": [
         {
@@ -2708,26 +2778,40 @@
             "l": 45,
             "t": 9
           }
+        },
+        {
+          "week": 8,
+          "rank": 6,
+          "ap": {
+            "w": 3,
+            "l": 5,
+            "t": 1
+          },
+          "cats": {
+            "w": 40,
+            "l": 45,
+            "t": 5
+          }
         }
       ],
-      "weighted_score": 236.3,
-      "analysis": "Up one to #6 cumulative after a one-week regression: 36 cat wins and a 2&ndash;6&ndash;1 all-play after sweeping 9&ndash;0 the prior week. 269 cumulative. League-best RBI (39) was the lone bullet point. Boyd IL and Hader 60-day still in the rotation hole. The 9&ndash;0 wasn&#x2019;t a fluke. The 2&ndash;6&ndash;1 wasn&#x2019;t either. Volatile roster."
+      "weighted_score": 251.26,
+      "analysis": "Held at #6 cumulative. 3&ndash;5&ndash;1 all-play and a 5&ndash;4 H2H L to Allahu in a week the rotation actually pitched (3.00 ERA, 1.00 WHIP, 6 QS). Just couldn&#x2019;t hit. 27 R / 8 HR / .275 OBP. Ozzie Albies went 0&ndash;0&ndash;0&ndash;0. Tanner Scott and Iglesias have stabilized the back of the bullpen. Now meets Hey Holmes! as a 62% favorite."
     },
     {
       "rank": 7,
-      "prev_rank": 8,
-      "delta": 1,
+      "prev_rank": 7,
+      "delta": 0,
       "tier": "mid",
       "name": "Busch Latte",
       "cumulative_ap": {
-        "w": 21,
-        "l": 34,
-        "t": 8
+        "w": 22,
+        "l": 39,
+        "t": 20
       },
       "cumulative_cats": {
-        "w": 271,
-        "l": 319,
-        "t": 40
+        "w": 308,
+        "l": 368,
+        "t": 44
       },
       "history": [
         {
@@ -2827,264 +2911,40 @@
             "l": 44,
             "t": 1
           }
-        }
-      ],
-      "weighted_score": 230.72,
-      "analysis": "Up one to #7 cumulative after a 6&ndash;4 bounce-back over Ete Crow. 45 cat wins and a 3&ndash;5&ndash;1 all-play. League-best SB (10) and second in OBP (.348). The rotation (Kirby, Soriano, Bubic) finally held form at 4.34 ERA with 4 QS. Strider, Imai, Brown, Bryce Miller, and Edwin D&iacute;az all on IL means the depth is still hurting."
-    },
-    {
-      "rank": 8,
-      "prev_rank": 6,
-      "delta": -2,
-      "tier": "mid",
-      "name": "The Buckner Boots",
-      "cumulative_ap": {
-        "w": 23,
-        "l": 32,
-        "t": 8
-      },
-      "cumulative_cats": {
-        "w": 262,
-        "l": 328,
-        "t": 40
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 2,
-          "ap": {
-            "w": 8,
-            "l": 1,
-            "t": 0
-          },
-          "cats": {
-            "w": 58,
-            "l": 26,
-            "t": 6
-          }
         },
         {
-          "week": 2,
-          "rank": 2,
-          "ap": {
-            "w": 5,
-            "l": 4,
-            "t": 0
-          },
-          "cats": {
-            "w": 47,
-            "l": 36,
-            "t": 7
-          }
-        },
-        {
-          "week": 3,
-          "rank": 2,
-          "ap": {
-            "w": 4,
-            "l": 1,
-            "t": 4
-          },
-          "cats": {
-            "w": 40,
-            "l": 39,
-            "t": 11
-          }
-        },
-        {
-          "week": 4,
-          "rank": 2,
-          "ap": {
-            "w": 5,
-            "l": 2,
-            "t": 2
-          },
-          "cats": {
-            "w": 49,
-            "l": 38,
-            "t": 3
-          }
-        },
-        {
-          "week": 5,
-          "rank": 6,
-          "ap": {
-            "w": 0,
-            "l": 9,
-            "t": 0
-          },
-          "cats": {
-            "w": 15,
-            "l": 71,
-            "t": 4
-          }
-        },
-        {
-          "week": 6,
-          "rank": 6,
-          "ap": {
-            "w": 1,
-            "l": 6,
-            "t": 2
-          },
-          "cats": {
-            "w": 35,
-            "l": 48,
-            "t": 7
-          }
-        },
-        {
-          "week": 7,
-          "rank": 8,
-          "ap": {
-            "w": 0,
-            "l": 9,
-            "t": 0
-          },
-          "cats": {
-            "w": 18,
-            "l": 70,
-            "t": 2
-          }
-        }
-      ],
-      "weighted_score": 218.38,
-      "analysis": "Dropped TWO spots to #8 after the second 0&ndash;9 all-play in three weeks. 18 cat wins, 5.82 ERA, 43 K from a rotation that has Logan Webb on IL, Framber Valdez suspended, and Taj Bradley on IL. From contender to cellar in three weeks. 262 cumulative cats, 7 worse than #6 Ete Crow. The free fall is real."
-    },
-    {
-      "rank": 9,
-      "prev_rank": 10,
-      "delta": 1,
-      "tier": "cellar",
-      "name": "Rain City Bombers",
-      "cumulative_ap": {
-        "w": 16,
-        "l": 32,
-        "t": 15
-      },
-      "cumulative_cats": {
-        "w": 246,
-        "l": 333,
-        "t": 51
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 8,
-          "ap": {
-            "w": 2,
-            "l": 6,
-            "t": 1
-          },
-          "cats": {
-            "w": 27,
-            "l": 52,
-            "t": 11
-          }
-        },
-        {
-          "week": 2,
-          "rank": 10,
-          "ap": {
-            "w": 0,
-            "l": 8,
-            "t": 1
-          },
-          "cats": {
-            "w": 15,
-            "l": 72,
-            "t": 3
-          }
-        },
-        {
-          "week": 3,
-          "rank": 10,
-          "ap": {
-            "w": 2,
-            "l": 4,
-            "t": 3
-          },
-          "cats": {
-            "w": 41,
-            "l": 41,
-            "t": 8
-          }
-        },
-        {
-          "week": 4,
-          "rank": 10,
+          "week": 8,
+          "rank": 7,
           "ap": {
             "w": 1,
             "l": 5,
             "t": 3
           },
           "cats": {
-            "w": 35,
-            "l": 52,
-            "t": 3
-          }
-        },
-        {
-          "week": 5,
-          "rank": 10,
-          "ap": {
-            "w": 3,
-            "l": 5,
-            "t": 1
-          },
-          "cats": {
-            "w": 39,
-            "l": 43,
-            "t": 8
-          }
-        },
-        {
-          "week": 6,
-          "rank": 10,
-          "ap": {
-            "w": 3,
-            "l": 3,
-            "t": 3
-          },
-          "cats": {
-            "w": 42,
-            "l": 41,
-            "t": 7
-          }
-        },
-        {
-          "week": 7,
-          "rank": 9,
-          "ap": {
-            "w": 5,
-            "l": 1,
-            "t": 3
-          },
-          "cats": {
-            "w": 47,
-            "l": 32,
-            "t": 11
+            "w": 37,
+            "l": 49,
+            "t": 4
           }
         }
       ],
-      "weighted_score": 216.95,
-      "analysis": "Up one to #9. 47 cat wins and a 5&ndash;1&ndash;3 all-play in Week 7, the best Rain City week of the season. The Trade for Mike Trout and Abner Uribe paid off immediately: 3 SV plus a deeper lineup despite Lindor, Yelich, Roman Anthony, and Correa all on IL. Skenes + deGrom + Imanaga + Wheeler is now the league&#x2019;s most rated rotation."
+      "weighted_score": 243.37,
+      "analysis": "Held at #7 cumulative. 1&ndash;5&ndash;3 all-play, 3&ndash;7 H2H L to Keanu. Led the league in SB (12) and OBP (.399) but ran a 6.00 team ERA. Hunter Brown and Edwin D&iacute;az both on the 60-day IL hollowed out the rotation; Senzatela, Imai, and Weathers are streaming starts. Aranda from the trade gets a full week. The roster has talent. The schedule has not been kind."
     },
     {
       "name": "Hey Holmes!",
-      "rank": 10,
-      "prev_rank": 9,
-      "delta": -1,
-      "tier": "cellar",
+      "rank": 8,
+      "prev_rank": 8,
+      "delta": 0,
+      "tier": "mid",
       "cumulative_ap": {
-        "w": 14,
-        "l": 45,
-        "t": 4
+        "w": 22,
+        "l": 46,
+        "t": 13
       },
       "cumulative_cats": {
-        "w": 235,
-        "l": 355,
-        "t": 40
+        "w": 293,
+        "l": 382,
+        "t": 45
       },
       "history": [
         {
@@ -3184,10 +3044,290 @@
             "l": 53,
             "t": 5
           }
+        },
+        {
+          "week": 8,
+          "rank": 8,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 58,
+            "l": 27,
+            "t": 5
+          }
         }
       ],
-      "analysis": "Dropped one to #10 after a 1&ndash;8 all-play week. 235 cumulative cats, the lowest in the league. 3&ndash;7 H2H loss to Rain City. Michael took HR (10), RBI (31), and SB (2); everything else went the other way. The pitching that was finally working in Week 6 (3.86 ERA) ballooned back to 4.48. Bottom of the cumulative for the third straight week.",
-      "weighted_score": 203.42
+      "analysis": "Held at #8 cumulative despite the best all-play week of the season (8&ndash;1, 58 cat wins, 7&ndash;2 H2H upset of OBT). League-best ERA (2.36), WHIP (1.04), and 7 QS. Nolan Arenado pickup paid off the next day. The lineup of Harper, Alonso, Arenado, Teoscar, Rooker, Rice, Julio, Mookie, Altuve is dangerous when healthy. The cumulative cat count is still 293 (10th in raw) but the recency-weighted score moved.",
+      "weighted_score": 238.68
+    },
+    {
+      "rank": 9,
+      "prev_rank": 9,
+      "delta": 0,
+      "tier": "cellar",
+      "name": "The Buckner Boots",
+      "cumulative_ap": {
+        "w": 26,
+        "l": 36,
+        "t": 19
+      },
+      "cumulative_cats": {
+        "w": 300,
+        "l": 370,
+        "t": 50
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 2,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 58,
+            "l": 26,
+            "t": 6
+          }
+        },
+        {
+          "week": 2,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 4,
+            "t": 0
+          },
+          "cats": {
+            "w": 47,
+            "l": 36,
+            "t": 7
+          }
+        },
+        {
+          "week": 3,
+          "rank": 2,
+          "ap": {
+            "w": 4,
+            "l": 1,
+            "t": 4
+          },
+          "cats": {
+            "w": 40,
+            "l": 39,
+            "t": 11
+          }
+        },
+        {
+          "week": 4,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 2,
+            "t": 2
+          },
+          "cats": {
+            "w": 49,
+            "l": 38,
+            "t": 3
+          }
+        },
+        {
+          "week": 5,
+          "rank": 6,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 15,
+            "l": 71,
+            "t": 4
+          }
+        },
+        {
+          "week": 6,
+          "rank": 6,
+          "ap": {
+            "w": 1,
+            "l": 6,
+            "t": 2
+          },
+          "cats": {
+            "w": 35,
+            "l": 48,
+            "t": 7
+          }
+        },
+        {
+          "week": 7,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 18,
+            "l": 70,
+            "t": 2
+          }
+        },
+        {
+          "week": 8,
+          "rank": 9,
+          "ap": {
+            "w": 3,
+            "l": 4,
+            "t": 2
+          },
+          "cats": {
+            "w": 38,
+            "l": 42,
+            "t": 10
+          }
+        }
+      ],
+      "weighted_score": 233.19,
+      "analysis": "Held at #9. 3&ndash;4&ndash;2 all-play, 38 cat wins, 2&ndash;5 H2H L to Sonny. Better than the two prior 0&ndash;9 weeks but still no top-end thump. Murakami (2 HR) and Bleday from waivers (6 HR via season totals) were the bats. Webb, Bradley, Strider, Valdez all still out. Sasaki and Hancock got added off waivers. Now finally a 72% favorite over Rain City. This is the climb-back week."
+    },
+    {
+      "rank": 10,
+      "prev_rank": 10,
+      "delta": 0,
+      "tier": "cellar",
+      "name": "Rain City Bombers",
+      "cumulative_ap": {
+        "w": 17,
+        "l": 36,
+        "t": 28
+      },
+      "cumulative_cats": {
+        "w": 281,
+        "l": 384,
+        "t": 55
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 8,
+          "ap": {
+            "w": 2,
+            "l": 6,
+            "t": 1
+          },
+          "cats": {
+            "w": 27,
+            "l": 52,
+            "t": 11
+          }
+        },
+        {
+          "week": 2,
+          "rank": 10,
+          "ap": {
+            "w": 0,
+            "l": 8,
+            "t": 1
+          },
+          "cats": {
+            "w": 15,
+            "l": 72,
+            "t": 3
+          }
+        },
+        {
+          "week": 3,
+          "rank": 10,
+          "ap": {
+            "w": 2,
+            "l": 4,
+            "t": 3
+          },
+          "cats": {
+            "w": 41,
+            "l": 41,
+            "t": 8
+          }
+        },
+        {
+          "week": 4,
+          "rank": 10,
+          "ap": {
+            "w": 1,
+            "l": 5,
+            "t": 3
+          },
+          "cats": {
+            "w": 35,
+            "l": 52,
+            "t": 3
+          }
+        },
+        {
+          "week": 5,
+          "rank": 10,
+          "ap": {
+            "w": 3,
+            "l": 5,
+            "t": 1
+          },
+          "cats": {
+            "w": 39,
+            "l": 43,
+            "t": 8
+          }
+        },
+        {
+          "week": 6,
+          "rank": 10,
+          "ap": {
+            "w": 3,
+            "l": 3,
+            "t": 3
+          },
+          "cats": {
+            "w": 42,
+            "l": 41,
+            "t": 7
+          }
+        },
+        {
+          "week": 7,
+          "rank": 9,
+          "ap": {
+            "w": 5,
+            "l": 1,
+            "t": 3
+          },
+          "cats": {
+            "w": 47,
+            "l": 32,
+            "t": 11
+          }
+        },
+        {
+          "week": 8,
+          "rank": 10,
+          "ap": {
+            "w": 1,
+            "l": 4,
+            "t": 4
+          },
+          "cats": {
+            "w": 35,
+            "l": 51,
+            "t": 4
+          }
+        }
+      ],
+      "weighted_score": 229.05,
+      "analysis": "Held at #10 cumulative. 1&ndash;4&ndash;4 all-play and a 5&ndash;5 tie with Nick-fil-A. The Trout addition went 0&ndash;0&ndash;0&ndash;0 in his first full Rain City week. Lindor, Anthony, Caballero all on IL. Cade Smith (3 SV) saved the SV cat. Skenes / deGrom rotation is real but the lineup keeps stalling. Three weeks of unbeaten H2H and still at the bottom of the cumulative."
     }
   ]
 }
