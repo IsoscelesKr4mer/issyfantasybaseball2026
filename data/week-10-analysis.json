@@ -1,0 +1,321 @@
+{
+  "matchups": [
+    {
+      "team0_name": "One Ball Two Strikes",
+      "team1_name": "The Buckner Boots",
+      "team0_analysis": "OBT just took a 5–4 over Nick and is sitting in 3rd place. Garth dropped Zac Gallen Sunday for Foster Griffin again. Skubal still IL, Jeffers still IL. The rotation behind Yamamoto, Alcantara, Foster Griffin, Casey Mize is solid but not deep; Eovaldi, Rodón, Yesavage, and Chase Burns all sitting on the bench as cover. The closer corps with Jansen, Bednar, Megill remains the strongest in OBT&rsquo;s 9 weeks.",
+      "team1_analysis": "Buckner is coming off the 5–5 tie with Rain City that ruined a 72% sim favor. Webb still IL, Seager still IL, but Framber Valdez, Parker Messick, Trevor Rogers are the active rotation with Roki Sasaki, Taj Bradley, Chris Sale all on bench for additional starts. The lineup with Murakami, CJ Abrams, Henderson, Tucker, Yandy Díaz, Bregman, Rutschman, Nimmo is deeper than the record suggests. The bullpen behind Baker, Palencia, Williams, Thielbar is one of the league&rsquo;s deepest after Allahu&rsquo;s.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (70%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (69%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (68%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Buckner lean (56%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (67%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Buckner slight edge (51%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-away",
+          "label": "OBT slight edge (51%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-away",
+          "label": "OBT slight edge (54%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (75%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6&ndash;4. Sim says 75% Buckner and expected 6.0&ndash;4.0. Yandy and Murakami carry HR/RBI/OBP; the rotation depth covers the K cat. OBT&rsquo;s closer crew steals SV but Buckner takes the matchup at every offensive cat. The model said 72% last week and got burned, here it doubles down."
+    },
+    {
+      "team0_name": "It’s Always Sonny",
+      "team1_name": "Rain City Bombers",
+      "team0_analysis": "Sonny is the cumulative #1 in cat wins (442) by 3 over Keanu, just lost the H2H 4–5 to Keanu but still posted 5–3–1 all-play. Cal Raleigh, Wyatt Langford, Cole Ragans, Brandon Woodruff all IL. Jared Jones now on 60-day. TylerV added Spencer Steer (lineup) and Samuel Basallo (C replacement) and pulled Jared Jones drop earlier in the cycle. Active rotation behind Ohtani-the-pitcher, Schlittler, King, Ashcraft, Roupp with Sonny Gray, Mitch Keller, Ryne Nelson on bench. Closer Jhoan Duran anchors.",
+      "team1_analysis": "Rain City came out of a 5–5 tie with Buckner. Lindor IL, Roman Anthony IL, now Blake Snell IL too (added Snell was rendered moot). The rotation now leans on Skenes, deGrom, Imanaga, Wheeler, Lodolo, with Max Meyer, Bryce Elder, Nick Martinez on bench. That&rsquo;s the deepest top-end SP group Taylor has fielded all year. The lineup with Trout, Manny Machado, Michael Harris II, Ivan Herrera is a fraction of what Rain City was supposed to be. Cade Smith still closing.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny edge (70%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny edge (70%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny edge (65%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Rain City lean (55%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny lean (55%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny lean (60%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Rain City lean (55%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Rain City slight edge (51%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Rain City lean (57%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-away",
+          "label": "It’s Always Sonny lean (61%)"
+        }
+      ],
+      "prediction": "It’s Always Sonny 6&ndash;4. Sim says 69% Sonny and expected 5.6&ndash;4.4. Sonny wins R, HR, RBI, K, SV. Rain City takes ERA, WHIP, QS off the Skenes/deGrom/Wheeler rotation. The lineup gap is the matchup; Sonny&rsquo;s rotation depth outpaces Rain City&rsquo;s once you get past the top three arms."
+    },
+    {
+      "team0_name": "Nick-fil-A",
+      "team1_name": "Ete Crow",
+      "team0_analysis": "Nick-fil-A just lost 4–5 to OBT in a matchup where the sim said 40%. Hunter Greene 60-day IL. Tyler Glasnow IL. Ryan Helsley IL. Mario picked up Andrew Painter (May 24) to add a rotation arm. Gerrit Cole back on the bench as he works his way back. The lineup still has James Wood, Junior Caminero, Konnor Griffin, Daylen Lile, Ronald Acuña Jr., Brice Turang. Mason Miller anchors the closer slot but Helsley is now out too. Two straight weeks of being a sim underdog after the Week 8 disaster.",
+      "team1_analysis": "Ete Crow had the choke of the week: 0–8–1 all-play, 28 cat wins, tied 4–4 with Romance. Vladimir Guerrero Jr. DTD heading in is now better. Mickey Moniak still IL. Matthew Boyd IL, Josh Hader IL. Rotation behind Bailey Ober, Martín Pérez, Jesús Luzardo, Nolan McLean, Payton Tolle with Eury Pérez, Joe Ryan, Shane McClanahan on bench as cover. The bullpen with Tanner Scott and Raisel Iglesias is the league&rsquo;s second-best closer pair. Bounce-back matchup against a beat-up Nick rotation.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Ete lean (62%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-home",
+          "label": "Ete edge (69%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Ete edge (75%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-away",
+          "label": "Nick-fil-A slight edge (54%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-away",
+          "label": "Nick-fil-A edge (66%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-home",
+          "label": "Ete slight edge (52%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Ete slight edge (54%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Ete lean (59%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Ete lean (62%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Ete edge (94%)"
+        }
+      ],
+      "prediction": "Ete Crow 6&ndash;4. Sim says 75% Ete and expected 6.1&ndash;3.9. Ete gets RBI, HR, ERA, WHIP, and a 94% SV cat off Nick&rsquo;s injured bullpen. Nick wins SB and OBP. Same prediction structure that flopped last week but the talent gap is wider; Ete needs the offense not to disappear two weeks in a row."
+    },
+    {
+      "team0_name": "Romance Explosion",
+      "team1_name": "Busch Latte",
+      "team0_analysis": "Romance Explosion (formerly Hey Holmes!) went from weekly champ (Week 8, 8–1 all-play) to dead last (Week 9, 0–6–3). Michael 1 dropped Walker Buehler, picked up Reid Detmers (May 24), added Lucas Giolito then dropped him again. Jose Altuve IL, Dylan Cease DTD, Clay Holmes 60-day, Crochet still IL. Active rotation now MacKenzie Gore, Reid Detmers, Kyle Bradish only. J.T. Ginn, Soroka, Cantillo, Vásquez, Will Warren all on bench. The lineup with Bryce Harper, Pete Alonso, Nolan Arenado, Teoscar Hernández, Ben Rice is still the same group that ran a 58–27 cat record two weeks ago. Variance.",
+      "team1_analysis": "Busch just lost 4–5 to Allahu in a matchup where Busch led the league in OBP (.402) and led with a 2.94 ERA. Hunter Brown 60-day, Edwin Díaz 60-day, Kris Bubic IL. Rose picked up Walbert Ureña and Troy Melton. Rotation: George Kirby, Troy Melton, Antonio Senzatela, Ryan Weathers active. Soriano, Strider, Kyle Harrison, Tatsuya Imai, Jacob Misiorowski all on bench, healthy. Paul Sewald closes. The lineup with Ohtani, Arozarena, JJ Wetherholt, Corbin Carroll, Sal Stewart, Jazz Chisholm Jr. is the league&rsquo;s best all-around.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Busch edge (68%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-away",
+          "label": "Romance Explosion slight edge (52%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Busch edge (86%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Busch edge (75%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-away",
+          "label": "Romance Explosion lean (62%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Busch lean (56%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-away",
+          "label": "Romance Explosion slight edge (51%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Busch edge (72%)"
+        }
+      ],
+      "prediction": "Busch Latte 6&ndash;4. Sim says 70% Busch and expected 5.9&ndash;4.1. Busch sweeps R, OBP, SB, ERA, WHIP. Romance gets HR (50/50), K (63%), and a near-flip on RBI. Two teams sitting 28-46-5 in the standings with completely different roster theories collide; Busch has the depth, Romance has to hope the lineup wakes up."
+    },
+    {
+      "team0_name": "Keanu Reeves",
+      "team1_name": "Allahu Alvarez",
+      "team0_analysis": "Keanu just beat the league leader Sonny 5–4 and is sitting at #2 in cumulative cats. Drake Baldwin still IL, Juan Soto DTD with illness, Ryan O&rsquo;Hearn IL, Edward Cabrera IL, Max Fried IL. Duke Joe added Peter Lambert and Zebby Matthews to the rotation. Active SP group: Cristopher Sánchez, Freddy Peralta, Drew Rasmussen, Zebby Matthews, Peter Lambert with Michael Wacha, Gavin Williams, Luis Severino, Andrew Abbott on bench. Aroldis Chapman closing, Pete Fairbanks the backup. The lineup with Schwarber, Buxton, Soto, Gavin Sheets is HR-heavy.",
+      "team1_analysis": "Allahu Alvarez just put up the best weekly all-play line of the season: 8–0–1 with 53 cat wins, a 1.16 ERA, .88 WHIP, 14 HR. TylerR is still in 8th place in the standings but the trajectory has flipped. Yordan Alvarez DTD, Max Muncy DTD, Alejandro Kirk IL, Nick Pivetta IL, Justin Steele 60-day. Active rotation: Tanner Bibee, Bryce Miller, Logan Gilbert. Kevin Gausman, Spencer Arrighetti, Logan Henderson, Connelly Early, Ranger Suarez on bench. Andrés Muñoz, Louis Varland, Seranthony Domínguez closing. Casey Schmitt and Carson Benge picked up on waivers.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (57%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-away",
+          "label": "Keanu lean (62%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (53%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-away",
+          "label": "Keanu lean (56%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (53%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-even",
+          "label": "Even"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (52%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (53%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 6&ndash;4. Sim says 52% Keanu and expected 5.0&ndash;5.0. The HR cat is a 51/49 toss-up. Keanu&rsquo;s SB and K edges flip the matchup. Allahu won&rsquo;t replicate last week&rsquo;s 1.16 ERA; the pitching staff is good but not historic. With 5.0&ndash;5.0 expected and a sim lean to Keanu, the score gets the favor adjustment to 6&ndash;4."
+    }
+  ],
+  "storylines": [
+    {
+      "title": "Allahu Alvarez gets the test",
+      "body": "After the best weekly all-play of the season (8&ndash;0&ndash;1, 53 cat wins, 1.16 ERA, .88 WHIP), TylerR draws Keanu Reeves, the cumulative #2. Sim has Keanu 52%. Yordan and Max Muncy are both DTD and the Allahu rotation gets a 5&ndash;0 plus 14 HR run for the second straight week or this is the matchup that calls it a fluke. Best test on the board for the 8th-place team that just looked elite."
+    },
+    {
+      "title": "Sonny rotation gets the deep-end test",
+      "body": "Cumulative #1 vs #10. Sonny (cumulative 442 cats) draws Rain City (cumulative 322 cats). The interesting wrinkle: Rain City is now rolling Skenes, deGrom, Wheeler, Imanaga, Lodolo as a top-end rotation while Sonny is missing Cole Ragans, Woodruff, and Jared Jones from theirs. Sim still says 69% Sonny because the lineup gap is real, but the pitching matchup is closer than the record suggests."
+    },
+    {
+      "title": "Ete Crow's bounce-back call",
+      "body": "0&ndash;8&ndash;1 all-play to ending the week 7th in the standings. Jace gets Nick-fil-A as the 75% favorite, same structural matchup that ended in disaster last week (62% favored, tied). Vladimir Guerrero Jr. should be back from DTD. Hunter Greene, Glasnow, Helsley all out for Nick. If the offense disappears against a depleted Nick rotation, the storyline shifts from variance to chronic."
+    },
+    {
+      "title": "OBT&ndash;Buckner is the rotation depth showdown",
+      "body": "Two teams with active SP rotations averaging 4 healthy starters apiece. Sim has Buckner 75% on lineup edges (Yandy, Murakami, Henderson, Tucker) but OBT has the closer corps (Jansen, Bednar, Megill, 83% SV edge). The K cat is essentially even. This is the matchup where the lineups decide everything; if Garth&rsquo;s offense outscores expectation, the sim model gets to 0&ndash;4 versus OBT."
+    },
+    {
+      "title": "Romance Explosion has to remember how to hit",
+      "body": "Same lineup that went 8&ndash;1 in Week 8 went 0&ndash;6&ndash;3 in Week 9. Michael 1 dropped Buehler and the Hey Holmes! brand name in the same week. Now he draws Busch Latte at 30%. Both teams are 29&ndash;46&ndash;5 in the standings. Busch has the depth, Romance has the higher ceiling. Variance is variance until it happens twice."
+    }
+  ]
+}
