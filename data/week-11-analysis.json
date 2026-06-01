@@ -1,0 +1,306 @@
+{
+  "storylines": [
+    "<p><strong>The Allahu Alvarez heater meets the soft side of the bracket.</strong> TylerR has the two best weekly all-play lines of the season back-to-back (8&ndash;0&ndash;1 in Weeks 9 and 10) and now draws Romance Explosion, a roster bleeding production to the IL with Cease, Crochet, Altuve, and Teoscar Hern&aacute;ndez all out. The sim gives Allahu 75% and the closer slot is a 88% Allahu lock. Standings still say 8th but the all-play table says this is the best roster in the league right now.</p>",
+    "<p><strong>Sonny vs OBT for the soul of the top half.</strong> Sonny just took the #1 standings spot, lead the league in cumulative cat wins, and the sim gives them 84% over a Garth W roster that has Skubal, Mize, and Jansen on the 15-day IL all at once. The cat table is a 10&ndash;0 sweep on paper. Garth holds 3rd in the standings on the back of a 4&ndash;9 H2H record that has every other manager confused. This is the week that explains it one way or the other.</p>",
+    "<p><strong>Keanu vs Rain is the only true coin flip on the slate.</strong> 51% sim, 5.0&ndash;5.0 expected, six categories under 60%. Keanu&rsquo;s closer corps (Chapman, Fairbanks, Soto) is the league&rsquo;s most balanced and locks SV at 73%. Rain&rsquo;s rotation depth with Skenes, Wheeler, Imanaga, and Lodolo grabs QS at 62%. Whoever wins R and ERA wins the matchup. After Keanu&rsquo;s 1&ndash;8 collapse against Allahu, this is the bounce-back test.</p>",
+    "<p><strong>Buckner vs Ete is a depth check.</strong> Both teams have IL situations: Buckner without Murakami and Seager, Ete without Hader, Pérez, Ober, Boyd, Moniak. Buckner has more healthy bench arms (Taj Bradley, Logan Webb, Chris Sale all on bench without IL tags) and a more productive lineup top-to-bottom. Sim says 76% Buckner. The Ete lineup with Vlad and Salvy can hit HR and the Ete bullpen can keep WHIP clean, but the rest of the cats are Buckner&rsquo;s.</p>",
+    "<p><strong>Nick&rsquo;s SV problem is a structural problem.</strong> The sim gave Nick a 93% loss in the SV cat against Busch, which is the largest single-cat probability gap on the slate. Mason Miller is the only closer and his usage is unpredictable. Busch&rsquo;s Paul Sewald is the only closer on the other side but the depth of saves on Nick&rsquo;s opponents (almost every team has 2&ndash;3 closers) is starting to add up. Until Mario adds a second arm to the bullpen, the SV cat is going to be a weekly loss.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_name": "One Ball Two Strikes",
+      "team1_name": "It’s Always Sonny",
+      "team0_analysis": "OBT comes in off the 2&ndash;7 loss to Buckner and is sitting in 3rd at 51&ndash;36&ndash;3. Garth&rsquo;s rotation is now thin: Skubal still 15-day IL, Casey Mize 15-day IL, Kenley Jansen 15-day IL. Yamamoto, Alcantara, Merrill Kelly, and Keider Montero are the active arms with Yesavage, Rod&oacute;n, Eovaldi, and Chase Burns on the bench as cover. The lineup behind Jos&eacute; Ram&iacute;rez, Matt Olson, and Riley Greene still produces but is no longer the strength.",
+      "team1_analysis": "Sonny is the cumulative cat-wins leader and now 1st in standings at 52&ndash;28&ndash;10 after the 7&ndash;1 over Rain. Cal Raleigh and Wyatt Langford both still IL, Cole Ragans and Brandon Woodruff still IL, but Shohei Ohtani is active as a pitcher and the rotation behind Cam Schlittler, Michael King, Braxton Ashcraft, Landen Roupp, and Emmet Sheehan is six deep. The lineup with Judge, Tatis, Trea Turner, Austin Riley, and Nick Kurtz is one of the best in the league when whole.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (67%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (72%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Sonny lean (64%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (76%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Sonny lean (59%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (76%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (67%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Sonny slight edge (52%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Sonny slight edge (52%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Sonny edge (70%)"
+        }
+      ],
+      "prediction": "It&rsquo;s Always Sonny 7&ndash;3. Sim says 84% Sonny and expected 6.5&ndash;3.5. The cat table is a sweep but Garth&rsquo;s closer crew and the OBT rotation grab a couple of pity wins. Beatdown."
+    },
+    {
+      "team0_name": "Nick-fil-A",
+      "team1_name": "Busch Latte",
+      "team0_analysis": "Nick comes in off the 8&ndash;1 wipeout of Ete with a league-best 2.41 ERA and 1.02 WHIP. Mario sits 4th at 46&ndash;35&ndash;9. The rotation is still tight: Hunter Greene 60-day IL, Tyler Glasnow 15-day IL, Ryan Helsley 15-day IL. Active arms behind Robbie Ray, Andrew Painter, and Jacob Latz with Seth Lugo, Bryan Woo, Gerrit Cole, and Eduardo Rodriguez all on the bench. The lineup with James Wood, Acu&ntilde;a, Caminero, and Pasquantino is solid but the SV cat is the obvious weakness (Mason Miller alone).",
+      "team1_analysis": "Busch is 10th in standings at 33&ndash;51&ndash;6 but just took a 7&ndash;2 over Romance and ran a .363 OBP, 3.26 ERA week. Hunter Brown still 60-day IL, Edwin D&iacute;az 60-day IL, Kris Bubic 15-day IL. The rotation behind George Kirby, Misiorowski, Senzatela, Strider, and Imai is one of the deepest in the league. The lineup with Ohtani-bat, William Contreras, Aranda, Jazz, Carroll, Arozarena, and Suzuki has been the league&rsquo;s most patient (.402 OBP in Week 9, .363 last week). Paul Sewald is the only healthy closer.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Busch edge (66%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-home",
+          "label": "Busch lean (60%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Busch lean (62%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Busch edge (66%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Busch lean (59%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-home",
+          "label": "Busch slight edge (54%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Busch slight edge (55%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Busch lean (56%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Busch slight edge (52%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Busch edge (93%)"
+        }
+      ],
+      "prediction": "Busch Latte 6&ndash;4. Sim says 75% Busch and expected 6.2&ndash;3.8. Edge in 10/10 categories but several are paper-thin and Nick&rsquo;s rotation depth grabs K or QS. The SV cat is the lock at 93%."
+    },
+    {
+      "team0_name": "Romance Explosion",
+      "team1_name": "Allahu Alvarez",
+      "team0_analysis": "Romance is 9th in standings at 33&ndash;50&ndash;7 and 1&ndash;7&ndash;1 in all-play last week. Michael 1&rsquo;s rotation is gutted: Dylan Cease 15-day IL, Garrett Crochet 15-day IL, Jose Altuve 10-day IL, Teoscar Hern&aacute;ndez 10-day IL, Angel Mart&iacute;nez DTD. Active arms are Reid Detmers, J.T. Ginn, and Grant Holmes with MacKenzie Gore, Kyle Bradish, Will Warren, and Michael Soroka on the bench. The lineup is still potent (Bryce Harper, Julio, Mookie Betts, Pete Alonso, Eugenio Su&aacute;rez) but the SV cat is dead (Lucas Erceg and Robert Suarez).",
+      "team1_analysis": "Allahu is the back-to-back weekly champ and now 8th in standings at 34&ndash;50&ndash;6. TylerR is running the hottest roster in the league: 63 cat wins last week, 53 the week before. The rotation behind Bryce Miller, Ranger Suarez, and Tanner Bibee with Logan Gilbert, Kevin Gausman, Spencer Arrighetti, and Connelly Early on the bench is deeper than the active count suggests. Bullpen with Mu&ntilde;oz, Varland, and Domínguez is the league&rsquo;s best after this week&rsquo;s historic run. Yordan Alvarez parked on bench but produces every time he&rsquo;s in the lineup.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (56%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (51%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (52%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Allahu edge (70%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (61%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (59%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (64%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Allahu slight edge (52%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Allahu lean (56%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Allahu edge (88%)"
+        }
+      ],
+      "prediction": "Allahu Alvarez 6&ndash;4. Sim says 75% Allahu and expected 6.1&ndash;3.9. The hottest roster in the league against a Romance lineup bleeding production to the IL. SV is the lock; the offensive cats are closer than the win pct suggests."
+    },
+    {
+      "team0_name": "Keanu Reeves",
+      "team1_name": "Rain City Bombers",
+      "team0_analysis": "Keanu just got blown out 1&ndash;8 by Allahu but is still 2nd in standings at 53&ndash;34&ndash;3. The rotation took hits: Max Fried 15-day IL, Edward Cabrera 15-day IL, Luis Severino 15-day IL. Active arms Michael Wacha, Spencer Miles, Drew Rasmussen, Zebby Matthews, and Andrew Abbott with Freddy Peralta, Cristopher S&aacute;nchez, Gavin Williams, and Shane Baz on the bench. Closer corps with Aroldis Chapman, Pete Fairbanks, and Gregory Soto is healthy and dangerous. The lineup with Soto, Schwarber, Buxton, Naylor, and Hoerner can hit, but needs the bats to wake up after the Week 10 collapse.",
+      "team1_analysis": "Rain City sits 6th at 40&ndash;47&ndash;3 and just got dumped 1&ndash;7 by Sonny. The IL sheet is the story: Francisco Lindor 10-day IL, Roman Anthony 10-day IL, Blake Snell 60-day IL, Maikel Garcia DTD. The rotation behind Paul Skenes, Zack Wheeler, Shota Imanaga, Nick Martinez, Max Meyer, and Nick Lodolo is six healthy starters. Cade Smith and Abner Uribe in the bullpen. The lineup with Mike Trout, Manny Machado, Yelich, and Soderstrom can hit when the IL clears.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Rain slight edge (55%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-away",
+          "label": "Keanu lean (62%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-away",
+          "label": "Keanu slight edge (50%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Rain edge (66%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Rain lean (56%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-away",
+          "label": "Keanu lean (57%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Rain lean (62%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Rain slight edge (51%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-home",
+          "label": "Rain lean (56%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-away",
+          "label": "Keanu edge (73%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 5&ndash;5. Sim says 51% Keanu and expected 5.0&ndash;5.0. Keanu wins HR, K, SV. Rain wins SB, OBP, QS. Everything else is a coin flip. The standings #2 vs the standings #6 and the model has it dead even."
+    },
+    {
+      "team0_name": "Ete Crow",
+      "team1_name": "The Buckner Boots",
+      "team0_analysis": "Ete is 7th at 38&ndash;45&ndash;7 and just got obliterated 1&ndash;8 by Nick. Two straight weeks at the bottom of the all-play board. Eury P&eacute;rez 15-day IL, Bailey Ober 15-day IL, Matthew Boyd 15-day IL, Josh Hader 60-day IL, Mickey Moniak 10-day IL, Elly De La Cruz DTD. The rotation behind Joe Ryan, Jes&uacute;s Luzardo, Nolan McLean, and Shane McClanahan is workable but thin. The lineup with Vlad Jr., Salvy, Albies, Bellinger, and PCA is solid when healthy. Closer crew with Tanner Scott and Raisel Iglesias is the SV outlier in this matchup.",
+      "team1_analysis": "Buckner is now 5th at 39&ndash;43&ndash;8 after the 7&ndash;2 over OBT. Murakami still 10-day IL, Corey Seager still 10-day IL, but the rotation behind Framber Valdez, Zack Littell, Ben Brown, Parker Messick, and Roki Sasaki is five active starters with Taj Bradley, Logan Webb, and Chris Sale on the bench. The lineup with Yandy D&iacute;az, CJ Abrams, Kyle Tucker, Gunnar Henderson, Ketel Marte, and Bregman has been the second-most productive in the league two weeks running. Bryan Baker, Daniel Palencia, and Devin Williams give Buckner real save-slot depth.",
+      "cat_edges": [
+        {
+          "cat": "R",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (69%)"
+        },
+        {
+          "cat": "HR",
+          "edge_class": "edge-away",
+          "label": "Ete slight edge (51%)"
+        },
+        {
+          "cat": "RBI",
+          "edge_class": "edge-home",
+          "label": "Buckner slight edge (50%)"
+        },
+        {
+          "cat": "SB",
+          "edge_class": "edge-home",
+          "label": "Buckner lean (58%)"
+        },
+        {
+          "cat": "OBP",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (78%)"
+        },
+        {
+          "cat": "K",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (67%)"
+        },
+        {
+          "cat": "QS",
+          "edge_class": "edge-home",
+          "label": "Buckner lean (65%)"
+        },
+        {
+          "cat": "ERA",
+          "edge_class": "edge-home",
+          "label": "Buckner slight edge (50%)"
+        },
+        {
+          "cat": "WHIP",
+          "edge_class": "edge-away",
+          "label": "Ete slight edge (55%)"
+        },
+        {
+          "cat": "SV",
+          "edge_class": "edge-home",
+          "label": "Buckner edge (79%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6&ndash;4. Sim says 76% Buckner and expected 6.1&ndash;3.9. Edges in 8 of 10 cats with the lineup, the rotation, and the closers all healthy. Ete sneaks HR off Vlad and Salvy and WHIP off a clean Joe Ryan start, but the matchup is over by Friday."
+    }
+  ]
+}
