@@ -1,0 +1,295 @@
+{
+  "storylines": [
+    "<p><strong>The #1 team is an underdog.</strong> It&rsquo;s Always Sonny leads the league at 63&ndash;35&ndash;12, but enters Week 12 without Aaron Judge and Cal Raleigh, both on the 10-day IL, plus Cole Ragans and Brandon Woodruff. The model makes #7 Ete Crow the favorite. The injury timing could not be worse for TylerV, and Jace Allison gets the best upset shot of his season.</p>",
+    "<p><strong>Allahu will not cool off.</strong> TylerR swept Romance 10&ndash;0, posted the league&rsquo;s best all-play week, and now draws #2 Nick-fil-A in a 53&ndash;47 coin flip. It is the purest power-versus-ratios matchup on the board: Allahu&rsquo;s bats and steals against Mario&rsquo;s ERA and WHIP machine. Whoever wins the thin middle categories wins the week.</p>",
+    "<p><strong>Keanu gets the gift of the week.</strong> A #3 team drawing dead-last Romance Explosion, whose rotation (Crochet, Cease, Teoscar Hern&aacute;ndez) is in pieces. The sim says 86% Keanu. The only suspense is the final margin and whether Romance steals a counting category.</p>",
+    "<p><strong>The bottom of the board is a coin-flip festival.</strong> Busch versus Buckner splits 5&ndash;5 in the categories, and OBT, now without Tarik Skubal, hosting a favored Rain City both come down to a category or two on Sunday. The injured lists are overflowing league-wide: Judge, Raleigh, Lindor, Elly De La Cruz, Skubal, and Crochet are all watching this one from the trainer&rsquo;s room.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_analysis": "One Ball Two Strikes sits #4 and just knocked off the league leader, but the rotation took a hit this week: Tarik Skubal, Casey Mize, and closer Kenley Jansen are all on the 15-day IL. Jos&eacute; Ram&iacute;rez and Matt Olson keep the offense printing, and the sim still hands Garth the OBP (76%) and R edges, but the pitching is thinner than usual.",
+      "team1_analysis": "Rain City is #8 in the standings yet the model&rsquo;s 63% favorite here. Taylor&rsquo;s bats are banged up too, with Francisco Lindor and Roman Anthony on the IL and Michael Harris II and Will Smith day-to-day, but the WHIP edge is enormous (83%) and the ERA, QS, and SV edges are real. Blake Snell stays a 60-day stash.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (59%)"
+        },
+        {
+          "cats": "HR",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (57%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Rain City Bombers lean (60%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "One Ball Two Strikes edge (76%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Rain City Bombers lean (57%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Rain City Bombers edge (66%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Rain City Bombers edge (69%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Rain City Bombers edge (83%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Rain City Bombers lean (62%)"
+        }
+      ],
+      "prediction": "Rain City Bombers 6&ndash;4. The model likes the underdog by record: Rain City&rsquo;s pitching ratios carry it, and OBT pitching without Skubal leaves just enough room. Garth keeps OBP and runs, Taylor takes the arms."
+    },
+    {
+      "team0_analysis": "The league leader limps in missing its two best bats: Aaron Judge and Cal Raleigh are both on the 10-day IL, with Cole Ragans and Brandon Woodruff on the 15-day. That is exactly why the #1 team in the standings is a Week 12 underdog. Sonny still owns SV (67%) and QS (67%) behind the deepest bullpen in the league, but the lineup is running without its engine.",
+      "team1_analysis": "Ete Crow is #7 and the model&rsquo;s surprise favorite, holding category edges in seven of ten. Elly De La Cruz is on the 10-day IL and Salvador Perez and Brandon Lowe are day-to-day, but the leans in R, HR, RBI, OBP, K, ERA, and WHIP are genuine even where they are thin. With Judge and Raleigh out, this is Jace&rsquo;s best shot at a marquee scalp all year.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Ete Crow lean (56%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Ete Crow lean (62%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Ete Crow edge (66%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "It\u2019s Always Sonny lean (58%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Ete Crow lean (64%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Ete Crow lean (57%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 0,
+          "label": "It\u2019s Always Sonny edge (68%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Ete Crow lean (63%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Ete Crow lean (59%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 0,
+          "label": "It\u2019s Always Sonny edge (67%)"
+        }
+      ],
+      "prediction": "Ete Crow 6&ndash;4. They hold the edge almost everywhere, but most of those advantages are thin and Sonny&rsquo;s bullpen grabs SV and QS, so this is a 6&ndash;4 win and not a blowout. The story is the injuries: a healthy Sonny wins this comfortably."
+    },
+    {
+      "team0_analysis": "Nick-fil-A is #2 and built its season on ratios: the sim hands Mario ERA (75%), WHIP (74%), and QS (68%) again. Closer Ryan Helsley is on the 15-day IL, which softens the SV edge, and Tyler Glasnow and Hunter Greene remain long-term 60-day stashes the rotation already works around.",
+      "team1_analysis": "The hottest team in the league rolls in at #5 after a 10&ndash;0 sweep and the best all-play week in the field. Bobby Witt Jr. is day-to-day and worth watching, but Yordan Alvarez and the bats give Allahu the R, HR, RBI, and SB edges. The model calls it a near coin flip at 53% Allahu.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (62%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Allahu Alvarez edge (75%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Allahu Alvarez edge (82%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Allahu Alvarez slight edge (54%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "Nick-fil-A slight edge (52%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Allahu Alvarez slight edge (53%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 0,
+          "label": "Nick-fil-A edge (68%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "Nick-fil-A edge (75%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "Nick-fil-A edge (74%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (58%)"
+        }
+      ],
+      "prediction": "Allahu Alvarez 6&ndash;4. They take the power categories and Nick takes the ratios, and the edge count favors Allahu, but several of those edges (SB, K, SV) are paper-thin. The classic bats-versus-ratios coin flip, and the hot hand gets the nod."
+    },
+    {
+      "team0_analysis": "Romance Explosion is dead last and just got swept 0&ndash;10. The staff is gutted: Garrett Crochet (60-day IL), Dylan Cease (15-day), and Teoscar Hern&aacute;ndez (10-day) are all out. The sim gives Michael&rsquo;s second roster a puncher&rsquo;s chance in R and RBI and almost nothing else, with SV (6%) a total write-off.",
+      "team1_analysis": "Keanu is #3 and an 86% favorite. Byron Buxton is day-to-day and Max Fried is on the 15-day IL, but Kyle Schwarber and a deep, freshly-streamed rotation (Grayson Rodriguez, Colin Rea, Jameson Taillon) make this the most lopsided matchup on the board.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "Romance Explosion lean (59%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Keanu Reeves lean (64%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Keanu Reeves lean (61%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Keanu Reeves edge (75%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Keanu Reeves edge (83%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Keanu Reeves edge (72%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "Romance Explosion lean (56%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Keanu Reeves edge (70%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Keanu Reeves edge (94%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 7&ndash;3. The biggest mismatch of the week against the worst roster in the league. Duke Joe should win going away; the only question is whether Romance scratches out R and RBI."
+    },
+    {
+      "team0_analysis": "Busch Latte is #9 and coming off an unlucky 2&ndash;8 loss despite a 5&ndash;4 all-play week. The bullpen is the hole: Edwin D&iacute;az (60-day IL) and Hunter Brown (60-day) are gone, which is why the SV edge sits at just 13%. But Randy Arozarena and Jazz Chisholm give Rose the SB (68%) and OBP (77%) edges.",
+      "team1_analysis": "The Buckner Boots are #6 and just posted the league&rsquo;s best ERA and WHIP in a 4&ndash;4 tie. Munetaka Murakami is on the 10-day IL, but CJ Abrams and a clean Joe Ryan rotation give Michael the HR, RBI, K, QS, and SV edges.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "Busch Latte lean (57%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "The Buckner Boots lean (62%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "The Buckner Boots lean (57%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "Busch Latte edge (68%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "Busch Latte edge (77%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "The Buckner Boots edge (73%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "The Buckner Boots lean (64%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "Busch Latte lean (56%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "Busch Latte edge (65%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "The Buckner Boots edge (87%)"
+        }
+      ],
+      "prediction": "Too close to call, 5&ndash;5. The category table splits down the middle and the win probability is a 53% coin flip toward Buckner. Busch owns speed and on-base, Buckner owns the pitching, and this one likely comes down to a single category on the final day."
+    }
+  ]
+}
