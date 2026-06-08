@@ -1,6 +1,6 @@
 {
   "last_updated_week": 11,
-  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current — history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
+  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current \u2014 history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
   "weekly_snapshots": [
     {
       "week": 1,
@@ -1463,7 +1463,7 @@
           "prev_rank": 1,
           "delta": -1,
           "tier": "elite",
-          "name": "It’s Always Sonny",
+          "name": "It\u2019s Always Sonny",
           "cumulative_ap": {
             "w": 36,
             "l": 16,
@@ -1748,7 +1748,7 @@
           "prev_rank": 2,
           "delta": 0,
           "tier": "elite",
-          "name": "It’s Always Sonny",
+          "name": "It\u2019s Always Sonny",
           "cumulative_ap": {
             "w": 43,
             "l": 16,
@@ -2004,7 +2004,7 @@
       "prev_rank": 1,
       "delta": 0,
       "tier": "elite",
-      "name": "It’s Always Sonny",
+      "name": "It\u2019s Always Sonny",
       "cumulative_ap": {
         "w": 62,
         "l": 22,
@@ -2172,7 +2172,7 @@
         }
       ],
       "weighted_score": 382.77,
-      "analysis": "496 cumulative cat wins, the new league standings leader at 52&ndash;28&ndash;10, and another week of 7&ndash;2&ndash;0 all-play with 54 cat wins. TylerV took Rain City 7&ndash;1 with Cal Raleigh, Wyatt Langford, Cole Ragans, and Brandon Woodruff all still on the IL. When the IL list clears, the gap to #2 will widen. No team is operating below its ceiling like Sonny right now."
+      "analysis": "Still the cumulative leader at 496 cat wins and still the standings #1 at 63&ndash;35&ndash;12, but Week 11 was a stumble: a 4&ndash;6 H2H loss to One Ball Two Strikes as an 84% favorite, and just 52 cat wins on a 6&ndash;3 all-play line. The Week 12 IL sheet is brutal, with Aaron Judge and Cal Raleigh both down. The cushion at the top is real; the lineup needs bodies back."
     },
     {
       "rank": 2,
@@ -2347,7 +2347,7 @@
         }
       ],
       "weighted_score": 352.66,
-      "analysis": "Back-to-back weekly champ. 63 cat wins in Week 10 led the league. 53 in Week 9. 455 cumulative cats now within 41 of Sonny&rsquo;s top spot. TylerR led R (45), HR (17), RBI (49), OBP (.381), and K (76) all in the same week against Keanu. Yordan Alvarez, the Toronto bats, and a bullpen of Mu&ntilde;oz/Varland/Domínguez. From draft afterthought to weekly destroyer."
+      "analysis": "The hottest team in the league has now passed Keanu on the recency-weighted board despite trailing in raw cumulative cats (455 to 472). A 10&ndash;0 sweep of Romance and a league-best 67 cat wins in Week 11 followed 63 in Week 10. Yordan Alvarez, Bobby Witt Jr., and a constantly-streamed rotation are the engine. From draft afterthought to weekly destroyer of contenders."
     },
     {
       "rank": 3,
@@ -2522,7 +2522,7 @@
         }
       ],
       "weighted_score": 351.87,
-      "analysis": "472 cumulative cats, still 3rd, but Week 10 was the worst week of the year: 1&ndash;7&ndash;1 all-play, 27 cat wins, 1&ndash;8 H2H L to Allahu. Duke Joe&rsquo;s 7 QS was the only category he won. Max Fried, Edward Cabrera, and Luis Severino all on 15-day IL pulled rotation depth thin. The cumulative lead Keanu had three weeks ago is gone. The recency-weighted score still likes him; the trajectory does not."
+      "analysis": "Still 3rd on raw cumulative cats (472), but the trajectory is the worry: a second straight cold week at just 35 cat wins and a losing 3&ndash;5&ndash;1 all-play line. Duke Joe stole a 5&ndash;4 H2H win over Rain City he had no business winning by all-play. Max Fried is still on the IL. The recency model is one bad week from dropping him out of the top tier."
     },
     {
       "rank": 4,
@@ -2697,7 +2697,7 @@
         }
       ],
       "weighted_score": 345.77,
-      "analysis": "460 cumulative cats, 4th on the board, and a brutal 2&ndash;7 H2H L to Buckner. 27 cat wins this week was 3rd-worst in the league. Skubal still IL, Mize 15-day IL, Jansen 15-day IL: the rotation behind Yamamoto and Alcantara is bleeding. Garth still holds the standings #3 spot at 51&ndash;36&ndash;3 but cumulative numbers say this is closer to a mid-tier team than a contender."
+      "analysis": "460 cumulative cats and the scalp of Week 11: a 6&ndash;4 takedown of league-leader It&rsquo;s Always Sonny behind a league-high 41 runs, with a 6&ndash;2&ndash;1 all-play line to back it up. The rotation is thin with Tarik Skubal, Casey Mize, and Kenley Jansen all on the IL, but Jos&eacute; Ram&iacute;rez and Matt Olson keep this a contender."
     },
     {
       "rank": 5,
@@ -2872,7 +2872,7 @@
         }
       ],
       "weighted_score": 321.67,
-      "analysis": "Best single-week pitching line of the year: 2.41 ERA, 1.02 WHIP, 9 SB, 8&ndash;0&ndash;1 all-play, 62 cat wins, 8&ndash;1 H2H W over Ete. 423 cumulative cats and climbing. Mario stitched the rotation together around Hunter Greene 60-day IL, Tyler Glasnow 15-day IL, and Ryan Helsley 15-day IL. The SV cat remains the structural weakness with Mason Miller the only true closer."
+      "analysis": "423 cumulative cats and climbing fast: an 8&ndash;2 H2H win over Busch, 63 cat wins, and an 8&ndash;0&ndash;1 all-play week, leading the league in HR and OBP. The #2 standings record (62&ndash;38&ndash;10) is no fluke. SV remains the structural soft spot, and Ryan Helsley landing on the IL does not help the one weakness."
     },
     {
       "rank": 6,
@@ -3047,7 +3047,7 @@
         }
       ],
       "weighted_score": 311.08,
-      "analysis": "407 cumulative cats. Held 6th after a clean 7&ndash;2 W over Romance with a .363 OBP and 3.26 ERA. Rose continues to run one of the most patient lineups in the league (Jonathan Aranda, William Contreras, Ohtani-bat, Jazz, Carroll). Hunter Brown 60-day IL, Edwin D&iacute;az 60-day IL, Kris Bubic 15-day IL but the rotation behind Kirby, Misiorowski, Senzatela, Strider, and Imai is one of the deepest in the league. Standings still say 10th. The roster says contender."
+      "analysis": "The unluckiest team of Week 11. A 5&ndash;4 all-play line, good enough to beat five other rosters, but Rose drew Nick-fil-A and got buried 2&ndash;8. 407 cumulative cats. The bullpen is gutted with Edwin D&iacute;az and Hunter Brown on the 60-day IL, but Randy Arozarena and Jazz Chisholm keep the speed and on-base categories live."
     },
     {
       "rank": 7,
@@ -3222,7 +3222,7 @@
         }
       ],
       "weighted_score": 298.71,
-      "analysis": "Up one tier on the all-play board this week. 6&ndash;3&ndash;0 all-play, 53 cat wins, 7&ndash;2 H2H over OBT with 15 HR and 42 RBI from Yandy D&iacute;az, CJ Abrams, and Gunnar Henderson. 395 cumulative cats. Murakami and Seager still 10-day IL but the rotation behind Framber Valdez, Zack Littell, Ben Brown, Parker Messick, and Roki Sasaki is five active starters with three more healthy bench arms. Two weeks running with a top-three offensive output."
+      "analysis": "The all-play paradox of the week: the league&rsquo;s best ERA (3.01) and WHIP (0.99), yet a 1&ndash;6&ndash;2 all-play line and only a 4&ndash;4 tie with Ete. 395 cumulative cats. Michael&rsquo;s pitching, behind a clean Joe Ryan rotation and CJ Abrams&rsquo; bat, is genuinely good; the schedule just buried it. Holding mid-tier."
     },
     {
       "rank": 8,
@@ -3397,7 +3397,7 @@
         }
       ],
       "weighted_score": 278.64,
-      "analysis": "Second straight week as the all-play bottom-feeder: 2&ndash;6&ndash;1, 28 cat wins, 1&ndash;8 H2H L to Nick. 365 cumulative cats and falling. Eury P&eacute;rez, Bailey Ober, Matthew Boyd all 15-day IL. Josh Hader 60-day IL. Mickey Moniak 10-day IL. Elly De La Cruz DTD. The lineup still has Vlad Jr., Salvy, Albies, and PCA, but everything around it is on the IL or DTD. The collapse from contender to mid is happening in real time."
+      "analysis": "365 cumulative cats and treading water: a 2&ndash;5&ndash;2 all-play week salvaged into a 4&ndash;4 tie with Buckner. Elly De La Cruz is on the IL and Salvador Perez is day-to-day. But Week 12 is a gift draw: a banged-up Sonny missing Judge and Raleigh, where the model actually makes Jace the favorite for a marquee scalp."
     },
     {
       "name": "Romance Explosion",
@@ -3571,7 +3571,7 @@
           }
         }
       ],
-      "analysis": "351 cumulative cats, last in the league. 1&ndash;7&ndash;1 all-play, 26 cat wins, 2&ndash;7 H2H L to Busch. Michael 1&rsquo;s IL sheet: Dylan Cease, Garrett Crochet, Jose Altuve, Teoscar Hern&aacute;ndez. The rotation is down to Detmers, Ginn, and Holmes. Bryce Harper, Julio, Mookie, and Pete Alonso can still hit, but every other category is the league's weakest.",
+      "analysis": "Dead last in cumulative cats (351) and coming off the worst week in the league: a 0&ndash;10 sweep, 0&ndash;9 all-play, 19 cat wins. Michael&rsquo;s second roster has a gutted rotation with Crochet, Cease, and Teoscar Hern&aacute;ndez all on the IL. Ben Rice and the bats are the only thing keeping it watchable.",
       "weighted_score": 268.99
     },
     {
@@ -3747,7 +3747,7 @@
         }
       ],
       "weighted_score": 265.57,
-      "analysis": "345 cumulative cats. 1&ndash;6&ndash;2 all-play, 23 cat wins, 1&ndash;7 H2H L to Sonny. Lindor 10-day IL, Roman Anthony 10-day IL, Blake Snell 60-day IL, Maikel Garcia DTD. Skenes/Wheeler/Imanaga/Lodolo is a healthy rotation but the lineup is gutted. Cade Smith and Abner Uribe are the bullpen. When the IL clears, the team is dangerous. Right now, it is the bottom of the all-play board."
+      "analysis": "345 cumulative cats, last on the recency board. A 1&ndash;6&ndash;2 all-play week and a 4&ndash;5 H2H loss to Keanu in a coin flip. Lindor and Roman Anthony are on the IL and the lineup is gutted. Skenes anchors a healthy rotation, and the model actually likes Rain City to win Week 12, so the floor may be near."
     }
   ]
 }
