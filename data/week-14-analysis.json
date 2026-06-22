@@ -1,0 +1,305 @@
+{
+  "storylines": [
+    "<p>The marquee matchup is It&rsquo;s Always Sonny against Allahu Alvarez: the number-one seed, fresh off a fluky 2&ndash;7 loss, against the hottest roster in the league. Allahu just posted the best all-play week of the season at 8&ndash;0&ndash;1 and draws Sonny without Aaron Judge. If the top seed is going to be caught, weeks like this are how it starts.</p>",
+    "<p>The IL is the real headline of Week 14. Jos&eacute; Ram&iacute;rez, Aaron Judge, Ronald Acu&ntilde;a Jr., Mike Trout, Francisco Lindor, Brent Rooker, Teoscar Hern&aacute;ndez, Elly De La Cruz, and Corey Seager are all sidelined. Half the league&rsquo;s star power is in street clothes, and the teams that backfill best will steal categories the projections cannot fully price in.</p>",
+    "<p>Nick-fil-A sits second in the standings and just turned in the worst week any team has had this year, a 0&ndash;9 all-play wipeout. Now it draws a red-hot Keanu side while missing Acu&ntilde;a, Greene, and Glasnow, and the model gives Mario a single category. Second place is about to feel a lot more precarious.</p>",
+    "<p>The bottom of the bracket is sorting itself out with the playoffs in view. Busch Latte and The Buckner Boots are both favored despite sitting eighth and sixth, while a gutted Rain City and a luck-fueled Romance try to keep pace. In a six-team playoff field, none of these results are throwaways.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_name": "One Ball Two Strikes",
+      "team1_name": "Ete Crow",
+      "team0_analysis": "One Ball comes in off a quiet 3&ndash;7 loss to Keanu, and it gets tougher before it gets easier: Jos&eacute; Ram&iacute;rez is on the 10-day IL, pulling a chunk of the runs, power, and steals out of Garth&rsquo;s lineup. The pitching is the calling card here, a staff that posted a 1.24 WHIP last week, and the model leans on it. OBP and the ratios are where One Ball holds the edge.",
+      "team1_analysis": "Ete Crow stole a 6&ndash;4 from Rain City last week on the back of six saves, but the roster is banged up: Elly De La Cruz and Mickey Moniak are both on the 10-day IL, gutting the speed and a piece of the offense, while Eury P&eacute;rez, Brad Keller, and Matthew Boyd are all shelved. Jace still profiles to take the power and counting categories, but the margins are razor-thin.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (59%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Ete Crow lean (57%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Ete Crow lean (57%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Ete Crow lean (56%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "One Ball Two Strikes edge (68%)"
+        },
+        {
+          "cats": "K",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Ete Crow slight edge (54%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "One Ball Two Strikes slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "One Ball Two Strikes slight edge (54%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Ete Crow lean (62%)"
+        }
+      ],
+      "prediction": "Toss-up, 5&ndash;5. One Ball&rsquo;s ratios against Ete&rsquo;s bats, and with Ram&iacute;rez and Elly both on the IL the model cannot separate them (One Ball 52%)."
+    },
+    {
+      "team0_name": "It’s Always Sonny",
+      "team1_name": "Allahu Alvarez",
+      "team0_analysis": "The number-one seed got mugged last week, a 2&ndash;7 loss to Busch despite a league-best 73 strikeouts, the kind of result that is pure bad-draw variance. Now Sonny is shorthanded: Aaron Judge is on the 10-day IL, and Cole Ragans (60-day) and Brandon Woodruff (15-day) are long gone. Even so, the strikeout volume and team speed are real separators in this one.",
+      "team1_analysis": "Allahu is the hottest team in the league, fresh off the best all-play week of the season (8&ndash;0&ndash;1) and an 8&ndash;2 demolition of Buckner behind league-best marks in OBP, saves, and WHIP. Bobby Witt Jr. is day-to-day and worth watching, and Oneil Cruz is on the 10-day IL, but the model still hands TylerR the power categories and a big saves edge.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "It’s Always Sonny slight edge (54%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (55%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (62%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "It’s Always Sonny edge (73%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Allahu Alvarez slight edge (53%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "It’s Always Sonny edge (83%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 0,
+          "label": "It’s Always Sonny lean (57%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "It’s Always Sonny slight edge (51%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Allahu Alvarez edge (71%)"
+        }
+      ],
+      "prediction": "It&rsquo;s Always Sonny 6&ndash;4. The strikeout and steal edges carry the top seed, but a red-hot Allahu owning homers, RBI, and saves keeps it to a one-category swing (Sonny 59%)."
+    },
+    {
+      "team0_name": "Nick-fil-A",
+      "team1_name": "Keanu Reeves",
+      "team0_analysis": "Nick-fil-A is the number-two seed coming off the worst week any team had this season, 0&ndash;9 all-play, and the injury sheet is brutal: Ronald Acu&ntilde;a Jr. and Konnor Griffin on the 10-day IL, Hunter Greene and Tyler Glasnow both on the 60-day. That is a pile of production and rotation missing, and it shows up in the projections, where Mario is an underdog in nine of ten categories.",
+      "team1_analysis": "Keanu rolls in off a clean 7&ndash;3 win over One Ball with a league-high 18 homers, and the only injury of note is Max Fried (15-day IL). Duke Joe owns this matchup on paper: huge edges in strikeouts, saves, and quality starts, with the power and OBP on his side too.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Keanu Reeves lean (58%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Keanu Reeves edge (66%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Keanu Reeves lean (56%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "Nick-fil-A slight edge (52%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Keanu Reeves lean (63%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Keanu Reeves edge (78%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Keanu Reeves edge (69%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Keanu Reeves lean (55%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Keanu Reeves slight edge (53%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Keanu Reeves edge (85%)"
+        }
+      ],
+      "prediction": "Keanu Reeves 6&ndash;4. Keanu holds the edge in nine of ten categories, but several are thin leans, so this lands a 6&ndash;4 rather than the blowout the all-play board would suggest (Keanu 79%)."
+    },
+    {
+      "team0_name": "Romance Explosion",
+      "team1_name": "The Buckner Boots",
+      "team0_analysis": "Romance Explosion backed into a 6&ndash;4 win over Nick last week on a 2&ndash;6&ndash;1 all-play line, the luckiest draw of the week, and now the bill comes due. Brent Rooker and Teoscar Hern&aacute;ndez are both on the 10-day IL, and the rotation is thin with Garrett Crochet and Shane Bieber on the 60-day. Michael still profiles to win strikeouts, but not a lot beyond that.",
+      "team1_analysis": "Buckner ran a league-best 2.89 ERA last week and lost anyway, swept aside 2&ndash;8 by Allahu, a bad draw more than a bad team. Corey Seager (7-day) and Munetaka Murakami (10-day) are banged up, but the model likes Buckner across the board here, with edges in eight categories including runs, OBP, and a near-lock on saves.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "The Buckner Boots edge (67%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 0,
+          "label": "Romance Explosion slight edge (52%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "The Buckner Boots slight edge (51%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "The Buckner Boots edge (73%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "The Buckner Boots edge (69%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "Romance Explosion lean (62%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "The Buckner Boots lean (59%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "The Buckner Boots lean (57%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "The Buckner Boots lean (55%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "The Buckner Boots edge (89%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6&ndash;4. Buckner owns eight categories but a handful are coin flips, so Romance&rsquo;s strikeouts and a stray ratio keep it to a 6&ndash;4 (Buckner 74%)."
+    },
+    {
+      "team0_name": "Rain City Bombers",
+      "team1_name": "Busch Latte",
+      "team0_analysis": "Rain City&rsquo;s lineup is decimated: Mike Trout, Francisco Lindor, Will Smith, Roman Anthony, and Liam Hicks are all on the 10-day IL, and Blake Snell is on the 60-day. Even with IL backfills, that is a staggering amount of production to replace, and after a 6.39 ERA in last week&rsquo;s loss the arms are not bailing anyone out. The model has Taylor as a heavy underdog in the power categories.",
+      "team1_analysis": "Busch Latte is quietly the second-hottest team in the league, an 8&ndash;0&ndash;1 all-play week capped by a 7&ndash;2 takedown of the top seed, with league-highs in RBI, steals, and quality starts. Edwin D&iacute;az (60-day) and Randy Arozarena (10-day) are out, but Rose has the lineup firing: dominant edges in runs, homers, and RBI, plus a near-lock on saves.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Busch Latte edge (80%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Busch Latte edge (80%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 1,
+          "label": "Busch Latte edge (80%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "Rain City Bombers lean (56%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Busch Latte lean (60%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Busch Latte lean (56%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Busch Latte slight edge (54%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "Rain City Bombers lean (58%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Busch Latte edge (94%)"
+        }
+      ],
+      "prediction": "Busch Latte 6&ndash;4. Busch owns the power and saves in a rout-on-paper, but Rain City&rsquo;s steals and one ratio keep it off a sweep (Busch 80%)."
+    }
+  ]
+}
