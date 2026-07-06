@@ -1,0 +1,297 @@
+{
+  "week": 16,
+  "storylines": [
+    "<p><strong>The two-seed showdown: Sonny vs Nick-fil-A.</strong> The two best records in the league, 81&ndash;43&ndash;16 against 73&ndash;55&ndash;12, in the marquee matchup of the week. Both are banged up, Sonny without Aaron Judge and Wyatt Langford, Nick without Ronald Acu&ntilde;a Jr., but Sonny&rsquo;s 71 percent OBP edge and Jhoan Duran make it a 65 percent call. Nick just led the league in runs, homers, and steals, so if the top seed sleeps, the two-seed is built to pounce.</p>",
+    "<p><strong>One Ball tries to prove the sweep was not a fluke.</strong> After hanging a 10&ndash;0 on Busch and going 9&ndash;0 all-play, Garth draws a real opponent in Allahu. Jos&eacute; Ram&iacute;rez and Jeremy Pe&ntilde;a are on the IL, trimming exactly the power and speed that made last week look easy, and Allahu&rsquo;s bullpen owns a 68 percent saves edge. This one projects as a 54 percent coin flip, not a sweep.</p>",
+    "<p><strong>Rain City&rsquo;s infirmary against Romance&rsquo;s tank job.</strong> Rain City has Mike Trout, Will Smith, Tyler Soderstrom, and Maikel Garcia all on the 10-day IL and is still favored, because a rotation of Skenes, deGrom, Wheeler, and Imanaga does not care who is hurt. Romance, dead last and missing Julio Rodr&iacute;guez and Brent Rooker, has to win the strikeout column and steal homers to keep it close.</p>",
+    "<p><strong>The coin flip: Keanu vs Buckner.</strong> The tightest matchup on the board at 52&ndash;48. Keanu&rsquo;s strikeout arms give them a 72 percent edge in Ks plus a steals lean, while Buckner answers with OBP, both ratios, and a 77 percent saves edge behind Devin Williams. Each team is missing an infielder to the IL, Matt Chapman for Keanu and Corey Seager and Munetaka Murakami for Buckner. Whoever wins the ratio battle wins the week.</p>",
+    "<p><strong>Regression week for Ete and Busch.</strong> Ete Crow just posted the second-best week in the league, 8&ndash;1 all-play and 102 strikeouts, and now has to prove it was not a one-off against a Busch team fresh off a 0&ndash;10 humiliation. The sim sides with the bounce-back, 57 percent Busch, on the back of a 75 percent OBP edge. If Ete&rsquo;s three closers and strikeout arms show up again, the nine-seed can make it two strong weeks in a row.</p>"
+  ],
+  "matchups": [
+    {
+      "team0_analysis": "One Ball rolls in off the only sweep of Week 15, a 10&ndash;0 dismantling of Busch, but this is a much stiffer test. Jos&eacute; Ram&iacute;rez (hand) and Jeremy Pe&ntilde;a (calf) are both on the IL, which trims the exact power and speed a Yamamoto&ndash;Skubal&ndash;Yesavage&ndash;Mize rotation cannot replace. The sim still nudges Garth&rsquo;s way at 54 percent on runs, RBI, and both ratios.",
+      "team1_analysis": "Allahu counters with the deeper bullpen, Andr&eacute;s Mu&ntilde;oz fronting a group that owns a clear saves edge (68 percent). Dansby Swanson, fresh off a 5-homer week, and Yordan Alvarez keep the power categories live even with Oneil Cruz on the IL, and Gilbert, Miller, and Gausman are all healthy behind a day-to-day Ranger Su&aacute;rez.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (60%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Allahu Alvarez slight edge (52%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (63%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (61%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (60%)"
+        },
+        {
+          "cats": "K",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (58%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Allahu Alvarez lean (58%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (56%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "One Ball Two Strikes lean (56%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "Allahu Alvarez edge (68%)"
+        }
+      ],
+      "prediction": "One Ball Two Strikes 6&ndash;4. A near coin flip the sim gives them at 54 percent. The categories split five and five, but One Ball wins the tiebreakers more often behind runs, RBI, and the cleaner ratios."
+    },
+    {
+      "team0_analysis": "The top seed at 81&ndash;43&ndash;16 is favored in seven categories even with Aaron Judge (ribs) and Wyatt Langford (hamstring) on the IL. The OBP edge is enormous at 71 percent, Jhoan Duran anchors a saves lean, and a rotation of Ohtani, Gray, Schlittler, and Sheehan with Michael King healthy off the bench keeps the strikeouts and ratios humming.",
+      "team1_analysis": "Nick-fil-A brings the two-seed and a lineup that just led the league in runs, homers, and steals, though Ronald Acu&ntilde;a Jr. is on the IL. Mason Miller closes and the rotation stashes Gerrit Cole, Hunter Greene, and Robbie Ray behind the active arms. Nick owns homers, steals, and quality starts on the projection; everything else tilts Sonny.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 0,
+          "label": "It’s Always Sonny lean (62%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Nick-fil-A slight edge (53%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "It’s Always Sonny slight edge (51%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Nick-fil-A lean (59%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 0,
+          "label": "It’s Always Sonny edge (71%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "It’s Always Sonny slight edge (55%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Nick-fil-A lean (60%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 0,
+          "label": "It’s Always Sonny lean (60%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "It’s Always Sonny lean (56%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 0,
+          "label": "It’s Always Sonny lean (63%)"
+        }
+      ],
+      "prediction": "It&rsquo;s Always Sonny 6&ndash;4. The top seed has the edge in seven categories but several are paper-thin, so this projects as a clear win rather than a rout, even short Judge and Langford."
+    },
+    {
+      "team0_analysis": "Romance sits last at 46&ndash;85&ndash;9 and is down Julio Rodr&iacute;guez (concussion) and Brent Rooker (knee), which guts an already thin lineup. The path to points is the mound: Dylan Cease, Shane Bieber, Kyle Bradish, and a healthy MacKenzie Gore give Michael the strikeout lean (59 percent) and keep homers and RBI in reach.",
+      "team1_analysis": "Rain City is a MASH unit, with Mike Trout, Will Smith, Tyler Soderstrom, and Maikel Garcia all on the 10-day IL, and the sim still favors them because the rotation is absurd: Paul Skenes, Jacob deGrom, Zack Wheeler, and Shota Imanaga. Add a 75 percent steals edge from Nasim Nu&ntilde;ez and Jos&eacute; Caballero and Taylor takes six categories shorthanded.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Rain City Bombers lean (55%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 0,
+          "label": "Romance Explosion lean (56%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": 0,
+          "label": "Romance Explosion slight edge (51%)"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Rain City Bombers edge (75%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "Romance Explosion lean (59%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Rain City Bombers lean (62%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Rain City Bombers slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "Rain City Bombers lean (57%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 0,
+          "label": "Romance Explosion slight edge (54%)"
+        }
+      ],
+      "prediction": "Rain City Bombers 6&ndash;4. Four bats on the IL and it does not matter. Skenes, deGrom, and Wheeler plus a 75 percent steals edge outrun a Romance team missing Julio and Rooker."
+    },
+    {
+      "team0_analysis": "Keanu owns the strikeout category outright at 72 percent with Rasmussen, Abbott, Holmes, and a healthy Freddy Peralta and Gavin Williams in reserve, and adds a steals edge. Byron Buxton is day-to-day and Matt Chapman is on the IL, which is why the power and OBP tilt the other way. The model calls it 52&ndash;48 for the visitors.",
+      "team1_analysis": "Buckner answers with OBP, both ratios, and a huge saves edge (77 percent) behind Devin Williams, plus a rotation of Chris Sale, Logan Webb, Framber Valdez, and Roki Sasaki that is as deep as anyone&rsquo;s. Corey Seager (back) and Munetaka Murakami (hamstring) are on the IL, but Bregman, Nimmo, Marte, and Abrams keep the lineup dangerous.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "The Buckner Boots slight edge (53%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 0,
+          "label": "Keanu Reeves lean (55%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "SB",
+          "edge": 0,
+          "label": "Keanu Reeves lean (60%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "The Buckner Boots edge (66%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "Keanu Reeves edge (72%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "The Buckner Boots slight edge (52%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "The Buckner Boots lean (56%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 1,
+          "label": "The Buckner Boots slight edge (55%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 1,
+          "label": "The Buckner Boots edge (77%)"
+        }
+      ],
+      "prediction": "The Buckner Boots 6&ndash;4. The tightest matchup on the board at 52&ndash;48. Keanu owns strikeouts by a mile, but Buckner&rsquo;s ratios, OBP, and Devin Williams saves tip six categories the other way."
+    },
+    {
+      "team0_analysis": "Ete Crow is coming off the second-best week in the league, an 8&ndash;1 all-play with a league-high 102 strikeouts, and brings three closers in Tanner Scott, Raisel Iglesias, and Josh Hader. A rotation of Nolan McLean, Joe Ryan, Eury P&eacute;rez, and a healthy Jes&uacute;s Luzardo keeps the strikeout lean alive, but the offense outside Elly De La Cruz and Pete Crow-Armstrong is thin.",
+      "team1_analysis": "Busch is desperate to bury the 0&ndash;10 sweep and the sim likes the bounce-back at 57 percent, powered by a massive OBP edge (75 percent) and Shohei Ohtani&rsquo;s bat. The rotation is deep with Kirby, Hunter Brown, Misiorowski, and Kyle Harrison, though Edwin D&iacute;az (60-day IL) leaves the bullpen leaning on Paul Sewald for saves.",
+      "cat_edges": [
+        {
+          "cats": "R",
+          "edge": 1,
+          "label": "Busch Latte lean (61%)"
+        },
+        {
+          "cats": "HR",
+          "edge": 1,
+          "label": "Busch Latte lean (56%)"
+        },
+        {
+          "cats": "RBI",
+          "edge": -1,
+          "label": "Even"
+        },
+        {
+          "cats": "SB",
+          "edge": 1,
+          "label": "Busch Latte lean (58%)"
+        },
+        {
+          "cats": "OBP",
+          "edge": 1,
+          "label": "Busch Latte edge (75%)"
+        },
+        {
+          "cats": "K",
+          "edge": 0,
+          "label": "Ete Crow lean (63%)"
+        },
+        {
+          "cats": "QS",
+          "edge": 1,
+          "label": "Busch Latte lean (59%)"
+        },
+        {
+          "cats": "ERA",
+          "edge": 1,
+          "label": "Busch Latte slight edge (52%)"
+        },
+        {
+          "cats": "WHIP",
+          "edge": 0,
+          "label": "Ete Crow slight edge (52%)"
+        },
+        {
+          "cats": "SV",
+          "edge": 0,
+          "label": "Ete Crow lean (57%)"
+        }
+      ],
+      "prediction": "Busch Latte 6&ndash;4. The bounce-back call at 57 percent. A 75 percent OBP edge and the deeper lineup outweigh Ete&rsquo;s three-headed closer monster."
+    }
+  ]
+}
