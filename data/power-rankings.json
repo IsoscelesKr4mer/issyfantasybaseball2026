@@ -1,6 +1,6 @@
 {
-  "last_updated_week": 14,
-  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current \u2014 history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
+  "last_updated_week": 15,
+  "methodology": "Ranked by recency-weighted category wins (decay=0.95/week). Most recent week counts full value; each prior week counts 5% less. At 25 weeks, week 1 still counts ~29% of current — history matters, but teams playing well right now get the edge. Cumulative AP wins used as tiebreaker.",
   "weekly_snapshots": [
     {
       "week": 1,
@@ -1463,7 +1463,7 @@
           "prev_rank": 1,
           "delta": -1,
           "tier": "elite",
-          "name": "It\u2019s Always Sonny",
+          "name": "It’s Always Sonny",
           "cumulative_ap": {
             "w": 36,
             "l": 16,
@@ -1748,7 +1748,7 @@
           "prev_rank": 2,
           "delta": 0,
           "tier": "elite",
-          "name": "It\u2019s Always Sonny",
+          "name": "It’s Always Sonny",
           "cumulative_ap": {
             "w": 43,
             "l": 16,
@@ -1996,24 +1996,309 @@
           "analysis": "Dropped one to #10 after a 1&ndash;8 all-play week. 235 cumulative cats, the lowest in the league. 3&ndash;7 H2H loss to Rain City. Michael took HR (10), RBI (31), and SB (2); everything else went the other way. The pitching that was finally working in Week 6 (3.86 ERA) ballooned back to 4.48. Bottom of the cumulative for the third straight week."
         }
       ]
+    },
+    {
+      "week": 15,
+      "rankings": [
+        {
+          "rank": 1,
+          "prev_rank": 1,
+          "delta": 0,
+          "tier": "elite",
+          "name": "It’s Always Sonny",
+          "cumulative_ap": {
+            "w": 86,
+            "l": 33,
+            "t": 16
+          },
+          "cumulative_cats": {
+            "w": 704,
+            "l": 453,
+            "t": 103
+          },
+          "week_ap": {
+            "w": 4,
+            "l": 4,
+            "t": 1
+          },
+          "week_cats": {
+            "w": 47,
+            "l": 37,
+            "t": 6
+          },
+          "analysis": "New number one, and earned. Sonny&rsquo;s 68 cat wins in Week 14 were the best in the league and the 9&ndash;0 all-play week pushed them past Allahu for the top spot. A league-leading 657 cumulative cat wins, and the only roster that is both the best team and the best record at the same time. TylerV is the clear favorite right now."
+        },
+        {
+          "rank": 2,
+          "prev_rank": 2,
+          "delta": 0,
+          "tier": "elite",
+          "name": "Allahu Alvarez",
+          "cumulative_ap": {
+            "w": 69,
+            "l": 43,
+            "t": 23
+          },
+          "cumulative_cats": {
+            "w": 668,
+            "l": 510,
+            "t": 82
+          },
+          "week_ap": {
+            "w": 5,
+            "l": 3,
+            "t": 1
+          },
+          "week_cats": {
+            "w": 50,
+            "l": 33,
+            "t": 7
+          },
+          "analysis": "Knocked off the throne by one bad week. Allahu rode back-to-back monsters to number one, then went 2&ndash;7 all-play with just 31 cat wins and got steamrolled 8&ndash;1. Still second overall at 618 cumulative cat wins, and the recency engine will reward them again the moment the pitching (a 4.96 ERA last week) settles down. A blip, not a collapse, but the cushion is gone."
+        },
+        {
+          "rank": 3,
+          "prev_rank": 3,
+          "delta": 0,
+          "tier": "contender",
+          "name": "One Ball Two Strikes",
+          "cumulative_ap": {
+            "w": 73,
+            "l": 43,
+            "t": 19
+          },
+          "cumulative_cats": {
+            "w": 675,
+            "l": 503,
+            "t": 82
+          },
+          "week_ap": {
+            "w": 9,
+            "l": 0,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 82,
+            "l": 5,
+            "t": 3
+          },
+          "analysis": "Up a spot on recency, not raw totals: OBT&rsquo;s 593 cumulative cat wins actually trail Keanu&rsquo;s 594, but better recent form breaks the tie. A 40-cat, 3&ndash;3&ndash;3 Week 14 was nothing special and still good enough to climb to third. Garth keeps grading out ahead of where the standings put him."
+        },
+        {
+          "rank": 4,
+          "prev_rank": 6,
+          "delta": 2,
+          "tier": "contender",
+          "name": "Nick-fil-A",
+          "cumulative_ap": {
+            "w": 58,
+            "l": 59,
+            "t": 18
+          },
+          "cumulative_cats": {
+            "w": 601,
+            "l": 571,
+            "t": 88
+          },
+          "week_ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 65,
+            "l": 22,
+            "t": 3
+          },
+          "analysis": "The most volatile team on the board. Nick posted the second-best week in the league (58 cat wins, 8&ndash;1 all-play) one week after the worst (0&ndash;9), and it still was not enough to climb off sixth, because a sub-.500 cumulative cat record (536&ndash;549) is a real hole. League-highs in homers and RBI in Week 14 say the ceiling is high. Consistency is the open question."
+        },
+        {
+          "rank": 5,
+          "prev_rank": 4,
+          "delta": -1,
+          "tier": "contender",
+          "name": "Keanu Reeves",
+          "cumulative_ap": {
+            "w": 65,
+            "l": 47,
+            "t": 23
+          },
+          "cumulative_cats": {
+            "w": 617,
+            "l": 564,
+            "t": 79
+          },
+          "week_ap": {
+            "w": 2,
+            "l": 7,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 23,
+            "l": 64,
+            "t": 3
+          },
+          "analysis": "Slips a spot after a genuinely ugly week. The number-two seed in the standings went 2&ndash;7 all-play with 28 cat wins, second-worst in the league, and only four homers. The cumulative resume (594 cat wins) is still contender-grade, but Week 14 was the kind of quiet faceplant the recency model punishes. Duke Joe needs the bats to wake up."
+        },
+        {
+          "rank": 6,
+          "prev_rank": 5,
+          "delta": -1,
+          "tier": "mid",
+          "name": "Busch Latte",
+          "cumulative_ap": {
+            "w": 51,
+            "l": 59,
+            "t": 25
+          },
+          "cumulative_cats": {
+            "w": 579,
+            "l": 598,
+            "t": 83
+          },
+          "week_ap": {
+            "w": 3,
+            "l": 6,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 25,
+            "l": 61,
+            "t": 4
+          },
+          "analysis": "Holding at fifth. The two-week heater, including a stunner over the top seed, cooled into a 5&ndash;5 tie, but 36 cat wins kept Busch steady. Sixth in the standings and fifth on the power board, Rose&rsquo;s roster remains better than its record. The pitching ratios are the week-to-week swing factor."
+        },
+        {
+          "rank": 7,
+          "prev_rank": 8,
+          "delta": 1,
+          "tier": "mid",
+          "name": "Rain City Bombers",
+          "cumulative_ap": {
+            "w": 39,
+            "l": 59,
+            "t": 37
+          },
+          "cumulative_cats": {
+            "w": 523,
+            "l": 643,
+            "t": 94
+          },
+          "week_ap": {
+            "w": 4,
+            "l": 3,
+            "t": 2
+          },
+          "week_cats": {
+            "w": 46,
+            "l": 38,
+            "t": 6
+          },
+          "analysis": "Same place, same script. Taylor runs, tied for the league steal lead again, and gets little else going: 37 cat wins and a 5&ndash;5 tie in Week 14. At 477 cumulative cat wins the profile is one-dimensional, and one dimension does not move a team up the board."
+        },
+        {
+          "rank": 8,
+          "prev_rank": 7,
+          "delta": -1,
+          "tier": "mid",
+          "name": "The Buckner Boots",
+          "cumulative_ap": {
+            "w": 46,
+            "l": 67,
+            "t": 22
+          },
+          "cumulative_cats": {
+            "w": 536,
+            "l": 650,
+            "t": 74
+          },
+          "week_ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 16,
+            "l": 68,
+            "t": 6
+          },
+          "analysis": "Quietly trending up even while parked at seventh. Buckner&rsquo;s 57 cat wins in Week 14 were third-best in the league, behind only Sonny and Nick, and an 8&ndash;2 rout backed it up. The cumulative record (520&ndash;582) still drags, but Michael has stacked back-to-back strong weeks. Worth watching."
+        },
+        {
+          "rank": 9,
+          "prev_rank": 9,
+          "delta": 0,
+          "tier": "cellar",
+          "name": "Ete Crow",
+          "cumulative_ap": {
+            "w": 48,
+            "l": 67,
+            "t": 20
+          },
+          "cumulative_cats": {
+            "w": 517,
+            "l": 652,
+            "t": 91
+          },
+          "week_ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 58,
+            "l": 29,
+            "t": 3
+          },
+          "analysis": "Ninth and steady. Ete&rsquo;s 40 cat wins in Week 14 ran a tick above their season pace, and a 5&ndash;5 tie with One Ball was a fair result. The cumulative cat record (459&ndash;623) is firmly bottom tier, but Jace&rsquo;s bats keep the floor from caving in. No movement, no real complaints."
+        },
+        {
+          "rank": 10,
+          "prev_rank": 10,
+          "delta": 0,
+          "tier": "cellar",
+          "name": "Romance Explosion",
+          "cumulative_ap": {
+            "w": 29,
+            "l": 87,
+            "t": 19
+          },
+          "cumulative_cats": {
+            "w": 453,
+            "l": 729,
+            "t": 78
+          },
+          "week_ap": {
+            "w": 1,
+            "l": 8,
+            "t": 0
+          },
+          "week_cats": {
+            "w": 15,
+            "l": 70,
+            "t": 5
+          },
+          "analysis": "The basement, and it is not close. Romance turned in the worst week any team has had all season: 0&ndash;9 all-play, a league-low 26 cat wins, and a 6.31 ERA. At 438 cumulative cat wins they sit 21 behind ninth place. Michael&rsquo;s second roster can hit a little; everything else is a fire."
+        }
+      ]
     }
   ],
   "rankings": [
     {
       "rank": 1,
-      "prev_rank": 2,
-      "delta": 1,
+      "prev_rank": 1,
+      "delta": 0,
       "tier": "elite",
-      "name": "It\u2019s Always Sonny",
+      "name": "It’s Always Sonny",
       "cumulative_ap": {
-        "w": 82,
-        "l": 29,
-        "t": 15
+        "w": 86,
+        "l": 33,
+        "t": 16
       },
       "cumulative_cats": {
-        "w": 657,
-        "l": 416,
-        "t": 97
+        "w": 704,
+        "l": 453,
+        "t": 103
       },
       "history": [
         {
@@ -2211,26 +2496,40 @@
             "l": 15,
             "t": 7
           }
+        },
+        {
+          "week": 15,
+          "rank": 1,
+          "ap": {
+            "w": 4,
+            "l": 4,
+            "t": 1
+          },
+          "cats": {
+            "w": 47,
+            "l": 37,
+            "t": 6
+          }
         }
       ],
-      "weighted_score": 482.73,
-      "analysis": "New number one, and earned. Sonny&rsquo;s 68 cat wins in Week 14 were the best in the league and the 9&ndash;0 all-play week pushed them past Allahu for the top spot. A league-leading 657 cumulative cat wins, and the only roster that is both the best team and the best record at the same time. TylerV is the clear favorite right now."
+      "weighted_score": 505.59,
+      "analysis": "Still the top seed and still the deepest roster in the league, even after a rare quiet Week 15: 4&ndash;4&ndash;1 all-play and 47 cat wins, the kind of middling week that would sink most teams. It did not matter, because 704 cumulative cat wins is a cushion nobody else is within a hundred of. TylerV drew Romance and won 9&ndash;1 on a schedule gift, and the lead is not going anywhere."
     },
     {
       "rank": 2,
-      "prev_rank": 1,
-      "delta": -1,
+      "prev_rank": 2,
+      "delta": 0,
       "tier": "elite",
       "name": "Allahu Alvarez",
       "cumulative_ap": {
-        "w": 64,
-        "l": 40,
-        "t": 22
+        "w": 69,
+        "l": 43,
+        "t": 23
       },
       "cumulative_cats": {
-        "w": 618,
-        "l": 477,
-        "t": 75
+        "w": 668,
+        "l": 510,
+        "t": 82
       },
       "history": [
         {
@@ -2428,26 +2727,40 @@
             "l": 52,
             "t": 7
           }
+        },
+        {
+          "week": 15,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 3,
+            "t": 1
+          },
+          "cats": {
+            "w": 50,
+            "l": 33,
+            "t": 7
+          }
         }
       ],
-      "weighted_score": 455.72,
-      "analysis": "Knocked off the throne by one bad week. Allahu rode back-to-back monsters to number one, then went 2&ndash;7 all-play with just 31 cat wins and got steamrolled 8&ndash;1. Still second overall at 618 cumulative cat wins, and the recency engine will reward them again the moment the pitching (a 4.96 ERA last week) settles down. A blip, not a collapse, but the cushion is gone."
+      "weighted_score": 482.93,
+      "analysis": "Holding second on the strength of 668 cumulative cat wins. The Dansby Swanson waiver pickup paid off instantly with 5 homers and 11 RBI in a 5&ndash;3&ndash;1 all-play week that deserved better than the 4&ndash;4 tie it got. TylerR&rsquo;s bullpen depth is still the separator, and now the offense is finally matching it."
     },
     {
       "rank": 3,
-      "prev_rank": 4,
-      "delta": 1,
+      "prev_rank": 3,
+      "delta": 0,
       "tier": "contender",
       "name": "One Ball Two Strikes",
       "cumulative_ap": {
-        "w": 64,
+        "w": 73,
         "l": 43,
         "t": 19
       },
       "cumulative_cats": {
-        "w": 593,
-        "l": 498,
-        "t": 79
+        "w": 675,
+        "l": 503,
+        "t": 82
       },
       "history": [
         {
@@ -2645,460 +2958,40 @@
             "l": 45,
             "t": 5
           }
-        }
-      ],
-      "weighted_score": 421.72,
-      "analysis": "Up a spot on recency, not raw totals: OBT&rsquo;s 593 cumulative cat wins actually trail Keanu&rsquo;s 594, but better recent form breaks the tie. A 40-cat, 3&ndash;3&ndash;3 Week 14 was nothing special and still good enough to climb to third. Garth keeps grading out ahead of where the standings put him."
-    },
-    {
-      "rank": 4,
-      "prev_rank": 3,
-      "delta": -1,
-      "tier": "contender",
-      "name": "Keanu Reeves",
-      "cumulative_ap": {
-        "w": 63,
-        "l": 40,
-        "t": 23
-      },
-      "cumulative_cats": {
-        "w": 594,
-        "l": 500,
-        "t": 76
-      },
-      "history": [
+        },
         {
-          "week": 1,
-          "rank": 1,
+          "week": 15,
+          "rank": 3,
           "ap": {
             "w": 9,
             "l": 0,
             "t": 0
           },
           "cats": {
-            "w": 75,
-            "l": 9,
-            "t": 6
-          }
-        },
-        {
-          "week": 2,
-          "rank": 1,
-          "ap": {
-            "w": 6,
-            "l": 3,
-            "t": 0
-          },
-          "cats": {
-            "w": 52,
-            "l": 33,
-            "t": 5
-          }
-        },
-        {
-          "week": 3,
-          "rank": 1,
-          "ap": {
-            "w": 6,
-            "l": 1,
-            "t": 2
-          },
-          "cats": {
-            "w": 53,
-            "l": 32,
-            "t": 5
-          }
-        },
-        {
-          "week": 4,
-          "rank": 1,
-          "ap": {
-            "w": 4,
+            "w": 82,
             "l": 5,
-            "t": 0
-          },
-          "cats": {
-            "w": 39,
-            "l": 44,
-            "t": 7
-          }
-        },
-        {
-          "week": 5,
-          "rank": 2,
-          "ap": {
-            "w": 2,
-            "l": 7,
-            "t": 0
-          },
-          "cats": {
-            "w": 33,
-            "l": 51,
-            "t": 6
-          }
-        },
-        {
-          "week": 6,
-          "rank": 3,
-          "ap": {
-            "w": 3,
-            "l": 3,
             "t": 3
-          },
-          "cats": {
-            "w": 41,
-            "l": 44,
-            "t": 5
-          }
-        },
-        {
-          "week": 7,
-          "rank": 3,
-          "ap": {
-            "w": 5,
-            "l": 0,
-            "t": 4
-          },
-          "cats": {
-            "w": 51,
-            "l": 33,
-            "t": 6
-          }
-        },
-        {
-          "week": 8,
-          "rank": 2,
-          "ap": {
-            "w": 7,
-            "l": 0,
-            "t": 2
-          },
-          "cats": {
-            "w": 56,
-            "l": 28,
-            "t": 6
-          }
-        },
-        {
-          "week": 9,
-          "rank": 2,
-          "ap": {
-            "w": 6,
-            "l": 1,
-            "t": 2
-          },
-          "cats": {
-            "w": 45,
-            "l": 36,
-            "t": 9
-          }
-        },
-        {
-          "week": 10,
-          "rank": 3,
-          "ap": {
-            "w": 1,
-            "l": 7,
-            "t": 1
-          },
-          "cats": {
-            "w": 27,
-            "l": 54,
-            "t": 9
-          }
-        },
-        {
-          "week": 11,
-          "rank": 3,
-          "ap": {
-            "w": 0,
-            "l": 0,
-            "t": 9
-          },
-          "cats": {
-            "w": 0,
-            "l": 0,
-            "t": 0
-          }
-        },
-        {
-          "week": 12,
-          "rank": 4,
-          "ap": {
-            "w": 6,
-            "l": 3,
-            "t": 0
-          },
-          "cats": {
-            "w": 47,
-            "l": 40,
-            "t": 3
-          }
-        },
-        {
-          "week": 13,
-          "rank": 3,
-          "ap": {
-            "w": 6,
-            "l": 3,
-            "t": 0
-          },
-          "cats": {
-            "w": 47,
-            "l": 39,
-            "t": 4
-          }
-        },
-        {
-          "week": 14,
-          "rank": 4,
-          "ap": {
-            "w": 2,
-            "l": 7,
-            "t": 0
-          },
-          "cats": {
-            "w": 28,
-            "l": 57,
-            "t": 5
           }
         }
       ],
-      "weighted_score": 416.75,
-      "analysis": "Slips a spot after a genuinely ugly week. The number-two seed in the standings went 2&ndash;7 all-play with 28 cat wins, second-worst in the league, and only four homers. The cumulative resume (594 cat wins) is still contender-grade, but Week 14 was the kind of quiet faceplant the recency model punishes. Duke Joe needs the bats to wake up."
+      "weighted_score": 482.63,
+      "analysis": "The best single week anyone has posted all season: 9&ndash;0 all-play, 82 of 90 categories, and a 10&ndash;0 sweep of Busch. The recency-weighted math still keeps Garth behind two elite teams, but 675 cumulative cat wins now ranks third and climbing. String two of these together and this is a top-two roster."
     },
     {
-      "rank": 5,
-      "prev_rank": 5,
-      "delta": 0,
-      "tier": "contender",
-      "name": "Busch Latte",
-      "cumulative_ap": {
-        "w": 48,
-        "l": 53,
-        "t": 25
-      },
-      "cumulative_cats": {
-        "w": 554,
-        "l": 537,
-        "t": 79
-      },
-      "history": [
-        {
-          "week": 1,
-          "rank": 4,
-          "ap": {
-            "w": 5,
-            "l": 3,
-            "t": 1
-          },
-          "cats": {
-            "w": 42,
-            "l": 40,
-            "t": 8
-          }
-        },
-        {
-          "week": 2,
-          "rank": 4,
-          "ap": {
-            "w": 7,
-            "l": 2,
-            "t": 0
-          },
-          "cats": {
-            "w": 54,
-            "l": 28,
-            "t": 8
-          }
-        },
-        {
-          "week": 3,
-          "rank": 3,
-          "ap": {
-            "w": 4,
-            "l": 1,
-            "t": 4
-          },
-          "cats": {
-            "w": 46,
-            "l": 35,
-            "t": 9
-          }
-        },
-        {
-          "week": 4,
-          "rank": 6,
-          "ap": {
-            "w": 1,
-            "l": 7,
-            "t": 1
-          },
-          "cats": {
-            "w": 29,
-            "l": 56,
-            "t": 5
-          }
-        },
-        {
-          "week": 5,
-          "rank": 7,
-          "ap": {
-            "w": 1,
-            "l": 7,
-            "t": 1
-          },
-          "cats": {
-            "w": 32,
-            "l": 52,
-            "t": 6
-          }
-        },
-        {
-          "week": 6,
-          "rank": 8,
-          "ap": {
-            "w": 0,
-            "l": 9,
-            "t": 0
-          },
-          "cats": {
-            "w": 23,
-            "l": 64,
-            "t": 3
-          }
-        },
-        {
-          "week": 7,
-          "rank": 7,
-          "ap": {
-            "w": 3,
-            "l": 5,
-            "t": 1
-          },
-          "cats": {
-            "w": 45,
-            "l": 44,
-            "t": 1
-          }
-        },
-        {
-          "week": 8,
-          "rank": 7,
-          "ap": {
-            "w": 1,
-            "l": 5,
-            "t": 3
-          },
-          "cats": {
-            "w": 37,
-            "l": 49,
-            "t": 4
-          }
-        },
-        {
-          "week": 9,
-          "rank": 5,
-          "ap": {
-            "w": 7,
-            "l": 1,
-            "t": 1
-          },
-          "cats": {
-            "w": 55,
-            "l": 29,
-            "t": 6
-          }
-        },
-        {
-          "week": 10,
-          "rank": 6,
-          "ap": {
-            "w": 5,
-            "l": 4,
-            "t": 0
-          },
-          "cats": {
-            "w": 44,
-            "l": 35,
-            "t": 11
-          }
-        },
-        {
-          "week": 11,
-          "rank": 6,
-          "ap": {
-            "w": 0,
-            "l": 0,
-            "t": 9
-          },
-          "cats": {
-            "w": 0,
-            "l": 0,
-            "t": 0
-          }
-        },
-        {
-          "week": 12,
-          "rank": 5,
-          "ap": {
-            "w": 4,
-            "l": 4,
-            "t": 1
-          },
-          "cats": {
-            "w": 45,
-            "l": 42,
-            "t": 3
-          }
-        },
-        {
-          "week": 13,
-          "rank": 5,
-          "ap": {
-            "w": 8,
-            "l": 0,
-            "t": 1
-          },
-          "cats": {
-            "w": 66,
-            "l": 16,
-            "t": 8
-          }
-        },
-        {
-          "week": 14,
-          "rank": 5,
-          "ap": {
-            "w": 2,
-            "l": 5,
-            "t": 2
-          },
-          "cats": {
-            "w": 36,
-            "l": 47,
-            "t": 7
-          }
-        }
-      ],
-      "weighted_score": 406.03,
-      "analysis": "Holding at fifth. The two-week heater, including a stunner over the top seed, cooled into a 5&ndash;5 tie, but 36 cat wins kept Busch steady. Sixth in the standings and fifth on the power board, Rose&rsquo;s roster remains better than its record. The pitching ratios are the week-to-week swing factor."
-    },
-    {
-      "rank": 6,
+      "rank": 4,
       "prev_rank": 6,
-      "delta": 0,
-      "tier": "mid",
+      "delta": 2,
+      "tier": "contender",
       "name": "Nick-fil-A",
       "cumulative_ap": {
-        "w": 51,
-        "l": 57,
+        "w": 58,
+        "l": 59,
         "t": 18
       },
       "cumulative_cats": {
-        "w": 536,
-        "l": 549,
-        "t": 85
+        "w": 601,
+        "l": 571,
+        "t": 88
       },
       "history": [
         {
@@ -3296,171 +3189,185 @@
             "l": 26,
             "t": 6
           }
+        },
+        {
+          "week": 15,
+          "rank": 4,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 65,
+            "l": 22,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 384.52,
-      "analysis": "The most volatile team on the board. Nick posted the second-best week in the league (58 cat wins, 8&ndash;1 all-play) one week after the worst (0&ndash;9), and it still was not enough to climb off sixth, because a sub-.500 cumulative cat record (536&ndash;549) is a real hole. League-highs in homers and RBI in Week 14 say the ceiling is high. Consistency is the open question."
+      "weighted_score": 430.3,
+      "analysis": "Up two spots after a 7&ndash;2 all-play week that led the league in runs (46), OBP (.383), and steals (11). Mario has now backed up the Week 14 resurrection with a second strong week, and 601 cumulative cat wins finally cracks the top four. The bats are real; the pitching depth is the playoff question."
     },
     {
-      "rank": 7,
-      "prev_rank": 7,
-      "delta": 0,
-      "tier": "mid",
-      "name": "The Buckner Boots",
+      "rank": 5,
+      "prev_rank": 4,
+      "delta": -1,
+      "tier": "contender",
+      "name": "Keanu Reeves",
       "cumulative_ap": {
-        "w": 46,
-        "l": 58,
-        "t": 22
+        "w": 65,
+        "l": 47,
+        "t": 23
       },
       "cumulative_cats": {
-        "w": 520,
-        "l": 582,
-        "t": 68
+        "w": 617,
+        "l": 564,
+        "t": 79
       },
       "history": [
         {
           "week": 1,
-          "rank": 2,
+          "rank": 1,
           "ap": {
-            "w": 8,
-            "l": 1,
+            "w": 9,
+            "l": 0,
             "t": 0
           },
           "cats": {
-            "w": 58,
-            "l": 26,
+            "w": 75,
+            "l": 9,
             "t": 6
           }
         },
         {
           "week": 2,
-          "rank": 2,
-          "ap": {
-            "w": 5,
-            "l": 4,
-            "t": 0
-          },
-          "cats": {
-            "w": 47,
-            "l": 36,
-            "t": 7
-          }
-        },
-        {
-          "week": 3,
-          "rank": 2,
-          "ap": {
-            "w": 4,
-            "l": 1,
-            "t": 4
-          },
-          "cats": {
-            "w": 40,
-            "l": 39,
-            "t": 11
-          }
-        },
-        {
-          "week": 4,
-          "rank": 2,
-          "ap": {
-            "w": 5,
-            "l": 2,
-            "t": 2
-          },
-          "cats": {
-            "w": 49,
-            "l": 38,
-            "t": 3
-          }
-        },
-        {
-          "week": 5,
-          "rank": 6,
-          "ap": {
-            "w": 0,
-            "l": 9,
-            "t": 0
-          },
-          "cats": {
-            "w": 15,
-            "l": 71,
-            "t": 4
-          }
-        },
-        {
-          "week": 6,
-          "rank": 6,
-          "ap": {
-            "w": 1,
-            "l": 6,
-            "t": 2
-          },
-          "cats": {
-            "w": 35,
-            "l": 48,
-            "t": 7
-          }
-        },
-        {
-          "week": 7,
-          "rank": 8,
-          "ap": {
-            "w": 0,
-            "l": 9,
-            "t": 0
-          },
-          "cats": {
-            "w": 18,
-            "l": 70,
-            "t": 2
-          }
-        },
-        {
-          "week": 8,
-          "rank": 9,
-          "ap": {
-            "w": 3,
-            "l": 4,
-            "t": 2
-          },
-          "cats": {
-            "w": 38,
-            "l": 42,
-            "t": 10
-          }
-        },
-        {
-          "week": 9,
-          "rank": 8,
-          "ap": {
-            "w": 2,
-            "l": 4,
-            "t": 3
-          },
-          "cats": {
-            "w": 42,
-            "l": 45,
-            "t": 3
-          }
-        },
-        {
-          "week": 10,
-          "rank": 7,
+          "rank": 1,
           "ap": {
             "w": 6,
             "l": 3,
             "t": 0
           },
           "cats": {
+            "w": 52,
+            "l": 33,
+            "t": 5
+          }
+        },
+        {
+          "week": 3,
+          "rank": 1,
+          "ap": {
+            "w": 6,
+            "l": 1,
+            "t": 2
+          },
+          "cats": {
             "w": 53,
-            "l": 31,
+            "l": 32,
+            "t": 5
+          }
+        },
+        {
+          "week": 4,
+          "rank": 1,
+          "ap": {
+            "w": 4,
+            "l": 5,
+            "t": 0
+          },
+          "cats": {
+            "w": 39,
+            "l": 44,
+            "t": 7
+          }
+        },
+        {
+          "week": 5,
+          "rank": 2,
+          "ap": {
+            "w": 2,
+            "l": 7,
+            "t": 0
+          },
+          "cats": {
+            "w": 33,
+            "l": 51,
             "t": 6
           }
         },
         {
+          "week": 6,
+          "rank": 3,
+          "ap": {
+            "w": 3,
+            "l": 3,
+            "t": 3
+          },
+          "cats": {
+            "w": 41,
+            "l": 44,
+            "t": 5
+          }
+        },
+        {
+          "week": 7,
+          "rank": 3,
+          "ap": {
+            "w": 5,
+            "l": 0,
+            "t": 4
+          },
+          "cats": {
+            "w": 51,
+            "l": 33,
+            "t": 6
+          }
+        },
+        {
+          "week": 8,
+          "rank": 2,
+          "ap": {
+            "w": 7,
+            "l": 0,
+            "t": 2
+          },
+          "cats": {
+            "w": 56,
+            "l": 28,
+            "t": 6
+          }
+        },
+        {
+          "week": 9,
+          "rank": 2,
+          "ap": {
+            "w": 6,
+            "l": 1,
+            "t": 2
+          },
+          "cats": {
+            "w": 45,
+            "l": 36,
+            "t": 9
+          }
+        },
+        {
+          "week": 10,
+          "rank": 3,
+          "ap": {
+            "w": 1,
+            "l": 7,
+            "t": 1
+          },
+          "cats": {
+            "w": 27,
+            "l": 54,
+            "t": 9
+          }
+        },
+        {
           "week": 11,
-          "rank": 7,
+          "rank": 3,
           "ap": {
             "w": 0,
             "l": 0,
@@ -3474,65 +3381,310 @@
         },
         {
           "week": 12,
-          "rank": 8,
+          "rank": 4,
           "ap": {
-            "w": 1,
-            "l": 8,
+            "w": 6,
+            "l": 3,
             "t": 0
           },
           "cats": {
-            "w": 28,
-            "l": 58,
-            "t": 4
+            "w": 47,
+            "l": 40,
+            "t": 3
           }
         },
         {
           "week": 13,
-          "rank": 7,
+          "rank": 3,
           "ap": {
-            "w": 4,
-            "l": 5,
+            "w": 6,
+            "l": 3,
             "t": 0
           },
           "cats": {
-            "w": 40,
-            "l": 48,
-            "t": 2
+            "w": 47,
+            "l": 39,
+            "t": 4
           }
         },
         {
           "week": 14,
-          "rank": 7,
+          "rank": 4,
+          "ap": {
+            "w": 2,
+            "l": 7,
+            "t": 0
+          },
+          "cats": {
+            "w": 28,
+            "l": 57,
+            "t": 5
+          }
+        },
+        {
+          "week": 15,
+          "rank": 5,
+          "ap": {
+            "w": 2,
+            "l": 7,
+            "t": 0
+          },
+          "cats": {
+            "w": 23,
+            "l": 64,
+            "t": 3
+          }
+        }
+      ],
+      "weighted_score": 418.92,
+      "analysis": "Slipped a spot after an ugly 2&ndash;7 all-play week and a 1&ndash;9 loss to the nine-seed. Byron Buxton going quiet (0 HR) exposed how top-heavy this lineup is. Duke Joe still holds 617 cumulative cat wins and a strikeout-heavy staff, but weeks like this are exactly why he is fifth and not second."
+    },
+    {
+      "rank": 6,
+      "prev_rank": 5,
+      "delta": -1,
+      "tier": "mid",
+      "name": "Busch Latte",
+      "cumulative_ap": {
+        "w": 51,
+        "l": 59,
+        "t": 25
+      },
+      "cumulative_cats": {
+        "w": 579,
+        "l": 598,
+        "t": 83
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 4,
+          "ap": {
+            "w": 5,
+            "l": 3,
+            "t": 1
+          },
+          "cats": {
+            "w": 42,
+            "l": 40,
+            "t": 8
+          }
+        },
+        {
+          "week": 2,
+          "rank": 4,
           "ap": {
             "w": 7,
             "l": 2,
             "t": 0
           },
           "cats": {
-            "w": 57,
-            "l": 30,
+            "w": 54,
+            "l": 28,
+            "t": 8
+          }
+        },
+        {
+          "week": 3,
+          "rank": 3,
+          "ap": {
+            "w": 4,
+            "l": 1,
+            "t": 4
+          },
+          "cats": {
+            "w": 46,
+            "l": 35,
+            "t": 9
+          }
+        },
+        {
+          "week": 4,
+          "rank": 6,
+          "ap": {
+            "w": 1,
+            "l": 7,
+            "t": 1
+          },
+          "cats": {
+            "w": 29,
+            "l": 56,
+            "t": 5
+          }
+        },
+        {
+          "week": 5,
+          "rank": 7,
+          "ap": {
+            "w": 1,
+            "l": 7,
+            "t": 1
+          },
+          "cats": {
+            "w": 32,
+            "l": 52,
+            "t": 6
+          }
+        },
+        {
+          "week": 6,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 23,
+            "l": 64,
             "t": 3
+          }
+        },
+        {
+          "week": 7,
+          "rank": 7,
+          "ap": {
+            "w": 3,
+            "l": 5,
+            "t": 1
+          },
+          "cats": {
+            "w": 45,
+            "l": 44,
+            "t": 1
+          }
+        },
+        {
+          "week": 8,
+          "rank": 7,
+          "ap": {
+            "w": 1,
+            "l": 5,
+            "t": 3
+          },
+          "cats": {
+            "w": 37,
+            "l": 49,
+            "t": 4
+          }
+        },
+        {
+          "week": 9,
+          "rank": 5,
+          "ap": {
+            "w": 7,
+            "l": 1,
+            "t": 1
+          },
+          "cats": {
+            "w": 55,
+            "l": 29,
+            "t": 6
+          }
+        },
+        {
+          "week": 10,
+          "rank": 6,
+          "ap": {
+            "w": 5,
+            "l": 4,
+            "t": 0
+          },
+          "cats": {
+            "w": 44,
+            "l": 35,
+            "t": 11
+          }
+        },
+        {
+          "week": 11,
+          "rank": 6,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
+        },
+        {
+          "week": 12,
+          "rank": 5,
+          "ap": {
+            "w": 4,
+            "l": 4,
+            "t": 1
+          },
+          "cats": {
+            "w": 45,
+            "l": 42,
+            "t": 3
+          }
+        },
+        {
+          "week": 13,
+          "rank": 5,
+          "ap": {
+            "w": 8,
+            "l": 0,
+            "t": 1
+          },
+          "cats": {
+            "w": 66,
+            "l": 16,
+            "t": 8
+          }
+        },
+        {
+          "week": 14,
+          "rank": 5,
+          "ap": {
+            "w": 2,
+            "l": 5,
+            "t": 2
+          },
+          "cats": {
+            "w": 36,
+            "l": 47,
+            "t": 7
+          }
+        },
+        {
+          "week": 15,
+          "rank": 6,
+          "ap": {
+            "w": 3,
+            "l": 6,
+            "t": 0
+          },
+          "cats": {
+            "w": 25,
+            "l": 61,
+            "t": 4
           }
         }
       ],
-      "weighted_score": 376.38,
-      "analysis": "Quietly trending up even while parked at seventh. Buckner&rsquo;s 57 cat wins in Week 14 were third-best in the league, behind only Sonny and Nick, and an 8&ndash;2 rout backed it up. The cumulative record (520&ndash;582) still drags, but Michael has stacked back-to-back strong weeks. Worth watching."
+      "weighted_score": 410.73,
+      "analysis": "Dropped from the contender tier to the middle after a 0&ndash;10 sweep loss, though the 3&ndash;6 all-play says the week was not as bad as the score. Rose still scored 36 runs; the 5.59 ERA is the anchor. At 579 cumulative cat wins, this is a rotation problem, not a lineup problem."
     },
     {
-      "rank": 8,
+      "rank": 7,
       "prev_rank": 8,
-      "delta": 0,
+      "delta": 1,
       "tier": "mid",
       "name": "Rain City Bombers",
       "cumulative_ap": {
-        "w": 35,
-        "l": 56,
-        "t": 35
+        "w": 39,
+        "l": 59,
+        "t": 37
       },
       "cumulative_cats": {
-        "w": 477,
-        "l": 605,
-        "t": 88
+        "w": 523,
+        "l": 643,
+        "t": 94
       },
       "history": [
         {
@@ -3730,10 +3882,255 @@
             "l": 47,
             "t": 6
           }
+        },
+        {
+          "week": 15,
+          "rank": 7,
+          "ap": {
+            "w": 4,
+            "l": 3,
+            "t": 2
+          },
+          "cats": {
+            "w": 46,
+            "l": 38,
+            "t": 6
+          }
         }
       ],
-      "weighted_score": 351.86,
-      "analysis": "Same place, same script. Taylor runs, tied for the league steal lead again, and gets little else going: 37 cat wins and a 5&ndash;5 tie in Week 14. At 477 cumulative cat wins the profile is one-dimensional, and one dimension does not move a team up the board."
+      "weighted_score": 380.26,
+      "analysis": "Up one after a quietly good 4&ndash;3&ndash;2 all-play week built on 45 runs and a .346 OBP, forcing a 4&ndash;4 tie with Allahu despite banking zero saves. Taylor sits at 523 cumulative cat wins, so the climb is real but modest. The bullpen remains the thing keeping good weeks from becoming wins."
+    },
+    {
+      "rank": 8,
+      "prev_rank": 7,
+      "delta": -1,
+      "tier": "mid",
+      "name": "The Buckner Boots",
+      "cumulative_ap": {
+        "w": 46,
+        "l": 67,
+        "t": 22
+      },
+      "cumulative_cats": {
+        "w": 536,
+        "l": 650,
+        "t": 74
+      },
+      "history": [
+        {
+          "week": 1,
+          "rank": 2,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 58,
+            "l": 26,
+            "t": 6
+          }
+        },
+        {
+          "week": 2,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 4,
+            "t": 0
+          },
+          "cats": {
+            "w": 47,
+            "l": 36,
+            "t": 7
+          }
+        },
+        {
+          "week": 3,
+          "rank": 2,
+          "ap": {
+            "w": 4,
+            "l": 1,
+            "t": 4
+          },
+          "cats": {
+            "w": 40,
+            "l": 39,
+            "t": 11
+          }
+        },
+        {
+          "week": 4,
+          "rank": 2,
+          "ap": {
+            "w": 5,
+            "l": 2,
+            "t": 2
+          },
+          "cats": {
+            "w": 49,
+            "l": 38,
+            "t": 3
+          }
+        },
+        {
+          "week": 5,
+          "rank": 6,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 15,
+            "l": 71,
+            "t": 4
+          }
+        },
+        {
+          "week": 6,
+          "rank": 6,
+          "ap": {
+            "w": 1,
+            "l": 6,
+            "t": 2
+          },
+          "cats": {
+            "w": 35,
+            "l": 48,
+            "t": 7
+          }
+        },
+        {
+          "week": 7,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 18,
+            "l": 70,
+            "t": 2
+          }
+        },
+        {
+          "week": 8,
+          "rank": 9,
+          "ap": {
+            "w": 3,
+            "l": 4,
+            "t": 2
+          },
+          "cats": {
+            "w": 38,
+            "l": 42,
+            "t": 10
+          }
+        },
+        {
+          "week": 9,
+          "rank": 8,
+          "ap": {
+            "w": 2,
+            "l": 4,
+            "t": 3
+          },
+          "cats": {
+            "w": 42,
+            "l": 45,
+            "t": 3
+          }
+        },
+        {
+          "week": 10,
+          "rank": 7,
+          "ap": {
+            "w": 6,
+            "l": 3,
+            "t": 0
+          },
+          "cats": {
+            "w": 53,
+            "l": 31,
+            "t": 6
+          }
+        },
+        {
+          "week": 11,
+          "rank": 7,
+          "ap": {
+            "w": 0,
+            "l": 0,
+            "t": 9
+          },
+          "cats": {
+            "w": 0,
+            "l": 0,
+            "t": 0
+          }
+        },
+        {
+          "week": 12,
+          "rank": 8,
+          "ap": {
+            "w": 1,
+            "l": 8,
+            "t": 0
+          },
+          "cats": {
+            "w": 28,
+            "l": 58,
+            "t": 4
+          }
+        },
+        {
+          "week": 13,
+          "rank": 7,
+          "ap": {
+            "w": 4,
+            "l": 5,
+            "t": 0
+          },
+          "cats": {
+            "w": 40,
+            "l": 48,
+            "t": 2
+          }
+        },
+        {
+          "week": 14,
+          "rank": 7,
+          "ap": {
+            "w": 7,
+            "l": 2,
+            "t": 0
+          },
+          "cats": {
+            "w": 57,
+            "l": 30,
+            "t": 3
+          }
+        },
+        {
+          "week": 15,
+          "rank": 8,
+          "ap": {
+            "w": 0,
+            "l": 9,
+            "t": 0
+          },
+          "cats": {
+            "w": 16,
+            "l": 68,
+            "t": 6
+          }
+        }
+      ],
+      "weighted_score": 373.56,
+      "analysis": "The worst week of anyone: 0&ndash;9 all-play, a 6.88 ERA, and a .294 OBP that would embarrass a cellar team. Michael&rsquo;s roster is better than this on paper, but the results keep landing him at 536 cumulative cat wins and stuck in the middle. One save was the entire highlight reel."
     },
     {
       "rank": 9,
@@ -3742,14 +4139,14 @@
       "tier": "cellar",
       "name": "Ete Crow",
       "cumulative_ap": {
-        "w": 40,
-        "l": 66,
+        "w": 48,
+        "l": 67,
         "t": 20
       },
       "cumulative_cats": {
-        "w": 459,
-        "l": 623,
-        "t": 88
+        "w": 517,
+        "l": 652,
+        "t": 91
       },
       "history": [
         {
@@ -3947,10 +4344,24 @@
             "l": 44,
             "t": 6
           }
+        },
+        {
+          "week": 15,
+          "rank": 9,
+          "ap": {
+            "w": 8,
+            "l": 1,
+            "t": 0
+          },
+          "cats": {
+            "w": 58,
+            "l": 29,
+            "t": 3
+          }
         }
       ],
-      "weighted_score": 329.53,
-      "analysis": "Ninth and steady. Ete&rsquo;s 40 cat wins in Week 14 ran a tick above their season pace, and a 5&ndash;5 tie with One Ball was a fair result. The cumulative cat record (459&ndash;623) is firmly bottom tier, but Jace&rsquo;s bats keep the floor from caving in. No movement, no real complaints."
+      "weighted_score": 371.05,
+      "analysis": "The second-best week in the league (8&ndash;1 all-play, a league-high 102 strikeouts, 2.85 ERA) and it barely moved the ranking, because the cumulative hole is so deep at 517 cat wins. Jace&rsquo;s ceiling is obvious when the pitching clicks. The season-long floor is why he is still in the cellar."
     },
     {
       "name": "Romance Explosion",
@@ -3959,14 +4370,14 @@
       "delta": 0,
       "tier": "cellar",
       "cumulative_ap": {
-        "w": 28,
-        "l": 79,
+        "w": 29,
+        "l": 87,
         "t": 19
       },
       "cumulative_cats": {
-        "w": 438,
-        "l": 659,
-        "t": 73
+        "w": 453,
+        "l": 729,
+        "t": 78
       },
       "history": [
         {
@@ -4164,10 +4575,24 @@
             "l": 58,
             "t": 6
           }
+        },
+        {
+          "week": 15,
+          "rank": 10,
+          "ap": {
+            "w": 1,
+            "l": 8,
+            "t": 0
+          },
+          "cats": {
+            "w": 15,
+            "l": 70,
+            "t": 5
+          }
         }
       ],
-      "analysis": "The basement, and it is not close. Romance turned in the worst week any team has had all season: 0&ndash;9 all-play, a league-low 26 cat wins, and a 6.31 ERA. At 438 cumulative cat wins they sit 21 behind ninth place. Michael&rsquo;s second roster can hit a little; everything else is a fire.",
-      "weighted_score": 313.11
+      "analysis": "Back near the bottom at 1&ndash;8 all-play and 15 cat wins, the second-worst week in the league. 453 cumulative cat wins is dead last by more than sixty. Michael&rsquo;s 5.59 ERA and lack of power leave no visible path out of the cellar.",
+      "weighted_score": 312.45
     }
   ]
 }
