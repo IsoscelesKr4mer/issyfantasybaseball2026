@@ -29,6 +29,7 @@ TEAM_HEADSHOTS = {
     'Nick-fil-A':                       'img/headshots/decoy.jpeg',
     'Good Vibes Only':            'img/headshots/good-vibes.jpeg',
     'Hey Holmes!':                'img/headshots/good-vibes.jpeg',
+    'Romance Explosion':          'img/headshots/good-vibes.jpeg',
     'Keanu Reeves':               'img/headshots/keanu.jpeg',
     'Ete Crow':                   'img/headshots/ete-crow.jpeg',
     'Rain City Bombers':          'img/headshots/rain-city.jpeg',
@@ -50,6 +51,7 @@ SHORT_NAMES = {
     'The Buckner Boots': 'Buckner',
     'Good Vibes Only': 'GVO',
     'Hey Holmes!': 'Hey',
+    'Romance Explosion': 'Romance',
     'Rain City Bombers': 'Rain City',
     'Busch Latte': 'Busch',
     'Keanu Reeves': 'Keanu',
@@ -713,6 +715,8 @@ def main():
         f'  <div class="nav-badge">Week {current_week}</div>')
     html = replace_section(html, 'HERO_WEEK',
         f'      Week {current_week} &mdash; {date_str}')
+    html = replace_section(html, 'HERO_STATUS',
+        f'    <div class="hero-status-pill">Week {current_week} Live</div>')
 
     # Update the Weeks dropdown href to point to the current week page
     html = re.sub(
