@@ -26,21 +26,43 @@ TEAMS_DIR = BASE_DIR / 'teams'
 TEAM_CONFIG = [
     {'id': 'senga',   'slug': 'busch-latte',  'name': 'Busch Latte',                'headshot': '../img/headshots/busch-latte.jpg'},
     {'id': 'skenes',  'slug': 'skenes',        'name': 'Allahu Alvarez',  'headshot': '../img/headshots/skenes.jpeg'},
-    {'id': 'glas',    'slug': 'ragans',        'name': 'The Ragans Administration',  'headshot': '../img/headshots/ragans.jpeg'},
+    {'id': 'glas',    'slug': 'ragans',        'name': 'It’s Always Sonny',  'headshot': '../img/headshots/ragans.jpeg'},
     {'id': 'lets',    'slug': 'ete-crow',      'name': 'Ete Crow',                   'headshot': '../img/headshots/ete-crow.jpeg'},
     {'id': 'keanu',   'slug': 'keanu',         'name': 'Keanu Reeves',               'headshot': '../img/headshots/keanu.jpeg'},
-    {'id': 'vibes',   'slug': 'good-vibes',    'name': 'Good Vibes Only',            'headshot': '../img/headshots/good-vibes.jpeg'},
+    {'id': 'vibes',   'slug': 'good-vibes',    'name': 'Romance Explosion',            'headshot': '../img/headshots/good-vibes.jpeg'},
     {'id': 'rain',    'slug': 'rain-city',     'name': 'Rain City Bombers',          'headshot': '../img/headshots/rain-city.jpeg'},
     {'id': 'buckner', 'slug': 'buckner',       'name': 'The Buckner Boots',          'headshot': '../img/headshots/buckner.jpeg'},
     {'id': 'decoy',   'slug': 'decoy',         'name': 'Nick-fil-A',                      'headshot': '../img/headshots/decoy.jpeg'},
     {'id': 'oneball', 'slug': 'one-ball',      'name': 'One Ball Two Strikes',       'headshot': '../img/headshots/one-ball.png'},
 ]
 
+# Fixed Yahoo team-key slot for each page slug. Managers rename their teams
+# mid-season, so name-based standings lookups break; this maps each page to its
+# permanent team-key suffix (mlb.l.61583.t.N) as a fallback. Confirmed via API.
+SLOT_TO_TNUM = {
+    'busch-latte': '8',
+    'skenes':      '9',
+    'ragans':      '2',
+    'ete-crow':    '6',
+    'keanu':       '5',
+    'good-vibes':  '4',
+    'rain-city':   '7',
+    'buckner':     '10',
+    'decoy':       '3',
+    'one-ball':    '1',
+}
+
 # ── HTML replacement helper ────────────────────────────────────────────────────
 def replace_section(html: str, tag: str, new_content: str) -> str:
     pattern = rf'(<!-- AUTO:{tag}_START -->).*?(<!-- AUTO:{tag}_END -->)'
-    replacement = rf'\1\n{new_content}\n    \2'
-    result = re.sub(pattern, replacement, html, flags=re.DOTALL)
+    # Use a lambda so backslash sequences in new_content (e.g. "\20") aren't
+    # interpreted as backreferences by re.sub.
+    result = re.sub(
+        pattern,
+        lambda m: f'{m.group(1)}\n{new_content}\n    {m.group(2)}',
+        html,
+        flags=re.DOTALL,
+    )
     if result == html:
         print(f'  ⚠️  tag AUTO:{tag} not found')
     return result
@@ -248,10 +270,10 @@ WEEK_DATES = {
     7:  ('May 4',  'May 10'), 8:  ('May 11', 'May 17'), 9:  ('May 18', 'May 24'),
     10: ('May 25', 'May 31'), 11: ('Jun 1',  'Jun 7'),  12: ('Jun 8',  'Jun 14'),
     13: ('Jun 15', 'Jun 21'), 14: ('Jun 22', 'Jun 28'), 15: ('Jun 29', 'Jul 5'),
-    16: ('Jul 6',  'Jul 12'), 17: ('Jul 13', 'Jul 19'), 18: ('Jul 20', 'Jul 26'),
-    19: ('Jul 27', 'Aug 2'),  20: ('Aug 3',  'Aug 9'),  21: ('Aug 10', 'Aug 16'),
-    22: ('Aug 17', 'Aug 23'), 23: ('Aug 24', 'Aug 30'), 24: ('Aug 31', 'Sep 6'),
-    25: ('Sep 7',  'Sep 13'),
+    16: ('Jul 6',  'Jul 12'), 17: ('Jul 13', 'Jul 26'), 18: ('Jul 27', 'Aug 2'),
+    19: ('Aug 3',  'Aug 9'),  20: ('Aug 10', 'Aug 16'), 21: ('Aug 17', 'Aug 23'),
+    22: ('Aug 24', 'Aug 30'), 23: ('Aug 31', 'Sep 6'),  24: ('Sep 7',  'Sep 13'),
+    25: ('Sep 14', 'Sep 20'),
 }
 
 def render_week_links(current_week: int) -> str:
@@ -284,14 +306,15 @@ def update_team_page(slug: str, team_name: str, team_data: dict,
         f'  <div class="nav-badge">Week {current_week}</div>')
 
     # Update week dropdown toggle label + href
+    # Use \g<N> backreferences so digits like "08" don't merge with \2 → \208.
     html = re.sub(
         r'(<a href="\.\./week-\d+\.html" class="nav-dropdown-toggle">)Week \d+ &#9662;',
-        rf'\1Week {current_week} &#9662;',
+        rf'\g<1>Week {current_week} &#9662;',
         html
     )
     html = re.sub(
         r'(<a href="\.\.)(/week-)\d+(\.html" class="nav-dropdown-toggle">)',
-        rf'\1\2{current_week:02d}\3',
+        rf'\g<1>\g<2>{current_week:02d}\g<3>',
         html
     )
 
@@ -314,17 +337,26 @@ def main():
 
     updated_at = datetime.now().strftime('%b %d at %-I:%M %p')
 
-    # Build name→standings lookup
+    # Build name→standings and slot→standings lookups. Slot is the permanent
+    # team-key suffix and survives team renames; name is preferred when it matches.
     standings_by_name = {t['name']: t for t in all_standings}
+    standings_by_slot = {t.get('team_key', '').split('.t.')[-1]: t for t in all_standings}
 
     for cfg in TEAM_CONFIG:
         name = cfg['name']
         slug = cfg['slug']
         print(f'  Fetching roster + stats: {name}...')
 
-        # Get team_key from standings
+        # Get team_key from standings: match by configured name first, then fall
+        # back to the fixed team-key slot (handles mid-season team renames).
         team_data = standings_by_name.get(name, {})
+        if not team_data:
+            team_data = standings_by_slot.get(SLOT_TO_TNUM.get(slug, ''), {})
+            if team_data:
+                print(f'    ℹ️  name changed to "{team_data.get("name")}" — matched by slot')
         team_key  = team_data.get('team_key', '')
+        # Use the live team name so records, transactions, and headers stay correct.
+        name = team_data.get('name', name)
 
         if team_key:
             try:
